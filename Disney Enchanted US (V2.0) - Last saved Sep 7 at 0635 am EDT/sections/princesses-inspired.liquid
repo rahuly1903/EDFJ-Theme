@@ -1,0 +1,179 @@
+<section class="section-spacing">
+  <div class="page-width page-width-pd-0">
+    <div class="custom-tabs-wrapper small--text-center">
+      <div class="grid grid--no-gutters tabs">
+        <div class="grid__item grid__item-tabs">
+          <div class="tabs-nav-wrapper">
+            {% include 'section-header' %}
+            <ul class="tabs-nav">
+              <li class="current" data-tab="tab-1">
+                {% include 'icon-sparkles' %}
+                Cindrella
+              </li>
+              <li data-tab="tab-2">
+                {% include 'icon-sparkles' %}
+                Tinker bell
+              </li>
+              <li data-tab="tab-3">
+                {% include 'icon-sparkles' %}
+                Aurora
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid__item grid__item-tabs-content">
+          <div class="tabs-content-wrapper">
+            <div id="tab-1" class="tab-content current">
+              <div class="image-wrapper">
+                <img class="small--hide"
+                     src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/cinderella_dd7cb78d-336a-4dc0-981f-3d8750d823a8.png?v=1630992224" alt="" />
+                <img class="medium-up--hide"
+                     src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/cinderella-mob.png?v=1630994894" alt="" />
+              </div>
+              <div class="content">
+                <span class="sub-title">Jewelry collection</span>
+                <div class="title">Cinderella</div>
+                <div class="text"><p>Magic might have turned her life upside down overnight but Cinderella believes in the miracle of compassion and respect for all creatures, big or small. The jewelry she inspires is as soft and graceful as her.</p></div>
+                <div class="btn-wrapper">
+                  <a href="#" class="btn-border">
+                    {% include 'btn-border' %}
+                    <span>Explore</span>
+                  </a>
+                  <a href="#" class="btn-arrow">
+                    Shop all
+                    {% include 'icon-btn-arrow' %}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div id="tab-2" class="tab-content">
+              <div class="image-wrapper">
+                <img class="small--hide"
+                     src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/cinderella_dd7cb78d-336a-4dc0-981f-3d8750d823a8.png?v=1630992224" alt="" />
+                <img class="medium-up--hide"
+                     src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/cinderella-mob.png?v=1630994894" alt="" />
+              </div>
+              <div class="content">
+                <span class="sub-title">Jewelry collection</span>
+                <div class="title">Tinker bell</div>
+                <div class="text"><p>Magic might have turned her life upside down overnight but Cinderella believes in the miracle of compassion and respect for all creatures, big or small. The jewelry she inspires is as soft and graceful as her.</p></div>
+                <div class="btn-wrapper">
+                  <a href="#" class="btn-border">
+                    {% include 'btn-border' %}
+                    <span>Explore</span>
+                  </a>
+                  <a href="#" class="btn-arrow">
+                    Shop all
+                    {% include 'icon-btn-arrow' %}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div id="tab-3" class="tab-content">
+              <div class="image-wrapper">
+                <img class="small--hide"
+                     src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/cinderella_dd7cb78d-336a-4dc0-981f-3d8750d823a8.png?v=1630992224" alt="" />
+                <img class="medium-up--hide"
+                     src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/cinderella-mob.png?v=1630994894" alt="" />
+              </div>
+              <div class="content">
+                <span class="sub-title">Jewelry collection</span>
+                <div class="title">Aurora</div>
+                <div class="text"><p>Magic might have turned her life upside down overnight but Cinderella believes in the miracle of compassion and respect for all creatures, big or small. The jewelry she inspires is as soft and graceful as her.</p></div>
+                <div class="btn-wrapper">
+                  <a href="#" class="btn-border">
+                    {% include 'btn-border' %}
+                    <span>Explore</span>
+                  </a>
+                  <a href="#" class="btn-arrow">
+                    Shop all
+                    {% include 'icon-btn-arrow' %}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Custom Tabs",
+	"class": "custom-tabs-section princesses",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+	  {
+		"type": "text",
+		"id": "title",
+		"label": "Title",
+		"default": "Title"
+	  },
+	  {
+		"type": "text",
+		"id": "sub_title",
+		"label": "Subtitle",
+		"default": "Subtitle"
+	  }
+	],
+	"blocks": [
+      {
+      	"type": "block",
+		"name": "Block",
+		"settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+			"default": "Title"
+          },
+		  {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Subtitle",
+			"default": "Subtitle"
+          },
+		  {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+			"default": "<p>Add text to give information about your chosen collection.</p>"
+          },
+		  {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label",
+			"default": "Explore"
+          },
+		  {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+		]
+      }
+	],
+    "presets": [
+      {
+        "name": "Custom tabs",
+        "category": "Advanced layout"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

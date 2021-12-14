@@ -1,0 +1,39 @@
+<section class="theme__collection ariel all_princess_coll" data-section-type="theme__collection" data-section-id="{{ section.id }}">
+  {% assign collection-bg = section.settings.collection-bg %}
+  {% assign heading = section.settings.collection-title %}
+  {% assign sub-heading = section.settings.collection-subtitle %}
+  {% assign paragraph = section.settings.collection-desc %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  {% assign collection-art = section.settings.collection-art %}
+
+  <div class="ed--wrapper">
+    <div class="theme__collection--row">
+      <div class="theme__collection--left princess-collection-heading">
+        {% if heading != blank %}
+        <h2 class="princess-heading">{{ heading }}</h2>
+        {% endif %}
+        {% if sub-heading != blank %}
+        <h5 class="princess-sub-heading">{{ sub-heading }}</h5>
+        {% endif %}
+        {% if paragraph != blank %}
+        <p>{{ paragraph }}</p>
+        {% endif %}
+        <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Element.png?v=1611814110"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-sizes="auto"
+             alt="">
+        {% if button-label != blank %}
+        <a href="{% if button-url != blank %}{{ button-url }}{% endif %}" class="btn shop-btn">
+          {{ button-label }}
+        </a>
+        {% endif %}
+      </div>
+      <div class="theme__collection--right img_div">
+        {% if collection-art != nil %}
+        <img src="{{ collection-art | img_url: 'master' }}" alt="Enchanted Disney" class="princess_img" />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+{% layout none %}
+{% capture productJson %}
+{% paginate collection.products by 100 %}
+[
+  {%- for product in collection.products -%}
+	  {% assign tags = product.tags | join:"," %}
+      {%- if product.available == false and tags contains 'Vault-' -%}
+	  {%- else -%}
+      {{ product | json }},
+      {%- endif -%}
+
+  {%- endfor -%}
+]
+{% endpaginate %}
+{% endcapture %}
+{% capture jsonLength %}{{ productJson.size | minus:4 }}{% endcapture %}
+{{ productJson | slice: 0 , jsonLength | append: ']' }}

@@ -1,0 +1,107 @@
+{% if product.tags contains "NY Rings" %}
+{%- assign first_variant = product.variants[0] -%}
+{% if section.settings.enable_payment_button %}
+{% if current_variant.available %}
+{{ form | payment_button }}
+{% endif %}
+{% endif %}
+<div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden{% if section.settings.enable_payment_button %} product-form__error-message-wrapper--has-payment-button{% endif %}" data-error-message-wrapper role="alert">
+  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+  {% include 'icon-error' %}
+  <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
+</div>
+
+{% if first_variant.available  %}
+<div class="shopify-payment-button sticky">
+  <button type="button"
+          class="shopify-payment-button__button shopify-payment-button__button--unbranded" 
+          data-testid="Checkout-button">
+    <span class="checkout-text">Buy now</span>
+    <span class="hide" data-loader>
+      {% include 'icon-spinner' %}
+    </span>
+  </button>
+</div>
+{% endif %}
+
+<div class="product_button">
+  <div class="product_button-cart">
+    <button class="btn" {% unless first_variant.available %}style="display:none;"{% endunless %} type="{% if current_variant.available %}submit{% else %}button{% endif %}" name="add"                      
+            aria-label="{% unless first_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+            {% if first_variant.available %}data-add-to-cart{% endif %}>
+      <img src="{{ 'Bag-blue.svg' | asset_url }}" />
+      <span>
+        {% unless first_variant.available %}
+        {{ 'products.product.sold_out' | t }}
+        {% else %}
+        {{ 'products.product.add_to_cart' | t }}
+        {% endunless %}
+      </span>
+      <span class="hide" data-loader>
+        {% include 'icon-spinner' %}
+      </span>
+    </button>
+    <div id='mhaRnProduct' {% unless first_variant.available %}class="show-button"{% endunless %}></div>
+  </div>
+  <style>
+    .show-button .email-when-available{display:block !important;}
+  </style>
+  <div class="product_button-video">
+    {% include 'swym-product-view', product: product %}
+    <button class="btn" type="button" data-sku="{{ current_variant.sku }}">Video Consultation</button>
+  </div>
+</div>
+
+{% else %}
+
+  {% if section.settings.enable_payment_button %}
+  {% if current_variant.available %}
+  {{ form | payment_button }}
+  {% endif %}
+  {% endif %}
+  <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden{% if section.settings.enable_payment_button %} product-form__error-message-wrapper--has-payment-button{% endif %}" data-error-message-wrapper role="alert">
+    <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+    {% include 'icon-error' %}
+    <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
+  </div>
+
+  {% if current_variant.available  %}
+  <div class="shopify-payment-button sticky">
+    <button type="button"
+            class="shopify-payment-button__button shopify-payment-button__button--unbranded" 
+            data-testid="Checkout-button">
+      <span class="checkout-text">Buy now</span>
+      <span class="hide" data-loader>
+        {% include 'icon-spinner' %}
+      </span>
+    </button>
+  </div>
+  {% endif %}
+
+  <div class="product_button">
+    <div class="product_button-cart">
+      <button class="btn" {% unless current_variant.available %}style="display:none;"{% endunless %} type="{% if current_variant.available %}submit{% else %}button{% endif %}" name="add"                      
+              aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+              {% if current_variant.available %}data-add-to-cart{% endif %}>
+        <img src="{{ 'Bag-blue.svg' | asset_url }}" />
+        <span data-add-to-cart-text>
+          {% unless current_variant.available %}
+          {{ 'products.product.sold_out' | t }}
+          {% else %}
+          {{ 'products.product.add_to_cart' | t }}
+          {% endunless %}
+        </span>
+        <span class="hide" data-loader>
+          {% include 'icon-spinner' %}
+        </span>
+      </button>
+      <div id='mhaRnProduct'></div>
+    </div>
+
+    <div class="product_button-video">
+      {% include 'swym-product-view', product: product %}
+      <button class="btn" type="button" data-sku="{{ current_variant.sku }}">Video Consultation</button>
+    </div>
+  </div>
+
+{% endif %}

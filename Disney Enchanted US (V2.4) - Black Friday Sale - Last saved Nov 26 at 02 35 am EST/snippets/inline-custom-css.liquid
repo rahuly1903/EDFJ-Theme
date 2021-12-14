@@ -1,0 +1,770 @@
+
+
+{% style %}
+
+{% assign base_font = settings.type_base_font %}
+
+{%- assign base_font_bolder = base_font | font_modify: 'weight', '600' -%}
+
+{{ base_font_bolder | font_face: font_display: 'swap' }}
+
+:root {
+
+--font-body-family: {{ settings.type_base_font.family }}, {{ settings.type_base_font.fallback_families }};
+--font-body-style: {{ settings.type_base_font.style }};
+--font-body-weight: {{ settings.type_base_font.weight }};
+
+--font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+--font-heading-style: {{ settings.type_header_font.style }};
+--font-heading-weight: {{ settings.type_header_font.weight }};
+
+{% comment %}<!-- Font color -->{% endcomment %}
+--nav-level-one-color: #687686;
+--nav-level-one-hover-color: #12204A;
+--nav-level-two-color: ;
+--nav-level-three-color: ;
+--text-dark-gold-color: #BC913F;
+--text-blue-color: ;
+--text-black-color: ;
+{% comment %}<!-- Font color end -->{% endcomment %}
+
+{% comment %}Button color {% endcomment %}
+--button-gold-color:#BC913F;
+--button-white-color:#fff;
+--button-blue-color:#12204A;
+{% comment %}Button color end{% endcomment %}
+
+{% comment %}<!-- princess page variables -->{% endcomment %}
+--heading-color :#BC913F;
+--three-banner-slider-bg-color :#FAFAFC;
+--black-color: #000000;
+{% comment %}<!-- princess page variables end -->{% endcomment %}
+{% comment %}<!-- collection page variables start -->{% endcomment %}
+--white-color: #ffffff;
+--breadcrumb-color: #363333;
+--border-color: #ECEDF1;
+--filter-label-color:#7A86A3;
+{% comment %}<!-- collection page variables end -->{% endcomment %}
+
+{% endstyle %}
+
+<style>
+
+
+  @keyframes lineAnim {
+    0% {
+      left: -40%;
+    }
+    50% {
+      left: 20%;
+      width: 80%;
+    }
+    100% {
+      left: 100%;
+      width: 100%;
+    }
+  }
+  
+  
+  
+  /*   iframe#preview-bar-iframe {
+    display: none;
+  } */
+  {% if page.handle == "home" %}
+  /* common class */
+  .heading-title{
+    font-size: 40px;
+    text-transform: none;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 55px;
+    font-family: "NewYork-Regular";
+    margin-bottom: 0;
+  }
+  /* Block content with product slider */
+  .product-grid-slider .heading-wrapper {
+    padding: 40px 0;
+  }
+  .heading-wrapper .heading-title,.heading-wrapper .heading-descripiton {
+    color: #11214A;
+  }
+  .heading-wrapper .heading-title {
+    margin-bottom: 0;
+  }
+  .heading-wrapper .heading-descripiton {
+    font-size: 24px;
+    line-height: 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    font-family: "NewYork-Regular";
+    margin-bottom:20px;
+  }
+  /* Image with product slider css start */
+  .image-overlay-section{
+    margin-bottom: 50px;
+  }
+  .custom-page-width{
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .custom-page-width .content-image-wrapper{
+    position: relative;
+  }
+  .custom-page-width .overlay-heading-wrapper {
+    position: absolute;
+    max-width: 520px;
+    margin-left: 50px;
+    top: 24%;
+  }
+  .custom-page-width .heading-title,.custom-page-width .heading-descripiton {
+    color: #fff;
+  }
+  .section-1613923786aab2c8b9 .overlay-heading-wrapper{
+    /* top: 18%;
+    left: 47%; */
+    top: 60%;
+    left: 16%;
+    transform: translateX(-50%);
+    /* max-width: 450px; */
+    max-width: 370px;
+  }
+  .section-1613923786aab2c8b9 .heading-title{
+    color: #000000;
+    /* font-size: 32px; */
+    /* line-height: 38px; */
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .section-1613923786aab2c8b9 .heading-title span{
+    /* font-size: 22px; */
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .section-1613923786aab2c8b9 .heading-descripiton{
+    color: #000000;
+    /* font-size: 18px; */
+    /* line-height: 26px; */
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .section-1613923786aab2c8b9 .overlay-heading-wrapper .slider-btn{
+    font-size: 16px;
+    color: #000000;
+  }
+  .section-1613923786aab2c8b9.image-overlay-section .position-overlay {
+    margin-top: -90px;
+  }
+  .custom-page-width .content-image-wrapper img{
+    width: 100%;
+    display: block;
+  }
+  .image-overlay-section .position-overlay {
+    margin-top: -220px;
+  }
+  .banner-product-grid-slider .mm-product-image {
+    height: 250px;
+  }
+  .banner-product-grid-slider .slick-dots {
+    display: none !important;
+  }
+  .image-overlay-section.section-1613929167b9b4c4d3 .position-overlay {
+    margin-top: -100px;
+  }
+  .image-overlay-section a svg{
+    width: 13px;
+    height: 13px;
+    fill: #fff;
+    margin-left: 10px;
+    display: inline-block;
+  }
+  .slick-slider svg{
+    margin-left: 15px;
+  }
+  .overlay-heading-wrapper .slider-btn{
+    font-weight: 600;
+  }
+  .banner-product-grid-slider button.slick-arrow svg {
+    fill: #fff;
+  }
+  .banner-product-grid-slider .mm-product-card {
+    border: 2px solid;
+    border-radius: 0 !important;
+  }
+  .banner-product-grid-slider .mm-product-card .mm-product-title{
+    min-height:57px;
+  }
+  .section-1613923786aab2c8b9 .mm-product-card{
+    /*     border-color: #70121D; */
+    border-color: #cfcace;
+  }
+  /*  Two block image section css start here  */
+  .full-width-custom-banner .image-content-wrapper {
+    position: relative;
+  }
+  .full-width-custom-banner img {
+    display: block;
+  }
+  .full-width-custom-banner .custom__item {
+    margin-bottom: 35px;
+  }
+  .full-width-custom-banner .overlay-title {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+    font-family: "NewYork-Regular";
+    font-weight: 400;
+  }
+  /* Two Text block section Css Start */
+  .two-txt-block-section .section--inneritem{
+    background-color: #D9C8C4;
+    text-align: center;
+    padding: 40px 0;
+  }
+  .two-txt-block-section .custom_html {
+    margin-top: 50px;
+  }
+  .txt-block-wrapper {
+    background-image: url(//cdn.shopify.com/s/files/1/0267/0523/1943/files/Group_20866_2x-min_1280x.png?v=1613990644);
+    padding-bottom: 170px;
+    background-position: 0 60px;
+    background-repeat: no-repeat;
+  }
+  .two-txt-block-section .title_txt, .two-txt-block-section .txt-block-wrapper .txt_content{
+    font-family: "NewYork-Regular";
+    font-size: 30px;
+    line-height: 35px;
+    letter-spacing: 0;
+    color: #363333;
+    margin: 0;      
+  }
+  .two-txt-block-section .txt_content span{
+    font-size:20px;
+  }
+  .two-txt-block-section .custom_html * {
+    font-size: 24px;
+    line-height: 40px;
+    letter-spacing: 2.4px;
+    color: #363333;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .two-txt-block-section .custom_html span{
+    display:inline-block;
+    padding:0 10px;
+  }
+  .banner-product-grid-slider .mm-product-title{
+    margin-bottom: 15px;
+  }
+  /* Two Text block section Css End */
+  /*  Best seller product slider css start */
+  .homepage-product-slider .product-slider-1591339349350{
+    padding-top:50px;
+  }
+  .homepage-product-slider .banner-product-grid-slider{
+    padding-bottom:50px;
+  }
+  .homepage-product-slider svg{
+    fill: rgba(17, 33, 74, 0.9) !important;
+  } 
+  /*  Best seller product slider css end */
+  @media(max-width:1023px){
+    .custom-page-width .overlay-heading-wrapper{
+      position: static;
+      margin-left: 0;
+      width: 90%;
+      margin: 0 auto 20px;
+      text-align: center;
+    }
+    .section-1613923786aab2c8b9 .overlay-heading-wrapper{
+      top: 0;
+      left: 0;
+      transform: translateX(0);
+      max-width: 450px;
+    }
+    .custom-page-width .heading-title,.custom-page-width .heading-descripiton {
+      color: #11214A;
+    }
+    .image-overlay-section .position-overlay {
+      margin-top: -90px;
+    }
+    .image-overlay-section a svg {
+      width: 10px;
+      height: 9px;
+      margin: 0;
+    }
+    .two-txt-block-section .section--inneritem{
+      padding: 40px 0;
+    }
+    .two-txt-block-section .custom_html{
+      margin-top: 40px;
+    }
+    .two-txt-block-section .padding-adjust .grid__item:first-child{
+      margin-bottom:40px;
+    }
+    .overlay-heading-wrapper .slider-btn{
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+    .two-txt-block-section .title_txt, .two-txt-block-section .txt_content{
+      font-size: 24px;
+      line-height: 26px;
+    }
+    .two-txt-block-section .title_txt, .two-txt-block-section .txt_content span{
+      font-size: 18px;
+    }
+    .two-txt-block-section .custom_html *{
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 1.2px;
+    }
+    .txt-block-wrapper{
+      padding-bottom: 80px;
+      background-position: 0 60px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    .banner-product-grid-slider .slick-list {
+      padding-right: 50px;
+    }
+    .section-1613923786aab2c8b9 .heading-title{
+      font-size: 24px;
+      line-height: 34px;
+    }
+    .section-1613923786aab2c8b9 .heading-descripiton {
+      font-size: 15px;
+    }
+  }
+  @media(max-width:767px){
+    .heading-title{
+      font-size: 24px;
+      line-height: 34px;
+    }
+    .heading-wrapper .heading-descripiton{
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .image-overlay-section .position-overlay {
+      margin-top: -60px;
+    }
+    .slick-dots{
+      margin-top: 18px;
+    }
+    .product-grid-slider{
+      width: 88%;
+      margin: 30px auto;
+    }
+    .product-grid-slider .heading-wrapper {
+      padding: 14px 0;
+      margin-bottom: 0;
+    }
+    .banner-product-grid-slider .slick-list {
+      padding-right: 70px;
+    }
+    .banner-product-grid-slider .page-width{
+      padding-right:0;
+    }
+    .txt-block-wrapper {
+      padding-bottom: 50px;
+      background-position: 0 150px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+  }
+  
+  @media (min-width: 769px){
+    /* Image with product slider css start */
+    .overlay-heading-wrapper .slider-btn {
+      background-color: transparent;
+      border: 0px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      padding: 0;
+    }
+    .overlay-heading-wrapper .slider-btn:hover{
+      background-color: transparent;
+    }
+    /* Image with product slider css end */
+  }
+  @media (max-width:1024px){
+    .full-width-custom-banner .overlay-title {
+      font-size: 22px;
+    }	
+    .heading-wrapper .heading-title {
+      font-size: 22px;
+      line-height: 30px;
+    }
+  }
+  
+  
+  {% elsif page.title == "Disney Villain Collection" %}
+  .breadcrumb {
+    display: none;
+  }
+  .landing-image-wrapper{
+    position:relative;
+  }
+  .landing-image-wrapper:before {
+    content: '';
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  /*   Villain Landing page start */
+  #myVideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    top: -900px;
+  }
+  .villain_landing {
+    background: rgba(0, 0, 0, 0.9) linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(23, 23, 23, 0.9) 100%) 0% 0% no-repeat padding-box;
+  }
+  .villain_landing .bg_first, .villain_landing .bg_second, .villain_landing .bg_third {
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  /*   .villain_landing .bg_first::after {
+    content: '';
+    position: absolute;
+    top: 170px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Group_20757.png?v=1613383780');
+    background-position: top left;
+    z-index: 1;
+    background-size: cover;
+  } */
+  .villain_landing .bg_second {
+    background-image: url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/2021_Enchanted_Villains_Page_Banners_2000x2000_2e303b54-642d-47ed-8d27-90f59a4265a3.png?v=1613387603');
+    background-position: 0 100%;
+  }
+  .villain_landing .bg_third {
+    background-image: url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/2021_Enchanted_Villains_Page_Banners_2000x2000_d8d19e95-081a-430e-a75f-ab628229a568.png?v=1613388000');
+    background-position: 0 100%;
+  }
+  
+  .villain_landing .grid__item--villain_collection_first .mm-ajax-add{
+    background:url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Group_20863.png?v=1613474236');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .villain_landing .grid__item--villain_collection_second .mm-ajax-add{
+    background:url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Group_20864.png?v=1613474402');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .villain_landing .grid__item--villain_collection_third .mm-ajax-add{
+    background:url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Group_20865.png?v=1613474423');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /*   Villain Landing page End  */
+  
+  /*****************  Villain main landing banner  ********************/
+  .heading-main-banner{
+    padding: 100px 0 60px;
+  }
+  
+  .heading-main-banner img{
+    display:block;
+    position: relative;
+  }
+  .main-heading{
+    padding-top: 132px;
+  }
+  .heading {
+    position: relative;
+    z-index: 12;
+    text-align: center;
+    max-width: 872px;
+    margin: 0 auto;
+  }
+  .heading *{
+    color: #171616 !important;
+  }
+  .heading-main-banner .heading .main_heading{
+    font-size: 36px;
+    line-height: 34px;
+    margin-bottom: 10px;
+  }
+  .villain_landing .heading .villain_text{
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .villain_collection .villain_text{
+    padding: 40px 0;
+  }
+  /*****************  Villain main landing banner end  ********************/
+  .bg-wrapper{
+    padding-top: 60px;
+  }
+  .villain-banner-wrapper{
+    padding-bottom: 60px;
+  }
+  .villain_landing .bg-wrapper .villain_text{
+    color:#fff !important;
+  }
+  .banner-sketch-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+  .villan_banner .slider-btn{
+    background-color: #000000;
+  }
+  /*  Villain first category banner section   */
+  .villain-first__banner-wrapper {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .villain-banner-wrapper img{
+    position:relative;
+    display:block;
+  }
+  .villain-first__banner-wrapper:before {
+    content: '';
+    background: linear-gradient( 179deg, rgba(255,255,255,1), #E5E0E0);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 70px;
+    position: absolute;
+  }
+  .villain-first__banner-wrapper:after {
+    content: '';
+    background: linear-gradient(rgba(255,255,255,0.001), rgba(255,255,255,1));
+    width: 100%;
+    height: 70px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: 1;
+  }
+  .villain_landing form {
+    margin: 0 auto;
+    text-align: center;
+    max-width: calc(100% - 16px);
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+  .villain_landing .mm-ajax-add {
+    width: 100%;
+  }
+  /*  Slick arrow  */
+  .villain_landing button.slick-arrow svg {
+    fill: rgba(255, 255, 255, 1);
+  }
+  .villain-first__banner-wrapper button.slick-arrow svg {
+    fill: #620F1A;
+  }
+  .villain_landing .slick-next {
+    right: -35px;
+  }
+  .villain_landing .slick-prev {
+    left: -10px;
+  }
+  
+  .villan_banner .banner_explore{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+  }
+  .villan_banner .explore_sketch{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "NewYork-Regular";
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 30px; 
+  }
+  .villan_banner .explore_sketch:hover{
+    color: #ffffff;
+  }
+  .villan_banner .explore_sketch svg{
+    transform: rotate(90deg);
+  }
+  
+  /* Villain Sketch section css start */
+  .sketch_images{
+    display: none;
+  }
+  .sketch_images .sketch_banner{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-top: 10px;
+  }
+  .sketch_images .sketch_banner .txt{
+    position: absolute;
+    text-align: center;
+    padding-bottom: 28px;
+  }
+  .sketch_images .sketch_banner .txt h4{
+    font-family: "NewYork-Regular";
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0;
+    color: #ffffff;
+    margin-bottom: 0px;
+  }
+  .sketch_images .sketch_banner .txt p{
+    font-family: "NewYork-Regular";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 1.8px;
+    color: #ffffff;
+  }
+  .sketch_images .images_grid{
+    display: flex;
+    flex-direction: row;
+    margin: 0 -3px;
+    padding-top: 4px;
+  }
+  .sketch_images .images_grid .sketch_grid{
+    padding: 0 2.5px;
+  }
+  .sketch_images .images_grid .sketch_grid .column_imgs {
+    padding-bottom: 5px;
+  }
+  /* Villain Sketch section css End */
+  
+  @media (min-width:1350px) and (max-width:1440px){
+    .villain_landing .bg_first::after {
+      top: 150px;
+    }
+  }
+  @media (min-width:1441px) and (max-width:1540px){
+    .villain_landing .bg_first::after {
+      top: 150px;
+    }
+  }
+  @media (min-width:1541px) and (max-width:1800px){
+    .villain_landing .bg_first::after {
+      top: 70px;
+    }
+  }
+  @media (min-width:1801px){
+    .villain_landing .bg_first::after {
+      top: 10px;
+    }
+    .villain-first__banner-wrapper:before {
+      top: 70px;
+    }
+  }
+  @media (max-width:767px){
+    #myVideo1 {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      background-size: cover;
+      top: -300px;
+    }
+    .main-heading{
+      padding-top: 60px;
+    }
+    .button-wrapper .btn{
+      padding: 11px 15px;
+    }
+    .villain_landing .bg_first::after {
+      top: 100px;
+      background-position: 30% 0;
+      background-size: 140%;
+    }
+    .page-width .page-width{
+      padding:0;
+    }
+    .heading-main-banner {
+      padding: 10px 0 30px;
+    }
+    .heading-main-banner .heading .main_heading {
+      font-size: 24px;
+      line-height: 34px;
+    }
+    .villain_landing .page-width{
+      padding:0 10px;
+    }
+    .villain_landing .slick-dots{
+      display: none !important;
+    }
+    /*  Villain first category banner section   */
+    .villain-first__banner-wrapper{
+      overflow:unset;
+    }
+    .villain-first__banner-wrapper:before{
+      top: -130px;
+      height: calc(100% + 130px);
+    }
+    .villain_collection .villain_text {
+      padding: 20px 0;
+    }
+    .bg-wrapper {
+      padding-top: 10px;
+    }
+    .villain-banner-wrapper {
+      padding-bottom: 40px;
+    }
+    .villain-banner-wrapper .product-grid-slider .mm-product-image {
+      padding: 10px 0 10px;
+      position: relative;
+      height: 200px;
+    }
+    .villain-banner-wrapper .product-grid-slider .slick-list {
+      padding-right: 25%;
+    }
+    
+    .villan_banner .explore_sketch{
+      font-size: 12px;
+      margin-bottom: 10px; 
+    }
+    .villan_banner .explore_sketch svg {
+      width: 11px;
+      height: 11px;
+    }
+    /* Villain Sketch section css start */
+    .sketch_images .sketch_banner .txt {
+      padding-bottom: 8px;
+    }
+    .sketch_images .sketch_banner .txt h4 {
+      font-size: 20px;
+      line-height: 23px;
+    }
+    .sketch_images .sketch_banner .txt p {
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 1.4px;
+    }
+    .sketch_images .images_grid {
+      flex-wrap: wrap;
+    }
+    .sketch_images  .first_sketch.sketch_grid, .sketch_images .second_sketch.sketch_grid {
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Villain Sketch section css end */
+  }
+  {% endif %}
+</style>

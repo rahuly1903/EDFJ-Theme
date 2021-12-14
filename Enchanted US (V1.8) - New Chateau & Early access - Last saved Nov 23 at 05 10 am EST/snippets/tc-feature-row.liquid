@@ -1,0 +1,91 @@
+{% if section.settings.enable_section %}
+<section class="section-spacing">
+  {% if section.settings.header_title != blank %}
+  <div class="feature-row-header page-width text-center">
+    {% if section.settings.header_sub_title != blank %}
+    <span class="feature-row-subtitle">{{ section.settings.header_sub_title }}</span>
+    {% endif %}
+    <h2 class="feature-row-title">{{ section.settings.header_title }}</h2>
+  </div>
+  {% endif %}
+  <div class="page-width">
+    {% capture image_layout %}
+    <div class="feature-row__item feature-row__item-image">
+      {% if section.settings.image != blank %}
+      {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
+      {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
+      {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}      
+      <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+        <div style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;" data-image-loading-animation>
+          <img id="{{ img_id }}"
+               class="feature-row__image lazyload"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ section.settings.image.alt | escape }}">
+        </div>
+      </div>
+      <noscript>
+        {{ section.settings.image | img_url: '600x600', scale: 2 | img_tag: section.settings.image.alt, 'feature-row__image' }}
+      </noscript>
+      {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    {% endcapture %}
+
+    <div class="feature-row text_section">
+      {% if section.settings.layout == 'left' %}
+      {{ image_layout }}
+      {% endif %}
+
+      <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
+        <div class="section-content">
+          {% assign product_image = section.settings.product_image | img_url: 'master' %}
+          <div class="image-wrapper">
+            <img class="lazyload"
+                 src="{{ product_image }}"
+                 data-src="{{ product_image }}"
+                 data-sizes="auto"
+                 alt="" />
+          </div>
+          <div class="content">
+            {% if section.settings.sub_title != blank %}
+            <span class="section-subtitle">{{ section.settings.sub_title }}</span>
+            {% endif %}
+            {% if section.settings.title != blank %}
+            <h2 class="section-title">{{ section.settings.title }}</h2>
+            {% endif %}
+            {% if section.settings.text != blank %}
+            <div class="text">{{ section.settings.text }}</div>
+            {% endif %}
+
+            {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            {%- capture ariaLabel -%}
+            {{- section.settings.button_label -}}
+            {%- if section.settings.button_link.type == 'frontpage_link' -%}
+            : {{ 'homepage.general.title' | t -}}
+            {%- elsif section.settings.button_link.type == 'catalog_link' -%}
+            : {{ 'collections.catalog.title' | t -}}
+            {%- elsif section.settings.button_link.object.title -%}
+            : {{ section.settings.button_link.object.title -}}
+            {%- endif -%}
+            {%- endcapture -%}
+            <a href="{{ section.settings.button_link }}/" class="btn-border btn-gold btn-hover-white" aria-label="{{ ariaLabel }}">
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+              {{- section.settings.button_label | escape -}}
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% if section.settings.layout == 'right' %}
+      {{ image_layout }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}

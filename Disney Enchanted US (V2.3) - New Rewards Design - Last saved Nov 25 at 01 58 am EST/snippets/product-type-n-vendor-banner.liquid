@@ -1,0 +1,300 @@
+{% assign productVendor = product.vendor | handle %}
+{% case productVendor %}
+{% when 'anna' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-ANNA.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-ANNA.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-ANNA.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-ANNA.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'ariel' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-ARIEL.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-ARIEL.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-ARIEL.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-ARIEL.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'aurora' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-AURORA.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-AURORA.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-AURORA.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-AURORA.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'belle' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-BELLE.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-BELLE.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-BELLE.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-BELLE.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'cinderella' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-CINDERELLA.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-CINDERELLA.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-CINDERELLA.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-CINDERELLA.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'elsa' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-ELSA.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-ELSA.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-ELSA.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-ELSA.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'jasmine' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-JASMINE.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-JASMINE.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-JASMINE.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-JASMINE.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'majestic-princess' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-MAJESTIC.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-MAJESTIC.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-MAJESTIC.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-MAJESTIC.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'merida' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-MERIDA.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-MERIDA.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-MERIDA.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-MERIDA.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'moana' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-MOANA.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-MOANA.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-MOANA.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-MOANA.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'mulan' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-MULAN.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-MULAN.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-MULAN.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-MULAN.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'pocahontas' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-POCAHONTAS.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-POCAHONTAS.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-POCAHONTAS.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-POCAHONTAS.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'rapunzel' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-RAPUNZEL.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-RAPUNZEL.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-RAPUNZEL.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-RAPUNZEL.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'snow-white' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-SNOWWHITE.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-SNOWWHITE.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-SNOWWHITE.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-SNOWWHITE.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'tiana' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-TIANA.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-TIANA.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-TIANA.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-TIANA.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'tinker-bell' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Enchanted-TINKERBELL.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Enchanted-TINKERBELL.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Enchanted-TINKERBELL.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Enchanted-TINKERBELL.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'maleficent' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'MALEFICENT-WIDE.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'MALEFICENT-WIDE.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'MALEFICENT-WIDE.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'MALEFICENT-WIDE.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'jafar' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'JAFAR-WIDE.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'JAFAR-WIDE.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'JAFAR-WIDE.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'JAFAR-WIDE.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'evil-queen' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'QUEEN-WIDE-V1.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'QUEEN-WIDE-V1.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'QUEEN-WIDE-V1.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'QUEEN-WIDE-V1.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'ursula' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'URSULA-WIDE-1.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'URSULA-WIDE-1.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'URSULA-WIDE-1.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'URSULA-WIDE-1.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% else %}
+
+{% endcase %}
+
+
+{% assign productType = product.type | handle %}
+{% case productType %}
+{% when 'necklace' or 'bangle' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Pendant.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Pendant.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Pendant.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Pendant.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'ring' or 'engagement-ring' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Ring.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Ring.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Ring.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Ring.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'earrings' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Earrings.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Earrings.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Earrings.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Earrings.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% when 'bracelet' or 'bangle' %}
+<div class="product-single__media--Image">
+  <a 
+     href="{{ 'Disney_Bracelete-Bangle_Box_2.jpg' | file_img_url: 'master' }}" 
+     class="MagicZoom"
+     data-gallery="product-gallery"  
+     data-zoom-image-2x="{{ 'Disney_Bracelete-Bangle_Box_2.jpg' | file_img_url: '2400x', scale: 2 }}" 
+     data-options="zoomPosition: inner;lazyZoom: true;hint: off;" 
+     data-image-2x="{{ 'Disney_Bracelete-Bangle_Box_2.jpg' | file_img_url: '600x' , scale: 2 }}">
+    <img class="product-featured-img " src="{{ 'Disney_Bracelete-Bangle_Box_2.jpg' | file_img_url: '800x' }}" data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+  </a>
+</div>
+{% else %}
+
+{% endcase %}

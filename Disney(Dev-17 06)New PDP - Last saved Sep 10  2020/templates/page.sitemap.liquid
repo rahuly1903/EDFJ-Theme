@@ -1,0 +1,85 @@
+<section class="page__content" data-section-type="shopinfo__page" data-section-id="{{ section.id }}">
+  <div class="inner__wrapper">
+    <div class="content__full-width content_center">
+      <h1>{{ page.title }}</h1>
+    </div>
+    <div class="sitemap-page">
+      <div class="main-menu">
+        <ul class="level-parent">
+          {% for mainlink in linklists["main-menu"].links %}
+          <li class="level-1">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          <!--       bridal menu         -->
+          {% if mainlink.handle == "bridal"  %}
+          {% for mainlink in linklists["bridal-collection"].links %}
+          <li class="level-2">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          {% endfor %}
+          {% for mainlink in linklists["exclusive-collection"].links %}
+          <li class="level-2">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          {% endfor %}
+          {% endif %}
+          <!--       fashion menu         -->
+          {% if mainlink.handle == "fashion"  %}
+          {% for mainlink in linklists["fashion-category"].links %}
+          <li class="level-2">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          {% endfor %}
+          {% for mainlink in linklists["discover"].links %}
+          <li class="level-2">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          {% endfor %}
+          {% endif %}
+
+          <!--       Inspirations menu         -->
+          {% if mainlink.handle == "inspirations"  %}
+          {% for mainlink in linklists["disney-princess"].links %}
+          <li class="level-2">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          {% endfor %}
+          {% endif %}
+          
+          <!--       Inspirations menu         -->
+          {% if mainlink.handle == "gifting"  %}
+          {% for mainlink in linklists["gifting-collection"].links %}
+          <li class="level-2">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          {% endfor %}
+          {% endif %}
+
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width:767px){
+    .page__content .inner__wrapper .content__full-width {
+      margin-bottom: 1em;
+    }
+  }
+  .level-parent li.level-1 a {
+    font-weight: 600;
+  }
+  .level-parent li.level-1 {
+    list-style: none !important;
+    margin-top: 1.5em;
+  }
+  li.level-2 {
+    margin-left: 30px;
+    margin-bottom: 10px !important;
+  }
+  .level-parent li a{
+
+  }
+</style>
+

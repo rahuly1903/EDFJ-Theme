@@ -1,0 +1,116 @@
+<section class="page-width mothers-roses-section" data-section-type="craftsmanship__section" data-section-id="{{ section.id }}">
+  <div class="heading text-center">
+    <div class="ed--wrapper">
+      {% assign section-title = section.settings.section-title %}
+      {% assign section-desc = section.settings.section-desc %}
+      {% assign section-bg = section.settings.section-bg %}
+      {% assign video-button-url = section.settings.video-button-url %}
+      {% assign learn-button = section.settings.learn-button %}
+
+      {% if section-title != blank %}
+      <h2>{{ section-title }}</h2>
+      {% endif %}
+      {% if section-desc != blank %}
+      <p>{{ section-desc }}</p>
+      {% endif %}
+      {% if learn-button != blank %}
+      <a {% if video-button-url != blank %}href="{{ video-button-url }}"{% endif %}>
+        {{ learn-button }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 12 13"><defs><style>.a{fill:#fff;opacity:0;}.b{fill:#1d1b1d;stroke:#1d1b1d;stroke-width:0.2px;}</style></defs><g transform="translate(-204 -1102)"><rect class="a" width="12" height="13" transform="translate(204 1102)"/><g transform="translate(224.493 1029.152) rotate(-180)"><path class="b" d="M14.346-73.848a5.647,5.647,0,0,0,5.605-5.605,5.648,5.648,0,0,0-5.611-5.605,5.642,5.642,0,0,0-5.6,5.605A5.65,5.65,0,0,0,14.346-73.848Zm0-.934A4.649,4.649,0,0,1,9.68-79.453a4.644,4.644,0,0,1,4.66-4.671,4.661,4.661,0,0,1,4.677,4.671A4.65,4.65,0,0,1,14.346-74.782Zm-2.825-4.677a.452.452,0,0,0,.154.324l1.857,1.863a.4.4,0,0,0,.286.115.4.4,0,0,0,.4-.4.406.406,0,0,0-.121-.3l-.687-.676-.665-.561,1.165.044h2.863a.4.4,0,0,0,.412-.412.4.4,0,0,0-.412-.412H13.906l-1.16.044.659-.555.687-.681a.405.405,0,0,0,.121-.291.387.387,0,0,0-.4-.4.394.394,0,0,0-.286.11l-1.857,1.863A.428.428,0,0,0,11.521-79.459Z" transform="translate(0 0)"/></g></g></svg>
+      </a>
+      {% endif %}
+    </div>
+
+    {%- assign categry_desktop = section.settings.banner-coll-desk | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    {%- assign categry_mobile = section.settings.banner-coll-mob | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+    <div class="banner_contain">
+      {% if section.settings.banner-coll-desk != blank %}
+      <div class="absolute-image-wrapper small--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner-coll-desk.aspect_ratio | times: 100}}%;">
+        <img 
+             class="lazyload" 
+             data-src="{{ categry_desktop }}" 
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-sizes="auto" />
+      </div>
+      {% endif %}
+      {% if section.settings.banner-coll-mob != blank %}
+      <div class="absolute-image-wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner-coll-mob.aspect_ratio | times: 100}}%;">
+        <img 
+             class="lazyload" 
+             data-src="{{ categry_mobile }}" 
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-sizes="auto" />
+      </div>
+      {% endif %}
+      {% if section.settings.video-button-url != blank %}
+      <a class="banner-link" href="{{ video-button-url }}/"></a>
+      {% endif %}
+      <div class="banner_content">
+        {% assign banner_main = section.settings.banner_main %}
+        {% assign banner_subtext = section.settings.banner_subtext %}
+        <h5>{{ banner_main }}</h5>
+        <p>{{ banner_subtext }}</p>
+      </div>      
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+"name": "Banner Text",
+"class": "index-section index-section-padding-bottom-0",
+"settings": [
+{
+"type": "text",
+"id": "section-title",
+"label": "Title",
+"default": "give a dozen roses"
+},
+{
+"type": "text",
+"id": "section-subtitle",
+"label": "Subtitle",
+"default": "Where passion to touch perfection never fades"
+},
+{
+"type": "text",
+"id": "section-desc",
+"label": "Paragraph",
+"default": "This Belle inspired set of rose earrings, pendant and ring will leave your mother in awe. The harmony of a dozen roses in 10K rose gold and sterling silver accented with 1/2 CTTW diamonds are the perfect choice for a woman who knows where she’s going. Brilliant and warm, this jewelry set represents today’s sophisticated, independent woman and makes a strong statement of her unique personality."
+},
+{
+"type": "text",
+"id": "learn-button",
+"label": "Video Button Text",
+"default": "shop now"
+},
+{
+"type": "image_picker",
+"id": "banner-coll-desk",
+"label": "Desktop Banner"
+},
+{
+"type": "image_picker",
+"id": "banner-coll-mob",
+"label": "Mobile Banner"
+},
+{
+"type": "text",
+"id": "banner_main",
+"label": "Banner Title",
+"default": "value offer"
+},
+{
+"type": "text",
+"id": "banner_subtext",
+"label": "Banner Subtitle",
+"default": "Shop the set for $799"
+},
+{
+"type": "url",
+"id": "video-button-url",
+"label": "Video Button URL"
+}
+]
+}
+{% endschema %}

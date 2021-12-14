@@ -1,0 +1,81 @@
+{% if section.settings.enable_section %}
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="section-wrapper">
+      <div class="section-content text-center">
+        {% if section.settings.title != blank %}
+        <h2 class="section-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.sub_title != blank %}
+        <span class="section-subtitle">{{ section.settings.sub_title }}</span>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        <div class="text">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  @media screen and (min-width: 750px) {
+    {% if section.settings.max-width != blank %}
+    .tc-image-with-text .section-content {max-width: {{ section.settings.max-width }}px;}
+    {% endif %}
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Image with text",
+	"class": "tc-image-with-text",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image 2"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title",
+        "default": "Subtitle"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing, elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim</p>"
+      },
+      {
+        "type": "text",
+        "id": "max-width",
+        "label": "Content max width (px)"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

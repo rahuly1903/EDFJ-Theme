@@ -1,0 +1,464 @@
+<div class="mothers-day-page">
+  {% section 'mothers-banner' %}
+  {% section 'mothers-feature-row' %}
+  {% section 'young-mom-banner' %}
+  {% section 'mothers-two-banner' %}
+  {% section 'mothers-banner-text' %}
+  {% section 'mothers-three-banner' %}
+</div>
+<style>
+  .mothers-day-page{
+    max-width: 1230px;
+    margin: 0 auto;
+  }
+  .template-mothers-day .breadcrumb a{
+    color: #623F3B;
+    font-weight: 300;
+  }
+  .template-mothers-day .breadcrumb a.title{
+    color: #623F3B;
+    font-weight: 600;
+  }
+  .template-mothers-day .innerpage__banner{
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .banner-link{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+  }
+  .template-mothers-day .main_banner .discount-content{
+    max-width: 608px;
+  }
+  .template-mothers-day .information-contents {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 94%;
+  }
+  .template-mothers-day .discount-content .discount{
+    font-family: "NewYork-Regular";
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 71px;
+    letter-spacing: 0px;
+    color: #412421;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .template-mothers-day .discount-content .discount sub,.template-mothers-day .discount-content .discount sup {
+    font-size: 40%;
+  }
+  .template-mothers-day .discount-content .discount sup {
+    top: -22px;
+  }
+  .template-mothers-day .discount-content .discount sub {
+    bottom: 0;
+    left: -22px;
+  }
+  .template-mothers-day .main_banner .discount-content .main_title{
+    font-family: "NewYork-Regular";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 3.78px;
+    color: #412421;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .template-mothers-day .main_banner .discount-content .text {
+    font-family: "NewYork-Regular";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #412421;
+    margin-bottom: 0;
+  }
+  .mothers-day-page .main_banner .discount-content a{
+    color: #412421;
+  }
+
+  .mothers-day-page .bridal__jewelry h2.h3{
+    font-family: "NewYork-Medium";
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 40px;
+    letter-spacing: 0px;
+    color: #1D1B1D;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .mothers-day-page .bridal__jewelry a{
+    font-family: "NewYork-Regular";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #1D1B1D;
+    letter-spacing: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .template-mothers-day .innerpage__banner.left_aligned{
+    justify-content: flex-start;
+    align-items: baseline;
+    text-align: left;
+  }
+  .template-mothers-day .innerpage__banner.left_aligned .mothers-information{
+    padding-left: 36px;
+    padding-top: 36px;
+  }
+  .template-mothers-day .mothers-information {
+    position: absolute;
+    max-width: 528px;
+  }
+  .template-mothers-day .mothers-information .title{
+    font-family: "NewYork-Regular";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 1.6px;
+    color: #1D1B1D;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+  }
+  .template-mothers-day .mothers-information .main_title {
+    font-family: "NewYork-Regular";
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0px;
+    color: #1D1B1D;
+    margin-bottom: 0;
+  }
+  .template-mothers-day .young-mom-banner .mothers-information .main_title {
+    margin-bottom: 14px;
+  }
+  .template-mothers-day .mothers-information .text {
+    font-family: "NewYork-Regular";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0px;
+    color: #1D1B1D;
+    margin-bottom: 4px;
+  }
+  .mothers-day-page a{
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 1.2px;
+    color: #1D1B1D;
+    text-transform: uppercase;
+  }
+  .mothers-day-page a svg{
+    vertical-align: -1px;
+  }
+
+  .template-mothers-day .craftsmanship__section{
+    padding: 0;
+  }
+  .template-mothers-day .craftsmanship__section .craftsmanship__section--inner{
+    margin-top: 0;
+    margin: 0 -10px;
+    padding: 0;
+  }
+  .template-mothers-day .craftsmanship__section--inner .inner_twobanners{
+    flex-basis: 50%;
+    padding: 0 10px;
+  }
+  .template-mothers-day .craftsmanship__section--inner .multi_banner_image img{
+    display: block;
+  }
+  .template-mothers-day .craftsmanship__section--inner .mothers-information{
+    max-width: 350px;
+  }
+  .template-mothers-day .craftsmanship__section--inner .mothers-information .main_title{
+    margin-bottom: 12px;
+  }
+
+  .template-mothers-day .mothers-roses-section .heading h2{ 
+    font-family: "NewYork-Medium";
+    font-size: 34px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    color: #1D1B1D;
+    text-transform: inherit;
+    margin-bottom: 6px;
+  }
+  .template-mothers-day .mothers-roses-section .heading p{
+    font-family: "NewYork-Regular";
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0px;
+    color: #1D1B1D;
+    margin-bottom: 4px;
+  }
+  .template-mothers-day .mothers-roses-section .heading .banner_contain{
+    margin-top: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .template-mothers-day .mothers-roses-section .banner_content {
+    position: absolute;
+    padding-bottom: 20px;
+  }
+  .template-mothers-day .mothers-roses-section .banner_content h5{
+    font-family: "NewYork-Regular";
+    font-size:16px;
+    line-height:29px;
+    letter-spacing: 3.2px;
+    color: #412421;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  .template-mothers-day .mothers-roses-section .banner_content p{
+    font-family: "NewYork-Medium";
+    font-size:20px;
+    line-height:29px;
+    letter-spacing: 0px;
+    color: #412421;
+    margin-bottom: 0;
+  }
+  .template-mothers-day .absolute-image-wrapper{
+    position:relative;
+    width:100%;
+  }
+
+  .template-mothers-day .absolute-image-wrapper img{
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  .template-mothers-day .innerpage__banner.right_aligned{
+    justify-content: flex-end;
+    align-items: center;
+    text-align: left;
+  }
+  .template-mothers-day .innerpage__banner.right_aligned .mothers-information{
+    padding-right: 30px;
+  }
+
+  .template-mothers-day .three-banners-section{
+    margin-bottom: 55px;
+  }
+  .template-mothers-day .inner_threebanners{
+    flex-basis: 33%;
+    padding: 0 10px;
+  }
+  .template-mothers-day .inner_threebanners .multi_banner_image {
+    width: 100%;
+  }
+  .template-mothers-day .inner_threebanners .multi_banner_image img{
+    width: 100%;
+  }
+  .template-mothers-day .inner_threebanners .mothers-information .title{
+    font-family: "NewYork-Medium";
+  }
+  .template-mothers-day .mothers-information .price{
+    font-family: "NewYork-Regular";	
+    display: block;
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 86px;
+    letter-spacing: 0px;
+    color: #1D1B1D;
+    margin-bottom: 0;
+  }
+  .template-mothers-day .mothers-information .price span{
+    font-size: 56%;
+    position: relative;
+    top: -22px;
+  }
+
+  @media(min-width:768px){
+    .left_image,.right_image {
+      width: 15%;
+    }
+    .template-mothers-day .main_banner .discount-content {
+      width: 70%;
+    }
+  }
+
+  @media(max-width:1199px) and (min-width:768px){
+    .template-mothers-day .main_banner .discount-content {
+      max-width: 480px;
+    }
+    .template-mothers-day .discount-content .discount {
+      font-size: 37px;
+      line-height: 34px;
+    }
+    .template-mothers-day .discount-content .discount sup {
+      top: -15px;
+    }
+    .template-mothers-day .discount-content .discount sub {
+      left: -14px;
+    }
+    .template-mothers-day .main_banner .discount-content .main_title {
+      font-size: 16px;
+      line-height: 14px;
+    }
+    .template-mothers-day .main_banner .discount-content .text {
+      font-size: 15px;
+      line-height: 17px;
+    }
+
+    .template-mothers-day .bridal__jewelry .feature-row__item.feature-row__text, .template-mothers-day .bridal__jewelry .feature-row__item {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 35%;
+      flex: 0 0 50%;
+    }
+    .mothers-day-page .bridal__jewelry h2.h3 {
+      font-size: 26px;
+      line-height: 38px;
+    }
+    .mothers-day-page .bridal__jewelry a {
+      font-size: 19px;
+      line-height: 24px;
+    }
+
+    .template-mothers-day .mothers-information {
+      max-width: 350px;
+      padding-left: 20px;
+      padding-top: 20px;
+    }
+    .template-mothers-day .mothers-information .title {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .template-mothers-day .mothers-information .main_title {
+      font-size: 26px;
+      line-height: 34px;
+    }
+    .template-mothers-day .mothers-information .text {
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    .template-mothers-day .mothers-roses-section .heading h2 {
+      font-size: 30px;
+      line-height: 32px;
+    }
+    .template-mothers-day .mothers-roses-section .heading p {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .template-mothers-day .mothers-roses-section .banner_content {
+      padding-bottom: 11px;
+    }
+
+    .template-mothers-day .innerpage__banner.right_aligned .mothers-information {
+      padding-right: 16px;
+    }
+    .template-mothers-day .mothers-information .title {
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .template-mothers-day .mothers-information .price {
+      font-size: 42px;
+      line-height: 60px;
+    }
+    .template-mothers-day .mothers-information .price span {
+      top: -15px;
+    }
+  }
+  @media (max-width:767px){
+    .template-mothers-day .information-contents{
+      width: 90%;
+      flex-wrap: wrap;
+      top: 0;
+    }
+    .template-mothers-day .main_banner .left_image{
+      position: relative;
+      order: 1;
+      width: 50%;
+    }
+    .template-mothers-day .main_banner .discount-content {
+      order: 3;
+    }
+    .template-mothers-day .main_banner .right_image{
+      position: relative;
+      order: 2;
+      width: 50%;
+    }
+    .template-mothers-day .main_banner .left_image img, .template-mothers-day .main_banner .right_image img{
+      display: block;
+      width: 100%;
+    }
+    .logo img {
+      width: 60%;
+    }
+
+    .mothers-day-page .bridal__jewelry h2.h3 {
+      font-size: 26px;
+    }
+    .mothers-day-page .bridal__jewelry .logo_style img{
+      width: 40%;
+      margin: 0 auto;
+    }
+    .mothers-day-page .bridal__jewelry a {
+      font-size: 20px;
+    }
+
+    .small--page-width{
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+    .template-mothers-day .innerpage__banner.left_aligned .mothers-information {
+      padding: 20px 10px 0;
+    }
+    .template-mothers-day .mothers-information .title {
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .template-mothers-day .mothers-information .main_title {
+      font-size: 26px;
+    }
+    .mothers-day-page a {
+      font-size: 16px;
+    }
+
+    .template-mothers-day .craftsmanship__section .craftsmanship__section--inner {
+      margin: -10px 0;
+    }
+    .template-mothers-day .craftsmanship__section--inner .inner_twobanners, .template-mothers-day .inner_threebanners {
+      flex-basis: 100%;
+      padding: 10px 0;
+    }
+
+    .template-mothers-day .mothers-roses-section .heading h2 {
+      font-size: 26px;
+      line-height: 31px;
+    }
+    .template-mothers-day .mothers-roses-section .banner_content {
+      padding-bottom: 2px;
+    }
+    .template-mothers-day .mothers-roses-section .banner_content h5 {
+      font-size: 12px;
+      line-height: 11px;
+    }
+    .template-mothers-day .mothers-roses-section .banner_content p {
+      font-size: 15px;
+      line-height: 26px;
+    }
+
+    .template-mothers-day .inner_threebanners .mothers-information .title{
+      font-size: 16px;
+    }
+    .template-mothers-day .mothers-information .price {
+      font-size: 60px;
+    }
+  }
+</style>

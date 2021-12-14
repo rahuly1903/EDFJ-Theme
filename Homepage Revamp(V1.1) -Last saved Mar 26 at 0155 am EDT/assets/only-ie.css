@@ -1,0 +1,9 @@
+body{
+  background:red;
+}
+html,body{
+  overflow:hidden;
+}
+.lt-ie7 body{
+  overflow:hidden;
+}

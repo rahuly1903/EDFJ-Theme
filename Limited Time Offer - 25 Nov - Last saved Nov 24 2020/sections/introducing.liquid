@@ -1,0 +1,127 @@
+<section data-section-type="introducing__item" data-section-id="{{ section.id }}">
+  <div class="introducing">
+    <div class="ed--wrapper">
+      {% assign section-bg = section.settings.section-bg %}
+      {% assign heading = section.settings.content-intro2 %}
+      {% assign post-heading = section.settings.content-intro3 %}
+      {% assign content-button2 = section.settings.content-button2 %}
+      {% assign content-button-url2 = section.settings.content-button-url2 %}
+
+      {% if heading != blank %}
+      <h2>{{ heading }}</h2>
+      {% endif %}
+      {% if post-heading != blank %}
+      <h5>{{ post-heading }}</h5>
+      {% endif %}
+
+      {% comment %}
+      <div class="introducing__collection">
+        {% for block in section.blocks limit:3 %}
+        {% assign collection-img = block.settings.collection-img %}
+        {% assign short-desc = block.settings.short-desc %}
+        {% assign content-button = block.settings.content-button %}
+        {% assign collection-url = block.settings.collection-url %}
+        <div>
+          <div class="introducing__collection--item">
+            <a href="{% if collection-url != blank %}{{ collection-url }}{% endif %}">
+              {% if collection-img != nil %}
+              <img src="{{ collection-img | img_url: 'master' }}" alt="Enchanted Disney" />
+              {% endif %}
+              {% if short-desc != blank %}
+              <p>{{ short-desc }}</p>
+              {% endif %}
+              {% if content-button != blank %}
+              <span>{{ content-button }}</span>
+              {% endif %}
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endcomment %}
+      
+      {% if content-button2 != blank %}
+      <a href="{% if content-button-url2 != blank %}{{ content-button-url2 }}{% endif %}" class="btn">
+        {{ content-button2 }}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<style>
+  {% if section-bg != nil %}
+    .introducing {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+{% schema %}
+  {
+    "name": "Introducing Item",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "section-bg",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "content-intro2",
+          "label": "Heading",
+          "default": "Collection Name"
+        },
+        {
+          "type": "text",
+          "id": "content-intro3",
+          "label": "Sub Heading",
+          "default": "Limited Time Only!"
+        },
+        {
+          "type": "text",
+          "id": "content-button2",
+          "label": "Button"
+        },
+		{
+          "type": "url",
+          "id": "content-button-url2",
+          "label": "Button Link"
+        }
+	],
+	"blocks": [
+		{
+          "type": "introducing-collections",
+          "name": "Items",
+          "settings": [
+              {
+                "type": "image_picker",
+                "id": "collection-img",
+                "label": "Image"
+              },
+              {
+                "type": "textarea",
+                "id": "short-desc",
+                "label": "Paragraph"
+              },
+              {
+                "type": "text",
+                "id": "content-button",
+                "label": "Link",
+                "default": "Shop this style"
+              },
+              {
+                "type": "url",
+                "id": "collection-url",
+                "label": "Collection Link"
+              }
+          ]
+		}
+	],
+    "presets": [
+      {
+      "category": "Introducing Item",
+      "name": "Introducing Item",
+      "settings": {}
+      }
+    ]
+  }
+{% endschema %}

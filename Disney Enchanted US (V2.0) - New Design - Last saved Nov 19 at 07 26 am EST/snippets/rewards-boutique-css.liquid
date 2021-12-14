@@ -1,0 +1,615 @@
+<style>
+  .page-rewards-boutique {padding: 0 0 100px;}
+  .page-rewards-boutique .page-width {max-width: 1170px;}
+  .page-rewards-boutique .section-padding-top {
+    /*     padding-top: 100px; */
+    padding-top: 50px;
+  }
+  .page-rewards-boutique .section-title {overflow: hidden;}
+  .page-rewards-boutique .section-title .sub-title {
+    font-family: var(--font-body-family);
+      color: #11214A;
+      font-size: 19px;
+      line-height: 19px;
+      letter-spacing: 8.74px;
+      text-transform: uppercase;
+      }
+  .page-rewards-boutique .section-title h2 {
+    font-family: var(--font-heading-family);
+      color: #11214A;
+      font-size: 44px;
+      line-height: 53px;
+      font-weight: 400;
+      letter-spacing: 13.2px;
+      margin: 0 -21px 34px 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      }
+  .page-rewards-boutique .section-title h2 svg {
+    position: relative;
+    top: -13px;
+    left: -27px;
+  }
+  .page-rewards-boutique .image_wrapper img {display: block;}
+
+  /* Rewards header */
+  .page-rewards-boutique .rewards-header section {
+    background: url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/rewards-header-bg.png?v=1626762771') 
+      no-repeat;
+    background-size: 100% 101%;
+    background-position-y: -3px;
+    padding: 45px;
+    overflow: hidden;
+  }
+  .page-rewards-boutique .rewards-header .sub-title-1 {
+    font-family: var(--font-body-family);
+      color: #FFF;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      display: block;
+      }
+  .page-rewards-boutique .rewards-header h1 {
+    color: #FFF;
+    font-size: 90px;
+    line-height: 108px;
+    margin: -25px 0 0;
+  }
+  .page-rewards-boutique .rewards-header .sub-title-2 {
+    font-family: var(--font-body-family);
+      color: #DE7C44;
+      font-size: 21px;
+      line-height: 21px;
+      letter-spacing: 10.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-top: -8px;
+      }
+  .page-rewards-boutique .rewards-header .text {
+    max-width: 725px;
+    margin: 31px auto 0;
+  }
+  .page-rewards-boutique .rewards-header p {
+    font-family: var(--font-body-family);
+      color: #FFF;
+      font-size: 25px;
+      font-weight: 300;
+      line-height: 31px;
+      margin: 0;
+      }
+  .page-rewards-boutique .rewards-header span {
+    color:#DE7C44;
+  }
+  .page-rewards-boutique .rewards-header p b {
+    font-family: var(--font-body-family);
+      font-weight: 400;
+      }
+  .page-rewards-boutique .rewards-header .btns-group {margin-top: 35px;}
+  .page-rewards-boutique .rewards-header .btn {
+    font-size: 20px;
+    letter-spacing: normal;
+    text-transform: capitalize;
+    text-align: left;
+    width: 250px;
+    border-color: #4F86C1;
+    border-radius: 0;
+    padding: 7.7px 7px 7.7px 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .page-rewards-boutique .rewards-header .btn-border:last-child {margin-left: 22px;}
+
+  /* How it works */
+  .page-rewards-boutique .rewards-how-it-works .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .page-rewards-boutique .rewards-how-it-works ul {counter-reset: section;}
+  .page-rewards-boutique .rewards-how-it-works li {
+    position: relative;
+    z-index: 0;
+    padding-left: 42px;
+    padding-top: 7px;
+  }
+  .page-rewards-boutique .rewards-how-it-works li:not(:last-child) {padding-bottom: 18px;}
+  .page-rewards-boutique .rewards-how-it-works li:before {
+    content: counter(section);
+    display: block;
+    counter-increment: section;
+    background: #DE7C44;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    outline: 7px solid #FFF;
+    text-align: center;
+    color: #FFF;
+    font-family: var(--font-body-family);
+      font-size: 19px;
+      line-height: 30px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      }
+  .page-rewards-boutique .rewards-how-it-works li span {
+    font-family: var(--font-body-family);
+      color: #DE7C44;
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 7px;
+      }
+  .page-rewards-boutique .rewards-how-it-works li p {
+    color: #11214A;
+    font-size: 23px;
+    line-height: 31px;
+  }
+  .page-rewards-boutique .rewards-how-it-works li:not(:last-child) p {
+    padding-bottom: 15px;
+    border-bottom: 2px solid #E5F0FB;
+  }
+  .page-rewards-boutique .rewards-how-it-works li:not(:last-child):after {
+    content: '';
+    display: block;
+    background: rgb(236, 238, 240);
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    left: 13px;
+    top: 0;
+    z-index: -1;
+  }
+  .page-rewards-boutique .rewards-how-it-works .image_wrapper {
+    overflow: hidden;
+  }
+
+  /* Earn sparkles */
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid {text-align: center; margin-bottom: 50px;}
+  .page-rewards-boutique .rewards-earn-sparkles .svg-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid h5 {
+    font-family: var(--font-body-family);
+      color:#11214A;
+      font-size:18px;
+      font-weight:700;
+      margin-bottom: 3px;
+      }
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid p{
+    font-family: var(--font-body-family);
+      color:#11214A;
+      font-size:16px;
+      line-height: 22px;
+      }
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid span {
+    font-family: var(--font-body-family);
+      color: #DE7C44;
+      font-weight: 700;
+      }
+  .page-rewards-boutique .rewards-earn-sparkles p.shopping_text{
+    font-family: var(--font-body-family);
+      color: #11214A;
+      font-size: 16px;
+      line-height: 22px;
+      }
+
+  /*  Tiers section  */
+  .rb-tiers-wrapper{
+    position:relative;
+  }
+  .rb-tiers-wrapper::before {
+    content: '';
+    background: #F7FBFD;
+    position: absolute;
+    left: 100px;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .rb-tiers-wrapper .tiers-grid {
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .earn--tiers-plan {
+    display: flex;
+  }
+  .earn--tiers-plan:not(:last-child) {
+    margin-bottom: 50px;
+  }
+  .earn--tiers-planSvg {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .earn--tiers-planinfo h5{
+    line-height: 30px;
+    font-size: 27px;
+    font-family: var(--font-heading-family);
+      margin-bottom: 10px;
+      }
+  .earn--tiers-planinfo .subtitle {
+    font-family: var(--font-body-family) !important;
+      color: #305C8C  !important;
+      font-size: 20px !important;
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 10px;
+      }
+  .earn--tiers-planinfo .discripion {
+    font-family: var(--font-body-family) !important;
+      font-size: 18px !important;
+      line-height: 1;
+      font-weight:300;
+      margin-bottom: 10px;
+      }
+  .rewards-member-tiers .shopping_text{
+    font-family: var(--font-body-family);
+      font-size: 16px;
+      line-height: 22px;
+      margin-top: 20px;
+      padding-bottom: 30px;
+      }
+
+  /* Redeem discounts */
+  .page-rewards-boutique .rewards-redeem-discounts section {
+    background: #F7FBFD;
+    padding: 50px 25px;
+    margin-top: 108px;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts .text p {
+    font-family: var(--font-body-family);
+      color: #000;
+      font-size: 21px;
+      line-height: 30px;
+      font-weight: 300;
+      }
+  .page-rewards-boutique .rewards-redeem-discounts .text {margin-top: 41px;}
+  .page-rewards-boutique .rewards-redeem-discounts ul {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 41px;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts li {
+    flex: calc(100% / 3);
+    padding: 0 10px;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts li p {
+    color: #11214A;
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts li span {
+    display: block;
+    width: 50px;
+    height: 2px;
+    margin: 18px auto;
+    background: #E5F0FB;
+  }
+
+  /* FAQ's */
+  .rb-faq-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .rb-faq-wrapper .header-title {
+    text-align: center;
+    font-size: 26px !important;
+  }
+  .rb-faq-wrapper .header-title {
+    text-align: center;
+    font-size: 26px !important;
+  }
+  .rb-faq-wrapper .accordion-header p{
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #305C8C;
+    font-family: var(--font-body-family) !important;
+      padding: 15px 0 10px 21px;
+      position: relative;
+      }
+  .rb-faq-wrapper .accordion-header.active p{
+    color: #DE7C44;
+  }
+  .rb-faq-wrapper .accordion-description{
+    display:none;
+  }
+  .rb-faq-wrapper .accordion-description p {
+    font-size: 18px !important;
+    line-height: 23px !important;
+    padding-bottom: 15px;
+  }
+  .rb-faq-wrapper .divider {
+    width: 100%;
+    max-width: 100%;
+    height: 2px;
+    background-color: #E5F0FB;
+  }
+  .rb-faq-wrapper .accordion-header p:before {
+    margin-right: 10px;
+    font-size: 16px;
+    content: '\002B';
+    position: absolute;
+    left: 0;
+    top: 15px;
+  }
+  .rb-faq-wrapper .accordion-header.active p:before {
+    content: '\002D';
+    font-size: 18px;
+  }
+  .early_access-banner{
+    margin-top:20px;
+  }
+
+  /*  root  */
+  .reward-refer{
+    display:flex;
+  }
+  #stamped-rewards-widget{
+    width:50%;
+    margin-bottom: 0;
+    padding: 0 20px;
+  }
+  .stamped-reward-referral-wrapper {
+    display: none;
+  }
+  p.stamped-rewards-page-text.stamped-rewards-widget-description {
+    margin-bottom: 0;
+  }
+  [data-widget-type="rewards-referral"] .stamped-reward-referral-platforms {
+    margin: 0 auto !important;
+  }
+  [data-widget-type="rewards-referral"] .stamped-rewards-widget-heading-main {
+    font-size: 22px !important;
+    text-align: center ;
+    font-family: var(--font-body-family) !important;
+      margin: 10px auto !important;
+      color: #11214A;
+      }
+  [data-target-id="section-share-logged-in"] {
+    display: block !important;
+  }
+  /*  root end  */
+
+  @media screen and (min-width: 750px) {
+    .page-rewards-boutique .section-title h2.align-left {justify-content: flex-start;}
+
+    .page-rewards-boutique .rewards-how-it-works .grid {margin-left: -90px;}
+    .page-rewards-boutique .rewards-how-it-works .grid__item {padding-left: 90px;}
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-content {width: 45.3%;}
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-image {width: 54.7%;}
+    .page-rewards-boutique .rewards-how-it-works .section-title {padding-left: 42px;}
+
+    .page-rewards-boutique .rewards-redeem-discounts .grid {margin-left: -22px;}
+    .page-rewards-boutique .rewards-redeem-discounts .grid__item {padding-left: 22px;}
+    .page-rewards-boutique .rewards-redeem-discounts .grid__item.grid-image {width: 35.8%;}
+    .page-rewards-boutique .rewards-redeem-discounts .grid__item.grid-content {width: 64.2%;}
+    .page-rewards-boutique .rewards-redeem-discounts li:first-child {padding-left: 0;}
+    .page-rewards-boutique .rewards-redeem-discounts li:last-child {padding-right: 0;}
+
+    .page-rewards-boutique .rewards-earn-sparkles .section-title {margin-bottom: 24px;}
+  }
+  @media screen and (max-width: 749px) {
+    .page-rewards-boutique {padding: 0 0 81px;}
+    .page-rewards-boutique .section-padding-top {
+      /*       padding-top: 80px; */
+      padding-top: 20px;
+    }
+    .page-rewards-boutique .rb-faq-sparkles .section-padding-top {padding-top: 40px;}
+    .page-rewards-boutique .section-title {text-align: center;}
+    .page-rewards-boutique .section-title .sub-title {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 7.36px;
+    }
+    .page-rewards-boutique .section-title h2 {
+      font-size: 36px;
+      line-height: 49px;
+      letter-spacing: 7.4px;
+      margin: 0 -27px 26px 0;
+    }
+    .page-rewards-boutique .section-title h2 svg {
+      flex: 0 0 28px;
+      left: -21px;
+      top: -6px;
+      height: auto;
+    }
+
+    .page-rewards-boutique .rewards-header section {padding: 41px;}
+    .page-rewards-boutique .rewards-header .page-width {padding: 0 7px;}
+    .page-rewards-boutique .rewards-header section {
+      background: url('https://cdn.shopify.com/s/files/1/0267/0523/1943/files/rewards-header-bg-mobile.png?v=1626862774') 
+        no-repeat;
+      background-size: cover;
+      padding: 41px 25px;
+    }
+    .page-rewards-boutique .rewards-header h1 {font-size: 66px;}
+    .page-rewards-boutique .rewards-header .sub-title-1 {
+      font-size: 11px;
+      letter-spacing: 5px;
+    }
+    .page-rewards-boutique .rewards-header .sub-title-2 {
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: 9px;
+    }
+    .page-rewards-boutique .rewards-header .text {max-width: 286px;}
+    .page-rewards-boutique .rewards-header p {
+      font-size: 20px;
+      line-height: 25px;
+    }
+    .page-rewards-boutique .rewards-header .btns-group {
+      max-width: 280px;
+      margin: 31px auto 0;
+    }
+    .page-rewards-boutique .rewards-header .btn {
+      width: 100%;
+      font-size: 16px;
+      padding: 12.2px 15px;
+    }
+    .page-rewards-boutique .rewards-header .btn-border:last-child {margin: 15px 0 0;}
+    .page-rewards-boutique .rewards-header .btn svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-content {
+      order: 2;
+      margin-top: 31px;
+    }
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-image {order: 1;}
+    .page-rewards-boutique .rewards-how-it-works li {padding-top: 4px;}
+    .page-rewards-boutique .rewards-how-it-works li:before {
+      width: 25px;
+      height: 25px;
+      font-size: 16px;
+      line-height: 28px;
+      outline: 4px solid #FFF;
+    }
+    .page-rewards-boutique .rewards-how-it-works li:not(:last-child):after {left: 12px;}
+    .page-rewards-boutique .rewards-how-it-works li span {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 3.2px;
+      margin-bottom: 5px;
+    }
+    .page-rewards-boutique .rewards-how-it-works li p {
+      font-size: 20px;
+      line-height: 27px;
+    }
+
+    .page-rewards-boutique .rewards-earn-sparkles .grid {
+      max-width: 275px;
+      margin: 0 auto;
+    }
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid {padding: 0;}
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid:not(:last-child) {margin-bottom: 30px;}
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid:not(:last-child):after {
+      content: '';
+      display: block;
+      width: 52px;
+      height: 2px;
+      background: rgba(17, 33, 74, 0.14);
+      margin: 27px auto 0;
+    }
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid h5 {
+      font-size: 19px;
+    }
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid p {
+      font-size: 19px;
+      line-height: 26px;
+    }
+
+    .rb-tiers-wrapper .tiers-grid {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .rb-tiers-wrapper .tiers-grid:first-child {padding-bottom: 30px;}
+    .rb-tiers-wrapper::before {display: none;}
+    .rewards-member-tiers .section-padding-top {
+      position: relative;
+      z-index: 0;
+    }
+    .rewards-member-tiers .section-padding-top {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .rewards-member-tiers .section-padding-top:before {
+      content: '';
+      background: #F7FBFD;
+      width: 100%;
+      height: calc(100% - 270px);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    .earn--tiers-wrapper {margin-bottom: 28px;}
+    .rewards-member-tiers .shopping_text{
+      padding-bottom: 30px;
+    }
+    .earn--tiers-planSvg {margin-right: 15px;}
+    .earn--tiers-planSvg svg {width: 57px;}
+    .earn--tiers-planinfo h5 {
+      font-size: 16px;
+      line-height: 21px;
+      margin-bottom: 5
+    }
+    .earn--tiers-planinfo .subtitle {
+      font-size: 15px !important;
+      line-height: 19px !important;
+      margin-bottom: 5px;
+    }
+    .earn--tiers-planinfo .discripion {
+      font-size: 15px !important;
+      line-height: 19px !important;
+      margin-bottom: 0;
+    }
+    .earn--tiers-plan:not(:last-child) {margin-bottom: 35px;}
+
+    .page-rewards-boutique .rewards-redeem-discounts .text {margin-top: 0;}
+    .page-rewards-boutique .rewards-redeem-discounts .text p {
+      font-size: 19px;
+      line-height: 26px;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts ul {
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts li {
+      flex: 100%;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts li:not(:last-child) {margin-bottom: 30px;}
+    .page-rewards-boutique .rewards-redeem-discounts li p {
+      margin-bottom: 0;
+      font-size: 14px;
+      flex: calc((100% - 29px) / 2);
+    }
+    .page-rewards-boutique .rewards-redeem-discounts li span {
+      width: 1px;
+      height: 35px;
+      margin: 0 14px;
+    }
+
+    .rb-faq-wrapper .header-title {
+      font-size: 24px !important;
+      line-height: 32px !important;
+    }
+    .rb-faq-wrapper .accordion-header p {
+      line-height: 21px;
+      letter-spacing: 2.8px;
+    }
+    .rb-faq-wrapper .accordion-description p {
+      font-size: 16px !important;
+      line-height: 22px !important;
+    }
+    .reward-refer {
+      display: flex;
+      flex-direction: column-reverse;
+      margin-top: 70px;
+    }
+    #stamped-rewards-widget {
+      width: 100%;
+      padding: 0;
+    }
+    [data-widget-type="rewards-referral"] .stamped-rewards-page-buttonAddon .stamped-rewards-page-input {
+      min-width: 220px !important;
+    }
+    [data-widget-type="rewards-referral"] div[data-target-id="section-email-customer"], [data-widget-type="rewards-referral"] div[data-target-id="section-email-friend"] {
+      padding-left: 0 !important;
+    }
+    [data-widget-type="rewards-referral"] .stamped-rewards-page-campaigns-refer {
+      margin: 20px 0 0 !important;
+    }
+  }
+</style>

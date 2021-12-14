@@ -1,0 +1,16 @@
+{% include 'magazine-css' %}
+
+<div class="page-magazine">
+  {% section 'magazine-header' %}
+  
+  <div class="articles-list_wrapper">
+    <div class="page-width">
+      {% section 'magazine-trending' %}
+      {% section 'magazine-our-picks' %}
+      {% section 'magazine-selected-article' %}
+      {% section 'magazine-guide' %}
+      
+      <a href="" class="btn load-more-btn hide">Load more</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div data-id="tab-{{ section.id }}-{{ loop_index }}" class="tab-content {% if loop_index == 1 %}current{% endif %}">
+  <div class="image-wrapper">
+    {% if desktopBanner != blank %}
+    {% assign image_desk = desktopBanner | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    <div class="absolute-image-wrapper small--hide" style="padding-top:{{ 1 | divided_by: desktopBanner.aspect_ratio | times: 100 }}%;">
+      <img class="lazyload" 
+           data-src="{{ image_desk }}" 
+           data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+           data-aspectratio="{{ desktopBanner.aspect_ratio }}" 
+           data-sizes="auto"
+           alt="" />
+    </div>
+    {% assign image_mob = mobileBanner | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    <div class="absolute-image-wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: mobileBanner.aspect_ratio | times: 100 }}%;">
+      <img class="lazyload" 
+           data-src="{{ image_mob }}" 
+           data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+           data-aspectratio="{{ mobileBanner.aspect_ratio }}" 
+           data-sizes="auto"
+           alt="" />
+    </div>
+    {% else %}
+    <img class="small--hide"
+         src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Cinderella_picture.png?v=1635116973" alt="" />
+    <img class="medium-up--hide"
+         src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Group_129224.png?v=1635117063" alt="" />
+    {% endif %}
+    {% if section.settings.title != blank %}
+    <h2 class="medium-up--hide">{{ section.settings.title }}</h2>
+    {% endif %}
+  </div>
+  <div class="content" id="block-{{ blockId }}">
+    <span class="sub-title">{{ bannerSubtitle }}</span>
+    <h3 class="title">{{ bannerTitle }}</h3>
+    <div class="text">{{ bannerRichtext }}</div>
+    <a {% if tracking_id != blank %}id="{{ tracking_id }}"{% endif %} href="{{ collections[collection].url }}" class="btn-border {% if block.settings.button_color != 'blue' %} btn-{{ bannerButtonColor }}{% endif %}{% if block.settings.button_hover_color != 'gold' %} btn-hover-{{ bannerButtonHoverColor }}{% endif %} small--hide">
+      <span class="btn-sparkle">{% render 'icon-sparkle' %}</span>
+      {% if bannerButton != 'Explore' %}Shop collection{% else %}{{ bannerButton }}{% endif %}
+      <span class="btn-sparkle">{% render 'icon-sparkle' %}</span>
+    </a>
+    <a {% if tracking_id != blank %}id="{{ tracking_id }}"{% endif %} href="{{ collections[collection].url }}" class="btn-border medium-up--hide">
+      <span class="btn-sparkle">{% render 'icon-sparkle' %}</span>
+      {% if bannerButton != 'Explore' %}Shop collection{% else %}{{ bannerButton }}{% endif %}
+      <span class="btn-sparkle">{% render 'icon-sparkle' %}</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  @media screen and (min-width: 750px) {
+    {%- if bannerSubtitleColor -%}
+    #block-{{ blockId }} .sub-title{color:{{ bannerSubtitleColor }};}
+    {%- endif -%}
+    {%- if bannerTitleColor -%}
+    #block-{{ blockId }} .title{color:{{ bannerTitleColor }};}
+    {%- endif -%}
+    {%- if bannerTitleColor2 -%}
+    #block-{{ blockId }} .image-wrapper h2{color:{{ bannerTitleColor2 }};}
+    {%- endif -%}
+    {%- if bannerRichtextColor -%}
+    #block-{{ blockId }} .text p{color:{{ bannerRichtextColor }};}
+    {%- endif -%}
+  }
+</style>

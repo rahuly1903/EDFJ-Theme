@@ -1,0 +1,57 @@
+<div class="gift-for-everyone margin-top-bottom">
+  {% assign Gifts_for_every_Budget_banner = "Gifts_for_every_Budget_banner.png" | file_img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+  <div class="single-block-image image-container">
+    <img class="grid-view-item__image lazyload first-image"
+         alt="Gifting main banner"
+         data-src="{{ Gifts_for_every_Budget_banner }}"
+         data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+         data-sizes="auto"
+         data-image>
+    <h2 class="h1 float-title">
+      Gifts For Every Budget
+    </h2>
+    <div class="btn-wrapper">
+      {% for block in section.blocks %}
+      <a class="three-btn btn" href="{{ block.settings.link }}/">
+        {{ block.settings.title }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Gifts link",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+	],
+	"blocks": [
+      {
+        "type": "featured_link",
+        "name": "Featured link",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Button text"            
+          },
+		  {
+            "type": "url",
+            "id": "link",
+            "label": "Button link"            
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

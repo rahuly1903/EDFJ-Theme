@@ -1,0 +1,55 @@
+{% comment %} == BEGIN CUSTOM PRODUCT BUILDER GENERATED CODE. DO NOT EDIT OR REMOVE. == {% endcomment %}
+{% if shop.metafields.customproductbuilder %}
+	{% assign productId = product.id | append: '' %}
+  {% assign productList = shop.metafields.customproductbuilder.productEditor | split: ',' %}
+	{% if productList contains productId%}
+	{{'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js' | script_tag}}
+	{{ '//cdn.shopify.com/s/assets/external/app.js' | script_tag}}
+	{{'https://master.thecustomproductbuilder.com/dist/custom-product-builder.js' | script_tag}}
+    {{'https://master.thecustomproductbuilder.com/dist/customizer-theme-main.js'| script_tag}}
+
+    {{ 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css' | stylesheet_tag}}
+
+    {{ 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css' | stylesheet_tag}}
+
+
+    {{ 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js' | script_tag}}
+	{{ 'customproductbuilder.scss.css' | asset_url | stylesheet_tag }}
+		<div
+		id="product-builder"
+      data-engine="shopify"
+      data-shop-name="{{shop.permanent_domain}}"
+      data-product-id="{{productId}}"
+      product-handle="{{ product.handle }}"       
+      data-styles-path="{{'customproductbuilder.css' | asset_url }}"
+      data-config-path="{{product.metafields.customproductbuilder['configurableUrl']}}"
+		data-cpb-user-id="{{customer.id}}"
+      data-customer-id="{{customer.id}}" />
+
+	{{ 'customproductbuilder.js' | asset_url | script_tag }}
+
+    <script>
+      $(document).ready(function() {
+        var productURL = jQuery('#product-builder').attr('product-handle');
+        jQuery.getJSON('/products/' + productURL + '.js', function(product) {
+          var addTitleAndDescription = (function() {
+            if( $('.cpb-add-to-cart-button span').length) {
+              $('.cpb-preview-sticky').prepend($('<h2 class="cpb-panel-title">Diamond Bridal Ring <span class="diamond-ct">1/4</span> ct tw 10K White and Rose Gold</h2>'));
+            }      
+            else {
+              window.requestAnimationFrame(addTitleAndDescription); 
+            } 
+          }); 
+          addTitleAndDescription();
+        }); 
+      });
+    </script>
+{% else %}
+
+{% section 'product-template' %}
+
+{% endif %}
+
+{% else %}{% section 'product-template' %}
+{% endif %}
+{% comment %} == END CUSTOM PRODUCT BUILDER GENERATED CODE. DO NOT EDIT OR REMOVE. == {% endcomment %}

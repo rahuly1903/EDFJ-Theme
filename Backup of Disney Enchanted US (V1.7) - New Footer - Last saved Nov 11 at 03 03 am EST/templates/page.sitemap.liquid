@@ -1,0 +1,258 @@
+<section class="page__content site_map_page" data-section-type="shopinfo__page" data-section-id="{{ section.id }}">
+  <div class="inner__wrapper">
+    <div class="content__full-width content_center">
+      <h1>{{ page.title }}</h1>
+    </div>
+    <div class="sitemap-page">
+      <div class="main-menu">
+        <ul class="level-parent">
+          {% for mainlink in linklists["new-mega-menu"].links %}
+          <li class="level-1">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+
+          <!--  engagement ring menu    -->
+          {% if mainlink.handle == "engagement-rings"  %}
+          <li>
+            <h4>SHOP BY STYLE</h4>
+            <ul>
+              {% for mainlink in linklists["style-engagement-rings"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY SHAPE</h4>
+            <ul>
+              {% for mainlink in linklists["center-shape"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY MATERIAL</h4>
+            <ul>
+              {% for mainlink in linklists["material-engagement-rings"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY PRICE</h4>
+            <ul>
+              {% for mainlink in linklists["engagement-rings-price"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY COLLECTION</h4>
+            <ul>
+              {% for mainlink in linklists["engagement-ring-princess"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+
+          <!--  rings menu    -->
+          {% if mainlink.handle == "gold-diamond-rings-women"  %}
+          <li>
+            <h4>SHOP BY STYLE</h4>
+            <ul>
+              {% for mainlink in linklists["rings-shop-by-product-type"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY MATERIAL</h4>
+            <ul>
+              {% for mainlink in linklists["rings-shop-by-material"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY DESIGN</h4>
+            <ul>
+              {% for mainlink in linklists["rings-shop-by-design"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY PRICE</h4>
+            <ul>
+              {% for mainlink in linklists["rings-shop-by-price"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY COLLECTION</h4>
+            <ul>
+              {% for mainlink in linklists["rings-princess"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+
+          <!--  earrings menu    -->
+          {% if mainlink.handle == "earrings"  %}
+          <li>
+            <h4>SHOP BY PRODUCT TYPE</h4>
+            <ul>
+              {% for mainlink in linklists["earrings-shop-by-product-type"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY MATERIAL</h4>
+            <ul>
+              {% for mainlink in linklists["earrings-shop-by-material"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY DESIGN</h4>
+            <ul>
+              {% for mainlink in linklists["earrings-shop-by-design"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY PRICE</h4>
+            <ul>
+              {% for mainlink in linklists["earrings-shop-by-price"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY COLLECTION</h4>
+            <ul>
+              {% for mainlink in linklists["earrings-shop-by-princess"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+
+          <!--  necklace menu    -->
+          {% if mainlink.handle == "necklaces"  %}
+          <li>
+            <h4>SHOP BY PRODUCT TYPE</h4>
+            <ul>
+              {% for mainlink in linklists["necklaces-shop-by-product-type"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY MATERIAL</h4>
+            <ul>
+              {% for mainlink in linklists["necklaces-shop-by-material"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY DESIGN</h4>
+            <ul>
+              {% for mainlink in linklists["necklaces-shop-by-design"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY PRICE</h4>
+            <ul>
+              {% for mainlink in linklists["necklaces-shop-by-price"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>SHOP BY COLLECTION</h4>
+            <ul>
+              {% for mainlink in linklists["necklaces-shop-by-princess"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+
+          <!--       Inspirations menu         -->
+          {% if mainlink.handle == "inspirations"  %}
+          <li>
+            <h4>DISNEY PRINCESSES</h4>
+            <ul>
+              {% for mainlink in linklists["disney-princess"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li>
+            <h4>DISNEY VILLAINS</h4>
+            <ul>
+              {% for mainlink in linklists["disney-villains"].links %}
+              <li class="level-2">
+                <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

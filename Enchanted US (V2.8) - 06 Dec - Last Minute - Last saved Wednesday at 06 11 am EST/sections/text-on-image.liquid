@@ -1,0 +1,169 @@
+<section class="banner-text" data-section-type="introducing__item" data-section-id="{{ section.id }}">
+  <div id="banner-{{ section.id }}" class="enchanted__banner">
+    {%- assign max_height = 720 -%}
+    {% if section.settings.max-width != blank %}
+    {% assign maxwidth = section.settings.max-width %}
+    {% endif %}
+    
+    {% if section.settings.enable_banner %}
+    <div id="enchantedslide-{{section.id}}" class="banner_slide" >
+      <div class="enchanted__banner-slide">
+        {% unless section.settings.banner_large == nil %}
+        {%- assign img_url = section.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}" class="custom__image lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.banner_large.aspect_ratio }}" data-sizes="auto" alt="{{ section.settings.banner_large.alt | escape }}">
+        </div>
+        {% endunless %}
+        
+        {% unless section.settings.banner_small == nil %}
+        {%- assign img_url = section.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}" class="custom__image lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.banner_small.aspect_ratio }}" data-sizes="auto" alt="{{ section.settings.banner_small.alt | escape }}">
+        </div>
+        {% endunless %}
+        
+        <div class="enchanted__banner-text{% if section.settings.horizontal_alignment == 'left' %} content_left-aligned{% endif %}{% if section.settings.horizontal_alignment == 'right' %} content_right-aligned{% endif %}">
+          <div class="enchanted__banner-text-container{% if section.settings.text_align == 'center' %} text-center{% endif %}{% if section.settings.text_align == 'right' %} text-right{% endif %}">
+            {% unless section.settings.logo == blank %}
+            {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <div class="banner_logo">
+              <img class="lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ section.settings.banner_small.alt | escape }}">
+            </div>
+            {% endunless %}
+            <div class="mobile_content_bottom">
+              {% unless section.settings.subtitle == blank %}
+              <p class="sub_text">{{ section.settings.subtitle }}</p>
+              {% endunless %}
+              {% unless section.settings.button_label == blank %}
+              <a class="btn button-wrapper" href="{{ section.settings.button_url }}/">
+                {{ section.settings.button_label }}
+              </a>
+              {% endunless %}
+            </div>
+          </div>
+        </div>
+        <a href="{{ section.settings.button_url }}/" class="banner_link" ></a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if maxwidth != blank %}
+<style>
+  @media(max-width:1023px) and (min-width:750px){
+    .enchanted__banner #enchantedslide-{{section.id}} .enchanted__banner-text-container {
+      max-width: 442px;
+    }
+  }
+  @media(min-width:1024px){
+    .enchanted__banner #enchantedslide-{{section.id}} .enchanted__banner-text-container{
+      max-width:{{ maxwidth }}px;
+    }
+  }
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Banner Text",
+  "class": "index-section index-section--flush",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "enable_banner",
+    "label": "Enable Banner"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_large",
+    "label": "Banner Image (Desktop)",
+    "info": "Recommended size 2562x1298 (px)"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_small",
+    "label": "Banner Image (Mobile)",
+    "info": "Recommended size 800x1470 (px)"
+  },
+  {
+    "type": "select",
+    "id": "horizontal_alignment",
+    "label": "Content Alignment (Horizontal)",
+    "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+    ],
+    "default": "left"
+  },
+  {
+    "type": "select",
+    "id": "text_align",
+    "label": "Text Align",
+    "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+    ],
+    "default": "left"
+  },
+  {
+    "type": "color",
+    "id": "color",
+    "label": "Color"
+  },
+  {
+    "type": "text",
+    "id": "max-width",
+    "label": "Text max width"
+  },
+  {
+    "type": "image_picker",
+    "id": "logo",
+    "label": "Logo"
+  },
+  {
+    "type": "text",
+    "id": "subtitle",
+    "label": "Subtitle",
+    "default": "Subtitle"
+  },
+  {
+    "type": "text",
+    "id": "button_label",
+    "label": "Button Label",
+    "default": "Shop Now"
+  },
+  {
+    "type": "url",
+    "id": "button_url",
+    "label": "Button URL"
+  }
+  ],
+  "presets": [
+  {
+    "category": "Introducing Item",
+    "name": "Banner Text"
+  }
+  ]
+}
+{% endschema %}

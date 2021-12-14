@@ -1,0 +1,70 @@
+<section class="theme__content tinkerbell" data-section-type="theme__content" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.bg-img %}
+  
+  <div class="ed--wrapper">
+  
+    <div class="theme__container">
+      {% for block in section.blocks %}
+      {% assign heading = block.settings.small-heading %}
+      {% assign paragraph = block.settings.big-content %}
+      <div class="theme__container-contents">
+        
+        {% if heading != blank %}
+        	<h5>{{ heading }}</h5>
+        {% endif %}
+        
+        {% if paragraph != blank %}
+        	<p>{{ paragraph }}</p>
+        {% endif %}
+        
+      </div>
+      {% endfor %}
+    </div>
+  
+  </div>
+</section>
+
+<style>
+  {% if section-bg != nil %}
+    .theme__content {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Princess Contents",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg-img",
+        "label": "Background"
+      }
+	],
+	"blocks": [
+      {
+        "type": "content",
+        "name": "Page Content",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "small-heading",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "big-content",
+            "label": "Paragraph"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

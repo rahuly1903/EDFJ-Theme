@@ -1,0 +1,72 @@
+<section class="page__content" data-section-type="inspirations__page" data-section-id="{{ section.id }}">
+  {% assign content-img = section.settings.content-img %}
+  {% assign content-bg = section.settings.content-bg %}
+  {% assign heading = section.settings.heading %}
+  {% assign sub-heading = section.settings.sub-heading %}
+  
+  <div class="flex_container direction_row">
+    <div class="rowone_colone">
+      {% if content-img != nil %}
+      <img src="{{ content-img | img_url: 'master' }}" alt="Enchanted Disney" />
+      {% endif %}
+    </div>
+    <div class="rowone_coltwo vertical_centered snow_bg">
+      {% if heading != blank %}
+      <span class="heading_lg">{{ heading }}</span>
+      {% endif %}
+      {% if sub-heading != blank %}
+      <span class="heading_xlg">{{ sub-heading }}</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+{% if content-img != nil %}
+  .snow_bg {
+    background-image: url('{{ content-bg | img_url: 'master' }}');
+    background-position: center 2em;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .vertical_centered.snow_bg {
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+  }
+{% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Content Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "content-img",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "content-bg",
+        "label": "Content Background"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub-heading",
+        "label": "Sub Heading"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

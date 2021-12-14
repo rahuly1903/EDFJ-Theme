@@ -1,0 +1,63 @@
+{% if section.settings.show_section %}
+<!-- pdp-video-section.liquid -->
+<div class="page-width">
+  <div class="section-wrapper">
+    <div class="grid">
+      <div class="grid__item medium-up--one-half">
+        {% assign image_1 = section.settings.video_banner_1 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.video_banner_1.aspect_ratio | times: 100 }}%;">
+          <img class="lazyload" 
+               data-src="{{ image_1 }}" 
+               data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+               data-aspectratio="{{ section.settings.video_banner_1.aspect_ratio }}" 
+               data-sizes="auto"
+               alt="" />
+        </div>
+      </div>
+      <div class="grid__item medium-up--one-half">
+        {% assign image_2 = section.settings.video_banner_2 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.video_banner_2.aspect_ratio | times: 100 }}%;">
+          <img class="lazyload" 
+               data-src="{{ image_2 }}" 
+               data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+               data-aspectratio="{{ section.settings.video_banner_2.aspect_ratio }}" 
+               data-sizes="auto"
+               alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Video",
+	"class": "pdp-video-section",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "show_section",
+        "label": "Show section",
+        "default": true
+      },
+	  {
+        "type": "image_picker",
+        "id": "video_banner_1",
+        "label": "Video banner 1"
+      },
+	  {
+        "type": "image_picker",
+        "id": "video_banner_2",
+        "label": "Video banner 2"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,266 @@
+{% comment %}
+The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+<p class="hide hide-true">{% assign tags = product.tags | join:"," %} {{ tags  }} -- {% if tags contains 'Vault-' %}true{% endif %}</p>
+
+{% section 'product-template' %}
+
+{% comment %}
+{% include 'customproductbuilder-initializer' %}
+{% endcomment %}
+
+{% for link in linklists['princess-collection'].links %}
+{% assign productVendor = product.vendor | handle %}
+{% assign linkListHandle = link.title | handle %}
+{% if productVendor contains linkListHandle %}
+{% assign ProductVendor = product.vendor %}
+{% break %}
+{% endif %}
+{% endfor %}
+
+{% if ProductVendor == 'Anna' %}
+<div class="page-width">
+  {% section 'anna-page-banner' %}
+</div>
+
+{% elsif ProductVendor == 'Ariel' %}
+<div class="page-width">
+  {% section 'ariel-page-banner' %}
+</div>
+{% section 'ariel-video-section' %}
+{% section 'ariel-feature-row' %}
+
+{% elsif ProductVendor == 'Aurora' %}
+<div class="page-width">
+  {% section 'aurora-page-banner' %}
+</div>
+{% section 'aurora-video-section' %}
+{% section 'aurora-feature-row' %}
+
+{% elsif ProductVendor == 'Belle' %}
+<div class="page-width">
+  {% section 'belle-page-banner' %}
+</div>
+{% section 'belle-video-section' %}
+{% section 'belle-feature-row' %}
+
+{% elsif ProductVendor == 'Cinderella' %}
+<div class="page-width">{% section 'cinderella-page-banner' %}</div>
+{% section 'cinderella-video-section' %}
+{% section 'cinderella-feature-row' %}
+
+{% elsif ProductVendor == 'Elsa' %}
+<div class="page-width">{% section 'elsa-page-banner' %}</div>
+{% section 'elsa-video-section' %}
+{% section 'elsa-feature-row' %}
+
+{% elsif ProductVendor == 'Jasmine' %}
+<div class="page-width">{% section 'jasmin-page-banner' %}</div>
+{% section 'jasmin-video-section' %}
+{% section 'jasmine-feature-row' %}
+
+{% elsif ProductVendor == 'Majestic Princess' %}
+<div class="page-width">{% section 'mj-princess-page-banner' %}</div>
+{% section 'mj-princess-video-section' %}
+{% section 'mj-princess-feature-row' %}
+
+{% elsif ProductVendor == 'Merida' %}
+<div class="page-width">
+  {% section 'merida-page-banner' %}
+</div>
+
+{% elsif ProductVendor == 'Moana' %}
+<div class="page-width">
+  {% section 'moana-page-banner' %}
+</div>
+
+{% elsif ProductVendor == 'Mulan' %}
+<div class="page-width">{% section 'mulan-page-banner' %}</div>
+{% section 'mulan-video-section' %}
+{% section 'mulan-feature-row' %}
+
+{% elsif ProductVendor == 'Pocahontas' %}
+<div class="page-width">{% section 'pocahontas-page-banner' %}</div>
+{% section 'pocahontas-video-section' %}
+{% section 'pocahontas-feature-row' %}
+
+{% elsif ProductVendor == 'Rapunzel' %}
+<div class="page-width">{% section 'rapunzel-page-banner' %}</div>
+{% section 'rapunzel-video-section' %}
+{% section 'rapunzel-feature-row' %}
+
+{% elsif ProductVendor == 'Snow White' %}
+<div class="page-width">{% section 'snow-white-page-banner' %}</div>
+{% section 'snow-white-video-section' %}
+{% section 'snow-white-feature-row' %}
+
+{% elsif ProductVendor == 'Tiana' %}
+<div class="page-width">{% section 'tiana-page-banner' %}</div>
+{% section 'tiana-video-section' %}
+{% section 'tiana-feature-row' %}
+
+{% elsif ProductVendor == 'Tinker Bell' %}
+<div class="page-width">{% section 'tinkerbell-page-banner' %}</div>
+{% section 'tinkerbell-video-section' %}
+{% section 'tinkerbell-feature-row' %}
+
+<!-- Villains -->
+{% elsif ProductVendor == 'Cruella' %}
+<div class="villans_page">
+  <div class="page-width">{% section 'cruella-page-banner' %}</div>
+</div>
+
+{% elsif ProductVendor == 'Evil Queen' %}
+<div class="villans_page">
+  <div class="page-width">{% section 'evil_queen-page-banner' %}</div>
+</div>
+
+{% elsif ProductVendor == 'Jafar' %}
+<div class="villans_page">
+  <div class="page-width">{% section 'jafar-page-banner' %}</div>
+</div>
+
+{% elsif ProductVendor == 'Maleficent' %}
+<div class="villans_page">
+  <div class="page-width">{% section 'maleficent-page-banner' %}</div>
+</div>
+
+{% elsif ProductVendor == 'Ursula' %}
+<div class="villans_page">
+  <div class="page-width">{% section 'ursula-page-banner' %}</div>
+</div>
+
+{% comment %}
+{% section 'pdp-feature-row' %}
+{% section 'pdp-video-section' %}
+{% section 'pdp-feature-row-1' %}
+{% endcomment %}
+{% endif %}
+
+{% if product.tags contains 'Chateau Collection' %}
+{% section 'tc-image-with-text' %}
+{% section 'pdp-chateaus' %}
+{% section 'tc-icons' %}
+{% endif %}
+
+{% if product.tags contains 'Chateau Collection' %}{% else %}
+<div class="EVM_alsobought"></div>
+<div class="clearfix" style="clear: both;"></div>
+{% comment %}
+{% section 'product-custom-section1' %}
+{% endcomment %}
+{% include 'wiser_related' %}
+{% include 'wiser_topselling' %}
+{% include 'wiser_trending' %}
+{% include 'wiser_newarrivals' %}
+<!--Stamped - Begin Main Widget -->
+<div id="stamped-main-widget" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}"> {{product.metafields.stamped.reviews}}</div>
+<!-- Stamped - End Main Widget -->
+{% include 'wiser_recent_related' %}
+{% include 'wiser_recentview' %}
+{% include 'wiser_alsobought' %}
+{% endif %}
+
+{% comment %}
+{% section 'product-recommendations' %}
+{% if collection %}
+<div class="text-center return-link-wrapper page-width">
+  <a href="{{ collection.url }}" class="btn btn--secondary btn--has-icon-before return-link">
+    {% include 'icon-arrow-left' %}
+    {{ 'products.product.back_to_collection' | t: title: collection.title }}
+  </a>
+</div>
+{% endif %}
+{% endcomment %}
+
+{% comment %}
+{% section 'the-chateau-section' %}
+{% endcomment %}
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ shop.url | append: product.url | json }},
+    {%- if product.featured_image -%}
+    {%- assign image_size = product.featured_image.width | append: 'x' -%}
+    "image": [
+    {{ product.featured_image.src | img_url: image_size | prepend: "https:" | json }}
+    ],
+    {%- endif -%}
+    "description": {{ product.description | strip_html | json }},
+    {%- if current_variant.sku != blank -%}
+    "sku": {{ current_variant.sku | json }},
+    {%- endif -%}
+    "brand": {
+      "@type": "Thing",
+      "name": {{ product.vendor | json }}
+    },
+    "offers": [
+    {%- for variant in product.variants -%}
+    {
+      "@type" : "Offer",
+      {%- if variant.sku != blank -%}
+      "sku": {{ variant.sku | json }},
+      {%- endif -%}
+      "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+      "price" : {{ variant.price | divided_by: 100.00 | json }},
+      "priceCurrency" : {{ cart.currency.iso_code | json }},
+      "url" : {{ shop.url | append: variant.url | json }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    ]
+  }
+</script>
+<!-- Klaviyo script start -->
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+<!-- Klaviyo script end -->
+<!-- DRIP_PRODUCT_TRACKING_V1 -->
+<script text="text/javascript">
+  var _dcq = _dcq || [];
+  _dcq.push(['recordProductView', {{ product|json }}, {{ product.collections|map:'id'|json }}, '{{shop.currency}}', '{{ product.url }}']);
+</script>
+<!-- END_DRIP_PRODUCT_TRACKING_V1 -->

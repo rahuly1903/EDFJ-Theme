@@ -1,0 +1,29 @@
+<div class="hero-title margin-top-bottom">
+  <h2 class="h1">{{ section.settings.title }}</h2>
+  <div class="description">
+    {{ section.settings.description }}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Gift page heading",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "title"
+      },
+	  {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

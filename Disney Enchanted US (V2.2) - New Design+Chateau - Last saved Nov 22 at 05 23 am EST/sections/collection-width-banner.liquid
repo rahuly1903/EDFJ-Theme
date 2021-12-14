@@ -1,0 +1,186 @@
+<!-- collection.liquid -->
+<div class="banner-product-grid-slider image-overlay-section section-{{ section.id }}">
+  <div class="custom-page-width">
+    <div class="content-image-wrapper">
+      {% if section.settings.title != blank or section.settings.descripiton != blank %}
+      <div class="section-header overlay-heading-wrapper">
+        {% if section.settings.title != blank %}
+        <h2 class="heading-title" {% if collection != blank %}onclick="location.href='{{ collection.url }}/';"{% endif %}>{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.descripiton != blank %}
+        <p class="heading-descripiton">{{ section.settings.descripiton }}</p>
+        {% endif %}
+        {% if section.settings.button != blank %}
+        <a href="{{ section.settings.link }}/" class="btn slider-btn">
+          {{ section.settings.button }} <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="284.936px" height="284.936px" viewBox="0 0 284.936 284.936" style="enable-background:new 0 0 284.936 284.936;" xml:space="preserve"><g><g><path d="M277.515,135.9L144.464,2.857C142.565,0.955,140.375,0,137.9,0c-2.472,0-4.659,0.955-6.562,2.857l-14.277,14.275c-1.903,1.903-2.853,4.089-2.853,6.567c0,2.478,0.95,4.664,2.853,6.567l112.207,112.204L117.062,254.677c-1.903,1.903-2.853,4.093-2.853,6.564c0,2.477,0.95,4.667,2.853,6.57l14.277,14.271c1.902,1.905,4.089,2.854,6.562,2.854c2.478,0,4.665-0.951,6.563-2.854l133.051-133.044c1.902-1.902,2.851-4.093,2.851-6.567S279.417,137.807,277.515,135.9z"/><path d="M170.732,142.471c0-2.474-0.947-4.665-2.857-6.571L34.833,2.857C32.931,0.955,30.741,0,28.267,0s-4.665,0.955-6.567,2.857L7.426,17.133C5.52,19.036,4.57,21.222,4.57,23.7c0,2.478,0.95,4.664,2.856,6.567L119.63,142.471L7.426,254.677c-1.906,1.903-2.856,4.093-2.856,6.564c0,2.477,0.95,4.667,2.856,6.57l14.273,14.271c1.903,1.905,4.093,2.854,6.567,2.854s4.664-0.951,6.567-2.854l133.042-133.044C169.785,147.136,170.732,144.945,170.732,142.471z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+        </a>
+        {% endif %}
+      </div>
+      {% endif %}
+      {%- assign max_height = 1920 -%}
+      {% assign full_width_image = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <img class=" lazyload first-image small--hide"
+      src="{{ section.settings.image | img_url: 'master' }}"
+      alt="Gifting main banner"
+      data-src="{{ full_width_image }}"
+      data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+      data-sizes="auto"
+      data-image>
+      <noscript>
+        {% capture image_size %}{{ max_height }}x{% endcapture %}
+        {{ section.settings.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: section.settings.image.alt, 'custom__image' }}
+      </noscript>
+      {% assign Mob_full_width_image = section.settings.mobImage | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <img class=" lazyload first-image medium-up--hide"
+      src="{{ section.settings.mobImage | img_url: 'master' }}"
+      alt="Gifting main banner"
+      data-src="{{ Mob_full_width_image }}"
+      data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+      data-sizes="auto"
+      data-image>
+      <noscript>
+        {% capture image_size %}{{ max_height }}x{% endcapture %}
+        {{ section.settings.mobImage | img_url: image_size, scale: 2, crop: 'top' | img_tag: section.settings.image.alt, 'custom__image' }}
+      </noscript>
+    </div>
+  </div>
+  <div class="page-width position-overlay">
+    {%- assign collection = collections[section.settings.collection] -%}
+    
+    {% case section.settings.grid %}
+    {% when 2 %}
+    {%- assign max_height = 530 -%}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+    {%- assign max_height = 345 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+    {%- assign max_height = 250 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+    {%- assign max_height = 195 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {% endcase %}
+    
+    {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+    {% if collection != blank %}
+    <ul class="grid grid--uniform grid--view-items">
+      {% for product in collection.products limit: product_limit %}
+      {% if product.available %}
+      <li class="grid__item grid__item--{{section.id}}">
+        {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% else %}
+    {% if section.blocks.size > 0 %}
+    <ul class="grid grid--uniform grid--view-items">
+      {% for block in section.blocks %}
+      {% if block.settings.image != blank %}
+      <li class="grid__item grid__item--{{section.id}}">
+        {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        {%- assign max_height = 550 -%}
+        <a href="{{ block.settings.link }}">
+          <img id="{{ img_id }}"
+          src="{{ block.settings.image | img_url:"300x" }}"
+          class="grid-view-item__image lazyload first-image"
+          alt="{{ block.settings.link }}"
+          data-src="{{ img_url }}"
+          data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-aspectratio="{{ block.settings.image }}"
+          data-sizes="auto"
+          data-image>
+        </a>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.settings.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.settings.image.alt, 'custom__image' }}
+        </noscript>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured collection home",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "mobImage",
+    "label": "Mobile Image"
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Heading",
+    "default": "Featured collection"
+  },
+  {
+    "type": "textarea",
+    "id": "descripiton",
+    "label": "Descripiton"
+  },
+  {
+    "id": "collection",
+    "type": "collection",
+    "label": "Collection"
+  },
+  {
+    "type": "range",
+    "id": "grid",
+    "label": "Products per row",
+    "min": 2,
+    "max": 5,
+    "step": 1,
+    "default": 3
+  },
+  {
+    "type": "range",
+    "id": "rows",
+    "label": "Rows",
+    "min": 1,
+    "max": 5,
+    "step": 1,
+    "default": 2
+  },
+  {
+    "id": "button",
+    "type": "text",
+    "label": "Button text"
+  },
+  {
+    "id": "link",
+    "type": "url",
+    "label": "Button url"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "text",
+    "name": "Text",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Image link"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

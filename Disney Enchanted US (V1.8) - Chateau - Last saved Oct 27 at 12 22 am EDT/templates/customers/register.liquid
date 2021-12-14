@@ -1,0 +1,228 @@
+<section class="innerpage__banner">
+  <div class="set-password-message">
+    <div class="ed--wrapper">
+      <div class="register__account">
+        <h2 class="set_title">Set Password</h2>
+        <div class="set_password_form">
+          <svg height=50 preserveAspectRatio="xMidYMid meet"version=1.0 viewBox="0 0 2000.000000 2000.000000"width=50 xmlns=http://www.w3.org/2000/svg><metadata>Created by potrace 1.16, written by Peter Selinger 2001-2019</metadata><g fill=rgba(17,33,74,.9) stroke=none transform="translate(0.000000,2000.000000) scale(0.100000,-0.100000)"><path d="M9495 19994 c-603 -36 -1120 -106 -1645 -221 -1868 -409 -3566 -1339 -4925 -2698 -1596 -1597 -2595 -3655 -2860 -5890 -53 -455 -60 -580 -60 -1185 0 -605 7 -730 60 -1185 255 -2153 1194 -4145 2697 -5722 1047 -1098 2358 -1961 3762 -2478 948 -348 1920 -549 2926 -605 238 -13 862 -13 1100 0 2549 141 4916 1232 6683 3078 1502 1570 2447 3572 2702 5727 53 455 60 580 60 1185 0 605 -7 730 -60 1185 -264 2234 -1263 4290 -2860 5889 -1611 1613 -3713 2623 -5970 2871 -373 41 -509 47 -1030 50 -286 1 -547 1 -580 -1z m940 -634 c1744 -86 3373 -627 4810 -1598 317 -214 657 -478 975 -756 151 -132 647 -628 781 -781 477 -544 859 -1082 1186 -1670 604 -1085 981 -2260 1123 -3497 44 -384 54 -585 54 -1058 0 -473 -10 -674 -54 -1058 -297 -2594 -1650 -4929 -3760 -6489 -1363 -1007 -2996 -1628 -4685 -1782 -1312 -120 -2597 29 -3843 445 -1695 566 -3205 1623 -4338 3034 -1329 1655 -2055 3726 -2054 5860 1 2009 651 3966 1853 5580 287 385 533 668 901 1035 378 377 608 578 996 869 1418 1063 3042 1684 4815 1841 374 33 866 43 1240 25z"/><path d="M5462 13420 c-172 -45 -316 -161 -397 -321 -71 -138 -65 127 -65 -3099 0 -3230 -6 -2964 66 -3100 86 -164 225 -276 400 -320 76 -20 128 -20 4534 -20 4406 0 4458 0 4534 20 175 44 314 156 400 320 72 136 66 -130 66 3100 0 3226 6 2961 -65 3099 -82 161 -226 276 -401 321 -76 20 -127 20 -4538 19 -4360 0 -4463 -1 -4534 -19z m8318 -634 c-14 -13 -868 -852 -1898 -1865 -1031 -1012 -1877 -1841 -1882 -1841 -5 0 -836 820 -1847 1821 -1011 1002 -1858 1841 -1883 1865 l-45 44 3790 0 3790 0 -25 -24z m-5358 -3468 c-103 -103 -630 -624 -1172 -1157 l-985 -970 -317 0 -318 -1 0 2647 0 2648 1490 -1490 1490 -1490 -188 -187z m5948 497 l0 -2625 -297 0 -298 1 -875 861 c-481 473 -1010 993 -1174 1155 l-299 295 1469 1469 c808 808 1470 1469 1471 1469 2 0 3 -1181 3 -2625z m-4700 -1352 c192 -126 441 -136 653 -26 62 32 109 73 344 307 l272 269 78 -74 c43 -40 467 -449 942 -909 l864 -835 -1407 -3 c-773 -1 -2038 -1 -2811 0 l-1406 3 668 650 c367 358 766 747 888 865 121 119 245 239 275 267 l55 52 270 -268 c149 -147 290 -281 315 -298z"/></g></svg>
+          <h4 class="verify_title">Verify your email</h4>
+          {%- assign formId = 'RegisterForm' -%}
+          {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+          {% include 'form-status', form: form, form_id: formId %}
+          {% comment %}
+          <input type="hidden" name="checkout_url" id="redirect_url" value="" /> 
+          <input type="hidden" name="customer[tags]" value="Set password">
+          <input type="hidden" name="checkout_url" value="/pages/set-password" />
+          <div class="input-group">
+            {% comment %}<label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>{% endcomment %}
+            <input
+                   type="email"
+                   name="customer[email]"
+                   id="{{ formId }}-email"
+                   class="{% if form.errors contains 'email' %} input--error{% endif %}"
+                   {% if form.email %} value="{{ form.email }}"{% endif %}
+                   autocorrect="off"
+                   autocapitalize="off"
+                   autocomplete="email"
+                   aria-required="true"
+                   {%- if form.errors contains 'email' -%}
+                   class="input--error"
+                   aria-invalid="true"
+                   aria-describedby="{{ formId }}-email-error"
+                   {%- endif -%}
+                   placeholder="{{ 'customer.register.email' | t }}"
+                   >
+            <div data-form-error></div>
+          </div>
+          <div class="input-group">
+            {% comment %}<label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>{% endcomment %}
+            <input
+                   type="password"
+                   name="customer[password]"
+                   id="{{ formId }}-password"
+                   class="{% if form.errors contains 'password' %} input--error{% endif %}"
+                   aria-required="true"
+                   value=""
+                   {%- if form.errors contains 'password' -%}
+                   class="input--error"
+                   aria-invalid="true"
+                   aria-describedby="{{ formId }}-password-error"
+                   {%- endif -%}
+                   placeholder="{{ 'customer.register.password' | t }}"
+                   >
+            <div data-form-error></div>
+          </div>
+
+          <div class="checkbox-wrapper">
+            <input type="checkbox" id="accepts_marketing" name="customer[accepts_marketing]" checked>
+            <label for="accepts_marketing" class="agree_label">I agree to receive emails from Renaissance Global.</label>
+          </div>
+
+          <p class="text-center">
+            <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+          </p>
+          {% endcomment %}
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ed--wrapper create-account-section">
+    <div class="register__account" id="register___page">
+
+      <h2>{{ 'customer.register.title' | t }}</h2>
+      <p>With an Enchanted Disney Fine Jewelry account, you can save time during checkout, access your shopping from any device and exclusive rewards everytime you shop.
+        <br /><br />
+        <span>Already Registered? <a href="/account/login/">{{ 'customer.login.sign_in' | t }}</a></span>
+      </p>
+      {%- assign formId = 'RegisterForm' -%}
+      {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+      {% include 'form-status', form: form, form_id: formId %}
+      <input type="hidden" name="checkout_url" id="redirect_url" value="" /> 
+      <!--       <input type="hidden" name="customer[tags]" value="register"> -->
+      <div class="input-group">
+        <div class="select-container">
+          <select class="" id="title-dropdown" name="customer[tags]">
+            <option data-display-text="Select title">Select title</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+          </select>
+        </div>
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>{% endcomment %}
+        <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name" placeholder="{{ 'customer.register.first_name' | t }}">
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>{% endcomment %}
+        <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name" placeholder="{{ 'customer.register.last_name' | t }}">
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        <div class="birthdate">
+          <input type="date" value="" name="customer[note][birthday]" id="birthday"  aria-required="true" placeholder="Birth Date" required>
+          <label for="birthday">Birth Date</label>
+        </div>
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>{% endcomment %}
+        <input
+               type="email"
+               name="customer[email]"
+               id="{{ formId }}-email"
+               class="{% if form.errors contains 'email' %} input--error{% endif %}"
+               {% if form.email %} value="{{ form.email }}"{% endif %}
+               autocorrect="off"
+               autocapitalize="off"
+               autocomplete="email"
+               aria-required="true"
+               {%- if form.errors contains 'email' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-email-error"
+               {%- endif -%}
+               placeholder="{{ 'customer.register.email' | t }}"
+               >
+        <div data-form-error></div>
+      </div>
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>{% endcomment %}
+        <input
+               type="password"
+               name="customer[password]"
+               id="{{ formId }}-password"
+               class="{% if form.errors contains 'password' %} input--error{% endif %}"
+               aria-required="true"
+               value=""
+               {%- if form.errors contains 'password' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-password-error"
+               {%- endif -%}
+               placeholder="{{ 'customer.register.password' | t }}"
+               >
+        <div data-form-error></div>
+      </div>
+      <div class="input-group">
+        <input
+               type="password"
+               name="customer[confirm-password]"
+               id="{{ formId }}-confirm-password"
+               class="{% if form.errors contains 'password' %} input--error{% endif %}"
+               aria-required="true"
+               value=""
+               {%- if form.errors contains 'password' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-password-error"
+               {%- endif -%}
+               placeholder="Confirm Password"
+               >
+        <div data-form-error></div>
+      </div>
+
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="accepts_marketing" name="customer[accepts_marketing]" checked>
+        <label for="accepts_marketing" class="agree_label">I agree to receive emails from Renaissance Global.</label>
+      </div>
+
+      <p class="text-center">
+        <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+      </p>
+
+      {% endform %}
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .checkbox-wrapper {
+    display: flex;
+    align-items: baseline;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .checkbox-wrapper label {
+    position: relative;
+    cursor: pointer;
+  }
+  input#accepts_marketing {
+    display: none;
+  }
+
+  .checkbox-wrapper label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: #305c8c;
+    border: 2px solid #305c8c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 7px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  .checkbox-wrapper input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    width: 5px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+</style>

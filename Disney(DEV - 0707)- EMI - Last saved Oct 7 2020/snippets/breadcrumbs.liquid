@@ -1,0 +1,49 @@
+{% unless template == 'index' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+    <a href="/">Home</a>
+    {% if template contains "product" %}
+  
+      {% if collection %}
+  
+        {% for collection in product.collections %}
+  
+        <span class="separator">&bull;</span> 
+        <a href="/collections/{{ collection.handle }}">{{ collection.title | escape }}</a>
+  
+        {% endfor %}
+  
+      {% else %}
+  
+        <span class="separator">&bull;</span> 
+        {{ product.type | link_to_type }}
+  
+      {% endif %}
+  
+  	{% elsif template == "collection" %}
+  
+  		{% if collection.handle == 'engagement-rings' %}
+		<span class="separator">&bull;</span> 
+        <a href="/pages/bridal">Bridal</a>
+  		{% endif %}
+  
+    {% elsif template == "article" %}
+  
+      <span class="separator">&bull;</span> 
+      {{ blog.title | link_to: blog.url }}
+  
+  	{% elsif template contains "page" %}
+  
+  		{% assign pagename = page.handle %}
+  			
+  		{% if pagename == 'anna' or pagename == 'ariel' or pagename == 'aurora' or pagename == 'belle' or pagename == 'cinderella' or pagename == 'jasmine' or pagename == 'merida' or pagename == 'mulan' or pagename == 'pocahontas' or pagename == 'rapunzel' or pagename == 'snow-white' or pagename == 'tiana' or pagename == 'majestic-princess' or pagename == 'elsa' or pagename == 'tinkerbell' %}
+        <span class="separator">&bull;</span>
+        <a href="/pages/inspirations">Inspirations</a>
+  		{% endif %}
+  
+  
+    {% endif %}
+    
+  	<span class="separator">&bull;</span>
+    <span class="page-title">{{ page_title }}</span>
+</nav>
+{% endunless %}

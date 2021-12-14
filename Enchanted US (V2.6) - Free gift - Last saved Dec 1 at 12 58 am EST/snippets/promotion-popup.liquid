@@ -1,0 +1,269 @@
+{% comment %}
+<section class="pageload__popup">
+  <div class="promotion_container">
+    <span class="close-promotion">×</span>
+    <a {% if settings.popupUrl != blank %}href="{{ settings.popupUrl }}"{% endif %}>
+      {%- assign img_url = settings.popupImg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="image_wrapper" style="padding-top:{{ 1 | divided_by: settings.popupImg.aspect_ratio | times: 100}}%;">
+        <img class="lazyload custom__image" data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ settings.popupImg.aspect_ratio }}" alt="Promotional Banner"
+             loading="eager" data-sizes="auto">
+      </div>
+      <noscript>
+        {% capture image_size %}480x{% endcapture %}
+        {{ settings.popupImg | img_url: image_size, scale: 2, crop: 'top' | img_tag: settings.popupImg.image.alt, 'custom__image' }}
+      </noscript>
+    </a>
+  </div>
+</section>
+{% endcomment %}
+
+{% comment %}
+<div id="promotion-popup" class="overlay">
+  <div class="popup-wrapper">
+    <div class="popup-header text-center">
+      <span class="close-popup">
+        <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="32">
+            <rect x="16.4995" y="0.346771" width="22.1372" height="22.1372" transform="rotate(45 16.4995 0.346771)" fill="#C4C4C4"/>
+          </mask>
+          <g mask="url(#mask0)"><path d="M17.1074 16.5065L20.9271 20.3263L20.3195 20.934L16.4997 17.1142L12.68 20.934L12.0723 20.3263L15.892 16.5065L12.0723 12.6868L12.68 12.0791L16.4997 15.8989L20.3195 12.0791L20.9271 12.6868L17.1074 16.5065Z" fill="#fff" stroke="#fff"/>
+          </g>
+        </svg>
+      </span>
+    </div>
+    <div class="popup-content">
+      <div class="col-left">
+        <div class="content content-form-info text-center">
+          <h2>Join our mailing list</h2>
+          <p>Get weekly highlights on new arrivals, special events, offers and a lot more !</p>
+          <form method="post" action="/contact#contact_form" accept-charset="UTF-8" class="contact-form" novalidate="novalidate">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="Subscription popup">
+            <input type="email" name="contact[email]" placeholder="Enter your email">
+            <input type="submit" value="Subscribe Now" class="btn">
+          </form>
+          <div class="error-wrapper">
+            <p class="error">Please fill in your email address.</p>
+          </div>
+          <div class="offer">
+            <p>Get 10%off on first purchase</p>
+            <p>USE CODE: FIRST10</p>
+          </div>
+          <div class="ajax-loader">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20" style="width: 40px;height: 40px;" fill="#fff">
+              <path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#fff" style="fill: #fff;"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="content-thank-you text-center hide">
+          <h2>Thank You!</h2>
+          <p>You have successfully</p>
+          <span>subscribed to our mailing list.</span>
+        </div>
+      </div>
+      <div class="col-right">
+        <a {% if settings.popupUrl != blank %}href="{{ settings.popupUrl }}"{% endif %}>
+          <div class="image_wrapper small--hide" style="padding-top:{{ 1 | divided_by: settings.popupImg.aspect_ratio | times: 100 }}%;">
+            {%- assign img_url = settings.popupImg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload custom__image"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 600]"
+                 data-aspectratio="{{ settings.popupImg.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ preview_image.alt }}"
+                 data-image>
+          </div>
+          <div class="image_wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: settings.popupImgMobile.aspect_ratio | times: 100 }}%;">
+            {%- assign img_url = settings.popupImgMobile | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload custom__image"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 600]"
+                 data-aspectratio="{{ settings.popupImgMobile.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ preview_image.alt }}"
+                 data-image>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcomment %}
+{% if customer %}
+
+{% else %}
+<div id="promotion-popup" class="overlay">
+  <div class="popup-wrapper">
+    <div class="popup-header text-center">
+      <a href="/" class="{% if collection.handle == 'black-friday-early-access-sale' %}close-popup{% else %}close-popup close-the-popup{% endif %}"><svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="32"><rect x="16.4995" y="0.346771" width="22.1372" height="22.1372" transform="rotate(45 16.4995 0.346771)" fill="#C4C4C4"/></mask><g mask="url(#mask0)"><path d="M17.1074 16.5065L20.9271 20.3263L20.3195 20.934L16.4997 17.1142L12.68 20.934L12.0723 20.3263L15.892 16.5065L12.0723 12.6868L12.68 12.0791L16.4997 15.8989L20.3195 12.0791L20.9271 12.6868L17.1074 16.5065Z" fill="#575555" stroke="#575555"/></g></svg></a>
+    </div>
+    <div class="popup-content">
+      <div class="col-left">
+        <div class="content content-form-info text-center">
+          
+          {% comment %}
+          <!-- <p>Get weekly highlights on new arrivals, special events, offers and a lot more !</p> -->
+          <form method="post" action="/contact#contact_form" accept-charset="UTF-8" class="contact-form" novalidate="novalidate">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="Subscription popup">
+            <input type="email" name="contact[email]" placeholder="Email">
+            <input type="email" name="contact[email]" placeholder="Password">
+            <input type="submit" value="SIGN IN" class="btn">
+            <p style="margin-top: 10px; margin-bottom: 10px;">Forgot your password?</p>
+            <input type="submit" value="Not Registered? SIGN UP" class="btn">
+          </form>
+          {% endcomment %}
+          <div id="CustomerLoginForm" class="form-vertical">
+            <h2>Sign in for Early Access Sale</h2>
+            {% form 'customer_login', novalidate: 'novalidate' %}
+            <input type="hidden" name="checkout_url" id="redirect_url" value="/collections/black-friday-early-access"/> 
+            {%- if form.errors -%}
+            <div class="form-message form-message--error">
+              <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+              {{ form.errors | default_errors }}
+            </div>
+            {%- endif -%}
+
+            {% comment %}<label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>{% endcomment %}
+            
+            <div class="input-group">
+              <input
+                     type="email"
+                     name="customer[email]"
+                     id="CustomerEmail"
+                     autocomplete="email"
+                     autocorrect="off"
+                     autocapitalize="off"
+                     {%- if form.errors contains 'form' -%}
+                     class="input--error"
+                     aria-invalid="true"
+                     {%- endif -%}
+                     placeholder="{{ 'customer.login.email' | t }}"
+                     >
+              <div data-form-error></div>
+            </div>
+            {% if form.password_needed %}
+            {% comment %}<label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>{% endcomment %}
+            <div class="input-group">
+              <input
+                     type="password"
+                     value=""
+                     name="customer[password]"
+                     id="CustomerPassword"
+                     {%- if form.errors contains 'form' -%}
+                     class="input--error"
+                     aria-invalid="true"
+                     {%- endif -%}
+                     placeholder="{{ 'customer.login.password' | t }}"
+                     >
+              <div data-form-error></div>
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn login-btn" value="{{ 'customer.login.sign_in' | t }}">
+              {{ 'customer.login.sign_in' | t }}
+            </button>
+
+            {% if form.password_needed %}
+            <p style="margin-top: 6px; margin-bottom: 6px;"><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+            {% endif %}
+            <p style="margin-bottom:8px;">or</p>
+            <a href="/account/register/" class="btn">Sign Up for early access sale</a>
+            {% endform %}
+          </div>
+
+          <div id="RecoverPasswordForm" class="hide">
+
+            <div class="text-center">
+              <h2 id="RecoverHeading">{{ 'customer.recover_password.title' | t }}</h2>
+              <p>{{ 'customer.recover_password.subtext' | t }}</p>
+            </div>
+
+            <div class="form-vertical">
+              {% form 'recover_customer_password' %}
+
+              {% comment %}
+              Add a hidden span to indicate the form was submitted succesfully.
+              {% endcomment %}
+              {% if form.posted_successfully? %}
+              <span class="hide reset-password-success"></span>
+              {% endif %}
+
+              {% comment %}<label for="RecoverEmail">{{ 'customer.recover_password.email' | t }}</label>{% endcomment %}
+              <div class="input-group">
+                <input
+                       type="email"
+                       value=""
+                       name="email"
+                       id="RecoverEmail"
+                       class="input-full{% if form.errors %} input--error{% endif %}"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       {% if form.errors %}
+                       aria-invalid="true"
+                       aria-describedby="RecoverEmail-email-error"
+                       {%- endif -%}
+                       placeholder="{{ 'customer.recover_password.email' | t }}"
+                       >
+                <div data-form-error></div>
+              </div>
+              {%- if form.errors -%}
+              <span id="RecoverEmail-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.messages['form'] }}</span>
+              </span>
+              {%- endif -%}
+
+              <div class="text-center">
+                <p>
+                  <button type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+                    {{ 'customer.recover_password.submit' | t }}
+                  </button>
+                </p>
+                <a href="#LoginHeading" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</a>
+              </div>
+              {% endform %}
+            </div>
+
+          </div>
+          <div class="error-wrapper">
+            <p class="error">Please fill in your email address.</p>
+          </div>
+          <div class="ajax-loader">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20" style="width: 40px;height: 40px;"><path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#919EAB"></path></svg>
+          </div>
+        </div>
+      </div>
+      <div class="col-right">
+        <a href="{% if collection.handle == 'black-friday-early-access-sale' %}/{% else %}#{% endif %}">
+          <div class="image_wrapper small--hide" style="padding-top:{{ 1 | divided_by: settings.popupImg.aspect_ratio | times: 100 }}%;">
+            {%- assign img_url = settings.popupImg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload custom__image"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 600]"
+                 data-aspectratio="{{ settings.popupImg.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ preview_image.alt }}"
+                 data-image>
+          </div>
+          <div class="image_wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: settings.popupImgMobile.aspect_ratio | times: 100 }}%;">
+            {%- assign img_url = settings.popupImgMobile | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload custom__image"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 600]"
+                 data-aspectratio="{{ settings.popupImgMobile.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ preview_image.alt }}"
+                 data-image>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,158 @@
+<div class="page-width">
+  <section class="text-center">
+    {% if section.settings.sub_title_1 != blank %}
+    <span class="sub-title-1">{{ section.settings.sub_title_1 }}</span>
+    {% endif %}
+    {% if section.settings.title != blank %}
+    <h1>{{ section.settings.title }}</h1>
+    {% endif %}
+    {% if section.settings.sub_title_2 != blank %}
+    <span class="sub-title-2">{{ section.settings.sub_title_2 }}</span>
+    {% endif %}
+    
+    {% if customer %}
+    <div class="text">
+      <p>
+       <span>Hello {{ customer.first_name }},</span><br>
+       Earn a sparkle every time you shop. Collect the sparkle points to unlock a whole new set of benefits.
+      </p>
+      <p onload="StampedRewardsSummary.showRewradPoints();" data-target-id="label-balance-points">
+        Reward Balance:<span></span>
+      </p>
+    </div>
+    {% else %}
+    {% if section.settings.text != blank %}
+    <div class="text">{{ section.settings.text }}</div>
+    {% endif %}
+    {% endif %}
+    
+    {% if customer %}
+    <div class="btns-group">
+      {% if section.settings.button_label_1 and section.settings.button_link_1 != blank%}
+      <a href="javascript:void(0);" onclick="StampedRewardsSummary.viewRedeem();" class="btn-border btn-white">
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        Redeem Now
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+      </a>
+      {% endif %}
+      {% if section.settings.button_label_2 and section.settings.button_link_2 != blank%}
+      <a href="javascript:void(0);" onclick="StampedRewardsSummary.viewHistory();" class="btn-border btn-white">
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        Unused Rewards
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+      </a>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="btns-group">
+      {% if section.settings.button_label_1 and section.settings.button_link_1 != blank%}
+      <a href="{{ section.settings.button_link_1 }}" class="btn">
+        {{ section.settings.button_label_1 }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33"><defs><style>.rb-btn-arr-wa,.rb-btn-arr-wb{fill:#fff;}.rb-btn-arr-wa{opacity:0;}</style></defs><g transform="translate(0 -0.205)"><rect class="rb-btn-arr-wa" width="33" height="33" transform="translate(0 0.205)"/><g transform="translate(2.327 1.368)"><path class="rb-btn-arr-wb" d="M23.239-56.062a14.6,14.6,0,0,0,14.5-14.5,14.618,14.618,0,0,0-14.513-14.5A14.6,14.6,0,0,0,8.74-70.56,14.606,14.606,0,0,0,23.239-56.062Zm0-2.416A12.024,12.024,0,0,1,11.171-70.56,12.021,12.021,0,0,1,23.224-82.642a12.066,12.066,0,0,1,12.1,12.082A12.027,12.027,0,0,1,23.239-58.478Zm7.334-12.1a1.127,1.127,0,0,0-.412-.824l-4.8-4.819a1.019,1.019,0,0,0-.739-.284,1,1,0,0,0-1.023,1.023,1.049,1.049,0,0,0,.313.753L25.7-72.962,27.4-71.527l-3-.114h-7.42a1.027,1.027,0,0,0-1.052,1.066,1.027,1.027,0,0,0,1.052,1.066H24.4l3.013-.114-1.72,1.45-1.791,1.748a1.05,1.05,0,0,0-.313.768,1.022,1.022,0,0,0,1.023,1.038,1.029,1.029,0,0,0,.739-.3l4.8-4.819A1.135,1.135,0,0,0,30.573-70.575Z" transform="translate(-8.74 85.059)"/></g></g></svg>
+      </a>
+      {% endif %}
+      {% if section.settings.button_label_2 and section.settings.button_link_2 != blank%}
+      <a href="{{ section.settings.button_link_2 }}" class="btn">
+        {{ section.settings.button_label_2 }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33"><defs><style>.rb-btn-arr-wa,.rb-btn-arr-wb{fill:#fff;}.rb-btn-arr-wa{opacity:0;}</style></defs><g transform="translate(0 -0.205)"><rect class="rb-btn-arr-wa" width="33" height="33" transform="translate(0 0.205)"/><g transform="translate(2.327 1.368)"><path class="rb-btn-arr-wb" d="M23.239-56.062a14.6,14.6,0,0,0,14.5-14.5,14.618,14.618,0,0,0-14.513-14.5A14.6,14.6,0,0,0,8.74-70.56,14.606,14.606,0,0,0,23.239-56.062Zm0-2.416A12.024,12.024,0,0,1,11.171-70.56,12.021,12.021,0,0,1,23.224-82.642a12.066,12.066,0,0,1,12.1,12.082A12.027,12.027,0,0,1,23.239-58.478Zm7.334-12.1a1.127,1.127,0,0,0-.412-.824l-4.8-4.819a1.019,1.019,0,0,0-.739-.284,1,1,0,0,0-1.023,1.023,1.049,1.049,0,0,0,.313.753L25.7-72.962,27.4-71.527l-3-.114h-7.42a1.027,1.027,0,0,0-1.052,1.066,1.027,1.027,0,0,0,1.052,1.066H24.4l3.013-.114-1.72,1.45-1.791,1.748a1.05,1.05,0,0,0-.313.768,1.022,1.022,0,0,0,1.023,1.038,1.029,1.029,0,0,0,.739-.3l4.8-4.819A1.135,1.135,0,0,0,30.573-70.575Z" transform="translate(-8.74 85.059)"/></g></g></svg>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </section>
+</div>
+<script>
+  function init() {
+    setTimeout(function(){
+      var dataPoint = StampedFn.getDataRewards();
+      console.log(dataPoint.points.points_current_with_name.toLocaleString());
+      $('[data-target-id="label-balance-points"] span').text(dataPoint.points.points_current_with_name.toLocaleString());
+    },2000);
+  }
+  
+    window.onload = init;
+  
+  
+</script>
+<script>
+  var StampedRewardsSummary = (function (window, document) {
+
+    function viewRedeem() {
+      console.log(StampedFn.getDataRewards());
+      StampedFn.toggleRewardsModal(true);
+      StampedFn.loadLauncherView('view-spendings', this);
+    }
+
+    function viewHistory() {
+      StampedFn.toggleRewardsModal(true);
+      StampedFn.loadLauncherView('view-your-rewards', this)
+    }
+
+    return {
+      viewRedeem: viewRedeem,
+      viewHistory: viewHistory
+    }
+
+  }(window, document));
+</script>
+
+{% schema %}
+  {
+    "name": "Rewards header",
+	"class": "rewards-header",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",			
+        "default": "Rewards"
+      },
+      {
+        "type": "text",
+        "id": "sub_title_1",
+        "label": "Sub title 1",			
+        "default": "Welcome to the"
+      },
+	  {
+        "type": "text",
+        "id": "sub_title_2",
+        "label": "Sub title 2",			
+        "default": "Boutique"
+      },
+	  {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",		
+		"default": "<p>Join us today and earn a sparkle every time you shop. Collect the sparkle points to unlock a whole new set of benefits.</p>"
+      },
+	  {
+        "type": "text",
+        "id": "button_label_1",
+        "label": "Button 1",		
+        "default": "Sign up"
+      },
+	  {
+        "type": "url",
+        "id": "button_link_1",
+        "label": "Button link 1"
+      },
+	  {
+        "type": "text",
+        "id": "button_label_2",
+        "label": "Button 2",			
+        "default": "Sign in"
+      },
+	  {
+        "type": "url",
+        "id": "button_link_2",
+        "label": "Button link 2"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

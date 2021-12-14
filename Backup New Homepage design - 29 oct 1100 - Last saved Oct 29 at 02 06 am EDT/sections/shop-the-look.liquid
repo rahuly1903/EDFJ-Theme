@@ -1,0 +1,187 @@
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="grid shop-the-look">
+      {% capture content %}
+      <div class="info small--text-center">
+        {% if section.settings.sub_title != blank %}
+        <span class="sub_title">{{ section.settings.sub_title }}</span>
+        {% endif %}
+        {% if section.settings.title != blank %}
+        <h2 class="title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        {{ section.settings.text }}
+        {% endif %}
+        {% if section.settings.button_label and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn-border{% if section.settings.button_color != 'blue' %} btn-{{ section.settings.button_color }}{% endif %}{% if section.settings.button_hover_color != 'gold' %} btn-hover-{{ section.settings.button_hover_color }}{% endif %}">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          {{ section.settings.button_label }}
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </a>
+        {% endif %}
+      </div>
+      {% endcapture %}
+      <div class="grid__item medium-up--one-half grid-products">
+        <div class="small--hide">{{ content }}</div>
+        {%- assign max_height = 198 -%}
+        {%- assign product1 = all_products[section.settings.featured_product1] -%}
+        {%- assign product2 = all_products[section.settings.featured_product2] -%}
+        {%- assign product3 = all_products[section.settings.featured_product3] -%}
+        {%- assign product4 = all_products[section.settings.featured_product4] -%}
+
+        <div class="grid grid--uniform shop-the-look-slider">
+          {% if product1 != blank %}
+          <div class="grid__item grid__item--product1">
+            {% include 'product-card-grid', max_height: max_height, product: product1, show_vendor: section.settings.show_vendor %}
+          </div>
+          {% endif %}
+          {% if product2 != blank %}
+          <div class="grid__item grid__item--product2">
+            {% include 'product-card-grid', max_height: max_height, product: product2, show_vendor: section.settings.show_vendor %}
+          </div>
+          {% endif %}
+          {% if product3 != blank %}
+          <div class="grid__item grid__item--product3">
+            {% include 'product-card-grid', max_height: max_height, product: product3, show_vendor: section.settings.show_vendor %}
+          </div>
+          {% endif %}
+          {% if product4 != blank %}
+          <div class="grid__item grid__item--product4">
+            {% include 'product-card-grid', max_height: max_height, product: product4, show_vendor: section.settings.show_vendor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item medium-up--one-half grid-image">
+        <div class="medium-up--hide one-whole">{{ content }}</div>
+        {% assign banner = section.settings.banner | img_url: 'master' %}
+        <div class="image-wrapper look-banner">
+          <img class="lazyload" 
+               src="{{ banner }}"
+               data-src="{{ banner }}" 
+               data-sizes="auto" 
+               alt="" />
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>
+
+{% schema %}
+{
+  "name": "Shop the look",
+  "class": "shop-the-look-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner",
+      "label": "Banner"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub title",
+      "default": "Sub title"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+	  "default": "<p>Text goes here.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop all looks"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "blue",
+      "options": [
+        {
+          "value": "blue",
+          "label": "Blue"
+        },
+        {
+          "value": "gold",
+          "label": "Gold"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "gold",
+      "options": [
+        {
+          "value": "gold",
+          "label": "Gold"
+        },
+        {
+          "value": "blue",
+          "label": "Blue"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "product",
+      "id": "featured_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "featured_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "featured_product3",
+      "label": "Product 3"
+    },
+    {
+      "type": "product",
+      "id": "featured_product4",
+      "label": "Product 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendors",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the look",
+      "category": "Advanced layout"
+    }
+  ]
+}
+{% endschema %}

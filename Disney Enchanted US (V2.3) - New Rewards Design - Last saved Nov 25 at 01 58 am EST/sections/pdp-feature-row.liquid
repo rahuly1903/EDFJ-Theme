@@ -1,0 +1,147 @@
+{% if section.settings.show_section %}
+<!-- pdp-feature-row.liquid -->
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="section-wrapper">
+      <div class="grid">
+        <div class="grid__item grid__item-content">
+          <div class="content small--text-center medium-up--text-right">
+            {% if section.settings.sub_title != blank %}
+            <span class="sub-title">{{ section.settings.sub_title }}</span>
+            {% endif %}
+            {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+            {% endif %}
+            {% if section.settings.text != blank %}
+            <div class="text">{{ section.settings.text }}</div>
+            {% endif %}
+            {% if section.settings.button_label and section.settings.button_link != blank %}
+            <a href="{{ section.settings.button_link }}" class="btn-border{% if section.settings.button_color != 'blue' %} btn-{{ section.settings.button_color }}{% endif %}{% if section.settings.button_hover_color != 'gold' %} btn-hover-{{ section.settings.button_hover_color }}{% endif %}">
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+              {{ section.settings.button_label }}
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="grid__item grid__item-image">
+          {% assign banner_desk = section.settings.image_desk | img_url: 'master' %}
+          <img class="lazyload small--hide" 
+               src="{{ banner_desk }}"
+               data-src="{{ banner_desk }}" 
+               data-sizes="auto" 
+               alt="" />
+          {% assign banner_mob = section.settings.image_mob | img_url: 'master' %}
+          <img class="lazyload medium-up--hide" 
+               src="{{ banner_mob }}"
+               data-src="{{ banner_mob }}" 
+               data-sizes="auto" 
+               alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Feature row",
+	"class": "pdp-feature-row",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "show_section",
+        "label": "Show section",
+        "default": true
+      },
+	  {
+        "type": "image_picker",
+        "id": "image_desk",
+        "label": "Image (Desktop)",
+		"info": "Recommended size: 740px * 646px"
+      },
+	  {
+        "type": "image_picker",
+        "id": "image_mob",
+        "label": "Image (Mobile)",
+		"info": "Recommended size: 414px * 470px"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title",
+        "default": "Sub Title"
+      },
+	  {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Text goes here.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Explore the collection"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "button_color",
+        "label": "Button color",
+		"default": "blue",
+		"options": [
+          {
+            "value": "blue",
+            "label": "Blue"
+          },
+		  {
+            "value": "gold",
+            "label": "Gold"
+          },
+		  {
+            "value": "white",
+            "label": "White"
+          }
+		]
+      },
+      {
+        "type": "select",
+        "id": "button_hover_color",
+        "label": "Button hover color",
+		"default": "gold",
+		"options": [
+          {
+            "value": "gold",
+            "label": "Gold"
+          },
+		  {
+            "value": "blue",
+            "label": "Blue"
+          },
+		  {
+            "value": "white",
+            "label": "White"
+          }
+		]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

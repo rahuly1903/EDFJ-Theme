@@ -1,0 +1,45 @@
+<div data-id="tab-{{ section.id }}-{{ loop_index }}" class="tab-content {% if loop_index == 1 %}current{% endif %}">
+  <div class="product-grid-slider">
+    {%- assign collection = collections[collection] -%}
+    {% if collection_title != blank %}
+    <div class="section-header text-center bridal__jewelry">
+      <h2 id="view-all-title-{{ collection_title | handleize }}" class="h3" onclick="location.href='{{ collection }}';">{{ collection_title }}</h2>
+    </div>
+    {% endif %}  
+    {% case grid %}
+    {% when 2 %}
+    {%- assign max_height = 530 -%}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+    {%- assign max_height = 345 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+    {%- assign max_height = 250 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+    {%- assign max_height = 195 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {% endcase %}
+
+    {%- assign product_limit = grid | times: 2 -%}
+    <div class="section-wapper {% if section.settings.checkbox %}section-margin{% endif %}">
+      <ul class="grid--view-items">
+        {% for product in collection.products limit: product_limit %}
+        {% if product.available %}
+        <li class="grid__item mm-product-grid-wrapper small--one-whole medium-up--one-third grid__item--{{section.id}}">
+          {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+      {% if show_button %}
+      <div class="button-wrapper">
+        <a id="view-all-{{ section.settings.title | handleize }}" href="{{ section.settings.link }}" class="btn slider-btn">
+          View all {{ collection.title }} products
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

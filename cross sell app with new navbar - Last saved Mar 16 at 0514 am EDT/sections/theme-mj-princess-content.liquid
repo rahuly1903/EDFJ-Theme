@@ -1,0 +1,156 @@
+<section class="collection__content--wrapper">
+<section class="theme__content mj-princess" data-section-type="theme__content" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.bg-img %}
+
+  <div class="ed--wrapper">
+    {% for block in section.blocks %}
+    {% assign content-img = block.settings.content-img %}
+    {% assign heading = block.settings.small-heading %}
+    {% assign paragraph = block.settings.big-content %}
+    <div class="flex__container {% cycle 'direction_rev', 'direction_row' %} content__center{% if forloop.index == 1 %} pt-{{ forloop.index }}{% elsif forloop.index == 2 %} pt-{{ forloop.index }}{% endif %}">
+      <div class="theme__content--right">
+        {% if heading != blank %}
+        <h5>{{ heading }}</h5>
+        {% endif %}
+        {% if paragraph != blank %}
+        <p>{{ paragraph }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  </section>
+
+  <section class="theme__collection mj-princess" data-section-type="theme__collection" data-section-id="{{ section.id }}">
+    {% assign collection-bg = section.settings.collection-bg %}
+    {% assign heading = section.settings.collection-title %}
+    {% assign sub-heading = section.settings.collection-subtitle %}
+    {% assign paragraph = section.settings.collection-desc %}
+    {% assign button-label = section.settings.button-label %}
+    {% assign button-url = section.settings.button-url %}
+    {% assign collection-art = section.settings.collection-art %}
+
+    <div class="ed--wrapper">
+      <div class="theme__collection--row">
+        <div class="theme__collection--left">
+          {% if heading != blank %}
+          <h2>{{ heading }}</h2>
+          {% endif %}
+          {% if sub-heading != blank %}
+          <h5>{{ sub-heading }}</h5>
+          {% endif %}
+          {% if paragraph != blank %}
+          <p>{{ paragraph }}</p>
+          {% endif %}
+          {% if button-label != blank %}
+          <a href="{% if button-url != blank %}{{ button-url }}{% endif %}" class="btn">
+            {{ button-label }}
+          </a>
+          {% endif %}
+        </div>
+        <div class="theme__collection--right">
+          {% if collection-art != nil %}
+          <img src="{{ collection-art | img_url: 'master' }}" alt="Enchanted Disney" />
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</section>
+
+
+<style>
+  .theme__collection.mj-princess {
+    margin-top: 500px;
+  }
+  {% if section-bg != nil %}
+    .collection__content--wrapper {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+  
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Magestic Princess",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg-img",
+        "label": "Background"
+      },
+      {
+        "type": "header",
+        "content": "Magestic Princess Collection"
+      },
+      {
+		"type": "text",
+		"id": "collection-title",
+		"label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "collection-subtitle",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "collection-desc",
+        "label": "Paragraph"
+      },
+      {
+        "type": "text",
+        "id": "button-label",
+        "label": "Button Text",
+		"default": "Explore Collection"
+      },
+      {
+        "type": "url",
+        "id": "button-url",
+        "label": "Button URL"
+      },
+      {
+        "type": "image_picker",
+        "id": "collection-art",
+        "label": "Image"
+      }
+	],
+	"blocks": [
+      {
+        "type": "content",
+        "name": "Page Content",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "content-img",
+            "label": "Image"
+          },
+          {
+            "type": "textarea",
+            "id": "small-heading",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "big-content",
+            "label": "Paragraph"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

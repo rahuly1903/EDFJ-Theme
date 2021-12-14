@@ -1,0 +1,115 @@
+<section class="theme__styles cinderella" data-section-type="theme__styles" data-section-id="{{ section.id }}">
+  <div class="ed--wrapper">
+    {% assign section-bg = section.settings.section-bg %}
+    {% assign shop-all-button = section.settings.shop-all-button %}
+    {% assign shop-all-button-url = section.settings.shop-all-button-url %}
+
+    <div class="theme__princess--styles ariel">
+      {% for block in section.blocks limit:3 %} 
+      {% assign collection-bg = block.settings.collection-bg %}	
+      {% assign collection-img = block.settings.collection-img %}
+      {% assign short-desc = block.settings.short-desc %}
+      {% assign shop-button = block.settings.shop-button %}
+      {% assign collection-url = block.settings.collection-url %}
+      <div>
+        <div class="theme__princess--item">
+          {% if collection-img != nil %}
+          <span class="item_img">
+          <img src="{{ collection-img | img_url: 'master' }}" alt="Enchanted Disney" />
+          </span>
+          {% endif %}
+          {% if short-desc != blank %}
+          <p>{{ short-desc }}</p>
+          {% endif %}
+          {% if shop-button != blank %}
+          <a href="{% if collection-url != blank %}{{ collection-url }}{% endif %}">
+            {{ shop-button }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% if shop-all-button != blank %}
+    <a href="{% if shop-all-button-url != blank %}{{ shop-all-button-url }}{% endif %}" class="btn">
+      {{ shop-all-button }}
+    </a>
+    {% endif %}
+  </div>
+</section>
+<style>
+  {% if section-bg != nil %}
+    .theme__styles {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+  {% if collection-bg != nil %}
+    .theme__princess--item {
+      background-image: url('{{ collection-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+{% schema %}
+  {
+    "name": "Princess Styles",
+	"settings": [
+      {
+        "type": "image_picker",
+        "id": "section-bg",
+        "label": "Background Image"
+      },
+      {
+        "type": "text",
+        "id": "shop-all-button",
+        "label": "Button Text"
+      },
+      {
+		"type": "url",
+		"id": "shop-all-button-url",
+		"label": "Button URL"
+      }
+	],
+	"blocks": [
+      {
+        "type": "princess-styles",
+        "name": "Items",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "collection-bg",
+            "label": "Background Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "collection-img",
+            "label": "Image"
+          },
+          {
+            "type": "textarea",
+            "id": "short-desc",
+            "label": "Paragraph"
+          },
+          {
+            "type": "text",
+            "id": "shop-button",
+            "label": "Link",
+            "default": "Shop this style"
+          },
+          {
+            "type": "url",
+            "id": "collection-url",
+            "label": "Collection Link"
+          }
+        ]
+      }
+	],
+    "presets": [
+      {
+        "category": "Princess Styles",
+        "name": "Princess Styles",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}
+

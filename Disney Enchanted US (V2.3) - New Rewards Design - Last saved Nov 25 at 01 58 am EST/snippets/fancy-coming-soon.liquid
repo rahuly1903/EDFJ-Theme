@@ -1,0 +1,8 @@
+{% unless content_for_header contains "adminBarInjector.init" %}{% unless content_for_header contains "designMode" %}
+                   <script>
+                   var url  = window.location.href;
+                   if(url.indexOf("oseid") > -1 || url.indexOf("fts") > -1) {} else {
+                   window.location.pathname == "/apps/fancy-coming-soon" ? "" : window.location.href = "{{shop.url}}/apps/fancy-coming-soon";
+                   }
+                   </script> 
+                   {% endunless %}{% endunless %}

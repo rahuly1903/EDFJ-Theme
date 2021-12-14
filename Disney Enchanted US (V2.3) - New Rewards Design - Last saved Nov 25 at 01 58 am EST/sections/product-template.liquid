@@ -1,0 +1,386 @@
+<section class="product-template2__container"
+         id="ProductSection-{{ section.id }}"
+         data-section-id="{{ section.id }}"
+         data-section-type="product"
+         data-enable-history-state="true"
+         data-ajax-enabled="{{ settings.enable_ajax }}"
+         >
+  {% comment %}
+  <div class="hidden">{{ product.metafields.product["Centre Stone Type"] }}</div>
+  {% endcomment %}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign compare_at_price = current_variant.compare_at_price -%}
+  {%- assign price = current_variant.price -%}
+  {% assign chateau_collection = false %}
+  {% for tag in product.tags %}
+  {% assign janTag = tag | handle %}
+  {% if janTag == 'vault-jan' %}
+  {% assign collection_vault = true %}
+  {% break %}
+  {% endif %}
+  {% if janTag == 'chateau-collection' %}
+  {% assign chateau_collection = true %}
+  {% break %}
+  {% endif %}
+  {% endfor %}
+
+  <div class="ed--wrapper">
+    <div class="single__product--row">
+      <div class="single__product--gallery">
+        <div class="gallery-container">
+          <div class="gallery_large_pic">
+            <div class="gallery-single">
+              {% include "image-alt-pattern" %}
+
+              {% for image in product.images %}
+              <div class="product-single__media--Image">
+                <a href="{{ image.src | img_url: '2400x' }}" 
+                   class="MagicZoom"
+                   data-gallery="product-gallery"  
+                   data-zoom-image-2x="{{ image.src | img_url: '2400x', scale: 2 }}" 
+                   data-options="zoomPosition: inner; lazyZoom: true; hint: off;" 
+                   data-image-2x="{{ image.src | img_url: '600x' , scale: 2 }}">
+                  <img class="product-featured-img" 
+                       src="{{ image.src | img_url: '800x' }}" 
+                       data-sizes="auto" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+                </a>
+              </div>
+              {% endfor %}
+              {% include 'product-type-n-vendor-banner' %}
+            </div>
+          </div>
+        </div>
+
+        {% if collection_vault == true %}
+        <div class="vault_banner">
+          <div class="banner">
+            <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/image_5.jpg?v=1636637770" data-sizes="auto"  alt="vault banner"  />
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+      <div class="single__product--description">
+        <div class="description-wrapper">
+          <div class="small--hide">{% render 'breadcrumbs' %}</div>
+
+          {% if collection_vault == true %}
+          <p class="inside_vault">Inside the Vault {% comment %}<span>Only <b>{{ product.variants.first.inventory_quantity }}</b> left!</span>{% endcomment %}</p>
+          {% endif %}
+          
+          {% assign productTitleLowercase = product.title | downcase %}
+
+          <ul class="spacifications">
+            {% for link in linklists['princess-collection'].links %}
+            {% assign productVendor = product.vendor | handle %}
+            {% assign linkListHandle = link.title | handle %}
+            {% if productVendor contains linkListHandle %}
+            <li><a href="{{ link.url }}">{{ product.vendor }} Collection</a></li>
+            {% break %}
+            {% endif %}
+            {% endfor %}
+            <li>Style #<span class="variant-sku">{{ current_variant.sku }}</span></li>
+          </ul>
+
+          <h1 class="product_title">{{ product.title }}</h1>
+          
+          <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;"></span>
+
+          {% if product.description.size > 160 %}
+          <div class="product_desc">
+            <div class="product_desc-short">
+              {{ product.description | truncate: 160 }}
+            </div>
+            <div class="product_desc-full">
+              {{ product.description }}
+            </div>
+            <a href="javascript:void(0);" class="read-more-desc">Read more...</a>
+          </div>
+          {% else %}
+          <div class="product_desc">{{ product.description }}</div>
+          {% endif %}
+
+          {% if product.tags contains 'bundle' %}
+          <a class="bundle-link" href="#bundle-current-1">Bundle offer</a>
+          {% endif %}
+
+          <div class="price__stock--info">
+            <div class="product__price">
+              {% include 'product-price', variant: current_variant, product: product %}
+              {% if customer %}{% else %}
+              <div class="early-access-text">
+                <p><a href="/account/register">Sign Up</a><span class="seperator-line">/</span><a href="/account/login" class="sign-in-popup">Sign In</a> to view Early Access Black Friday Sale</p>
+              </div>
+              {% endif %}
+            </div>
+            {% if collection_vault == true or chateau_collection == true %}
+            {% else %}
+            <div class="stock__message">
+              {% assign stockAlert = section.settings.stock_alert %}
+              {% assign qty = current_variant.inventory_quantity %}
+              {% if qty <= 0 %}
+              {% if current_variant.inventory_policy == "continue" %}
+              {% else %}
+              <p class="variant-inventory" data-min-qty="{{ stockAlert }}" style="color: #b5323d">Out of Stock!</p>
+              {% endif %}
+              {% elsif qty > stockAlert %}
+              <p class="variant-inventory" data-min-qty="{{ stockAlert }}" style="color: #379f6a">In Stock!</p>
+              {% else %}
+              <p class="variant-inventory" data-min-qty="{{ stockAlert }}" style="color: #b5323d">Only {{ qty }} left in Stock!</p>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+          {% if current_variant.price > 50000 %}
+          <div class="monthly-payment">
+            <p class="price-bar">
+              <span class="price-title">
+                Easy monthly payments of {{ product.price | divided_by: 6 | money  }}/month. <a href="/pages/monthly-payment-option" target="_blank">Know More</a>
+              </span>
+            </p>
+          </div>
+          {% endif %}
+          
+          {% comment %}
+          {% if current_variant.available %}
+          {% else %}
+          <div class="mm-badges">
+            <div class="sold-out">Out Of Stock</div>
+          </div>
+          {% endif %}
+
+          
+          {% if product.tags contains 'graduation' or product.tags contains 'mothers day' or product.tags contains 'RSB' or product.tags contains 'mothersday' %}
+
+          {%  else %}
+          <div class="free-shipping-text coupan-text">
+            <p>
+              <span>
+                <svg id="Capa_1" enable-background="new 0 0 512.006 512.006" height="auto" viewBox="0 0 512.006 512.006" width="auto" xmlns="http://www.w3.org/2000/svg"><path id="XMLID_1468_" d="m502.335 77.815 6.741-6.741c3.905-3.905 3.905-10.237 0-14.143-3.905-3.904-10.237-3.904-14.143 0l-6.741 6.741-6.737-6.737c-1.875-1.875-4.419-2.929-7.071-2.929h-10.999l-51.077-51.077c-1.876-1.875-4.419-2.929-7.071-2.929h-369.222c-19.858 0-36.014 16.155-36.014 36.014v187.401c0 19.858 16.156 36.014 36.014 36.014h87.12l-58.585 58.586c-6.802 6.802-10.548 15.846-10.548 25.466 0 9.619 3.746 18.663 10.548 25.466l132.512 132.512c6.802 6.802 15.846 10.548 25.466 10.548s18.664-3.746 25.466-10.548l99.247-99.246c3.906-3.905 3.906-10.237 0-14.143-3.905-3.903-10.237-3.904-14.142 0l-99.248 99.246c-3.024 3.025-7.046 4.69-11.323 4.69s-8.299-1.665-11.323-4.69l-132.513-132.512c-3.024-3.024-4.69-7.046-4.69-11.323 0-4.278 1.666-8.299 4.69-11.323l258.15-258.15h133.401l3.808 3.808-23.124 23.124c-3.917-1.878-8.3-2.931-12.926-2.931-16.542 0-30 13.458-30 30s13.458 30 30 30 30-13.458 30-30c0-4.626-1.054-9.01-2.932-12.926l23.124-23.124 3.808 3.808v133.4l-95.264 95.265c-3.905 3.905-3.905 10.237 0 14.143 3.905 3.904 10.237 3.904 14.143 0l98.193-98.193c1.875-1.876 2.929-4.419 2.929-7.071v-141.688c0-2.652-1.054-5.195-2.929-7.071zm-322.755 101.62c-5.516 0-10.003-4.487-10.003-10.003 0-5.517 4.487-10.004 10.003-10.004s10.003 4.487 10.003 10.004c0 5.515-4.487 10.003-10.003 10.003zm153.12-125.428c-2.652 0-5.196 1.054-7.071 2.929l-116.294 116.293c.158-1.245.249-2.511.249-3.798 0-16.544-13.459-30.004-30.003-30.004-16.543 0-30.003 13.46-30.003 30.004s13.459 30.003 30.003 30.003c1.287 0 2.553-.091 3.798-.249l-40.243 40.243h-107.121c-8.83 0-16.014-7.184-16.014-16.014v-187.4c0-8.83 7.184-16.014 16.014-16.014h365.079l34.007 34.007zm105.301 84c-5.514 0-10-4.486-10-10s4.486-10 10-10c2.282 0 4.382.777 6.067 2.069.265.346.547.684.863 1s.654.598 1 .863c1.292 1.685 2.069 3.785 2.069 6.067.001 5.515-4.485 10.001-9.999 10.001z"/><path id="XMLID_1527_" d="m332.599 295.835c2.652 0 5.196-1.054 7.071-2.929l22.627-22.628c3.905-3.905 3.905-10.237 0-14.143-3.905-3.904-10.237-3.904-14.142 0l-15.556 15.557-49.498-49.497c-3.904-3.904-10.237-3.904-14.142 0-3.905 3.905-3.905 10.237 0 14.143l56.569 56.568c1.876 1.875 4.42 2.929 7.071 2.929z"/><path id="XMLID_1528_" d="m410.381 208.053c-3.905-3.904-10.237-3.904-14.143 0l-12.728 12.728-14.142-14.141 12.728-12.728c3.905-3.905 3.905-10.237 0-14.143-3.905-3.904-10.237-3.904-14.143 0l-12.728 12.728-14.142-14.142 12.728-12.728c3.905-3.905 3.906-10.237 0-14.143-3.905-3.903-10.237-3.904-14.142 0l-19.799 19.799c-1.875 1.875-2.929 4.419-2.929 7.071s1.054 5.195 2.929 7.071l56.569 56.568c1.952 1.952 4.512 2.929 7.071 2.929s5.119-.977 7.071-2.929l19.799-19.799c3.906-3.904 3.906-10.236.001-14.141z"/><path id="XMLID_1531_" d="m299.776 323.029c4.919 2.508 10.942.55 13.45-4.371 2.507-4.921.55-10.942-4.372-13.449l-74.953-38.184c-3.86-1.967-8.547-1.224-11.61 1.839s-3.806 7.751-1.839 11.61l38.184 74.953c1.766 3.468 5.276 5.464 8.918 5.463 1.527 0 3.078-.351 4.531-1.092 4.921-2.507 6.878-8.528 4.372-13.449l-3.066-6.02 20.367-20.367zm-35.932-1.437-11.604-22.779 22.78 11.605z"/><path id="XMLID_1532_" d="m203.906 400.386c-3.905 3.905-3.906 10.237 0 14.143 1.953 1.952 4.512 2.929 7.071 2.929s5.119-.977 7.071-2.929l14.143-14.142c11.697-11.697 11.697-30.729 0-42.427-11.118-11.118-28.857-11.66-40.632-1.644-.366.277-.722.571-1.055.905l-.74.739c-1.889 1.889-4.4 2.929-7.071 2.929s-5.182-1.04-7.071-2.929c-3.899-3.899-3.899-10.243 0-14.143l14.142-14.142c3.905-3.905 3.906-10.237 0-14.143-3.905-3.903-10.237-3.904-14.142 0l-14.143 14.142c-11.697 11.697-11.697 30.73 0 42.428 5.667 5.666 13.2 8.786 21.213 8.786 8.002 0 15.526-3.112 21.192-8.766.007-.007.015-.013.022-.02 3.898-3.9 10.243-3.9 14.142 0 1.889 1.889 2.929 4.399 2.929 7.07 0 2.672-1.04 5.183-2.929 7.071z"/><path id="XMLID_1533_" d="m171.339 64.557c-4.809-2.714-10.909-1.018-13.624 3.792l-64.5 114.254c-2.715 4.81-1.018 10.909 3.792 13.624 1.554.877 3.241 1.294 4.907 1.294 3.49 0 6.879-1.83 8.717-5.086l64.5-114.254c2.715-4.81 1.018-10.91-3.792-13.624z"/><path id="XMLID_1536_" d="m125.176 89.997c0-16.544-13.459-30.003-30.003-30.003s-30.004 13.459-30.004 30.003 13.459 30.004 30.003 30.004 30.004-13.46 30.004-30.004zm-40.007 0c0-5.516 4.487-10.003 10.003-10.003s10.003 4.487 10.003 10.003c0 5.517-4.487 10.004-10.003 10.004s-10.003-4.487-10.003-10.004z"/><path id="XMLID_1537_" d="m371.991 353.319c-2.64 0-5.21 1.07-7.07 2.931-1.86 1.859-2.93 4.439-2.93 7.069 0 2.631 1.07 5.211 2.93 7.07 1.86 1.86 4.43 2.93 7.07 2.93 2.63 0 5.21-1.069 7.07-2.93 1.86-1.859 2.93-4.439 2.93-7.07 0-2.63-1.07-5.21-2.93-7.069-1.86-1.86-4.44-2.931-7.07-2.931z"/></svg>
+              </span>
+              <span>
+                <span class=title>Use code <span class="code">First10</span> &amp; Get 10% Off</span>
+                <span class="subtitle">On First Order</span>
+              </span>
+            </p>
+          </div>
+          {% endif %}
+          {% endcomment %}
+
+
+          <script>
+            var inv_qty = {};
+            {% for var in product.variants %}
+            inv_qty[{{- var.id -}}] = {{ var.inventory_quantity | default: 0 }};
+            {% endfor %}
+          </script>
+
+          {% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '' %}
+          <div class="ring_size">
+            {% unless product.has_only_default_variant %}
+            <div class="ring_size-selection">
+              {% endunless %}
+
+              {% unless product.has_only_default_variant %}
+              {% for option in product.options_with_values %}
+              <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+                {{ option.name }} 
+                {% if product.tags contains '5 weeks' or product.tags contains '2 weeks' or product.tags contains '2 Weeks' or product.tags contains '5 Weeks' %}
+                <span class="infor" style="display:none;">
+                  {% if product.tags contains '5 weeks' or product.tags contains '5 Weeks' %}(Upto 5 weeks to ship){%- endif -%}
+                  {% if product.tags contains '2 weeks' or product.tags contains '2 Weeks' %}(Upto 2 weeks to ship){%- endif -%}
+                </span>
+                {%- endif -%}
+              </label>
+              {% assign productVariant = option.values | sort %}
+              <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}" required>
+                {% for value in productVariant %}
+                <option value="{{ value | escape }}" {% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                {% endfor %}
+              </select>
+              {% endfor %}
+              {% endunless %}
+
+              <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js" required>
+                {% for variant in product.variants %}
+                <option data-price="{{ variant.price }}" {% if variant == current_variant %} selected="selected" data-sku="{{ variant.sku }}" {% endif %} value="{{ variant.id }}">
+                  {{ variant.title }}  {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+          </option>
+                {% endfor %}
+              </select>
+
+              {% unless product.has_only_default_variant %}
+            </div>
+            {% endunless %}
+
+            {% comment %}
+            {% assign sizeChart = product.metafields.size-chart.image %}
+            {% if sizeChart != blank %}
+            <div class="ring_size-guide">
+              <a href="#size-chart"><img src="{{ 'Ring_Icon.svg' | asset_url }}" />Ring Size Chart</a>
+              <div id="size-chart" class="zoom-anim-dialog mfp-hide">
+                <img src="{{ sizeChart }}" alt="Size Chart" />
+                <a href="#" class="btn">View Complete Guide</a>
+              </div>
+            </div>
+            {% endif %}
+            {% endcomment %}
+
+            {% if product.type contains 'Ring' %}
+            <div class="ring_size-guide">
+              <a id="tid-Ring-Size-Chart" href="//cdn.shopify.com/s/files/1/0267/0523/1943/files/ring_sizer.pdf?32586" target="_blank">
+                View Size Chart
+              </a>
+            </div>
+            {% endif %}
+
+          </div>
+
+          {% include 'product-shop-button' , collection_vault: collection_vault %}
+
+          {% endform %}
+
+          {% for tag in product.tags  %}
+          {% if tag contains 'productHandle' %}
+          {% assign productHandle = tag | split:"productHandle:" | last %}
+          {% assign product = all_products[productHandle] %}
+          {% include "product-page-bundle" %}
+          {% endif %}
+          {% endfor %}
+
+          <p class="visually-hidden" data-product-status
+             aria-live="polite"
+             role="status"
+             ></p>
+
+          {%- comment -%}
+          Live region for announcing that the product form has been submitted and the
+          product is in the process being added to the cart
+          {%- endcomment -%}
+          <p class="visually-hidden" data-loader-status
+             aria-live="assertive"
+             role="alert"
+             aria-hidden="true"
+             >{{ 'products.product.loader_label' | t }}</p>
+
+          <div class="shipping-text">
+            <p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10.616" height="11.17" viewBox="0 0 10.616 11.17">
+                <path id="Delivery_icon" data-name="Delivery icon" d="M8.987,11.169H1.63A1.576,1.576,0,0,1,0,9.657V3.5H0a.321.321,0,0,1,.046-.157.026.026,0,0,0,0-.009.022.022,0,0,1,0-.009L1.661.752A1.663,1.663,0,0,1,3.07,0H7.546A1.664,1.664,0,0,1,8.955.752l1.61,2.57a.023.023,0,0,1,0,.009.027.027,0,0,0,0,.009.33.33,0,0,1,.046.157h0v6.16A1.576,1.576,0,0,1,8.987,11.169ZM.752,3.846V9.657a.849.849,0,0,0,.878.814H8.987a.849.849,0,0,0,.878-.814V3.846ZM5.684.7v2.45h3.9L8.305,1.1A.9.9,0,0,0,7.546.7ZM3.07.7a.9.9,0,0,0-.759.405L1.03,3.148h3.9V.7ZM5.3,9.038a.364.364,0,0,1-.376-.349V6.47l-.742.689a.4.4,0,0,1-.532,0,.331.331,0,0,1,0-.493L5.034,5.381a.415.415,0,0,1,.122-.076.409.409,0,0,1,.288,0,.421.421,0,0,1,.122.076l1.4,1.3a.331.331,0,0,1,0,.493.4.4,0,0,1-.532,0l-.759-.7V8.689A.363.363,0,0,1,5.3,9.038Z" fill="#7988a7"/>
+              </svg>
+              {% if chateau_collection == true %}
+              <span>Estimated Delivery by {{ "now" | date: "%s" | plus: 5184000 | date: "%B %d, %Y" }}</span>
+              {% else %}
+              <span>Estimated Delivery by {{ "now" | date: "%s" | plus: 518400 | date: "%B %d, %Y" }}</span>
+              {% endif %}
+            </p>
+            <p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13.955" height="11" viewBox="0 0 13.955 10.313">
+                <path id="Free_delivery_shipment" data-name="Free delivery shipment" d="M11.321,10.313A1.668,1.668,0,0,1,9.7,9.006H4.733a1.682,1.682,0,0,1-.577.932,1.66,1.66,0,0,1-2.1,0,1.683,1.683,0,0,1-.578-.932H.361A.361.361,0,0,1,0,8.645V1.751A1.753,1.753,0,0,1,1.751,0H7.658A1.753,1.753,0,0,1,9.409,1.751v.359h2.4a1.061,1.061,0,0,1,.906.513L13.906,4.6a.036.036,0,0,1,0,.013.043.043,0,0,0,0,.01.346.346,0,0,1,.034.118.209.209,0,0,0,0,.021.132.132,0,0,1,0,.031V8.645a.362.362,0,0,1-.362.361h-.647a1.669,1.669,0,0,1-1.626,1.307Zm0-2.613a.947.947,0,0,0-.945.945h0a.945.945,0,1,0,.945-.946Zm-8.213,0a.946.946,0,1,0,.945.952V8.64A.947.947,0,0,0,3.107,7.7Zm8.213-.72a1.672,1.672,0,0,1,1.629,1.307h.283V5.151H9.409V8.284h.283a1.67,1.67,0,0,1,1.628-1.307Zm-8.213,0A1.67,1.67,0,0,1,4.734,8.284H8.687V1.751A1.03,1.03,0,0,0,7.658.722H1.751A1.03,1.03,0,0,0,.722,1.751V8.284h.757A1.671,1.671,0,0,1,3.107,6.975Zm6.3-4.144v1.6h3.549L12.1,2.994a.337.337,0,0,0-.287-.162Zm-5.5,2.836a.361.361,0,0,1-.255-.105l-.993-.993a.361.361,0,0,1,.255-.616.357.357,0,0,1,.255.105l.738.738L6.269,2.432a.361.361,0,0,1,.511.511L4.16,5.562A.361.361,0,0,1,3.905,5.667Z" fill="#7988a7"/>
+              </svg>
+              <span>Free Shipping on all orders</span>
+            </p>
+          </div>
+
+          {% include 'product-description' , chateau_collection:chateau_collection %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% unless product == empty %}
+<script type="application/json" id="ProductJson-{{ section.id }}">
+  {{ product | json }}
+</script>
+{% endunless %}
+<!-- <script>
+  const shareButton = document.querySelector('.share-button');
+  const shareDialog = document.querySelector('.social-sharing');
+  //   const closeButton = document.querySelector('.close-button');
+  
+  shareButton.addEventListener('click', function(event){
+    if (navigator.share) { 
+      navigator.share({
+        title: 'Enchanted Disney Fine Jewelry',
+        text:"{{ product.title }}",
+        url: '{{ shop.url }}{{ product.url }}'
+      }).then(function(){
+        console.log('Thanks for sharing!');
+      }).catch(console.error);
+    } else {
+      if(shareDialog.classList.contains("is-open")){
+        shareDialog.classList.remove('is-open');
+      }else{
+        shareDialog.classList.add('is-open');
+      }
+    }
+  });
+</script> -->
+
+{% schema %}
+{
+  "name": "Product Page",
+  "settings": [
+  {
+    "type": "header",
+    "content": "Stock Inventory"
+  },
+  {
+    "type": "range",
+    "id": "stock_alert",
+    "label": "Alert if stock quantity reaches",
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "default": 3
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_payment_button",
+    "label": "Show dynamic checkout button",
+    "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+    "default": true
+  }
+  ],
+  "blocks": [
+  {
+    "type": "princess-banner",
+    "name": "Princess Banner Image",
+    "settings": [
+    {
+      "type": "header",
+      "content": "Princess Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "princess-banner",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "princess-name",
+      "label": "Princess Name"
+    },
+    {
+      "type": "image_picker",
+      "id": "princess-emoticon",
+      "label": "Princess Emoticon"
+    },
+    {
+      "type": "text",
+      "id": "btn-label",
+      "label": "Button Label",
+      "default": "View More"
+    },
+    {
+      "type": "url",
+      "id": "button-url",
+      "label": "Button Link"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

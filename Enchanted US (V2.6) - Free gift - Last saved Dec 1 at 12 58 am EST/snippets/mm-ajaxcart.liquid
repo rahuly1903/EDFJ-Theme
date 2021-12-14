@@ -1,0 +1,88 @@
+<div class="cart-popup" data-cart-popup tabindex="-1">
+  <div class="cart-popup__header">
+    <div class="cart-title">
+      <h5 >
+        Your bag <span class="hide cart__count">{{ cart.item_count }}</span>
+      </h5>
+      <a href="javascript:void(0)" title="{{ 'cart.general.close_cart' | t }}" class="close-cart close mm-ajaxcart-close">
+        {% include 'icon-close' %}
+      </a>
+      <div class="ajax-loader">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20" style="width: 60px;height: 60px;"><path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#919EAB"></path></svg>
+      </div>
+    </div>
+    <div class="cart-popup__notification">
+      {% if cart.total_price < 49900 %}
+      {% assign cartTotal = cart.total_price %}
+      <p>
+        Free Gift on Order above $499
+        <br>
+        <small>Shop for {{ 49900 | minus: cartTotal | money }} more and receive a Free Travel Pouch worth $90</small>
+      </p>
+      {% else %}
+      <p>Free Travel Pouch worth $90 added to your cart</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="cart-popup-item-wrapper has-items" {% if cart.item_count < 1 %}style="display:none"{% endif %}>
+    <ol class="mini-products-list">
+      {% for item in cart.items %}
+      <li class="item dta-{{item.product_id}} cart-popup-item" data-variant-id="{{item.id}}">
+        <a href="{{item.url}}/" class="product-image">
+          <img class="lazyload" src="{{ item.image | product_img_url: '160x' }}" alt="{{item.title}}" data-sizes="auto">
+        </a>
+        <div class="product-details">
+          <div class="pro-name-and-price test">
+            <a class="product-name" href="{{item.url}}/">
+              {{ item.product.title }}
+            </a>
+            <div class="price-qty-remove">
+              <span class="price">
+                {{ item.price | money}}
+              </span>
+              {% if item.variant.title != "Default Title" %}
+              <div class="option quantity-box text-center">
+                <span class="qty">Size: <span class="qty-number">{{ item.variant.title }}</span></span>
+              </div>
+              {% endif %}
+              <div class="option quantity-box text-center">
+                <span class="qty">Qty: <span class="qty-number">{{ item.quantity }}</span></span>
+              </div>
+              <a href="javascript:void(0)" title="remove" class="btn-remove mm-ajaxcart-remove-item" data-line="{{ forloop.index }}">
+                <img class="lazyload" src="https://cdn.shopify.com/s/files/1/0267/0523/1943/t/89/assets/Remove-Delete_Icon.svg" data-sizes="auto"/>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="no-items" {% if cart.item_count > 0 %}style="display:none"{% endif %}>
+    <p>Your cart is currently empty</p>
+  </div>
+  <div class="cart__footer actions" {% if cart.item_count > 0 %}style="display:block;" {% else %} style="display:none;"  {% endif %}>
+    <div class="summary">                
+      <div class="total">
+        <span class="label">
+          <span {% if settings.enable_multilang %}data-translate="cart.label.total"{% endif %}>
+            total
+          </span>
+        </span>
+        <span class="price"  data-Cart-Total="{{ cart.total_price }}">
+          {{cart.total_price | money}}
+        </span> 
+      </div>
+    </div>
+    <div class="button">
+      <button class="btn-border btn-checkout" id="checkout-view__button" onclick="window.location='/checkout'" {% if settings.enable_multilang %}data-translate="cart.general.checkout"{% endif %}>
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        <span class="checkout-text">{{ 'cart.general.checkout' | t }}</span>
+        <span class="hide" data-loader>
+          {% include 'icon-spinner' %}
+        </span>
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+      </button>    
+    </div>
+  </div>
+</div>

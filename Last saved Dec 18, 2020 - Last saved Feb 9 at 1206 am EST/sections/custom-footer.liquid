@@ -1,0 +1,60 @@
+{% include 'footer-top' %}
+<section class="custom__footer" data-section-type="custom__footer" data-section-id="{{ section.id }}">
+  <div class="custom__footer--inner">
+    <div class="copyright">
+      <p>© {{ 'now' | date: "%Y" }} Renaissance Global, All Right Reserved.  </p>
+    </div>
+    {% assign footer-menu = linklists[section.settings.footer_linklist] %}
+    <div class="footer_links">
+      {% for link in footer-menu.links %}        
+      <p><a href="{{ link.url }}">{{ link.title }}</a><span>&bull;</span></p>
+      {% endfor %}
+    </div>
+    <div class="social_medias">
+      {% if section.settings.connect-with-us != blank %}
+      {% assign connect-with-us = section.settings.connect-with-us %}
+      <p>{{ connect-with-us }}</p>
+      <ul>
+        {% if settings.social_facebook_link != blank %}
+        <li>
+          <a href="{{ settings.social_facebook_link | escape }}" target="_blank">
+            {% comment %}
+            {% include 'icon-facebook' %}
+            {% endcomment %}
+            <img src="{{ 'Footer_-_Facebook_Icon.png' | asset_url }}" style="vertical-align: bottom;" />
+          </a>
+        </li>
+        {% endif %}
+        {% if settings.social_instagram_link != blank %}
+        <li>
+          <a href="{{ settings.social_instagram_link | escape }}" target="_blank">
+            {% include 'icon-instagram' %}
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+      </div>
+  </div>
+  <div class="footer_links" style="text-align: center;">
+    {% include 'payment-badges' %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Custom Footer",
+    "settings": [
+		{
+			"type": "text",
+			"id": "connect-with-us",
+			"label": "Text"
+		},
+        {
+            "type": "link_list",
+            "id": "footer_linklist",
+            "label": "Menu"
+        }
+	]
+  }
+{% endschema %}

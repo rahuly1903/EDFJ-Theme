@@ -1,0 +1,57 @@
+<div class="page-width">
+  <div class="section-header text-center">
+    <h1>{{ page.title }}</h1>
+    {% if section.settings.subtitle != blank %}
+    <span class="sub-title">{{ section.settings.subtitle }}</span>
+    {% endif %}
+    {% comment %}
+    {% if section.settings.desc != blank %}
+    <div class="desc">{{ section.settings.desc }}</div>
+    {% endif %}
+    {% endcomment %}
+    {% if section.settings.show_searchbox %}
+    <div class="searchbox">
+      <form action="" method="">
+      	<input type="search" name="" id="" class="input-search" placeholder="Search a blog or keyword" />
+        <button class="btn-search" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17"><defs><style>.btn-search .a{fill:#fff;opacity:0;}.btn-search .b{fill:#305c8c;}</style></defs><g transform="translate(-801 -400)"><rect class="btn-search a" width="16" height="17" transform="translate(801 400)"/><g transform="translate(801.664 401)"><path class="btn-search b" d="M17.312-70.308a6.062,6.062,0,0,0,3.535-1.139L24.595-67.7a.9.9,0,0,0,.648.261.867.867,0,0,0,.878-.9.871.871,0,0,0-.253-.633L22.143-72.7a6.057,6.057,0,0,0,1.249-3.685,6.1,6.1,0,0,0-6.081-6.081,6.1,6.1,0,0,0-6.081,6.081A6.1,6.1,0,0,0,17.312-70.308Zm0-1.313a4.8,4.8,0,0,1-4.768-4.768,4.8,4.8,0,0,1,4.768-4.768A4.8,4.8,0,0,1,22.08-76.39,4.8,4.8,0,0,1,17.312-71.621Z" transform="translate(-11.231 82.471)"/></g></g></svg>
+          <span class="icon__fallback-text">Search</span>
+        </button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Magazine header",
+	"class": "magazine-header-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "Explore the article collection"
+      },
+	  {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description",
+		"default": "<p>Enchanted has operated at the pinnacle of the fine jewellery industry since its foundation in 1960, continuously striving to create an exceptional world of rare talent, expertise and skill. From the master craftsmen in our world-famous atelier, to our exceptional designers, our store personnel or our head office team, all of Enchanted’s staff are leaders in their field. Our reputation for excellence was forged not by chance but by sharing knowledge, seeking out talent and creating Enchanted ambassadors and educators at every level of our company.</p>"
+      },
+	  {
+		"type": "checkbox",
+		"id": "show_searchbox",
+		"label": "Show searchbox",
+		"default": false
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

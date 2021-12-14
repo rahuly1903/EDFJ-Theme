@@ -1,0 +1,51 @@
+<section class="page__content" data-section-type="shopinfo__page" data-section-id="{{ section.id }}">
+  <div class="inner__wrapper">
+    <div class="content__full-width content_center">
+      <h1>{{ page.title }}</h1>
+      {% if page.metafields.content.sub_title != blank %}
+      <p>{{ page.metafields.content.sub_title }}</p>
+      {% endif %}
+    </div>
+    {% for block in section.blocks %}
+    {% assign content-heading = block.settings.content-heading %}
+    {% assign content-text = block.settings.content-text %}
+    
+    {% if content-heading != blank %}
+    <h4>{{ content-heading }}</h4>
+    {% endif %}
+    {% if content-text != blank %}
+    {{ content-text }}
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Page Content",
+    "blocks": [
+      {
+        "type": "page-content",
+        "name": "Content Section",
+        "settings": [
+          {
+            "type": "text",
+            "id": "content-heading",
+            "label": "Heading Text"
+          },
+          {
+            "type": "html",
+            "id": "content-text",
+            "label": "Content Text"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

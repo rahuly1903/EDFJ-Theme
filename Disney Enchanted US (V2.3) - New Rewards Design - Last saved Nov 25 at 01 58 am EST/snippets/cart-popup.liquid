@@ -1,0 +1,119 @@
+<div class="cart-success-message" data-cart-success-message>
+  <div class="success-message-wrapper">
+    <div class="success-message">Item successfully added to Bag!</div>
+    <div class="success-message-close" data-cart-success-close>Dismiss</div>
+  </div>
+</div>
+<div class="cart-success-message" data-cart-delete-message>
+  <div class="success-message-wrapper">
+    <div class="success-message">Item successfully removed from Bag!</div>
+    <div class="success-message-close" data-cart-success-close>Dismiss</div>
+  </div>
+</div>
+
+{% comment %}
+MARMETO DEV: This code is being used now
+Refer _addItemToCart() of theme.js
+{% endcomment %}
+{%- style -%}
+{% assign cart_popup_box_shadow = settings.color_borders | color_modify: 'alpha', 0.5 %}
+
+.cart-popup {
+  box-shadow: 1px 1px 10px 2px {{ cart_popup_box_shadow }};
+}
+{%- endstyle -%}
+
+<div class="cart-popup-wrapper cart-popup-wrapper--hidden" role="dialog" aria-modal="true" aria-labelledby="CartPopupHeading" data-cart-popup-wrapper>
+</div>
+
+<div id="dropdown-cart" class="aaa"> 
+  <div class="cart-title">
+    <h5 {% if settings.enable_multilang %}data-translate="cart.general.shopping_cart"{% endif %}>
+      Your bag
+    </h5>
+    <a href="javascript:void(0)" title="{{ 'cart.general.close_cart' | t }}" class="close-cart close">
+      {% include 'icon-close' %}
+    </a>
+    <div class="ajax-loader">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20" style="width: 60px;height: 60px;"><path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#919EAB"></path></svg>
+    </div>
+  </div>
+  <div class="no-items" {% if cart.item_count > 0 %}style="display:none;"{% else %} style="display:block;"{% endif %}>
+    <p class="cart_empty" {% if settings.enable_multilang %}data-translate="cart.general.empty"{% endif %} >
+      {{ 'cart.general.empty' | t }}
+    </p>
+    <div class="text-continue">
+      <a class="btn-border btn-continue continue-shopping" href="javascript:void(0)" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.continue_shopping"{% endif %}>
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        Continue shopping
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+      </a>
+    </div>
+  </div>
+  <div class="has-items" {% if cart.item_count > 0 %}style="display:block;" {% else %} style="display:none;"  {% endif %}>
+    <ol class="mini-products-list">  
+      {% for item in cart.items %}
+      <li class="item dta-{{item.product_id}}" id="cart-item-{{item.id}}">
+        <a href="{{item.url}}/" class="product-image">
+          <img class="lazyload" data-src="{{ item.image | product_img_url: '160x' }}" alt="{{item.title}}" data-sizes="auto">
+        </a>
+        <div class="product-details">
+          <div class="pro-name-and-price test">
+            <a class="product-name" href="{{item.url}}/">
+              {{ item.product.title }}
+            </a>
+            <div class="price-qty-remove">
+              <span class="price">
+                {{ item.price | money}}
+              </span>
+              {% if item.variant.title != "Default Title" %}
+              <div class="option quantity-box text-center">
+                <span class="qty">Size: <span class="qty-number">{{ item.variant.title }}</span></span>
+              </div>
+              {% endif %}
+              <div class="option quantity-box text-center">
+                <span class="qty">Qty: <span class="qty-number">{{ item.quantity }}</span></span>
+              </div>
+              <a href="javascript:void(0)" title="remove" class="btn-remove">
+                <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/t/89/assets/Remove-Delete_Icon.svg" data-sizes="auto"/>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="actions" {% if cart.item_count > 0 %}style="display:block;" {% else %} style="display:none;"  {% endif %}>
+    <div class="summary">                
+      <div class="total">
+        <span class="label">
+          <span {% if settings.enable_multilang %}data-translate="cart.label.total"{% endif %}>
+            total
+          </span>
+        </span>
+        <span class="price">
+          {{cart.total_price | money}}
+        </span> 
+      </div>
+    </div>
+    <div class="button">
+      <div class="a-button">
+        <a href="javascript:void(0);" id="cart-view__button" class="btn continue-shopping">
+          Continue shopping
+        </a>
+        <a class="btn btn-view-cart" id="cart-view__button" href="/cart/" {% if settings.enable_multilang %}data-translate="cart.general.view_cart"{% endif %}>
+          View cart
+        </a>
+      </div>
+      <button class="btn-border btn-checkout" id="checkout-view__button" onclick="window.location='/checkout'" {% if settings.enable_multilang %}data-translate="cart.general.checkout"{% endif %}>
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        <span class="checkout-text">{{ 'cart.general.checkout' | t }}</span>
+        <span class="hide" data-loader>
+          {% include 'icon-spinner' %}
+        </span>
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+      </button>    
+    </div>
+  </div>
+</div>

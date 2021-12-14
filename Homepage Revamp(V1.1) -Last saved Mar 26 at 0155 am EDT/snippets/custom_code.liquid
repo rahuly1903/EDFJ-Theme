@@ -1,0 +1,4 @@
+{% if template contains 'product' %}
+{{ 'product_style.scss.css' | asset_url | stylesheet_tag }}
+{{ 'custom_script.js' | asset_url | script_tag }}
+{% endif %}

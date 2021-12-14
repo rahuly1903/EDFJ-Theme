@@ -1,0 +1,237 @@
+<div class="innerpage__banner">
+  {% if collection.handle contains 'the-enchanted-vault-deals' %}
+  <div class="text-overlay-banner" style="width:100%;"><!-- sections/text-overlay-banner -->
+    <div class="banner-wrapper">
+      <div class="video-section ">
+        <div class="small--hide absolute-image-wrapper" style="padding-top:43.828125%;">
+          <video width="100%" height="100%" playsinline="" autoplay="" muted="" loop="" id="myVideo" poster="files/Disney_Vault_Image_1Manipulation.png">
+            <source src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Desktop_Enchanted_vault_video.mp4?v=1636438249" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="medium-up--hide absolute-image-wrapper" style="padding-top:164.2512077%;">
+          <video width="100%" height="100%" playsinline="" autoplay="" muted="" loop="loop" id="myVideo2" poster="files/245975550_227118726073623_7063809021478260003_n.png">
+            <source src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Vault_Animation_Mobile.mp4?v=1636432864" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <div class="banner-text small--text-center">
+        <div class="content">
+          <h2>The<br> Enchanted <b><i>Vault</i></b></h2>
+          <p>Once Sold Out, <b>Never</b> To Be Seen Again!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="banner_content">
+    <div class="collection-information medium-up--text-right small--text-center">
+      {% if show_collection_title %}
+      <span class="mm-collection-subtitle">Collection</span>
+      <div class="mm-collection-title">
+        <h1>{{ collection.title }}</h1> 
+      </div>
+      {% endif %}
+      {% if show_collection_description and collection.description != blank %}
+      <div class="mm-collection-description">
+        {{ collection.description | split:"<!-- footer seo -->" | first }}
+      </div>
+      {% else %}
+      <!--         <div class="mm-collection-description">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing, elit sed do eiusmod tempor incididunt ut labore et</p>
+</div> -->
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if collection.handle contains 'vault'  %}
+
+  {% elsif collection.handle contains 'black-friday-early-access-sale' %}
+  <div class="banner_container">
+    <div class="desktop-banner">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/PLP_Entirer_banner_900_x_520.jpg?v=1636972960" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+  </div>
+  {% elsif collection.handle contains 'anna' or collection.handle contains 'ariel' or collection.handle contains 'aurora' or collection.handle contains 'belle' or collection.handle contains 'cinderella' or collection.handle contains 'elsa' or collection.handle contains 'jasmine' or collection.handle contains 'majestic-princess' or collection.handle contains 'merida' or collection.handle contains 'moana' or collection.handle contains 'mulan' or collection.handle contains 'pocahontas' or collection.handle contains 'rapunzel' or collection.handle contains 'snow-white' or collection.handle contains 'tiana' or collection.handle contains 'tinker-bell'  %}
+  <div class="banner_container">
+    <div class="desktop-banner banner-large">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/PLP_main_header_image_5_63f28092-c0e3-4576-b387-4a53c7fe15a8.png?v=1636607603" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+    <div class="desktop-banner banner-small">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Mask_Group_27296_5_d3477de2-2e33-4b47-be76-dd45d4eed13a.png?v=1636607602" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+  </div>
+  {% elsif collection.handle contains 'new-arrivals' %}
+  <div class="banner_container">
+    <div class="desktop-banner banner-large">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/PLP_main_header_image_4.png?v=1636529605" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+    <div class="desktop-banner banner-small">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Mask_Group_27296_4.png?v=1636529605" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+  </div>
+  {% elsif collection.handle contains 'necklaces' %}
+  <div class="banner_container">
+    <div class="desktop-banner banner-large">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/PLP_main_header_image_76f4891d-8e0f-47b7-9bb1-8ed3e5000651.png?v=1636528989" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+    <div class="desktop-banner banner-small">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Mask_Group_27296_48270d33-080d-4507-9714-94c44712fa8a.png?v=1636528989" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+  </div>
+  {% elsif collection.handle contains 'bracelets' %}
+  <div class="banner_container">
+    <div class="desktop-banner banner-large">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/PLP_main_header_image_1.png?v=1636529298" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+    <div class="desktop-banner banner-small">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Mask_Group_27296_1.png?v=1636529298" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+  </div>
+  {% elsif collection.handle contains 'earrings' %}
+  <div class="banner_container">
+    <div class="desktop-banner banner-large">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/PLP_main_header_image_2.png?v=1636529412" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+    <div class="desktop-banner banner-small">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Mask_Group_27296_2.png?v=1636529412" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+  </div>
+  {% elsif collection.handle contains 'rings' %}
+  <div class="banner_container">
+    <div class="desktop-banner banner-large">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/PLP_main_header_image_3.png?v=1636529487" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+    <div class="desktop-banner banner-small">
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Mask_Group_27296_3.png?v=1636529487" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="banner_container">
+    <div class="desktop-banner banner-large">
+      {% if coll_desktop-banner-large != nil %}
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="{{ coll_desktop-banner-large }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]"
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+      {% else %}
+      {% assign desktop_banner_large = section.settings.desktop-banner-large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="image-wrapper custom__item-inner--image" style="padding-top:{{ 1 | divided_by: section.settings.desktop-banner-large.aspect_ratio | times: 100 }}%;">
+        <img class="custom__image lazyload" 
+             data-src="{{ desktop_banner_large }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-aspectratio="{{ section.settings.desktop-banner-large.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+      {% endif %}
+    </div>
+    <div class="desktop-banner banner-small">
+      {% if coll_desktop-banner-small != nil %}
+      <div class="image-wrapper">
+        <img class="lazyload" 
+             data-src="{{ coll_desktop-banner-small }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+      {% else %}
+      {% assign desktop_banner_small = section.settings.desktop-banner-small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="image-wrapper custom__item-inner--image" style="padding-top:{{ 1 | divided_by: section.settings.desktop-banner-small.aspect_ratio | times: 100 }}%;">
+        <img class="custom__image lazyload" 
+             data-src="{{ desktop_banner_small }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-aspectratio="{{ section.settings.desktop-banner-small.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="{{ collection.title }}" />
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>

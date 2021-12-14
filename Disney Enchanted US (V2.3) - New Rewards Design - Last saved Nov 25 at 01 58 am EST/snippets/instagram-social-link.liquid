@@ -1,0 +1,15 @@
+<p class="social-title">FOLLOW US ON</p>
+<ul class="social-list">
+  {% if settings.social_facebook_link != blank %}
+  <li><a href="{{ settings.social_facebook_link }}" target="_blank">{% include 'icon-facebook' %}</a></li>
+  {% endif %}
+  {% if settings.social_instagram_link != blank %}
+  <li><a href="{{ settings.social_instagram_link }}" target="_blank">{% include 'icon-instagram' %}</a></li>
+  {% endif %}
+  {% if settings.social_pinterest_link != blank %}
+  <li><a href="{{ settings.social_pinterest_link }}" target="_blank">{% include 'icon-pinterest' %}</a></li>
+  {% endif %}
+  {% if settings.social_youtube_link != blank %}
+  <li><a hef="{{ settings.social_youtube_link }}" target="_blank">{% include 'icon-youtube' %}</a></li>
+  {% endif %}
+</ul>

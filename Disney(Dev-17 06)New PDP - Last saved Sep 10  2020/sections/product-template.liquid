@@ -1,0 +1,492 @@
+<section class="product-template2__container"
+         id="ProductSection-{{ section.id }}"
+         data-section-id="{{ section.id }}"
+         data-section-type="product"
+         data-enable-history-state="true"
+         data-ajax-enabled="{{ settings.enable_ajax }}"
+         >
+
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign compare_at_price = current_variant.compare_at_price -%}
+  {%- assign price = current_variant.price -%}
+
+  <div class="ed--wrapper">
+    <div class="single__product--row">
+      <div class="single__product--gallery">
+        <div class="gallery-container">
+          <div class="gallery_large_pic">
+            <div class="gallery-single">
+              {% include "image-alt-pattern" %}
+              {% for image in product.images %}
+              <div>
+                <img id="zoom_03" src="{{ image.src | img_url: 'master' }}" data-zoom-image="{{ image.src | img_url: '2400x' }}" class="product-featured-img" alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}" />
+              </div>
+              {% endfor %}
+            </div>
+            <div class="mousezoom-info">
+              <p>Roll over image to zoom in</p>
+<!--               <p>{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}_{{ cttw2 }}CTTW</p> -->
+            </div>
+            <div class="product_button-wishlist">
+              {% include 'swym-product-view', product: product %}
+              <button class="btn swym-add-to-wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}">WISHLIST</button>
+            </div>
+            <div class="share-wrapper">
+              <span class="share-button" title="Share">
+                <svg height="40px" viewBox="-21 0 512 512" width="40px" xmlns="http://www.w3.org/2000/svg"><path d="m453.332031 85.332031c0 38.292969-31.039062 69.335938-69.332031 69.335938s-69.332031-31.042969-69.332031-69.335938c0-38.289062 31.039062-69.332031 69.332031-69.332031s69.332031 31.042969 69.332031 69.332031zm0 0"/><path d="m384 170.667969c-47.0625 0-85.332031-38.273438-85.332031-85.335938 0-47.058593 38.269531-85.332031 85.332031-85.332031s85.332031 38.273438 85.332031 85.332031c0 47.0625-38.269531 85.335938-85.332031 85.335938zm0-138.667969c-29.417969 0-53.332031 23.9375-53.332031 53.332031 0 29.398438 23.914062 53.335938 53.332031 53.335938s53.332031-23.9375 53.332031-53.335938c0-29.394531-23.914062-53.332031-53.332031-53.332031zm0 0"/><path d="m453.332031 426.667969c0 38.289062-31.039062 69.332031-69.332031 69.332031s-69.332031-31.042969-69.332031-69.332031c0-38.292969 31.039062-69.335938 69.332031-69.335938s69.332031 31.042969 69.332031 69.335938zm0 0"/><path d="m384 512c-47.0625 0-85.332031-38.273438-85.332031-85.332031 0-47.0625 38.269531-85.335938 85.332031-85.335938s85.332031 38.273438 85.332031 85.335938c0 47.058593-38.269531 85.332031-85.332031 85.332031zm0-138.667969c-29.417969 0-53.332031 23.9375-53.332031 53.335938 0 29.394531 23.914062 53.332031 53.332031 53.332031s53.332031-23.9375 53.332031-53.332031c0-29.398438-23.914062-53.335938-53.332031-53.335938zm0 0"/><path d="m154.667969 256c0 38.292969-31.042969 69.332031-69.335938 69.332031-38.289062 0-69.332031-31.039062-69.332031-69.332031s31.042969-69.332031 69.332031-69.332031c38.292969 0 69.335938 31.039062 69.335938 69.332031zm0 0"/><path d="m85.332031 341.332031c-47.058593 0-85.332031-38.269531-85.332031-85.332031s38.273438-85.332031 85.332031-85.332031c47.0625 0 85.335938 38.269531 85.335938 85.332031s-38.273438 85.332031-85.335938 85.332031zm0-138.664062c-29.417969 0-53.332031 23.933593-53.332031 53.332031s23.914062 53.332031 53.332031 53.332031c29.421875 0 53.335938-23.933593 53.335938-53.332031s-23.914063-53.332031-53.335938-53.332031zm0 0"/><path d="m135.703125 245.761719c-7.425781 0-14.636719-3.863281-18.5625-10.773438-5.824219-10.21875-2.238281-23.253906 7.980469-29.101562l197.949218-112.851563c10.21875-5.867187 23.253907-2.28125 29.101563 7.976563 5.824219 10.21875 2.238281 23.253906-7.980469 29.101562l-197.953125 112.851563c-3.328125 1.898437-6.953125 2.796875-10.535156 2.796875zm0 0"/><path d="m333.632812 421.761719c-3.585937 0-7.210937-.898438-10.539062-2.796875l-197.953125-112.851563c-10.21875-5.824219-13.800781-18.859375-7.976563-29.101562 5.800782-10.238281 18.855469-13.84375 29.097657-7.976563l197.953125 112.851563c10.21875 5.824219 13.800781 18.859375 7.976562 29.101562-3.945312 6.910157-11.15625 10.773438-18.558594 10.773438zm0 0"/></svg>
+              </span>
+              <ul class="social-sharing">
+                <li>
+                  <a target="_blank" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-facebook">
+                    {% include 'icon-facebook' %}
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="//twitter.com/share?text={{ product.title }}&amp;url={{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-twitter">
+                    {% include 'icon-twitter' %}
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noopener" 
+                     href="https://wa.me/?text={{ product.title }} {{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-pinterest">
+                    {% include 'icon-pinterest' %}
+                  </a>
+                </li>
+
+                <li>
+                  <a target="_blank" href="mailto:?Subject=Enchanted Disney Fine Jewelry&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-facebook">
+                    {% include 'icon-mail' %}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            {% if product.tags contains 'Sparkling Deals' %}
+            {% if product.tags contains 'bundle_collection' %}
+            
+            {% else %}
+            <div class="discount-off">
+              <span class="price-item price-item--discount">
+                {% if product.tags contains 'flatoff' %}
+                {{ product.compare_at_price | minus: product.price | money }} Off
+                {% else %}
+                {% capture discount %}
+                {{ product.compare_at_price_max | minus:product.price | times:100 | divided_by:product.compare_at_price_max }}% Off
+                {% endcapture %}
+                {{ discount }}
+                {% endif %}
+              </span>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% for block in section.blocks %}
+            {% if block.type == 'princess-banner' %}
+            {% for tag in product.tags %}
+            {% if tag contains 'Princess' %}
+            {% assign princessTag = tag | split: 'spec--Princess:' | handleize %}
+            {% endif %}
+            {% endfor %}
+            {% assign princessBanner = block.settings.princess-banner %}
+            {% assign princessName = block.settings.princess-name | handleize %}
+            {% assign princessEmoticon = block.settings.princess-emoticon %}
+            {% assign btnLabel = block.settings.btn-label %}
+            {% assign btnURL = block.settings.button-url %}
+            {% for princess in princessName %}
+            {% if princessBanner != blank %}
+            {% if princess == princessTag %}
+            
+            <div class="promotional_banner">
+              <img src="http://{{ princessBanner | img_url: 'master' }}" alt="Enchanted Disney" />
+              <div class="promotional_banner-inner">
+                <h2>{{ princessName | capitalize }}</h2>
+                <a href="{{ btnURL }}" class="btn">{{ btnLabel }}</a>
+              </div>
+            </div>
+
+            <style>
+              .promotional_banner-inner h2:before {
+                content: url('{{ princessEmoticon | img_url: 'master' }}');
+                  }
+            </style>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="gallery-thumbnails" id="gallery_01">
+            {% for image in product.images %}
+            <a href="#" data-image="{{ image.src | img_url: '2400x' }}" data-zoom-image="{{ image.src | img_url: '2400x' }}">
+              <img src="{{ image.src | img_url: '76x76', scale: 2 }}"  alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}_{{ forloop.index }}"  />              
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="single__product--description">
+        <p class="product_sku">Style # <span class="variant-sku">{{ current_variant.sku }}</span></p>
+        {% if product.tags contains 'Sparkling Deals' %}
+        <p class="limited-offer"><i>Limited Time Offer</i></p>
+        {% endif %}
+        <!-- <h1 class="product_title">{{ product.title }}</h1> -->
+        <h1 class="product_title">
+          {% assign productVendor = product.vendor | downcase %}
+          {% assign productTitle = product.title | downcase %}
+          {% assign productTitlePart1 = productTitle | split:"enchanted disney fine jewelry" %}
+          {% assign productTitlePart2 = productTitlePart1[1] | split:productVendor %}
+          <span>Enchanted Disney File Jewelry</span>
+          <span>{{ productVendor }} {{ productTitlePart2[1] }}</span>
+          <span>{{ productTitlePart2[0] }}</span>
+        </h1>
+        {% if product.tags contains 'bundle' %}
+        <a class="bundle-link" href="#bundle-current-1">Bundle offer</a>
+        {% endif %}
+        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;"></span>
+        <div class="price__stock--info">
+          <div class="product__price">
+            {% include 'product-price', variant: current_variant, product: product %}
+          </div>
+          <div class="stock__message">
+            {% assign stockAlert = section.settings.stock_alert %}
+            {% assign qty = current_variant.inventory_quantity %}
+            {% if qty == 0 %}
+            <p class="variant-inventory" data-min-qty="{{ stockAlert }}" style="color: #b5323d">Out of Stock!</p>
+            {% elsif qty > stockAlert %}
+            <p class="variant-inventory" data-min-qty="{{ stockAlert }}" style="color: #379f6a">In Stock!</p>
+            {% else %}
+            <p class="variant-inventory" data-min-qty="{{ stockAlert }}" style="color: #b5323d">Only {{ qty }} left in Stock!</p>
+            {% endif %}
+          </div>
+        </div>
+        {% if current_variant.available %}
+        {% else %}
+<!--         <div class="mm-badges">
+          <div class="sold-out">Out Of Stock</div>
+        </div> -->
+        {% endif %}
+        
+        <script>
+          var inv_qty = {};
+          {% for var in product.variants %}
+          inv_qty[{{- var.id -}}] = {{ var.inventory_quantity | default: 0 }};
+          {% endfor %}
+        </script>
+
+        {% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '' %}
+        <div class="ring_size">
+          {% unless product.has_only_default_variant %}
+          <div class="ring_size-selection">
+            {% endunless %}
+            {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+            <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+              {{ option.name }} {% if product.tags contains 'Sparkling Deals' %}<span class="infor">(Extra 5 days to ship)</span>{% endif %}
+            </label>
+            <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}" required>
+              {% for value in option.values %}
+              <option value="{{ value | escape }}" {% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+              {% endfor %}
+            </select>
+            {% endfor %}
+            {% endunless %}
+            <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js" required>
+              {% for variant in product.variants %}
+              {% if variant.available %}
+              <option {% if variant == product.selected_or_first_available_variant and forloop.index == 1 %} selected="selected" data-sku="{{ variant.sku }}" {% endif %} value="{{ variant.id }}">
+                {{ variant.title }}
+              </option>
+              {% else %}
+              <option {% if forloop.index == 1 %}selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+            {% unless product.has_only_default_variant %}
+          </div>
+          {% endunless %}
+
+          {% comment %}
+          {% assign sizeChart = product.metafields.size-chart.image %}
+          {% if sizeChart != blank %}
+          <div class="ring_size-guide">
+            <a href="#size-chart"><img src="{{ 'Ring_Icon.svg' | asset_url }}" />Ring Size Chart</a>
+            <div id="size-chart" class="zoom-anim-dialog mfp-hide">
+              <img src="{{ sizeChart }}" alt="Size Chart" />
+              <a href="#" class="btn">View Complete Guide</a>
+            </div>
+          </div>
+          {% endif %}
+          {% endcomment %}
+
+          {% if product.type contains 'Ring' %}
+          <div class="ring_size-guide">
+            <a onclick="location.href='https://cdn.shopify.com/s/files/1/0267/0523/1943/files/ring_sizer.pdf?32586';" target="_blank"><img src="{{ 'Ring_Icon.svg' | asset_url }}" />Ring Size Chart</a>
+          </div>
+          {% endif %}
+        </div>
+        {% if section.settings.enable_payment_button %}
+        {% if current_variant.available %}
+        {{ form | payment_button }}
+        {% endif %}
+        {% endif %}
+        <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden{% if section.settings.enable_payment_button %} product-form__error-message-wrapper--has-payment-button{% endif %}" data-error-message-wrapper role="alert">
+          <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+          {% include 'icon-error' %}
+          <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
+        </div>
+        <div class="product_button">
+          {% if current_variant.available %}
+          <div class="shopify-payment-button sticky">
+            <button type="button"
+                    class="shopify-payment-button__button shopify-payment-button__button--unbranded" 
+                    data-testid="Checkout-button">
+              <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/cart-icon.png?v=1593095486" alt="">
+              <span class="checkout-text">Buy now</span>
+              <span class="hide" data-loader>
+                {% include 'icon-spinner' %}
+              </span>
+            </button>
+          </div>
+          {% endif %}
+          <div class="product_button-cart">
+            <button class="btn add-to-bag" {% unless current_variant.available %}style="display:none;"{% endunless %} type="{% if current_variant.available %}submit{% else %}button{% endif %}" name="add"                      
+                    aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+                    {% if current_variant.available %}data-add-to-cart{% endif %}>
+              <img src="{{ 'Bag-blue.svg' | asset_url }}" />
+              <span data-add-to-cart-text>
+                {% unless current_variant.available %}
+                {{ 'products.product.sold_out' | t }}
+                {% else %}
+                {{ 'products.product.add_to_cart' | t }}
+                {% endunless %}
+              </span>
+              <span class="hide" data-loader>
+                {% include 'icon-spinner' %}
+              </span>
+            </button>
+            <div id='mhaRnProduct'></div>
+          </div>
+          {% comment %}
+          <div class="product_button-wishlist">
+            {% include 'swym-product-view', product: product %}
+            <button class="btn swym-add-to-wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}">WISHLIST</button>
+          </div>
+          {% endcomment %}
+        </div>
+        
+        {% endform %}
+        {% for tag in product.tags  %}
+        	{% if tag contains 'productHandle' %}
+        		{% assign productHandle = tag | split:"productHandle:" | last %}
+        		{% assign product = all_products[productHandle] %}
+        		{% include "product-page-bundle" %}
+        	{% endif %}
+        {% endfor %}
+        {% include 'payment-badges' %}
+       
+        {%- comment -%}
+        Live region for announcing updated price and availability to screen readers
+        {%- endcomment -%}
+        <p class="visually-hidden" data-product-status
+           aria-live="polite"
+           role="status"
+           ></p>
+
+        {%- comment -%}
+        Live region for announcing that the product form has been submitted and the
+        product is in the process being added to the cart
+        {%- endcomment -%}
+        <p class="visually-hidden" data-loader-status
+           aria-live="assertive"
+           role="alert"
+           aria-hidden="true"
+           >{{ 'products.product.loader_label' | t }}</p>
+        
+        {% if product.tags contains 'Sparkling Deals' or product.tags contains 'graduation' or product.tags contains 'mothers day' or product.tags contains 'mothersday' %}
+        
+        {%  else %}
+        <div class="free-shipping-text coupan-text">
+          <p>
+            <span>
+              At Checkout, use code <span class="code">FIRST10</span> to get 10% off on your first order
+            </span>
+          </p>
+        </div>
+        {% endif %}
+        
+        <div class="free-shipping-text">
+          <p>
+            {% if product.tags contains 'Sparkling Deals' %}
+            <span>
+              <span class=title><b>Free Two Day shipping on all orders</b></span>
+              <span class="subtitle">Orders received after 11 AM will be processed on the next business day</span>
+            </span>
+            {% else %}
+            <span><b>Free Express Shipping</b> on all orders</span>
+            {% endif %}
+          </p>
+        </div>
+
+        {% assign main_description = product.description | split: '<!--split-->' %}
+        <div class="product_description--accordion">
+          {% if main_description != blank %}
+          <div class="accordion-header">Description</div>
+          <div class="accordion-content">
+            {% for description in main_description %}
+            {% if forloop.index == 1 %}  
+            {{ description }}
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% assign specTag = product.tags | join: '' %}        
+          {% if specTag contains 'spec--' %}
+          <div class="accordion-header">Specifications</div>
+          <div class="accordion-content">            
+            <table class="">
+              <tbody>
+                {% for tag in product.tags %}
+                {% if tag contains 'spec--' %}
+                {% assign tagName = tag | split:'--' | last %}
+                {% assign tagFirst = tagName | split:':' | first %}
+                {% assign tagLast = tagName | split:':' | last %}
+                {% if tagLast != blank %}
+                <tr>
+                  <td class="">{{ tagFirst | replace: '_',' ' }}</td>
+                  <td class="">{{ tagLast | replace: '-', ' ' | replace:'_',' ' }}</td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}      
+              </tbody>
+            </table>
+          </div>
+          {% endif %}
+
+          <div class="accordion-header">Reviews</div>
+          <div class="accordion-content">
+            <!--Start Stamped.io Auto Installation-->
+            <div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard"
+                 data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" 
+                 data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+                 data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}">
+              {{ product.metafields.stamped.reviews }}
+            </div><!--End Stamped.io Auto Installation-->
+          </div>
+
+
+          <div class="accordion-header">Shipping & Returns</div>
+          <div class="accordion-content">
+            <h5>FAST SHIPPING & DELIVERY</h5>
+            {% if product.tags contains 'Sparkling Deals' %}
+            <p>Free Two Day shipping on all orders (excludes Alaska, Hawaii, P.O. boxes and APO/FPO addresses). Orders received after 11 AM will be processed on the next business day.</p>
+            {% else %}
+            <p>Enchanted customers get fast & reliable shipping on all orders. Free Express Shipping for all orders.</p>
+            {% endif %}
+            
+            <h5>FREE RETURNS</h5>
+            <p>All orders, excluding refills, which have been purchased on Enchantedfinejewelry.com or through our stores, may be returned for free to the Enchanted Online Shop Distribution center using our pre-paid label and return form. <a href="/pages/shipping-returns" target="_blank">Learn more about our return policy here</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+{% endunless %}
+<script>
+  const shareButton = document.querySelector('.share-button');
+  const shareDialog = document.querySelector('.social-sharing');
+//   const closeButton = document.querySelector('.close-button');
+
+  shareButton.addEventListener('click', event => {
+    if (navigator.share) { 
+      navigator.share({
+        title: 'Enchanted Disney Fine Jewelry',
+        text:"{{ product.title }}",
+        url: '{{ shop.url }}{{ product.url }}'
+      }).then(() => {
+              console.log('Thanks for sharing!');
+    }).catch(console.error);
+  } else {
+                               if(shareDialog.classList.contains("is-open")){
+    shareDialog.classList.remove('is-open');
+  }else{
+    shareDialog.classList.add('is-open');
+  }
+  }
+  });
+
+//   closeButton.addEventListener('click', event => {
+//     shareDialog.classList.remove('is-open');
+//   });
+</script>
+
+{% schema %}
+  {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Stock Inventory"
+      },
+      {
+        "type": "range",
+        "id": "stock_alert",
+        "label": "Alert if stock quantity reaches",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_payment_button",
+        "label": "Show dynamic checkout button",
+        "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "default": true
+      }
+	],
+	"blocks": [
+      {
+        "type": "princess-banner",
+        "name": "Princess Banner Image",
+        "settings": [
+		  {
+			"type": "header",
+			"content": "Princess Banner"
+		  },
+		  {
+            "type": "image_picker",
+            "id": "princess-banner",
+            "label": "Banner Image"
+          },
+          {
+            "type": "text",
+            "id": "princess-name",
+            "label": "Princess Name"
+          },
+          {
+            "type": "image_picker",
+            "id": "princess-emoticon",
+            "label": "Princess Emoticon"
+          },
+          {
+            "type": "text",
+            "id": "btn-label",
+            "label": "Button Label",
+			"default": "View More"
+          },
+		  {
+            "type": "url",
+            "id": "button-url",
+            "label": "Button Link"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}

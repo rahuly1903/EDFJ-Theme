@@ -1,0 +1,309 @@
+<div class="page-width feature-row bridal__jewelry">
+  {% capture image_layout %}
+  <div class="feature-row__item">
+    {% if section.settings.image != blank %}
+    {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
+    {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
+    {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    {% include 'image-style', image: section.settings.image, height: 545, wrapper_id: wrapper_id, img_id: img_id %}
+    <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+      <div style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;">
+        <img id="{{ img_id }}"
+        class="feature-row__image lazyload"  
+        data-src="{{ img_url }}"
+        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+        data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+        data-sizes="auto"
+        alt="{{ section.settings.image.alt | escape }}">
+      </div>
+      {% if section.settings.button_link != blank %}
+<!--       <a class="banner-link" href="{{ section.settings.button_link }}/"></a> -->
+      {% endif %}
+    </div>
+    
+    <noscript>
+      {{ section.settings.image | img_url: '600x600', scale: 2 | img_tag: section.settings.image.alt, 'feature-row__image' }}
+    </noscript>
+    {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+  {% endcapture %}
+  
+  <div class="feature-row">
+    {% if section.settings.layout == 'left' %}
+    {{ image_layout }}
+    {% endif %}
+    
+    <div class="feature-row__item feature-row__text text-center">
+      {% if section.settings.title != blank %}
+      <h2 class="h3">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      
+      {% if section.settings.logo != blank %}
+      {%- assign logo = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="logo_style">
+        <img 
+        class="lazyload" 
+        data-src="{{ section.settings.logo | img_url:"150x" }}" 
+        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+        data-sizes="auto" />
+      </div>
+      {% endif %}
+      
+      {% if section.settings.subheading != blank %}
+      <div class="rte rte-setting featured-row__subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="javascript:void(0);" class="scroll-down">
+        {{- section.settings.button_label | escape -}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 15"><defs><style>.a{fill:#fff;opacity:0;}.b{fill:#1d1b1d;}</style></defs><g transform="translate(-927 -733)"><rect class="a" width="16" height="15" transform="translate(927 733)"/><g transform="translate(1013.059 756.188) rotate(-90)"><path class="b" d="M15.719-71.1A7.031,7.031,0,0,0,22.7-78.08a7.032,7.032,0,0,0-6.986-6.979A7.025,7.025,0,0,0,8.74-78.08,7.035,7.035,0,0,0,15.719-71.1Zm0-1.163A5.788,5.788,0,0,1,9.91-78.08a5.782,5.782,0,0,1,5.8-5.816,5.8,5.8,0,0,1,5.823,5.816A5.789,5.789,0,0,1,15.719-72.264ZM12.2-78.086a.563.563,0,0,0,.192.4l2.313,2.319a.5.5,0,0,0,.356.144.492.492,0,0,0,.493-.5.505.505,0,0,0-.151-.369l-.855-.842-.828-.7,1.451.055h3.565a.5.5,0,0,0,.513-.513.5.5,0,0,0-.513-.513H15.172l-1.444.055.821-.691.855-.848a.5.5,0,0,0,.151-.363.482.482,0,0,0-.493-.493.49.49,0,0,0-.356.137l-2.313,2.319A.533.533,0,0,0,12.2-78.086Z" transform="translate(0 0)"/></g></g></svg>
+      </a>
+      {% endif %}
+    </div>
+    
+    {% if section.settings.layout == 'right' %}
+    {{ image_layout }}
+    {% endif %}
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "da": "Billede med tekst",
+    "de": "Foto mit Text",
+    "en": "Image with text",
+    "es": "Imagen con texto",
+    "fi": "Kuva tekstillä",
+    "fr": "Image avec du texte",
+    "hi": "टेक्स्ट वाली इमेज",
+    "it": "Immagine con testo",
+    "ja": "テキスト付き画像",
+    "ko": "텍스트 포함 이미지",
+    "ms": "Imej dengan teks",
+    "nb": "Bilde med tekst",
+    "nl": "Afbeelding met tekst",
+    "pt-BR": "Imagem com texto",
+    "pt-PT": "Imagem com texto",
+    "sv": "Bild med text",
+    "th": "รูปภาพพร้อมข้อความ",
+    "zh-CN": "带文本的图片",
+    "zh-TW": "附文字的圖片"
+  },
+  "class":"index-section",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": {
+      "da": "Billede",
+      "de": "Foto",
+      "en": "Image",
+      "es": "Imagen",
+      "fi": "Kuva",
+      "fr": "Image",
+      "hi": "इमेज",
+      "it": "Immagine",
+      "ja": "画像",
+      "ko": "이미지",
+      "ms": "Imej",
+      "nb": "Bilde",
+      "nl": "Afbeelding",
+      "pt-BR": "Imagem",
+      "pt-PT": "Imagem",
+      "sv": "Bild",
+      "th": "รูปภาพ",
+      "zh-CN": "图片",
+      "zh-TW": "圖片"
+    }
+  },
+  {
+    "type": "select",
+    "id": "layout",
+    "label": {
+      "da": "Justering af billede",
+      "de": "Fotoausrichtung",
+      "en": "Image alignment",
+      "es": "Alineación de imagen",
+      "fi": "Kuvan tasaus",
+      "fr": "Alignement de l'image",
+      "hi": "इमेज पंक्तिबद्ध करना",
+      "it": "Allineamento immagine",
+      "ja": "画像アラインメント",
+      "ko": "이미지 정렬",
+      "ms": "Penjajaran imej",
+      "nb": "Bildejustering",
+      "nl": "Afbeelding uitlijnen",
+      "pt-BR": "Alinhamento da imagem",
+      "pt-PT": "Alinhamento da imagem",
+      "sv": "Bildjustering",
+      "th": "การจัดวางรูปภาพ",
+      "zh-CN": "图片对齐方式",
+      "zh-TW": "圖片對齊"
+    },
+    "default": "left",
+    "options": [
+    {
+      "value": "left",
+      "label": {
+        "da": "Venstre",
+        "de": "Links",
+        "en": "Left",
+        "es": "Izquierda",
+        "fi": "Vasen",
+        "fr": "Gauche",
+        "hi": "बाएँ",
+        "it": "Sinistra",
+        "ja": "左",
+        "ko": "왼쪽",
+        "ms": "Kiri",
+        "nb": "Venstre",
+        "nl": "Links",
+        "pt-BR": "Esquerda",
+        "pt-PT": "Esquerda",
+        "sv": "Vänster",
+        "th": "ด้านซ้าย",
+        "zh-CN": "左侧",
+        "zh-TW": "左方"
+      }
+    },
+    {
+      "value": "right",
+      "label": {
+        "da": "Højre",
+        "de": "Rechts",
+        "en": "Right",
+        "es": "Derecha",
+        "fi": "Oikea",
+        "fr": "Droite",
+        "hi": "दाएँ",
+        "it": "Destra",
+        "ja": "右",
+        "ko": "오른쪽",
+        "ms": "Kanan",
+        "nb": "Høyre",
+        "nl": "Rechts",
+        "pt-BR": "Direita",
+        "pt-PT": "Direita",
+        "sv": "Höger",
+        "th": "ด้านขวา",
+        "zh-CN": "右侧",
+        "zh-TW": "右方"
+      }
+    }
+    ]
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": {
+      "da": "Overskrift",
+      "de": "Titel",
+      "en": "Heading",
+      "es": "Título",
+      "fi": "Otsake",
+      "fr": "En-tête",
+      "hi": "शीर्षक",
+      "it": "Heading",
+      "ja": "見出し",
+      "ko": "제목",
+      "ms": "Tajuk",
+      "nb": "Overskrift",
+      "nl": "Kop",
+      "pt-BR": "Título",
+      "pt-PT": "Título",
+      "sv": "Rubrik",
+      "th": "ส่วนหัว",
+      "zh-CN": "标题",
+      "zh-TW": "標題"
+    },
+    "default": {
+      "da": "Billede med tekst",
+      "de": "Foto mit Text",
+      "en": "Image with text",
+      "es": "Imagen con texto",
+      "fi": "Kuva tekstillä",
+      "fr": "Image avec du texte",
+      "hi": "टेक्स्ट वाली इमेज",
+      "it": "Immagine con testo",
+      "ja": "テキスト付き画像",
+      "ko": "텍스트 포함 이미지",
+      "ms": "Imej dengan teks",
+      "nb": "Bilde med tekst",
+      "nl": "Afbeelding met tekst",
+      "pt-BR": "Imagem com texto",
+      "pt-PT": "Imagem com texto",
+      "sv": "Bild med text",
+      "th": "รูปภาพพร้อมข้อความ",
+      "zh-CN": "带文本的图片",
+      "zh-TW": "附文字的圖片"
+    }
+  },
+  {
+    "type": "image_picker",
+    "id": "logo",
+    "label": "Image"
+  },
+  {
+    "type": "text",
+    "id": "subheading",
+    "label": "Sub Heading",
+    "default": "EXCLUSIVE HIGH COLLECTION"
+  },
+  {
+    "type": "text",
+    "id": "button_label",
+    "label": {
+      "da": "Knapetiket",
+      "de": "Button-Etikett",
+      "en": "Button label",
+      "es": "Etiqueta de botón",
+      "fi": "Painikkeen merkintä",
+      "fr": "Texte du bouton",
+      "hi": "बटन लेबल",
+      "it": "Etichetta pulsante",
+      "ja": "ボタンラベル",
+      "ko": "버튼 레이블",
+      "ms": "Label butang",
+      "nb": "Knappetikett",
+      "nl": "Knoplabel",
+      "pt-BR": "Etiqueta do botão",
+      "pt-PT": "Etiqueta do botão",
+      "sv": "Knappetikett",
+      "th": "ป้ายกำกับปุ่ม",
+      "zh-CN": "按钮标签",
+      "zh-TW": "按鈕標籤"
+    }
+  },
+  {
+    "type": "url",
+    "id": "button_link",
+    "label": {
+      "da": "Knaplink",
+      "de": "Button-Link",
+      "en": "Button link",
+      "es": "Enlace de botón",
+      "fi": "Painikkeen linkki",
+      "fr": "Lien du bouton",
+      "hi": "बटन लिंक",
+      "it": "Link pulsante",
+      "ja": "ボタンリンク",
+      "ko": "버튼 링크",
+      "ms": "Pautan butang",
+      "nb": "Kobling for knapp",
+      "nl": "Knoplink",
+      "pt-BR": "Link do botão",
+      "pt-PT": "Ligação do botão",
+      "sv": "Knapplänk",
+      "th": "ลิงก์ของปุ่ม",
+      "zh-CN": "按钮链接",
+      "zh-TW": "按鈕連結"
+    }
+  }
+  ]
+}
+{% endschema %}

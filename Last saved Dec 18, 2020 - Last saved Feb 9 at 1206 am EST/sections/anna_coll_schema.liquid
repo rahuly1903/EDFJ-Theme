@@ -1,0 +1,45 @@
+{% include 'princess_collection' %}
+
+{% schema %}
+  {
+    "name": "Princess Collection",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "collection-bg",
+        "label": "Background Image"
+      },
+      {
+		"type": "text",
+		"id": "collection-title",
+		"label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "collection-subtitle",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "collection-desc",
+        "label": "Paragraph"
+      },
+      {
+        "type": "text",
+        "id": "button-label",
+        "label": "Button Text",
+		"default": "Shop collection"
+      },
+      {
+        "type": "url",
+        "id": "button-url",
+        "label": "Button URL"
+      },
+      {
+        "type": "image_picker",
+        "id": "collection-art",
+        "label": "Image"
+      }
+	]
+  }
+{% endschema %}

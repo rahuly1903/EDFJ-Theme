@@ -1,0 +1,96 @@
+<!-- custom-grid-content.liquid -->
+<div class="custom-content-wrapper">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2 class="h2">{{ section.settings.title | escape }}</h2>
+    </div>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+    <div class="grid grid--uniform grid--view-items">
+      {% for block in section.blocks %}
+      <div class="custom__item custom__item--{{block.id}} grid__item small--one-whole medium-up--one-half">
+        <a href="{{ block.settings.link }}">
+          <div class="image-content-wrapper">
+            {%- assign max_height = 720 -%}
+            {% assign full_width_image = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img class=" lazyload first-image"
+                 src="{{ block.settings.image | img_url: 'master' }}"
+                 alt="Gifting main banner"
+                 data-src="{{ full_width_image }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-sizes="auto"
+                 data-image>
+            <noscript>
+              {% capture image_size %}{{ max_height }}x{% endcapture %}
+              {{ block.settings.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.settings.image.alt, 'custom__image' }}
+            </noscript>
+			<h3 class="overlay-title" style="color:{{ block.settings.titleColor }};">
+              {{ block.settings.title }}
+            </h3>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image grid content",
+  "class": "full-width-custom-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+	{
+      "type": "text",
+      "id": "subtitle",
+      "label": "subheading"
+    },
+	{
+      "type": "color",
+      "id": "bgColor",
+      "label": "Background color"
+    }
+  ],
+  "blocks": [
+	{
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Text on image"
+          },
+		  {
+            "type": "color",
+            "id": "titleColor",
+            "label": "Text color"
+          },
+		  {
+            "type": "url",
+            "id": "link",
+            "label": "Image link"
+          }
+        ]
+      }
+  ],
+  "presets": [
+    {
+      "name": "Image grid content",
+      "category": "Advanced layout"
+    }
+  ]
+}
+{% endschema %}

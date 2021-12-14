@@ -1,0 +1,83 @@
+{% if section.settings.enable_section %}
+<section class="section-spacing section-wrapper">
+  <div class="page-width">
+    <div class="swiper-container chateau-products-slider">
+      <div class="grid grid--no-gutters grid--uniform swiper-wrapper text-center">
+        <div class="swiper-slide grid__item medium-up--one-third">
+          <div class="tc-product-card">
+            {% assign product_image = section.settings.product_image | img_url: 'master' %}
+            <div class="product-image">
+              <img class="lazyload"
+                   src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Earrings-1.png?v=1631714857"
+                   data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Earrings-1.png?v=1631714857"
+                   data-sizes="auto"
+                   alt="" />
+            </div>
+            <div class="product-info">
+              <h2 class="product-title">Ruby Dewy Earrings</h2>
+              <div class="product-price">$6,000</div>
+              <div class="product-desc">
+                <p>Belle’s enchanted roses have been reemerged in the Chateau Collection with a full blossom for the extra blooming of your beauty.</p>
+              </div>
+              <a href="" class="btn-arrow">
+                Shop now
+                {% include 'icon-btn-arrow' %}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide grid__item medium-up--one-third">
+          <div class="tc-product-card">
+            {% assign product_image = section.settings.product_image | img_url: 'master' %}
+            <div class="product-image">
+              <img class="lazyload"
+                   src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Necklace-1.png?v=1631714857"
+                   data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Necklace-1.png?v=1631714857"
+                   data-sizes="auto"
+                   alt="" />
+            </div>
+            <div class="product-info">
+              <h2 class="product-title">Ruby Dewy Earrings</h2>
+              <div class="product-price">$6,000</div>
+              <div class="product-desc">
+                <p>Belle’s enchanted roses have been reemerged in the Chateau Collection with a full blossom for the extra blooming of your beauty.</p>
+              </div>
+              <a href="" class="btn-arrow">
+                Shop now
+                {% include 'icon-btn-arrow' %}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide grid__item medium-up--one-third">
+          <div class="tc-product-card">
+            {% assign product_image = section.settings.product_image | img_url: 'master' %}
+            <div class="product-image">
+              <img class="lazyload"
+                   src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Earrings_for_tiana.png?v=1631714857"
+                   data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Earrings_for_tiana.png?v=1631714857"
+                   data-sizes="auto"
+                   alt="" />
+            </div>
+            <div class="product-info">
+              <h2 class="product-title">Ruby Dewy Earrings</h2>
+              <div class="product-price">$6,000</div>
+              <div class="product-desc">
+                <p>Belle’s enchanted roses have been reemerged in the Chateau Collection with a full blossom for the extra blooming of your beauty.</p>
+              </div>
+              <a href="" class="btn-arrow">
+                Shop now
+                {% include 'icon-btn-arrow' %}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+  </div>
+</section>
+{% endif %}

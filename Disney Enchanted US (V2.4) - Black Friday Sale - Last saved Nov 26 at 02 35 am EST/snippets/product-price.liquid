@@ -1,0 +1,118 @@
+{% comment %}
+Renders a list of product's price (regular, sale, unit)
+Accepts:
+- variant: {Object} Variant Liquid object (optional)
+- product: {Object} Product Liquid object (optional)
+- show_vendor: {Boolean} Show the product's vendor depending on the section setting (optional)
+
+Usage:
+{% include 'product-price', variant: current_variant, product: product %}
+{% endcomment %}
+
+{% if variant.title %}
+{%- assign compare_at_price = variant.compare_at_price -%}
+{%- assign price = variant.price -%}
+{%- assign available = true -%}
+{% else %}
+{%- assign compare_at_price = 1999 -%}
+{%- assign price = 1999 -%}
+{%- assign available = true -%}
+{% endif %}
+
+{%- assign money_price = price | money -%}
+
+
+{% assign hasManualDiscount = false %}
+{% for tag in product.tags %}
+{% if tag contains '20%' %}
+{% assign priceAfterDiscount = price | times:0.2 %}
+{% assign sellingPrice = price | minus: priceAfterDiscount %}
+{% assign hasManualDiscount = true %}
+{% break %}
+{% endif %}
+{% if tag contains '25%' %}
+{% assign priceAfterDiscount = price | times:0.25 %}
+{% assign sellingPrice = price | minus: priceAfterDiscount %}
+{% assign hasManualDiscount = true %}
+{% break %}
+{% endif %}
+{% if tag contains '30%' %}
+{% assign priceAfterDiscount = price | times:0.3 %}
+{% assign sellingPrice = price | minus: priceAfterDiscount %}
+{% assign hasManualDiscount = true %}
+{% break %}
+{% endif %}
+{% if tag contains '50%' %}
+{% assign priceAfterDiscount = price | times:0.16666667 %}
+{% assign sellingPrice = price | minus: priceAfterDiscount %}
+{% assign hasManualDiscount = true %}
+{% break %}
+{% endif %}
+{% endfor %}
+<dl class="price {{ hasManualDiscount }}
+           {% if available == false %} price--sold-out {% endif %}
+           {% if compare_at_price > price or hasManualDiscount %} price--on-sale {% endif %}
+           {% if variant.unit_price_measurement %} price--unit-available {% endif %}"
+    data-price
+    >
+
+  {% if show_vendor and product %}
+  <div class="price__vendor">
+    <dt>
+      <span class="visually-hidden">{{ 'products.product.vendor' | t }}</span>
+    </dt>
+    <dd>
+      {{ product.vendor }}
+    </dd>
+  </div>
+  {% endif %}
+
+  <div class="price__regular">
+    <dt>
+      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.regular_price' | t }}</span>
+    </dt>
+    <dd>
+      <span class="price-item price-item--regular" data-regular-price>
+        {{ money_price }}
+      </span>
+    </dd>
+  </div>
+
+  <div class="price__sale">
+    <dt>
+      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.regular_price' | t }}</span>
+    </dt>
+    <dd>
+      <s class="price-item price-item--regular" data-regular-price>
+        {% if variant.compare_at_price > variant.price %}
+        {{ compare_at_price | money }}
+        {% else %}
+        {{ money_price }}
+        {% endif %}
+      </s>
+    </dd>
+    <dt>
+      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.sale_price' | t }}</span>
+    </dt>
+    <dd class="discounted-percent">
+      <span class="price-item price-item--sale" data-sale-price>
+        {% if sellingPrice %}
+        {{ sellingPrice | money }}
+        {% else %}
+        {{ price | money }}
+        {% endif %}
+      </span>
+    </dd>
+  </div>
+
+  <div class="price__availability">
+    <dt>
+      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.availability' | t }}</span>
+    </dt>
+    <dd>
+      <span class="price-item price-item--regular" data-regular-price>
+        {{ money_price }}
+      </span>
+    </dd>
+  </div>
+</dl>

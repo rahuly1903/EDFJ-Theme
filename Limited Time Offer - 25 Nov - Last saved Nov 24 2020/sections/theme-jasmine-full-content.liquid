@@ -1,0 +1,64 @@
+<section class="theme__content jasmine full-jasmine-content" data-section-type="theme__content" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.bg-img %}
+  {% assign left-image = section.settings.img-left %}
+  {% assign heading = section.settings.small-heading %}
+  {% assign paragraph = section.settings.big-content %}
+  <div class="ed--wrapper">
+    <div class="flex__container">
+      <div class="theme__content--left">
+        {% if left-image != nil %}
+        <img src="{{ left-image | img_url: 'master' }}" alt="Enchanted Disney" />
+        {% endif %}
+      </div>
+      <div class="theme__content--right">
+        {% if heading != blank %}
+        <h5>{{ heading }}</h5>
+        <p>{{ paragraph }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  {% if section-bg != nil %}
+    .full-jasmine-content {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Theme Full Contents",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg-img",
+		"label": "Background"
+      },
+      {
+		"type": "image_picker",
+		"id": "img-left",
+		"label": "Left Image"
+      },
+      {
+        "type": "textarea",
+        "id": "small-heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "big-content",
+        "label": "Paragraph"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

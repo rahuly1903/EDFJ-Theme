@@ -1,0 +1,589 @@
+<style>
+  /*   .page-rewards-boutique {padding: 0 0 100px;} */
+  .page-rewards-boutique .page-width {max-width: 1170px;}
+  .page-rewards-boutique .section-padding-top {padding-top: 100px;}
+  .page-rewards-boutique .section-title {overflow: hidden;}
+  .page-rewards-boutique .section-title .sub-title {
+    font-family: var(--font-body-family);
+    color: var(--nav-level-one-hover-color);
+    font-size: 19px;
+    line-height: 19px;
+    letter-spacing: 8.74px;
+    text-transform: uppercase;
+  }
+  .page-rewards-boutique .section-title h2 {
+    font-family: var(--font-heading-family);
+    color: var(--text-dark-gold-color);
+    font-size: 48px;
+    line-height: 54px;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin: 0;
+  }
+  .page-rewards-boutique .section-title h2 svg {
+    position: relative;
+    top: -13px;
+    left: -27px;
+  }
+  .page-rewards-boutique .image_wrapper img {display: block;}
+  
+  /* Rewards header */
+  .page-rewards-boutique .rewards-header .sub-title-1 {
+    font-family: var(--font-heading-family);
+    color: var(--text-dark-gold-color);
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .page-rewards-boutique .rewards-header h1 {
+    font-size: 64px;
+    color: var(--text-dark-gold-color);
+    line-height: 56px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .page-rewards-boutique .rewards-header .sub-title-2 {
+    font-family: var(--font-heading-family);
+    color: var(--text-dark-gold-color);
+    font-size: 20px;
+    line-height: 21px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .page-rewards-boutique .rewards-header .text {
+    max-width: 600px;
+    margin: 14px auto 0;
+  }
+  .page-rewards-boutique .rewards-header p {
+    font-family: var(--font-body-family);
+    color: var(--nav-level-one-hover-color);
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+  }
+  .page-rewards-boutique .rewards-header p.header_balance_point{
+    margin-top: 16px;
+  }
+  .page-rewards-boutique .rewards-header .btns-group {margin-top: 40px;}
+  .page-rewards-boutique .rewards-header .btn_header {
+    display: block;
+    font-family: var(--font-body-family);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: var(--nav-level-one-hover-color);
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    padding: 0;
+    margin-top: 16px;
+  }
+  .page-rewards-boutique .rewards-header .btn_header svg{
+    vertical-align: -3px;
+  }
+  
+  /* How it works */
+  .page-rewards-boutique .rewards-how-it-works .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .page-rewards-boutique .rewards-how-it-works li {
+    position: relative;
+    z-index: 0;
+    padding-left: 26px;
+  }
+  .page-rewards-boutique .rewards-how-it-works li:not(:last-child) {padding-bottom: 23px;}
+  .page-rewards-boutique .rewards-how-it-works li svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .page-rewards-boutique .rewards-how-it-works li span {
+    font-family: var(--font-body-family);
+    color: var(--button-gold-color);
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .page-rewards-boutique .rewards-how-it-works li p {
+    color: var(--nav-level-one-hover-color);
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .page-rewards-boutique .rewards-how-it-works li:not(:last-child) p {padding-bottom: 23px;}
+  .page-rewards-boutique .rewards-how-it-works li:not(:last-child):after {
+    content: '';
+    display: block;
+    background: #CACFD6;
+    width: 250px;
+    height: 2px;
+  }
+  .page-rewards-boutique .rewards-how-it-works .image_wrapper {
+    overflow: hidden;
+  }
+  
+  /* Earn sparkles */
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid {text-align: center; margin-bottom: 50px;}
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid h5 {
+    font-family: var(--font-heading-family);
+    color:var(--black-color);
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    text-transform: capitalize;
+  }
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid p{
+    font-family: var(--font-body-family);
+    color: var(--nav-level-one-hover-color);
+    font-size:14px;
+    line-height: 18px;
+  }
+  .page-rewards-boutique .rewards-earn-sparkles .earn-grid span {
+    font-weight: 700;
+  }
+  .page-rewards-boutique .rewards-earn-sparkles p.shopping_text{
+    font-family: var(--font-body-family);
+    color: var(--nav-level-one-hover-color);
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+  /*  Tiers section  */
+  .rb-tiers-wrapper {
+    background: #F4F5F7;
+    position:relative;
+    padding: 48px 65px;
+    margin-top: 30px;
+  }
+  .rb-tiers-wrapper .tiers-grid {
+    position: relative;
+  }
+  .earn--tiers-plan {
+    display: flex;
+  }
+  .earn--tiers-plan:not(:last-child) {
+    margin-bottom: 26px;
+  }
+  .earn--tiers-planSvg {
+    margin-right: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .earn--tiers-planinfo h5{
+    line-height: 32px;
+    font-size: 24px;
+    font-family: var(--font-heading-family);
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-dark-gold-color);
+    margin-bottom: 0;
+  }
+  .earn--tiers-planinfo .subtitle {
+    font-family: var(--font-body-family) !important;
+    color: var(--nav-level-one-hover-color);
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .earn--tiers-planinfo .discripion {
+    font-family: var(--font-body-family) !important;
+    font-size: 16px;
+    line-height: 22p;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #000;
+    margin-bottom: 0;
+  }
+  .rewards-member-tiers .shopping_text{
+    font-family: var(--font-body-family);
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 20px;
+    padding-bottom: 30px;
+  }
+  
+  /* Redeem discounts */
+  .page-rewards-boutique .rewards-redeem-discounts section {
+    background: #F4F5F7;
+    padding: 90px 25px 50px;
+    margin-top: 100px;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts .text p {
+    font-family: var(--font-body-family);
+    color: #000;
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 400;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts .text {margin-top: 20px;}
+  .page-rewards-boutique .rewards-redeem-discounts ul {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 41px;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts li {
+    flex: calc(100% / 3);
+    padding: 0 10px;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts li p {
+    color: var(--nav-level-one-hover-color);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+  .page-rewards-boutique .rewards-redeem-discounts li p:not(:last-child) {margin-bottom: 36px;}
+  
+  /* FAQ's */
+  .rb-faq-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .rb-faq-wrapper .header-title {
+    font-family: var(--font-heading-family);
+    color: var(--text-dark-gold-color);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .rb-faq-wrapper .accordion-header p{
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #305C8C;
+    font-family: var(--font-body-family) !important;
+    color: var(--nav-level-one-hover-color);
+    padding: 13px 0 12px 21px;
+    position: relative;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 2.4px;
+  }
+  .rb-faq-wrapper .accordion-header.active p{
+    color: var(--text-dark-gold-color);
+  }
+  .rb-faq-wrapper .accordion-description{
+    display:none;
+  }
+  .rb-faq-wrapper .accordion-description p {
+    font-family: var(--font-heading-family);
+    color: #1E1E1C;
+    font-size: 18px;
+    line-height: 23px;
+    padding-bottom: 12px;
+  }
+  .rb-faq-wrapper .divider {
+    width: 100%;
+    max-width: 100%;
+    height: 2px;
+    background-color: #F4F4F4;
+  }
+  .rb-faq-wrapper .accordion-header p:before {
+    margin-right: 10px;
+    font-size: 16px;
+    content: '\002B';
+    position: absolute;
+    left: 0;
+    top: 12px;
+  }
+  .rb-faq-wrapper .accordion-header.active p:before {
+    content: '\002D';
+    font-size: 18px;
+    color: #305C8C;
+  }
+  .early_access-banner{
+    margin-top:40px;
+  }
+  
+  /*  root  */
+  .reward-refer{
+    display:flex;
+  }
+  #stamped-rewards-widget{
+    width:50%;
+    margin-bottom: 0;
+    padding: 0 20px;
+  }
+  .stamped-reward-referral-wrapper {
+    display: none;
+  }
+  p.stamped-rewards-page-text.stamped-rewards-widget-description {
+    margin-bottom: 0;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] {border-top: none;}
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-page-campaigns-refer {
+    margin-top: 0;
+    padding-top: 20px;
+    border-top: 2px solid #F4F5F7;
+  }
+  [data-widget-type="rewards-referral"] .stamped-reward-referral-platforms {
+    margin: 0 auto !important;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-widget-heading-main {
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 600;
+    text-align: center ;
+    font-family: var(--font-body-family);
+    margin: 0 auto 13px;
+    color: var(--nav-level-one-hover-color);
+    letter-spacing: normal;
+    max-width: 301px;
+  }
+  [data-target-id="section-share-logged-in"] {
+    display: block !important;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-widget-heading-sub {
+    color: var(--text-dark-gold-color);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 21px;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-widget-description {
+    font-family: var(--font-body-family);
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--nav-level-one-hover-color);
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-reward-referral-platforms::before {
+    font-size: 16px;
+    line-height: 22px;
+    font-family: var(--font-body-family);
+    color: var(--nav-level-one-hover-color);
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-reward-referral-platforms > span {
+    width: 46px;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] svg {
+    width: 22px;
+    margin: 0;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] div[data-target-id="section-email-customer"] {
+    border-top: 2px solid #F4F5F7;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-page-subtitle {
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--nav-level-one-hover-color);
+    font-family: var(--font-body-family);
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-page-buttonAddon {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-page-buttonAddon .stamped-rewards-page-input {
+    font-family: var(--font-body-family);
+  }
+  #stamped-rewards-widget[data-widget-type="rewards-referral"] .stamped-rewards-page-buttonAddon .stamped-rewards-page-input::placeholder {
+    color: #CACFD6;
+  }
+  /*  root end  */
+  
+  @media screen and (min-width: 750px) {
+    .page-rewards-boutique .section-title h2.align-left {justify-content: flex-start;}
+    
+    .page-rewards-boutique .rewards-how-it-works .grid {margin-left: -90px;}
+    .page-rewards-boutique .rewards-how-it-works .grid__item {padding-left: 90px;}
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-content {width: 38.3%;}
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-image {width: 61.7%;}
+    .page-rewards-boutique .rewards-how-it-works .section-title {margin-bottom: 31px;}
+    
+    .page-rewards-boutique .rewards-redeem-discounts .grid {margin-left: -22px;}
+    .page-rewards-boutique .rewards-redeem-discounts .grid__item {padding-left: 22px;}
+    .page-rewards-boutique .rewards-redeem-discounts .grid__item.grid-image {width: 38%;}
+    .page-rewards-boutique .rewards-redeem-discounts .grid__item.grid-content {width: 62;}
+    .page-rewards-boutique .rewards-redeem-discounts li:first-child {padding-left: 0;}
+    .page-rewards-boutique .rewards-redeem-discounts li:last-child {padding-right: 0;}
+    
+    .page-rewards-boutique .rewards-earn-sparkles .section-title {margin-bottom: 30px;}
+    
+    .page-rewards-boutique .rb-tiers-wrapper .grid {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .page-rewards-boutique .rb-tiers-wrapper .tiers-grid:first-child {width: 57.3%;}
+    .page-rewards-boutique .rb-tiers-wrapper .tiers-grid:nth-child(2) {width: 42.7%;}
+  }
+  @media screen and (max-width: 749px) {
+    .page-rewards-boutique {padding: 0 0 81px;}
+    .page-rewards-boutique .section-padding-top {padding-top: 80px;}
+    .page-rewards-boutique .rb-faq-sparkles .section-padding-top {padding-top: 40px;}
+    .page-rewards-boutique .section-title {text-align: center;}
+    .page-rewards-boutique .section-title .sub-title {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 7.36px;
+    }
+    .page-rewards-boutique .section-title h2 svg {
+      flex: 0 0 28px;
+      left: -21px;
+      top: -6px;
+      height: auto;
+    }
+    
+    .page-rewards-boutique .rewards-header section {padding: 41px 15px 0;}
+    .page-rewards-boutique .rewards-header .page-width {padding: 0 7px;}
+    .page-rewards-boutique .rewards-header h1 {
+      font-size: 52px;
+      line-height: 69px;
+      letter-spacing: 1.04px;
+      margin: -15px 0 0;
+    }
+    .page-rewards-boutique .rewards-header .sub-title-1 {
+      font-size: 12px;
+      letter-spacing: 2.4px;
+    }
+    .page-rewards-boutique .rewards-header .sub-title-2 {
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 3.6px;
+    }
+    .page-rewards-boutique .rewards-header .text {
+      max-width: 330px;
+      margin: 9px auto 0;
+    }
+    .page-rewards-boutique .rewards-header p {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .page-rewards-boutique .rewards-header .btns-group {
+      max-width: 280px;
+      margin: 20px auto 0;
+    }
+    .page-rewards-boutique .rewards-header .btn {
+      width: 100%;
+      font-size: 16px;
+      padding: 12.2px 15px;
+    }
+    .page-rewards-boutique .rewards-header .btn-border:last-child {margin: 15px 0 0;}
+    .page-rewards-boutique .rewards-header .btn svg {
+      width: 21px;
+      height: 21px;
+    }
+    .page-rewards-boutique .rewards-header .btn_header {margin-top: 20px;}
+    
+    .page-rewards-boutique .rewards-how-it-works .section-title {margin-bottom: 30px;}
+    .page-rewards-boutique .rewards-how-it-works .image_wrapper img {width: 100%;}
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-content {
+      order: 2;
+      margin-top: 31px;
+    }
+    .page-rewards-boutique .rewards-how-it-works .grid__item.grid-image {order: 1;}
+    .page-rewards-boutique .rewards-how-it-works .grid-content ul {padding: 0 16px;}
+    .page-rewards-boutique .rewards-how-it-works li:before {
+      width: 25px;
+      height: 25px;
+      font-size: 16px;
+      line-height: 28px;
+      outline: 4px solid #FFF;
+    }
+    .page-rewards-boutique .rewards-how-it-works li:not(:last-child):after {left: 12px;}
+    .page-rewards-boutique .rewards-how-it-works li span {font-weight: 600;}
+    .page-rewards-boutique .rewards-how-it-works li p {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    
+    .page-rewards-boutique .rewards-earn-sparkles .section-title {margin-bottom: 52px;}
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid {padding: 0 0 0 22px;}
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid:not(:last-child) {margin-bottom: 60px;}
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid h5 {
+      margin-bottom: 8px;
+    }
+    .page-rewards-boutique .rewards-earn-sparkles .earn-grid p {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    
+    .rb-tiers-wrapper {
+      padding: 15px;
+      margin-top: 0;
+    }
+    .rb-tiers-wrapper .tiers-grid {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .rb-tiers-wrapper .tiers-grid:first-child {padding-bottom: 30px;}
+    .rb-tiers-wrapper::before {display: none;}
+    .rewards-member-tiers .shopping_text{
+      padding-bottom: 30px;
+    }
+    .earn--tiers-planSvg {margin-right: 15px;}
+    .earn--tiers-planSvg svg {width: 57px;}
+    .earn--tiers-plan:not(:last-child) {margin-bottom: 20px;}
+    
+    .page-rewards-boutique .rewards-redeem-discounts section {padding: 50px 25px 40px;}
+    .page-rewards-boutique .rewards-redeem-discounts .grid-image {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts .section-title {
+      width: 100%;
+      order: 2;
+      margin: 20px 0;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts .text {margin-top: 0;}
+    .page-rewards-boutique .rewards-redeem-discounts .text p {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts ul {
+      margin-top: 70px;
+      flex-wrap: wrap;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts li {
+      flex: 100%;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-rewards-boutique .rewards-redeem-discounts li:not(:last-child) {margin-bottom: 60px;}
+    .page-rewards-boutique .rewards-redeem-discounts li p {
+      margin-bottom: 0;
+      font-size: 18px;
+      flex: calc((100% - 29px) / 2);
+    }
+    .page-rewards-boutique .rewards-redeem-discounts li p:not(:last-child) {margin-bottom: 0;}
+    
+    .rb-faq-wrapper .header-title {
+      font-size: 24px !important;
+      line-height: 32px !important;
+    }
+    .rb-faq-wrapper .accordion-header p {
+      line-height: 16px;
+      letter-spacing: 2.4px;
+    }
+    .rb-faq-wrapper .accordion-description p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .rb-faq-wrapper .divider {display: none;}
+    .reward-refer {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    #stamped-rewards-widget {
+      width: 100%;
+      padding: 0;
+    }
+    [data-widget-type="rewards-referral"] .stamped-rewards-page-buttonAddon .stamped-rewards-page-input {
+      min-width: 220px !important;
+    }
+    [data-widget-type="rewards-referral"] div[data-target-id="section-email-customer"], [data-widget-type="rewards-referral"] div[data-target-id="section-email-friend"] {
+      padding-left: 0 !important;
+    }
+    [data-widget-type="rewards-referral"] .stamped-rewards-page-campaigns-refer {
+      margin: 20px 0 0 !important;
+    }
+  }
+</style>

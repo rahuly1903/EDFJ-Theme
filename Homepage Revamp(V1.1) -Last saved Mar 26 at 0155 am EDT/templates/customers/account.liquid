@@ -1,0 +1,99 @@
+<div class="account_page">
+  <div class="section-header">
+    <div class="page-width">
+      <div class="grid">
+        <div class="grid__item medium-up--one-half">
+          <h1 class="header_title">Welcome back <span>{{ customer.first_name }}</span></h1>
+          
+          <div class="myaccount-address">
+            {% if customer.addresses.size > 0 %}
+            <p class="address-title">
+              <span>Primary address</span>
+            </p>
+            {% for address in customer.addresses %}
+            {% if address == customer.default_address %}
+            {{ address | format_address }}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <a href="/account/addresses" class="edit-address-link">Edit address</a>
+          </div>
+        </div>
+        <div class="grid__item medium-up--one-half medium-up--text-right">
+          {{ 'layout.customer.log_out' | t | customer_logout_link }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-width">
+    {% if customer.orders.size != 0 %}
+    <div class="grid myaccount">
+      <div class="grid__item myaccount__order-history">
+        <h2>Past orders</h2>
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th scope="col">Order ID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Items</th>
+              <th scope="col">Order status</th>
+              <th scope="col">Payment method</th>
+              <th scope="col">Total</th>
+              <th scope="col">View Order</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+            <tr>
+              <td data-label="{{ 'customer.orders.order_number' | t }}" scope="row">
+                <span class="medium-up--hide">Order ID: </span>
+                <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+              </td>
+              <td data-label="{{ 'customer.orders.date' | t }}">
+                <span class="medium-up--hide">Delivery on: </span>
+                {{ order.created_at | time_tag: format: 'date' }}
+              </td>
+              <td data-label="items">
+                {%- for line_item in order.line_items -%}
+                <p data-variant-id="{{ line_item.variant.id }}" data-quantity="{{ line_item.quantity }}">{{ line_item.title }} X {{ line_item.quantity }}</p>
+                {% endfor %}
+              </td>
+              <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                <span class="medium-up--hide">Order status: </span>
+                <span class="status-label">{{ order.fulfillment_status_label }}</span>
+              </td>
+              <td>
+                <span class="medium-up--hide">Payment Method: </span>
+                {%- for transaction in order.transactions limit:1 -%}
+                {{ transaction.gateway }}
+                {%- endfor -%}
+              </td>
+              <td data-label="{{ 'customer.orders.total' | t }}">
+                <span class="medium-up--hide">Total: </span>
+                <span class="total-money">{{ order.total_price | money }}</span>
+              </td>
+              <td>
+                <div class="btn-group flexbox">
+                  <a href="{{ order.customer_url }}" class="btn view_order" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">View Order</a>
+                </div>
+              </td>
+            </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        
+      </div>
+      <div class="grid__item myaccount__account-details hide">
+        <h2>{{ 'customer.account.details' | t }}</h2>
+        
+        {{ customer.default_address | format_address }}
+        
+        <p><a href="{{ routes.account_addresses_url }}" class="btn btn--small">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+      </div>
+    </div>
+    {% else %}
+    <p class="no_order">You haven't placed any orders yet.</p>
+    {% endif %}
+  </div>
+</div>

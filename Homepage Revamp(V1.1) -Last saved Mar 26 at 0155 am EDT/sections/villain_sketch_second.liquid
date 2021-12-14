@@ -1,0 +1,96 @@
+<section class="sketch_images" data-section-id="{{ section.id }}">
+  {% assign banner = section.settings.theme-banner %}
+  {% assign title = section.settings.sketch_text %}
+  {% assign sub_title = section.settings.sketch_subtext %}
+  {% assign first_img = section.settings.sketch_one %}
+  {% assign second_img = section.settings.sketch_two %}
+  {% assign third_img = section.settings.sketch_three %}
+  {% assign fourth_img = section.settings.sketch_four %}
+  
+  <div class="main_section">
+    {% if banner != blank %}
+    <div class="sketch_banner">
+      <div class="banner">
+        <img class="lazyload" data-src="{{ banner | img_url: 'master' }}" data-sizes="auto">
+      </div>
+      {% if title != blank or sub_title != blank %}
+      <div class="txt">
+        {% if title != blank %}
+        <h4>{{ title }}</h4>
+        {% endif %}
+        {% if sub_title != blank %}
+        <p>{{ sub_title }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="images_grid">
+      {% if first_img != blank %}
+      <div class="first_sketch sketch_grid">
+        <img class="lazyload" data-src="{{ first_img | img_url: 'master' }}" data-sizes="auto">
+      </div>
+      {% endif %}
+      <div class="second_sketch sketch_grid">
+        {% if second_img != blank %}
+        <div class="column_imgs">
+          <img class="lazyload" data-src="{{ second_img | img_url: 'master' }}" data-sizes="auto">
+        </div>
+        {% endif %}
+        {% if third_img != blank %}
+        <div class="column_imgs">
+          <img class="lazyload" data-src="{{ third_img | img_url: 'master' }}" data-sizes="auto">
+        </div>
+        {% endif %}
+      </div>
+      {% if fourth_img != blank %}
+      <div class="third_sketch sketch_grid">
+        <img class="lazyload" data-src="{{ fourth_img | img_url: 'master' }}" data-sizes="auto">
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Second Villain Sketches",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "theme-banner",
+    "label": "Image"
+  },
+  {
+    "type": "text",
+    "id": "sketch_text",
+    "label": "Title"
+  },
+  {
+    "type": "text",
+    "id": "sketch_subtext",
+    "label": "Sub Title"
+  },
+  {
+    "type": "image_picker",
+    "id": "sketch_one",
+    "label": "First Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "sketch_two",
+    "label": "Second Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "sketch_three",
+    "label": "Third Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "sketch_four",
+    "label": "Fourth Image"
+  }
+  ]
+}
+{% endschema %}

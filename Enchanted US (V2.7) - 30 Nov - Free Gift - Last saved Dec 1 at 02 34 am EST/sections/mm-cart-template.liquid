@@ -1,0 +1,255 @@
+<div class="ed--wrapper" data-section-id="{{ section.id }}" data-section-type="cart-template" data-ajax-enabled="{{ section.settings.cart_ajax_enable }}">
+  <div {% if cart.item_count == 0 %}class="hide" {% endif %}data-cart-wrapper>
+    <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+      <div class="mm__cart--container">
+        <div class="cart__container--left">
+          <div class="cart_header">
+            <h2>{{ 'cart.general.title' | t }}</h2>
+            <h5>{{ 'cart.label.product' | t }}</h5>
+          </div>
+          <div class="mm__cart--left" data-cart-line-items>
+            
+            {%- for item in cart.items -%}
+            <div class="cart__content" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}" data-cart-table-cell>
+              <div class="cart__content--image">
+                <img class="{% if item.image == null %} hide{% endif %} lazyload" data-src="{{ item | img_url: 'x190' }}" data-sizes="auto" alt="{{ item.image.alt | escape }}">
+              </div>
+              <div class="cart__content--desc">
+                <span class="cart_item-sku">Style # {{ item.sku }}</span>
+                <a href="{{ item.url }}/" class="cart__product-title" data-cart-item-title>
+                  {{ item.product.title }}
+                </a>
+                <div class="cart__content--property">
+                  <div class="cart__content--size">
+                    {%- assign variant_options = 'template ' | split: ' ' -%}
+                    {%- if item.product.has_only_default_variant != true -%}
+                    {%- assign variant_options = item.options_with_values -%}
+                    {%- endif -%}
+                    {%- assign property_size = item.properties | size -%}
+                    
+                    <ul class="product-details{% if item.product.has_only_default_variant and property_size == 0 %} hide{% endif %}" data-cart-item-details aria-label="{{ 'cart.label.product_details' | t }}">
+                      {%- for option in variant_options -%}
+                      <li class="product-details__item product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}">{{ option.name }}: <span class="cart_item-size" data-cart-item-option>{{ option.value }}</span></li>
+                      {%- endfor -%}
+                      
+                      {%- comment -%}
+                      Optional, loop through custom product line items if available
+                      
+                      Line item properties come in as having two parts. The first part will be passed with the default form,
+                      but p.last is the actual custom property and may be blank. If it is, don't show it.
+                      
+                      For more info on line item properties, visit:
+                      - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+                      {%- endcomment -%}
+                      
+                      {%- assign properties = 'template ' | split: ' ' -%}
+                      {%- if property_size > 0 -%}
+                      {%- assign properties = item.properties -%}
+                      {%- endif -%}
+                      
+                      {%- for p in properties -%}
+                      {%- unless p.last == blank -%}
+                      <li class="product-details__item product-details__item--property{%if property_size == 0%} hide{% endif %}" data-cart-item-property>
+                        <span class="product-details__item-label" data-cart-item-property-name>{{ p.first }}: </span>
+                        
+                        {%- comment -%}
+                        Check if there was an uploaded file associated
+                        {%- endcomment -%}
+                        <span>{{ option.value }}</span>
+                        <span data-cart-item-property-value>
+                          {%- if p.last contains '/uploads/' -%}
+                          <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                          {%- else -%}
+                          {{ p.last }}
+                          {%- endif -%}
+                        </span>
+                      </li>
+                      {%- endunless -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                  <div class="cart__content--quantity">
+                    <div class="cart__qty">
+                      <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
+                      <button class="qty_minus" type="button"><span>-</span></button>
+                      <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="number"
+                      name="updates[]" value="{{ item.quantity }}" min="0" pattern="[0-9]*"
+                      data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop>
+                      <button class="qty_plus" type="button"><span>+</span></button>
+                    </div>
+                    <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--desktop hide" role="alert" data-cart-quantity-error-message-wrapper>
+                      <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                      {% include 'icon-error' %}
+                      <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
+                    </div>
+                  </div>
+                  <div class="cart__content--price">
+                    <span class="item__property--label">{{ 'cart.label.price' | t }}</span>
+                    <div data-cart-item-line-price>
+                      <div data-cart-item-regular-price-group>
+                        <span data-cart-item-regular-price>{{ item.final_price | money }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cart__content--btns">
+                <ul>
+                  <li class="cart__remove">
+                    <a href="javascript:void(0);" data-line-item="{{ forloop.index }}"  class="text-link text-link--accent js-remove-from-cart"><!-- js-content-popup -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"><defs><style>.cart__remove .remove-a{fill:#798089;}.cart__remove .remove-b{fill:none;}</style></defs><g transform="translate(-1.982 97.945)"><path class="remove-a" d="M11.3-76.945h7.379a1.437,1.437,0,0,0,1.583-1.5l.5-11.336h1.164a.586.586,0,0,0,.574-.59.58.58,0,0,0-.574-.582H18.38v-1.164a1.764,1.764,0,0,0-1.948-1.831h-2.9a1.758,1.758,0,0,0-1.94,1.831v1.164H8.045a.59.59,0,0,0-.574.582.591.591,0,0,0,.574.59H9.224l.5,11.336A1.431,1.431,0,0,0,11.3-76.945ZM12.832-90.95v-1.086a.736.736,0,0,1,.791-.753h2.723a.742.742,0,0,1,.8.753v1.086Zm-1.086,11.3L11.4-88.111a.517.517,0,0,1,.512-.566.568.568,0,0,1,.52.566l.318,8.457a.528.528,0,0,1-.512.574A.521.521,0,0,1,11.746-79.653Zm2.716,0-.008-8.457a.558.558,0,0,1,.528-.566.559.559,0,0,1,.535.566v8.457a.566.566,0,0,1-.535.574A.554.554,0,0,1,14.462-79.653Zm2.77,0,.318-8.457a.557.557,0,0,1,.52-.566.526.526,0,0,1,.512.566l-.349,8.457a.527.527,0,0,1-.5.574A.521.521,0,0,1,17.232-79.653Z"/></g><rect class="remove-b" width="26" height="26"/></svg>
+                      {{ 'cart.general.remove' | t }}
+                    </a>
+                  </li>
+                  <li><a href="#" class="add_to_wishlist move_to_wishlist" data-line="{{ forloop.index }}">Move to Wishlist</a></li>
+                </ul>
+              </div>
+              {% comment %}
+              <div id="confirm-delete{{ forloop.index }}" class="clearall-content mfp-hide">
+                <h4>Delete Item</h4>
+                <p>Are you sure that you want to delete, <b>{{ item.product.title }}</b> from the cart?</p>
+                {% comment %}<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn" onClick="closePopup();" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove>Confirm</a>{% endcomment %}
+                <a class="btn js-remove-from-cart" onClick="closePopup();" aria-label="{{ 'cart.label.remove' | t: product: item.title }}">CONFIRM</a>
+              </div>
+              {% endcomment %}
+            </div>
+            {%- endfor -%}
+          </div>
+          
+          <script>
+            function closePopup() {
+              $.magnificPopup.close();
+            }
+          </script>
+          
+          <div class="cart_left_footer">
+            <div class="ultimate-badges"></div>
+            <a href="{{ routes.all_products_collection_url }}/" class="btn-border">
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+              {{ 'cart.general.continue_shopping' | t }}
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            </a>
+            <p class="gift__packaging--note">* Each item will be packaged in an attractive gift box. A personal gift message may also be added to select orders.</p>
+          </div>
+        </div>
+        <div class="cart__container--right">
+          <div class="mm__cart--right">
+            <h4>Order Summary</h4>
+            <table>
+              <tr>
+                <td><span class="cart-subtotal__title">{{ 'cart.general.subtotal' | t }}</span></td>
+                <td><span class="cart-subtotal__price price_format" data-cart-subtotal>{{ cart.total_price | money }}</span></td>
+              </tr>
+              <tr>
+                <td><span>Standard Delivery - 3-7 days</span></td>
+                <td><span class="price_format">$0.00</span></td>
+              </tr>
+            </table>
+              <div class="cart__buttons-container">
+                <div class="cart__submit-controls">
+                  {%- unless section.settings.cart_ajax_enable -%}
+                  <button type="submit" name="update" class="cart__submit btn-border">
+                    <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+                    {{ 'cart.general.update' | t }}
+                    <img class="lazyload" data-src="{{ 'Right_Arrow_White.svg' | asset_url }}" data-sizes="auto" />
+                    <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+                  </button>
+                  {%- endunless -%}
+                  <button type="submit" name="checkout" class="cart__submit btn-border">
+                    <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+                    {{ 'cart.general.checkout' | t }}
+                    <img class="lazyload" data-src="{{ 'Right_Arrow_White.svg' | asset_url }}" data-sizes="auto" />
+                    <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+                  </button>
+                </div>
+                
+                <div class="mobile__continue--shopping">
+                  <a href="{{ routes.all_products_collection_url }}/" class="btn">
+                    {{ 'cart.general.continue_shopping' | t }}
+                  </a>
+                </div>
+                
+                <div class="cart__error-message-wrapper hide" role="alert" data-cart-error-message-wrapper>
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span class="cart__error-message" data-cart-error-message></span>
+                </div>
+                
+                {%- if additional_checkout_buttons -%}
+                <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+                {%- endif -%}
+              </div>
+              <div class="additional_content">
+                <h4>Need Help?</h4>
+                <ul class="ext_links" style="margin-bottom: 0;">
+                  {% assign cartpop = section.settings.page-popup | handleize %}
+                  <li><a href="#{{ cartpop }}" class="js-content-popup">{{ pages[cartpop].title }}</a></li>
+                  <div id="{{ cartpop }}" class="product-page-content mfp-hide">
+                    <div class="product-page-content-wrapper">
+                      {{ pages[cartpop].content }}
+                    </div>
+                  </div>
+                </ul>
+                <ul class="ext_links">
+                  {% assign cartMenu = linklists[section.settings.cart-menu]  %}
+                  {% for link in cartMenu.links %}
+                  <li><a href="{{ link.url }}/" target="_blank">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+                <h4>Returns</h4>
+                <p class="policy_text"><a href="/pages/privacy-policy/">Our policy</a> includes returning an item to any of our retail stores.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="empty-page-content{% if cart.item_count > 0 %} hide{% endif %} text-center" data-empty-page-content>
+      <h1>{{ 'cart.general.title' | t }}</h1>
+      <p class="cart--empty-message">{{ 'cart.general.empty' | t }}</p>
+      <div class="cookie-message">
+        <p>{{ 'cart.general.cookies_required' | t }}</p>
+      </div>
+      <a href="{{ routes.root_url }}" class="btn btn--has-icon-after cart__continue-btn">{{ 'general.404.link' | t }}{% include 'icon-arrow-right' %}</a>
+    </div>
+  </div>
+  
+  <style>
+    .page-container {
+      background: #eceef0;
+    }
+  </style>
+  
+  
+  {% schema %}
+  {
+    "name": "Cart page",
+    "class": "mm-shopping-bag",
+    "settings": [
+    {
+      "type": "checkbox",
+      "id": "cart_ajax_enable",
+      "label": "Enable automatic cart updates",
+      "info": "Updates the cart as soon as customer changes are made",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_notes_enable",
+      "label": "Enable cart notes",
+      "default": false
+    },
+    {
+      "type": "link_list",
+      "id": "cart-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "page",
+      "id": "page-popup",
+      "label": "Page Popup"
+    }
+    ]
+  }
+  {% endschema %}
+  

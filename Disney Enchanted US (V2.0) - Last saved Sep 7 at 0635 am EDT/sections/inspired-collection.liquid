@@ -1,0 +1,93 @@
+{% include 'inspired-collection' %}
+  
+{% schema %}
+  {
+    "name": "Inspired collection",
+    "class": "inspired-collection",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+		"default": "Title"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title",
+		"default": "Sub Title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Add text to give information about your chosen look.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+		"default": "Shop all"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+	  {
+        "type": "header",
+        "content": "Banner"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      }
+    ],
+	"blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+		"settings": [
+          {
+            "type": "product",
+            "id": "featured_product",
+            "label": "Product"
+          }
+		]
+      }
+	],
+    "presets": [
+      {
+        "name": "Inspired Collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

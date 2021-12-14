@@ -1,0 +1,155 @@
+<div class="page-width">
+  <section class="text-center">
+    {% if section.settings.sub_title_1 != blank %}
+    <span class="sub-title-1">{{ section.settings.sub_title_1 }}</span>
+    {% endif %}
+    {% if section.settings.title != blank %}
+    <h1>{{ section.settings.title }}</h1>
+    {% endif %}
+    {% if section.settings.sub_title_2 != blank %}
+    <span class="sub-title-2">{{ section.settings.sub_title_2 }}</span>
+    {% endif %}
+    
+    {% if customer %}
+    <div class="text">
+      <p>
+        <span>Hello {{ customer.first_name }},</span><br>
+        Earn a sparkle every time you shop. Collect the sparkle points to unlock a whole new set of benefits.
+      </p>
+      <p class="header_balance_point" onload="StampedRewardsSummary.showRewradPoints();" data-target-id="label-balance-points">
+        <b>Reward Balance: <span></span></b>
+      </p>
+      <div class="btns-group">
+        {% if section.settings.button_label_1 and section.settings.button_link_1 != blank%}
+        <a href="javascript:void(0);" onclick="StampedRewardsSummary.viewRedeem();" class="btn-border btn-gold btn-hover-blue">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          Redeem Now
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </a>
+        {% endif %}
+        {% if section.settings.button_label_2 and section.settings.button_link_2 != blank%}
+        <a href="javascript:void(0);" onclick="StampedRewardsSummary.viewHistory();" class="btn_header">
+          Unused Rewards
+          <svg xmlns="http://www.w3.org/2000/svg" width="8.105" height="14.94" viewBox="0 0 8.105 14.94">
+            <path id="Right_arrow" data-name="Right arrow" d="M.436,13.94A.436.436,0,0,1,.128,13.2L6.149,7.175a.292.292,0,0,0,0-.411L.128.744A.435.435,0,0,1,.744.128L6.765,6.149a1.16,1.16,0,0,1,0,1.642L.744,13.812a.435.435,0,0,1-.308.128" transform="translate(0.5 0.5)" fill="#12204a" stroke="#12204a" stroke-width="1"/>
+          </svg>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% else %}
+    {% if section.settings.text != blank %}
+    <div class="text">
+      <p>{{ section.settings.text }}</p>
+      
+      <div class="btns-group">
+        {% if section.settings.button_label_1 and section.settings.button_link_1 != blank%}
+        <a href="{{ section.settings.button_link_1 }}" class="btn-border btn-gold btn-hover-blue">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          {{ section.settings.button_label_1 }}
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </a>
+        {% endif %}
+        {% if section.settings.button_label_2 and section.settings.button_link_2 != blank%}
+        <a href="{{ section.settings.button_link_2 }}" class="btn_header">
+          {{ section.settings.button_label_2 }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="8.105" height="14.94" viewBox="0 0 8.105 14.94">
+            <path id="Right_arrow" data-name="Right arrow" d="M.436,13.94A.436.436,0,0,1,.128,13.2L6.149,7.175a.292.292,0,0,0,0-.411L.128.744A.435.435,0,0,1,.744.128L6.765,6.149a1.16,1.16,0,0,1,0,1.642L.744,13.812a.435.435,0,0,1-.308.128" transform="translate(0.5 0.5)" fill="#12204a" stroke="#12204a" stroke-width="1"/>
+          </svg>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+  </section>
+</div>
+<script>
+  function init() {
+    setTimeout(function(){
+      var dataPoint = StampedFn.getDataRewards();
+      console.log(dataPoint.points.points_current_with_name.toLocaleString());
+      $('[data-target-id="label-balance-points"] span').text(dataPoint.points.points_current_with_name.toLocaleString());
+    },2000);
+  }
+  
+  window.onload = init;
+  
+  
+</script>
+<script>
+  var StampedRewardsSummary = (function (window, document) {
+    
+    function viewRedeem() {
+      console.log(StampedFn.getDataRewards());
+      StampedFn.toggleRewardsModal(true);
+      StampedFn.loadLauncherView('view-spendings', this);
+    }
+    
+    function viewHistory() {
+      StampedFn.toggleRewardsModal(true);
+      StampedFn.loadLauncherView('view-your-rewards', this)
+    }
+    
+    return {
+      viewRedeem: viewRedeem,
+      viewHistory: viewHistory
+    }
+    
+  }(window, document));
+</script>
+
+{% schema %}
+{
+  "name": "Rewards header",
+  "class": "rewards-header",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",			
+    "default": "Rewards"
+  },
+  {
+    "type": "text",
+    "id": "sub_title_1",
+    "label": "Sub title 1",			
+    "default": "Welcome to the"
+  },
+  {
+    "type": "text",
+    "id": "sub_title_2",
+    "label": "Sub title 2",			
+    "default": "Boutique"
+  },
+  {
+    "type": "richtext",
+    "id": "text",
+    "label": "Text",		
+    "default": "<p>Join us today and earn a sparkle every time you shop. Collect the sparkle points to unlock a whole new set of benefits.</p>"
+  },
+  {
+    "type": "text",
+    "id": "button_label_1",
+    "label": "Button 1",		
+    "default": "Sign up"
+  },
+  {
+    "type": "url",
+    "id": "button_link_1",
+    "label": "Button link 1"
+  },
+  {
+    "type": "text",
+    "id": "button_label_2",
+    "label": "Button 2",			
+    "default": "Sign in"
+  },
+  {
+    "type": "url",
+    "id": "button_link_2",
+    "label": "Button link 2"
+  }
+  ]
+}
+{% endschema %}

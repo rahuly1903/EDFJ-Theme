@@ -1,0 +1,75 @@
+/* Please use this file to customize the syles of the custom product builder */
+h2.cpb-panel-title{
+  margin-bottom: 10px;
+  font-family: "NewYork-Medium";
+  font-weight: 400;
+  text-transform: initial;
+  letter-spacing: 0;
+  font-size: 24px !important;
+  line-height: 28px;
+  color: #11214A;
+}
+#product-builder {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1230px;
+}
+div#product-builder * {
+  font-family: "NewYork-Medium";
+}
+.cpb-category-title span {
+  font-size: 14px;
+  text-transform: capitalize !important;
+}
+#product-builder .cpb-theme-provider.alpine-white .cpb-option.cpb-option-type-img {
+  padding: 0;
+  border-width: 1.5px;
+  width: 74px;
+  height: 74px;
+}
+#product-builder .cpb-theme-provider.alpine-white .cpb-option.cpb-option-type-img.cpb-active {
+  border-color: #11214A;
+}
+#product-builder .cpb-theme-provider.alpine-white .cpb-option.cpb-option-type-img {
+  margin: 2px;
+  border: 1.5px solid #cdcdcd;
+  border-radius: 5px;
+}
+.cpb-product-actions-container {
+  width: 100%;
+  margin-top: 20px;
+}
+button.cpb-add-to-cart-button {
+  width:100%
+}
+button.cpb-add-to-cart-button.sc-cLQEGU.gVvnLz {
+  color: #fff;
+  border-radius: 4px;
+  background: #305c8c !important;
+  text-transform: uppercase;
+}
+button.cpb-add-to-cart-button span{
+  text-transform: uppercase;
+}
+#product-builder canvas {
+  display: inline-block;
+  z-index: 0;
+}
+.cpb-product-price {
+  font-family: "NewYork-Bold";
+  font-weight: 400;
+  font-size: 28px;
+  color: #305C8C;
+}
+.cpb-layout .cpb-preview-container{
+  margin: 0 0 0 0;
+}
+/* #product-builder canvas:first-child {
+    z-index: 0;
+}
+#product-builder canvas:nth-child(2) {
+    z-index: 2;
+}
+#product-builder canvas:nth-child(3) {
+    z-index: 1;
+} */

@@ -1,0 +1,77 @@
+<section>
+  {% if section.settings.title != blank %}
+  <h2 class="article-list_title">{{ section.settings.title }}</h2>
+  {% endif %}
+  <div class="articles-list">
+    <div class="grid">
+      {%- assign blog = blogs[section.settings.blog] -%}
+      {%- for article in blog.articles limit: 3 -%}
+      <div class="grid__item medium-up--one-third">
+        <div class="article-card"> 
+          <a href="{{ article.url }}">
+            {%- if article.image -%}
+            <div class="article-card_image">
+              <img class="lazyload"
+                   src="https://cdn.shopify.com/s/files/1/0252/9620/7926/files/e0e0e0.jpg?v=1620961593"
+                   data-src="{{ article.image | img_url: 'master' }}"
+                   data-sizes="auto"
+                   alt="{{ article.image.alt }}" />
+            </div>
+            {%- endif -%}
+            <div class="article-card_details">
+              <div class="details-top">
+                {% for tag in article.tags %}
+                {% if tag contains 'genre__' %}
+                <p class="sub-title">{{ tag | split:"genre__" | last }}</p>
+                {% endif %}
+                {% endfor %}
+                <p class="article-date">
+                  {% for tag in article.tags %}
+                  {% if tag contains 'date__' %}
+                  {{ tag | split:"date__" | last }}
+                  {% endif %}
+                  {% endfor %}
+                </p>
+                <h3 class="title">{{ article.title }}</h3>
+              </div>
+              <div class="article-content">
+                <p>{{ article.content | strip_html | truncatewords: 47 }}</p>
+              </div>
+              <span class="btn">
+                Read Article
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><defs><style>.article-card .btn .arrow-a{fill:#fff;}</style></defs><g transform="translate(-8.74 85.059)"><path class="arrow-a" d="M16.74-69.059a7.674,7.674,0,0,0,3.086-.627,8.177,8.177,0,0,0,2.553-1.733,8.177,8.177,0,0,0,1.733-2.553,7.673,7.673,0,0,0,.628-3.086,7.673,7.673,0,0,0-.628-3.086A8.177,8.177,0,0,0,22.379-82.7a8.165,8.165,0,0,0-2.557-1.733,7.7,7.7,0,0,0-3.09-.627,7.674,7.674,0,0,0-3.086.627A8.13,8.13,0,0,0,11.1-82.7a8.211,8.211,0,0,0-1.729,2.553,7.674,7.674,0,0,0-.627,3.086,7.674,7.674,0,0,0,.627,3.086A8.178,8.178,0,0,0,11.1-71.419a8.178,8.178,0,0,0,2.553,1.733A7.674,7.674,0,0,0,16.74-69.059ZM20.9-77.074a.684.684,0,0,1-.235.478L17.94-73.859a.585.585,0,0,1-.431.173.563.563,0,0,1-.42-.173.583.583,0,0,1-.169-.424.585.585,0,0,1,.188-.439l1-.988.98-.824-1.718.071h-4.2a.6.6,0,0,1-.439-.173.6.6,0,0,1-.173-.439.6.6,0,0,1,.173-.439.6.6,0,0,1,.439-.173h4.2l1.71.071-.973-.816-1-1a.611.611,0,0,1-.188-.431.57.57,0,0,1,.169-.42.57.57,0,0,1,.42-.169.583.583,0,0,1,.431.165l2.722,2.737A.678.678,0,0,1,20.9-77.074Z"/></g></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Guide",
+	"class": "magazine-guide-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Guide"
+      },
+      {
+        "type": "blog",
+        "id": "blog",
+        "label": "Select blog"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

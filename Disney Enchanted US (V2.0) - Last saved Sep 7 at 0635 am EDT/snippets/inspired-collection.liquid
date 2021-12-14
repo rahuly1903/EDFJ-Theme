@@ -1,0 +1,85 @@
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="inspired-collection_wrapper">
+      <div class="feature-row">
+        <div class="medium-up--hide">
+          {% include 'section-header' %}
+        </div>
+        {% capture image_layout %}
+        <div class="feature-row__item feature-row__item-image">
+          {% if section.settings.image != blank %}
+          {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
+          {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
+          {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+            <img id="{{ img_id }}"
+                 class="feature-row__image lazyload"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ section.settings.image.alt | escape }}">
+          </div>
+
+          <noscript>
+            {{ section.settings.image | img_url: '600x600', scale: 2 | img_tag: section.settings.image.alt, 'feature-row__image' }}
+          </noscript>
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+        {% endcapture %}
+
+        <div class="feature-row text_section">
+          {% if section.settings.layout == 'left' %}
+          {{ image_layout }}
+          {% endif %}
+
+          <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} lookbook-parent">
+            <div class="content small--hide">
+              {% include 'section-header' %}
+              {% if section.settings.text != blank %}
+              <div class="text">{{ section.settings.text }}</div>
+              {% endif %}
+              {% if section.settings.button_label and section.settings.button_link != blank %}
+              <a href="" class="btn-arrow">
+                {{ section.settings.button_label }}
+                {% include 'icon-btn-arrow' %}
+              </a>
+              {% endif %}
+            </div>
+            {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+            {%- assign max_height = 198 -%}
+            <div class="swiper-container inspired-products-slider product-grid-slider">
+              <div class="swiper-wrapper grid grid--no-gutters grid--uniform">
+                {% for block in section.blocks %}
+                {%- assign product = all_products[block.settings.featured_product] -%}
+                <div class="swiper-slide grid__item medium-up--one-third grid__item--{{grid_item_width}}">
+                  {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+                </div>
+                {% endfor %}
+              </div>
+              <!-- Add Scrollbar -->
+              <div class="swiper-scrollbar"></div>
+            </div>
+            <div class="content medium-up--hide small--text-center">
+              {% if section.settings.text != blank %}
+              <div class="text">{{ section.settings.text }}</div>
+              {% endif %}
+              {% if section.settings.button_label and section.settings.button_link != blank %}
+              <a href="" class="btn-arrow">
+                {{ section.settings.button_label }}
+                {% include 'icon-btn-arrow' %}
+              </a>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if section.settings.layout == 'right' %}
+          {{ image_layout }}
+          {% endif %}
+        </div>
+      </div><!-- feature-row end -->
+    </div>
+  </div>  
+</section>

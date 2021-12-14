@@ -1,0 +1,139 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+<div class="collection-heading">
+  <div class="title-wrapper">
+    <div class="ed--wrapper clearfix">
+      {% for tag in product.tags %}
+      {% if tag contains 'Princess' %}
+      {% assign princessTag = tag | split: 'spec--Princess:' | handleize %}
+      {% endif %}
+      {% endfor %}
+      <h2 class="title text-center"><a href="/collections/{{ product.vendor | handle }}"><span>{{ product.vendor }}</span>&nbsp;Collection</a></h2>
+    </div>
+  </div>
+</div>
+
+{% render 'breadcrumbs' %}
+{% include 'customproductbuilder-initializer' %}
+{% comment %}
+{% section 'product-custom-section1' %}
+{% endcomment %}
+<!--  -->
+<div class="gift-packaging-section">
+  <div class="ed--wrapper ed--mobile relative">
+    <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Mask_Group_204_2x_6238fccd-381a-403a-8afc-069abe090256.png?v=1593467575" alt="" />
+    <div class="absolute-wrapper">
+      <h3>Complimentary Gift Packaging with a Certificate of Authenticity</h3>
+      <a href="#" class="btn btn-certificate">View certificate</a>
+      <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/rsz_103976541_594396711473120_2307353043142061881_n.png?v=1593467692" alt="" />
+    </div>
+  </div>
+  <div class="ed--wrapper ed--desktop">
+    <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/gift-packaging-banner.png?v=1593110933" alt="" />
+  </div>
+</div>
+
+{% section 'product-recommendations' %}
+
+<div class="stylish-belle-section">
+  <div class="ed--wrapper section-header text-center">
+    <h2>Stylish belle</h2>
+    <p>How do you wear your own belle style?</p>
+  </div>
+  <div class="ed--wrapper">
+    <ul class="img-grid">
+      <li>
+      	<img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Instagram_Feed.png?v=1593106491" alt="" />
+      </li>
+      <li>
+      	<img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Instagram_Feed-1.png?v=1593106493" alt="" />
+      </li>
+      <li>
+      	<img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Instagram_Feed-2.png?v=1593106494" alt="" />
+      </li>
+      <li>
+      	<img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Instagram_Feed-3.png?v=1593106494" alt="" />
+      </li>
+      <li>
+      	<img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Instagram_Feed-4.png?v=1593106493" alt="" />
+      </li>
+      <li>
+      	<img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Instagram_Feed-5.png?v=1593106493" alt="" />
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="video-section video__section">
+  <div class="ed--wrapper section-header text-center">
+    <span class="q-text">Q</span>
+    <h2>Which Disney Princess are you?</h2>
+    <p>Discover your Inner Disney princess below</p>
+    <div class="fullwidth__video">
+      <iframe src="https://player.vimeo.com/video/171024349?controls=1&amp;autoplay=0&amp;loop=0&amp;color=ff9933&amp;title=0&amp;byline=0&amp;portrait=0" width="1135" height="534" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" data-ready="true">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "url": {{ shop.url | append: product.url | json }},
+  {%- if product.featured_image -%}
+    {%- assign image_size = product.featured_image.width | append: 'x' -%}
+    "image": [
+      {{ product.featured_image.src | img_url: image_size | prepend: "https:" | json }}
+    ],
+  {%- endif -%}
+  "description": {{ product.description | strip_html | json }},
+  {%- if current_variant.sku != blank -%}
+    "sku": {{ current_variant.sku | json }},
+  {%- endif -%}
+  "brand": {
+    "@type": "Thing",
+    "name": {{ product.vendor | json }}
+  },
+  "offers": [
+    {%- for variant in product.variants -%}
+      {
+        "@type" : "Offer",
+        {%- if variant.sku != blank -%}
+          "sku": {{ variant.sku | json }},
+        {%- endif -%}
+        "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+        "price" : {{ variant.price | divided_by: 100.00 | json }},
+        "priceCurrency" : {{ cart.currency.iso_code | json }},
+        "url" : {{ shop.url | append: variant.url | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+
+<!-- DRIP_PRODUCT_TRACKING_V1 -->
+<script text="text/javascript">
+  var _dcq = _dcq || [];
+  _dcq.push(['recordProductView', {{ product|json }}, {{ product.collections|map:'id'|json }}, '{{shop.currency}}', '{{ product.url }}']);
+</script>
+<!-- END_DRIP_PRODUCT_TRACKING_V1 -->

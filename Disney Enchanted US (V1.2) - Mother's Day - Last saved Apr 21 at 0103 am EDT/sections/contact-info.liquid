@@ -1,0 +1,79 @@
+{% assign page-bg = section.settings.page-bg %}
+{% assign heading = section.settings.heading %}
+{% assign sub-heading = section.settings.sub-heading %}
+
+{% if heading != blank %}
+<h2>{{ heading }}</h2>
+{% endif %}
+{% if sub-heading != blank %}
+<h5>{{ sub-heading }}</h5>
+{% endif %}
+<br />
+{% for block in section.blocks %}
+{% assign contact-via = block.settings.contact-via %}
+{% assign contact-info = block.settings.contact-info %}
+<h5>{{ contact-via }}</h5>
+{% if forloop.index == 1 %}
+<p><a href="mailto:{{ contact-info }}">{{ contact-info }}</a></p>
+{% else %}
+<p><a href="tel:{{ contact-info }}">{{ contact-info }}</a></p>
+{% endif %}
+{% endfor %}
+
+<style>
+  {% if page-bg != nil %}
+  .main-content {
+      background-image: url('{{ page-bg | img_url: 'master' }}');
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-size: cover;
+      }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Contact Info",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "page-bg",
+        "label": "Page Background"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub-heading",
+        "label": "Sub-heading"
+      }
+	],
+	"blocks": [
+      {
+        "type": "contact-details",
+        "name": "Contact Details",
+        "settings": [
+          {
+            "type": "text",
+            "id": "contact-via",
+            "label": "Contact Via"
+          },
+          {
+            "type": "text",
+            "id": "contact-info",
+            "label": "Contact Info"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

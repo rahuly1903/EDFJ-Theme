@@ -1,0 +1,276 @@
+{% if section.settings.show_section %}
+<section class="section-spacing section-wrapper" id="section-{{ section.id }}">
+  <div class="page-width">
+    <div class="custom-tabs-wrapper small--text-center">
+      <div class="grid grid--no-gutters tabs">
+        <div class="grid__item grid__item-tabs-content">
+          <div class="tabs-content-wrapper">
+            {% if section.settings.title != blank %}
+            <h2 class="small--hide">{{ section.settings.title }}</h2>
+            {% endif %}
+            {% for block in section.blocks %}
+            {% assign blockId = block.id %}
+            {% assign desktopBanner = block.settings.dt_image %}
+            {% assign mobileBanner = block.settings.mb_image %}
+            {% assign bannerTitle = block.settings.title %}
+            {% assign bannerTitleColor = block.settings.title_color %}
+            {% assign bannerSubtitle = block.settings.sub_title %}
+            {% assign bannerSubtitleColor = block.settings.subtitle_color %}
+            {% assign bannerRichtext = block.settings.text %}
+            {% assign bannerRichtextColor = block.settings.richtext_color %}
+            {% assign bannerTitleColor2 = block.settings.title2_color %}
+            {% assign tracking_id = block.settings.princess_trackingID %}
+            {% assign bannerButton = block.settings.button_label %}
+            {% assign bannerButtonColor = block.settings.button_color %}
+            {% assign bannerButtonHoverColor = block.settings.button_hover_color %}
+            {% assign collection = block.settings.collection %}
+            {% render 'tab-content', 
+            blockId:blockId,
+            loop_index:forloop.index,
+            desktopBanner:desktopBanner,
+            mobileBanner:mobileBanner,
+            bannerTitle:bannerTitle,
+            bannerTitleColor:bannerTitleColor,
+            bannerSubtitle:bannerSubtitle,
+            bannerSubtitleColor:bannerSubtitleColor, 
+            bannerRichtext:bannerRichtext,
+            bannerRichtextColor:bannerRichtextColor,
+            bannerTitleColor2:bannerTitleColor2,
+            tracking_id:tracking_id,
+            bannerButton:bannerButton,
+            bannerButtonColor:bannerButtonColor,
+            bannerButtonHoverColor:bannerButtonHoverColor
+            collection:collection %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="grid__item grid__item-tabs">
+          <div class="tabs-nav-wrapper">
+            <ul class="tabs-nav">
+              {% for block in section.blocks %}
+              {% assign pp_title = block.settings.pp_title %}
+              {% assign bannerTitle = block.settings.title %}
+              {% render 'tab-nav',
+              loop_index:forloop.index,
+              bannerTitle:bannerTitle,
+              pp_title:pp_title %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="grid__item grid__item-tabs-content">
+          <div class="tabs-content-wrapper">
+            {% for block in section.blocks %}
+            {% assign collection_title = block.settings.collection_title %}
+            {% assign collection = block.settings.collection %}
+            {% assign grid = block.settings.grid %}
+            {% assign show_button = block.settings.show_button %}
+            {% include 'tab-slider', 
+            loop_index:forloop.index,
+            collection_title:collection_title,
+            collection:collection,
+            grid:grid,
+            show_button:show_button %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% schema %}
+{
+  "name": "Custom Tabs (Princesses)",
+  "class": "custom-tabs-section princesses",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "show_section",
+    "label": "Show section",
+    "default": true
+  },
+  {
+    "type": "header",
+    "content": "Header"
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",
+    "default": "<i>Princesses <br>&amp; more</i>"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "block",
+    "name": "Block",
+    "settings": [
+    {
+      "type": "header",
+      "content": "Tab title"
+    },
+    {
+      "type": "text",
+      "id": "pp_title",
+      "label": "Princesses Title"
+    },
+    {
+      "type": "header",
+      "content": "Banner section"
+    },
+    {
+      "type": "image_picker",
+      "id": "dt_image",
+      "label": "Princesses Desktop banner "
+    },
+    {
+      "type": "image_picker",
+      "id": "mb_image",
+      "label": "Princesses Mobile banner "
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Add text to give information about your chosen collection.</p>"
+    },
+    {
+      "type": "color",
+      "id": "richtext_color",
+      "label": "Richtext color"
+    },
+    {
+      "type": "color",
+      "id": "title2_color",
+      "label": "Title2 color"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop collection"
+    },
+    {
+      "type": "select",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "blue",
+      "options": [
+      {
+        "value": "blue",
+        "label": "Blue"
+      },
+      {
+        "value": "gold",
+        "label": "Gold"
+      },
+      {
+        "value": "white",
+        "label": "White"
+      }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "gold",
+      "options": [
+      {
+        "value": "gold",
+        "label": "Gold"
+      },
+      {
+        "value": "blue",
+        "label": "Blue"
+      },
+      {
+        "value": "white",
+        "label": "White"
+      }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Slider section"
+    },
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "Collection Title"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "grid",
+      "label": "Number of product grid",
+      "options": [
+      {
+        "value": "3",
+        "label": "3"
+      },
+      {
+        "value": "4",
+        "label": "4"
+      },
+      {
+        "value": "5",
+        "label": "5"
+      }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "text",
+      "id": "princess_trackingID",
+      "label": "Tracking Link ID"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show view all button"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "Custom tabs (Princesses)",
+    "category": "Advanced layout"
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

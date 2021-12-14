@@ -1,0 +1,95 @@
+<section class="theme__collection cinderella" data-section-type="theme__collection" data-section-id="{{ section.id }}">
+  {% assign collection-bg = section.settings.collection-bg %}
+  {% assign heading = section.settings.collection-title %}
+  {% assign sub-heading = section.settings.collection-subtitle %}
+  {% assign paragraph = section.settings.collection-desc %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  {% assign collection-art = section.settings.collection-art %}
+  
+  <div class="ed--wrapper">
+    <div class="theme__collection--row">
+      <div class="theme__collection--left">
+        {% if heading != blank %}
+        <h2>{{ heading }}</h2>
+        {% endif %}
+        {% if sub-heading != blank %}
+        <h5>{{ sub-heading }}</h5>
+        {% endif %}
+        {% if paragraph != blank %}
+        <p>{{ paragraph }}</p>
+        {% endif %}
+        {% if button-label != blank %}
+        <a href="{% if button-url != blank %}{{ button-url }}{% endif %}" class="btn">
+          {{ button-label }}
+        </a>
+        {% endif %}
+      </div>
+      <div class="theme__collection--right">
+        {% if collection-art != nil %}
+        <img src="{{ collection-art | img_url: 'master' }}" alt="Enchanted Disney" />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  {% if collection-bg != nil %}
+  .theme__collection.cinderella {
+    background-image: url('{{ collection-bg | img_url: 'master' }}');
+  }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Princess Collection",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "collection-bg",
+        "label": "Background Image"
+      },
+      {
+		"type": "text",
+		"id": "collection-title",
+		"label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "collection-subtitle",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "collection-desc",
+        "label": "Paragraph"
+      },
+      {
+        "type": "text",
+        "id": "button-label",
+        "label": "Button Text",
+		"default": "Explore Collection"
+      },
+      {
+        "type": "url",
+        "id": "button-url",
+        "label": "Button URL"
+      },
+      {
+        "type": "image_picker",
+        "id": "collection-art",
+        "label": "Image"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

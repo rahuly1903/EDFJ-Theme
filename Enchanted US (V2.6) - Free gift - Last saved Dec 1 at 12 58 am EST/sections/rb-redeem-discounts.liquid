@@ -1,0 +1,78 @@
+<div class="page-width">
+  <section class="section-padding-top">
+    <div class="grid">
+      <div class="grid__item medium-up--two-fifths grid-image">
+        <div class="section-title text-center medium-up--hide">
+          {% if section.settings.sub_title != blank %}
+          <span class="sub-title">{{ section.settings.sub_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+          {% endif %}
+        </div>
+        <div class="image_wrapper">
+          <img class="lazyload" data-src="{{ section.settings.image | img_url: 'master' }}" data-sizes="auto" alt="">
+        </div>
+      </div>
+      <div class="grid__item medium-up--three-fifths grid-content">
+        <div class="section-title text-center small--hide">
+          {% if section.settings.sub_title != blank %}
+          <span class="sub-title">{{ section.settings.sub_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+          {% endif %}
+        </div>
+        {% if section.settings.text != blank %}
+        <div class="text text-center">{{ section.settings.text }}</div>
+        {% endif %}
+        <ul class="text-center">
+          <li>
+            <p>300 sparkles for <br>$15 Off</p>
+            <p>1,000 sparkles for <br>$50 Off</p>
+          </li>
+          <li>
+            <p>500 sparkles for <br>$25 Off</p>
+            <p>2,000 sparkles for <br>$100 Off</p>
+          </li>
+          <li>
+            <p>800 sparkles for <br>$40 Off</p>
+            <p>4,000 sparkles for <br>$200 Off</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Redeem discounts",
+  "class": "rewards-redeem-discounts",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",			
+    "default": "Discounts"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Sub title",			
+    "default": "Redeem for"
+  },
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+  },
+  {
+    "type": "richtext",
+    "id": "text",
+    "label": "Text",			
+    "default": "<p>Redeeming your sparkles is easy, simply exchange your sparkles for discount coupons to spend on any order.</p>"
+  }
+  ]
+}
+{% endschema %}

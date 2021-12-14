@@ -1,0 +1,86 @@
+<section class="page__content" data-section-type="fashion__page--rowfour" data-section-id="{{ section.id }}">
+  <div class="ed--wrapper">
+    <div class="flex_container direction-row shop_by_gender">
+      {% for block in section.blocks limit: 2 %}
+      {% assign content-img = block.settings.collection-img %}
+      {% assign collection-title = block.settings.collection-title %}
+      {% assign collection-subtitle = block.settings.collection-subtitle %}
+      {% assign collection-text = block.settings.collection-text %}
+      {% assign collection-btn = block.settings.collection-btn %}
+      {% assign collection-url = block.settings.collection-url %}
+      
+      <div class="gender_wise-col">
+        {% if content-img != nil %}
+        <div class="with_shadow">
+          <img class="lazyload" data-src="{{ content-img | img_url:'master' }}" data-sizes="auto" alt="Enchanted Disney" />
+        </div>
+        {% endif %}
+        {% if collection-title != blank %}
+        <h2>{{ collection-title }}</h2>
+        {% endif %}
+        {% if collection-subtitle != blank %}
+        <h5>{{ collection-subtitle }}</h5>
+        {% endif %}
+        {% if collection-text != blank %}
+        <p>{{ collection-text }}</p>
+        {% endif %}
+        {% if collection-btn != blank %}
+        <a href="{% if collection-url != blank %}{{ collection-url }}/{% endif %}" class="btn">
+          {{ collection-btn }}
+        </a>
+        {% endif %}        
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Page Content",
+  "settings": [],
+  "blocks": [
+  {
+    "name": "Content",
+    "type": "gender",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "collection-img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "collection-title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "collection-subtitle",
+      "label": "Sub Title"
+    },
+    {
+      "type": "textarea",
+      "id": "collection-text",
+      "label": "Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "collection-btn",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "collection-url",
+      "label": "Colection URL"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,54 @@
+{% if section.settings.enable_section %}
+<section class="section-spacing">
+  <div class="section-wrapper">
+    <div class="page-width">
+      {% if section.settings.text != blank %}
+      <div class="text text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="63.83" height="51.887" viewBox="0 0 63.83 51.887"><path id="Quote_icon" data-name="Quote icon" d="M-3.139-36.2a13.487,13.487,0,0,1-7.412-1.853,15.586,15.586,0,0,1-4.736-4.736,17.346,17.346,0,0,1-2.883-7.207,42.672,42.672,0,0,1-.618-6.383A33.877,33.877,0,0,1-13.64-74.7q5.148-8.236,16.06-13.384l1.853,3.706A27.822,27.822,0,0,0-6.743-75.936Q-11.376-70.17-11.376-64.2a13.688,13.688,0,0,0,.618,4.324,11.731,11.731,0,0,1,7.618-2.677,13.436,13.436,0,0,1,9.266,3.5q3.912,3.5,3.912,9.677A12.474,12.474,0,0,1,6.126-39.9,13.019,13.019,0,0,1-3.139-36.2Zm35,0a13.487,13.487,0,0,1-7.412-1.853,15.586,15.586,0,0,1-4.736-4.736,17.346,17.346,0,0,1-2.883-7.207,42.672,42.672,0,0,1-.618-6.383A33.877,33.877,0,0,1,21.363-74.7q5.148-8.236,16.06-13.384l1.853,3.706a27.822,27.822,0,0,0-11.016,8.442Q23.628-70.17,23.628-64.2a13.688,13.688,0,0,0,.618,4.324,11.731,11.731,0,0,1,7.618-2.677,13.436,13.436,0,0,1,9.266,3.5q3.912,3.5,3.912,9.677A12.474,12.474,0,0,1,41.13-39.9,13.019,13.019,0,0,1,31.864-36.2Z" transform="translate(18.788 88.084)" fill="#bc913f"/></svg>
+        {{ section.settings.text }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  @media screen and (min-width: 750px) {
+    {% if section.settings.max-width != blank %}
+    .tc-quote .text {max-width: {{ section.settings.max-width }}px;}
+    {% endif %}
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Quote",
+	"class": "tc-quote",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing, elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim</p>"
+      },
+      {
+        "type": "text",
+        "id": "max-width",
+        "label": "Content max width (px)"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

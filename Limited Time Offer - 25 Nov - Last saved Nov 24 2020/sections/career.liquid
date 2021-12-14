@@ -1,0 +1,121 @@
+<section class="page__content" data-section-type="career__page" data-section-id="{{ section.id }}">
+    <div class="inner__wrapper">
+    <div class="content__full-width content_center">
+      <h1>{{ page.title }}</h1>
+      {% if page.metafields.content.sub_title != blank %}
+      <p>{{ page.metafields.content.sub_title }}</p>
+      {% endif %}
+    </div>
+    {% for block in section.blocks %}
+    {% if block.type == 'full-width-page-content' %}
+    {% assign content = block.settings.paragraph %}
+    <div class="content__full-width">
+      <p>{{ content }}</p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% for block in section.blocks %}
+    {% if block.type == 'page-content' %}
+    {% assign content-img = block.settings.content-img %}
+    {% assign heading = block.settings.heading %}
+    {% assign sub-heading = block.settings.sub-heading %}
+    {% assign paragraph = block.settings.paragraph %}
+    {% assign button-label = block.settings.button-label %}
+    {% assign button-url = block.settings.button-url %}
+    
+    <div class="flex_container {% cycle 'direction_row', 'direction_rev' %}">
+      <div class="rowone_equalcol">
+        {% if content-img != nil %}
+        <img src="{{ content-img | img_url: 'master' }}" alt="Enchanted Disney" />
+        {% endif %}
+      </div>
+      <div class="rowone_equalcol vertical_centered">
+        {% if heading != blank %}
+        <h2>{{ heading }}</h2>
+        {% endif %}
+        {% if sub-heading != blank %}
+        <h5>{{ sub-heading }}</h5>
+        {% endif %}
+        {% if paragraph != blank %}
+        <p>{{ paragraph }}</p>
+        {% endif %}
+        {% comment %}
+        {% if button-label != blank %}
+        <a href="{% if button-url != blank %}{{ button-url }}{% endif %}" class="btn">
+          {{ button-label }}
+        </a>
+        {% endif %}
+        {% endcomment %}
+        {% if button-label != blank %}
+        <a href="mailto:Info@enchanteddisneyfinejewelry.com" class="btn">
+          {{ button-label }}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Page Content",
+	"blocks": [
+      {
+        "type": "full-width-page-content",
+        "name": "Full Width Content",
+        "settings": [
+          {
+            "type": "html",
+            "id": "paragraph",
+            "label": "Paragraph"
+          }
+        ]
+      },
+      {
+        "type": "page-content",
+        "name": "Content Section",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "content-img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "sub-heading",
+            "label": "Sub Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "paragraph",
+            "label": "Paragraph"
+          },
+          {
+            "type": "text",
+            "id": "button-label",
+            "label": "Button Text",
+            "default": "SHOP NOW"
+          },
+          {
+            "type": "url",
+            "id": "button-url",
+            "label": "Button URL"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

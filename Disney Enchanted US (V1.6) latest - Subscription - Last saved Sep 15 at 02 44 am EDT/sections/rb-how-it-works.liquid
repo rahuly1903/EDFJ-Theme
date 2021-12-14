@@ -1,0 +1,86 @@
+<div class="page-width">
+  <section class="section-padding-top">
+    <div class="grid">
+      <div class="grid__item medium-up--one-half grid-content">
+        <div class="section-title small--hide">
+          {% if section.settings.sub_title != blank %}
+          <span class="sub-title">{{ section.settings.sub_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+          <h2 class="align-left">
+            {{ section.settings.title }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="33.168" height="33.398" viewBox="0 0 33.168 33.398"><defs><style>.rewards-sparkle-a{fill:#11214a;}</style></defs><g transform="matrix(-0.906, -0.423, 0.423, -0.906, 28.541, 33.399)"><g transform="translate(0 0)"><path class="rewards-sparkle-a" d="M10.947,5.475a5.474,5.474,0,0,0-5.474,5.473A5.473,5.473,0,0,0,0,5.474,5.473,5.473,0,0,0,5.473,0,5.475,5.475,0,0,0,10.947,5.475Z" transform="translate(0 0)"/></g><g transform="translate(11.432 11.562)"><path class="rewards-sparkle-a" d="M13.611,6.805a6.806,6.806,0,0,0-6.806,6.806A6.8,6.8,0,0,0,0,6.805,6.8,6.8,0,0,0,6.805,0,6.805,6.805,0,0,0,13.611,6.805Z" transform="translate(0 0)"/></g><g transform="translate(28.538 7.525)"><path class="rewards-sparkle-a" d="M6.463,3.232A3.233,3.233,0,0,0,3.231,6.465,3.232,3.232,0,0,0,0,3.232,3.231,3.231,0,0,0,3.231,0,3.233,3.233,0,0,0,6.463,3.232Z" transform="translate(0 0)"/></g></g></svg>
+          </h2>
+          {% endif %}
+        </div>
+        <ul>
+          <li>
+            <span>Sign up</span>
+            <p>Join us today & get bonus Sparkle points.</p>
+          </li>
+          <li>
+            <span>Earn</span>
+            <p>Earn Sparkles every time you shop.</p>
+          </li>
+          <li>
+            <span>Shop</span>
+            <p>Redeem Sparkles against vouchers or pay using Sparkles.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__item medium-up--one-half grid-image">
+        <div class="section-title medium-up--hide">
+          {% if section.settings.sub_title != blank %}
+          <span class="sub-title">{{ section.settings.sub_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+          <h2 class="align-left">
+            {{ section.settings.title }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="33.168" height="33.398" viewBox="0 0 33.168 33.398"><defs><style>.rewards-sparkle-a{fill:#11214a;}</style></defs><g transform="matrix(-0.906, -0.423, 0.423, -0.906, 28.541, 33.399)"><g transform="translate(0 0)"><path class="rewards-sparkle-a" d="M10.947,5.475a5.474,5.474,0,0,0-5.474,5.473A5.473,5.473,0,0,0,0,5.474,5.473,5.473,0,0,0,5.473,0,5.475,5.475,0,0,0,10.947,5.475Z" transform="translate(0 0)"/></g><g transform="translate(11.432 11.562)"><path class="rewards-sparkle-a" d="M13.611,6.805a6.806,6.806,0,0,0-6.806,6.806A6.8,6.8,0,0,0,0,6.805,6.8,6.8,0,0,0,6.805,0,6.805,6.805,0,0,0,13.611,6.805Z" transform="translate(0 0)"/></g><g transform="translate(28.538 7.525)"><path class="rewards-sparkle-a" d="M6.463,3.232A3.233,3.233,0,0,0,3.231,6.465,3.232,3.232,0,0,0,0,3.232,3.231,3.231,0,0,0,3.231,0,3.233,3.233,0,0,0,6.463,3.232Z" transform="translate(0 0)"/></g></g></svg>
+          </h2>
+          {% endif %}
+        </div>
+        <div class="image_wrapper">
+          <img class="lazyload" 
+               src="{{ section.settings.banner | img_url: 'master' }}" 
+               data-src="{{ section.settings.banner | img_url: 'master' }}" 
+               data-sizes="auto" 
+               alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+  {
+    "name": "How it works",
+	"class": "rewards-how-it-works",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",			
+        "default": "Works"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub title",			
+        "default": "How it"
+      },
+	  {
+        "type": "image_picker",
+        "id": "banner",
+        "label": "Banner",			
+        "info": "Recommended size: 540px * 432px"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

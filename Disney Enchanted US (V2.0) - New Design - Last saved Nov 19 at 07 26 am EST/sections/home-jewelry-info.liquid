@@ -1,0 +1,109 @@
+{% if section.settings.enable_section %}
+<section class="section-spacing">
+  <div class="page-width small--text-center">
+    <div class="section-wrapper">
+      <div class="content">
+        {% if section.settings.title != blank %}
+        <div class="section-header">
+          <h2 class="title">
+            {% include 'icon-sparkles' %}
+            {{ section.settings.title }}
+          </h2>
+        </div>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        <div class="text">{{ section.settings.text }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+        <a href="" class="btn-border btn-show-info">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          {{ section.settings.button_label }}
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </a>
+        {% endif %}
+      </div>
+      <div class="jewelry-info">
+        {% for block in section.blocks %}
+        <div class="info-wrapper">
+          {% if block.settings.title != blank %}
+          <h3>
+            {% include 'icon-sparkle' %}
+            {{ block.settings.title }}
+          </h3>
+          {% endif %}
+          {% if block.settings.desc != blank %}
+          <div class="desc">{{ block.settings.desc }}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+        {% if section.settings.button_label != blank %}
+        <a href="" class="btn-border btn-hide-info hide">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          Read Less
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Jewelry info",
+  "class": "jewelry-info-section",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "enable_section",
+    "label": "Enable section",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",
+    "default": "Title"
+  },
+  {
+    "type": "textarea",
+    "id": "text",
+    "label": "Text",
+    "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing, elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim</p>"
+  },
+  {
+    "type": "text",
+    "id": "button_label",
+    "label": "Button label",
+    "default": "Learn more"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "row",
+    "name": "Row",
+    "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "Description",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing, elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim</p>"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "Jewelry info",
+    "category": "Text"
+  }
+  ]
+}
+{% endschema %}

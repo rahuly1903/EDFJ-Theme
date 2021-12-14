@@ -1,0 +1,66 @@
+<!-- Three Banners static -->
+<div class="page-width princess-threeblock">
+  {% if section.settings.seasonal-heading != blank or section.settings.seasonal-subheading != blank %}
+  <header class="header-title-wrapper wow fadeInUp" data-wow-delay="100ms">
+    {% if section.settings.seasonal-heading != blank %}
+    <h3 class="header--sub-heading">{{ section.settings.seasonal-heading }}</h3>
+    {% endif %}
+    {% if section.settings.seasonal-subheading != blank %}
+    <p class="header--main-heading">{{ section.settings.seasonal-subheading }}</p>
+    {% endif %}
+  </header>
+  {% endif %}
+  <div class="grid {% if section.settings.mobile_slider %}display-flex{% endif %}">
+    {% for block in section.blocks %}
+    {% case section.blocks.size %}
+    {% when 2 %}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+    {%- assign grid_item_width = 'medium-up--one-third' -%}
+    {% when 4 %}
+    {%- assign grid_item_width = 'medium-up--one-quarter' -%}
+    {% when 5 %}
+    {%- assign grid_item_width = 'medium-up--one-fifth' -%}
+    {% endcase %}
+    {%- assign max_height = 345 -%}
+    <div class="grid__item small--one-whole {{ grid_item_width }} wow fadeInUp" data-wow-duration="1.9s" data-wow-delay="300ms">
+      {% if block.settings.enable_image %}
+      {% if block.settings.image != blank %}
+      {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      {%- assign hover_img  = block.settings.hover_img | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <a {% if block.settings.tackin_id != blank %}id="{{ block.settings.tackin_id }}"{% endif %} {% if block.settings.button_link != blank %}href="{{ block.settings.button_link }}"{% endif %}>
+        <div class="custom__item-inner--image" style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100}}%;">
+          <img class="custom__image lazyload {% if block.settings.hover_img != blank %}main__image{% endif %}" 
+          data-src="{{ img_url }}" 
+          data-widths="[180, 360, 540]"
+          data-aspectratio="{{ block.settings.image.aspect_ratio }}" 
+          data-sizes="auto" 
+          alt="{{ block.settings.image.alt | escape }}">
+          {% if block.settings.hover_img != blank %}
+          <img class="second_hover_image custom__image lazyload "
+          data-src="{{ hover_img }}" 
+          data-widths="[180, 360, 500]"
+          data-aspectratio="{{ block.settings.hover_img.aspect_ratio }}"
+          data-sizes="auto" 
+          alt="{{ block.settings.hover_img.alt | escape }}">
+          {% endif %}
+        </div>
+        
+      </a>
+      {% endif %}
+      {% endif %}
+    </div>
+    {% if block.settings.title != blank %}
+    <p class="four-grid-title">{{ block.settings.title }}</p>
+    {% endif %}
+    {% if section.settings.show_shop_btn %}
+    <div class="shop_div">
+      <a {% if block.settings.tackin_id != blank %}id="{{ block.settings.tackin_id }}"{% endif %} class="shop_nowbtn" href="{{ block.settings.button_link }}">
+        Shop Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><defs><style>.black_arrow_a{fill:#fff;opacity:0;}.black_arrow_c{fill:#292D36;}</style></defs><g transform="translate(-395 -1235)"><rect class="black_arrow_a" width="28" height="28" transform="translate(395 1235)"/><g class="black_arrow_b" transform="translate(396.512 1237)"><path class="black_arrow_c" d="M21.24-60.059a12.585,12.585,0,0,0,12.5-12.5,12.6,12.6,0,0,0-12.512-12.5A12.59,12.59,0,0,0,8.74-72.559,12.593,12.593,0,0,0,21.24-60.059ZM28.4-72.571a1.144,1.144,0,0,1-.38.833l-4.694,4.681a1.1,1.1,0,0,1-.735.294,1.01,1.01,0,0,1-1.029-1.017,1.053,1.053,0,0,1,.319-.748l1.728-1.691,1.667-1.409-2.953.11H15.137A1,1,0,0,1,14.1-72.571a1.007,1.007,0,0,1,1.042-1.054h7.181l2.953.123-1.667-1.4-1.728-1.716a1.075,1.075,0,0,1-.319-.735,1.01,1.01,0,0,1,1.029-1.017,1.038,1.038,0,0,1,.735.282l4.694,4.694A1.087,1.087,0,0,1,28.4-72.571Z" transform="translate(-8.74 85.059)"/></g></g></svg>
+      </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>

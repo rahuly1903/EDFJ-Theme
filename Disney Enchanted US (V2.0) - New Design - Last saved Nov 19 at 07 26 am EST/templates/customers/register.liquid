@@ -1,0 +1,164 @@
+<section class="innerpage__banner">
+  <div class="ed--wrapper">
+    <div class="register__account" id="register___page">
+
+      <h2>{{ 'customer.register.title' | t }}</h2>
+      <p>With an Enchanted Disney Fine Jewelry account, you can save time during checkout, access your shopping from any device and exclusive rewards everytime you shop.
+        <br /><br />
+        <span>Already Registered? <a href="/account/login/">{{ 'customer.login.sign_in' | t }}</a></span>
+      </p>
+      {%- assign formId = 'RegisterForm' -%}
+      {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+      {% include 'form-status', form: form, form_id: formId %}
+      <input type="hidden" name="customer[tags]" value="HASAC">
+      <input type="hidden" name="checkout_url" id="redirect_url" value="/collections/black-friday-early-access"/> 
+      <div class="input-group">
+        <div class="select-container">
+          <select class="" id="title-dropdown" name="customer[note][Gender]">
+            <option data-display-text="Select title">Select title</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+          </select>
+        </div>
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>{% endcomment %}
+        <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name" placeholder="{{ 'customer.register.first_name' | t }}">
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>{% endcomment %}
+        <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name" placeholder="{{ 'customer.register.last_name' | t }}">
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        <div class="birthdate">
+          <input type="date" value="" name="customer[note][birthday]" id="birthday"  aria-required="true" placeholder="Birth Date" required>
+          <label for="birthday">Birth Date</label>
+        </div>
+        <div data-form-error></div>
+      </div>
+
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>{% endcomment %}
+        <input
+               type="email"
+               name="customer[email]"
+               id="{{ formId }}-email"
+               class="{% if form.errors contains 'email' %} input--error{% endif %}"
+               {% if form.email %} value="{{ form.email }}"{% endif %}
+               autocorrect="off"
+               autocapitalize="off"
+               autocomplete="email"
+               aria-required="true"
+               {%- if form.errors contains 'email' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-email-error"
+               {%- endif -%}
+               placeholder="{{ 'customer.register.email' | t }}"
+               >
+        <div data-form-error></div>
+      </div>
+      <div class="input-group">
+        {% comment %}<label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>{% endcomment %}
+        <input
+               type="password"
+               name="customer[password]"
+               id="{{ formId }}-password"
+               class="{% if form.errors contains 'password' %} input--error{% endif %}"
+               aria-required="true"
+               value=""
+               {%- if form.errors contains 'password' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-password-error"
+               {%- endif -%}
+               placeholder="{{ 'customer.register.password' | t }}"
+               >
+        <div data-form-error></div>
+      </div>
+      <div class="input-group">
+        <input
+               type="password"
+               name="customer[confirm-password]"
+               id="{{ formId }}-confirm-password"
+               class="{% if form.errors contains 'password' %} input--error{% endif %}"
+               aria-required="true"
+               value=""
+               {%- if form.errors contains 'password' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-password-error"
+               {%- endif -%}
+               placeholder="Confirm Password"
+               >
+        <div data-form-error></div>
+      </div>
+
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="accepts_marketing" name="customer[accepts_marketing]" checked>
+        <label for="accepts_marketing" class="agree_label">I agree to receive emails from Renaissance Global.</label>
+      </div>
+
+      <p class="text-center">
+        <button type="submit" value="{{ 'customer.register.submit' | t }}" class="btn-border">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          {{ 'customer.register.submit' | t }}
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </button>
+      </p>
+
+      {% endform %}
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .checkbox-wrapper {
+    display: flex;
+    align-items: baseline;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .checkbox-wrapper label {
+    position: relative;
+    cursor: pointer;
+  }
+  input#accepts_marketing {
+    display: none;
+  }
+  
+  .checkbox-wrapper label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: #305c8c;
+    border: 2px solid #305c8c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 7px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .checkbox-wrapper input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    width: 5px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+</style>

@@ -1,0 +1,95 @@
+<div class="page-width rb-tiers-sparkles">
+  <section class="section-padding-top">
+    <div class="section-title text-center small--hide">
+      {% if section.settings.sub_title != blank %}
+      <span class="sub-title">{{ section.settings.sub_title }}</span>
+      {% endif %}
+      {% if section.settings.title != blank %}
+      <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+    <div class="rb-tiers-wrapper">
+      <div class="grid grid--uniform">
+        <div class="grid__item small--one-whole medium-up--one-half tiers-grid">
+          <div class="image_wrapper">
+            <img class="lazyload small--hide" 
+            src="{{ section.settings.banner_desk | img_url: 'master' }}" 
+            data-src="{{ section.settings.banner_desk | img_url: 'master' }}" 
+            data-sizes="auto" 
+            alt="">
+            <img class="lazyload medium-up--hide" 
+            src="{{ section.settings.banner_mob | img_url: 'master' }}" 
+            data-src="{{ section.settings.banner_mob | img_url: 'master' }}" 
+            data-sizes="auto" 
+            alt="">
+          </div>
+        </div>
+        <div class="grid__item small--one-whole medium-up--one-half tiers-grid">
+          <div class="earn--tiers-wrapper">
+            <div class="earn--tiers-plan">
+              <div class="earn--tiers-planSvg plan-sliver">
+                {% include 'silver-tier' %}
+              </div>
+              <div class="earn--tiers-planinfo">
+                <h5>Silver</h5>
+                <p class="subtitle">2000 Sparkles & below</p>
+                <p class="discripion">Earn 1 Sparkle for every $1 Spent</p>
+              </div>
+            </div>
+            <div class="earn--tiers-plan plan-gold">
+              <div class="earn--tiers-planSvg">
+                {% include 'gold-tier' %}
+              </div>
+              <div class="earn--tiers-planinfo">
+                <h5>Gold</h5>
+                <p class="subtitle">2001 - 7500 Sparkles</p>
+                <p class="discripion">Earn 1.5 Sparkles for every $1 Spent</p>
+              </div>
+            </div>
+            <div class="earn--tiers-plan plan-platinum">
+              <div class="earn--tiers-planSvg">
+                {% include 'platinum-tier' %}
+              </div>
+              <div class="earn--tiers-planinfo">
+                <h5>Platinum</h5>
+                <p class="subtitle">7501 Sparkles & above</p>
+                <p class="discripion">Earn 2 Sparkles for every $1 Spent</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Member tiers",
+  "class": "rewards-member-tiers",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",			
+    "default": "Tiers"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Sub title",			
+    "default": "Member"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_desk",
+    "label": "Banner (Desktop)"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_mob",
+    "label": "Banner (Mobile)"
+  }
+  ]
+}
+{% endschema %}

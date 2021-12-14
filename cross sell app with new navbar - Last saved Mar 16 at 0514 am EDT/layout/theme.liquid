@@ -1,0 +1,456 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                                          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                                })(window,document,'script','dataLayer','GTM-W4XQPHR');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge'><![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google-site-verification" content="ZUmwbJ6RsSseBzU441H1Xc8oU5ylJzo9IQYZNtJIrYI" />
+    <meta name="theme-color" content="{{ settings.color_button }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+
+    {%- capture seo_title -%}
+    {%- if request.page_type == 'search' and search.performed == true -%}
+    {{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+    {%- else -%}
+    {{ page_title }}
+    {%- endif -%}
+    {%- if current_tags -%}
+    {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%}
+    {%- if current_page != 1 -%}
+    &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {%- endif -%}
+    {%- assign escaped_page_title = page_title | escape -%}
+    {%- unless escaped_page_title contains shop.name -%}
+    &ndash; {{ shop.name }}
+    {%- endunless -%}
+    {%- endcapture -%}
+    <title>{{ seo_title | strip }}</title>
+
+    {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% include 'social-meta-tags' %}
+
+    {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'mm-stylesheet.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'magnific-popup.css' | asset_url | stylesheet_tag }}
+
+    <!--   filter css enable in product only for bundle section, this should once bundle is hide from product page   -->
+    {% if template contains 'collection' or template contains 'product' %}
+    {{ 'filter-styles.scss.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+    {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+    <!--     <script>
+$.ajax({
+dataType: "json",
+url: "https://pro.ip-api.com/json/?fields&key=2FTD9IOnsjTmqWA",
+success: function(data){
+console.log(data);
+var countryCode = data.countryCode; 
+var zip = data.zip;
+console.log(countryCode,zip);
+//           debugger;
+if(zip == 'NW3'){
+return false;
+}
+if(countryCode != "US" && countryCode != "IN"){
+window.location.href = "https://enchantedfinejewelry.co.uk/";
+}
+}
+});
+</script> -->
+    <script>
+      var theme = {
+        breakpoints: {
+          medium: 750,
+          large: 990,
+          widescreen: 1400
+        },
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          regularPrice: {{ 'products.product.regular_price' | t | json }},
+          salePrice: {{
+          'products.product.sale_price' | t | json }},
+          sale: {{ 'products.product.on_sale' | t | json }},
+            showMore: {{ 'general.filters.show_more' | t | json }},
+              showLess: {{ 'general.filters.show_less' | t | json }},
+                addressError: {{ 'sections.map.address_error' | t | json }},
+                  addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+                    addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+                      authError: {{ 'sections.map.auth_error_html' | t | json }},
+                        newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
+                          external: {{ 'general.accessibility.link_messages.external' | t | json }},
+                            newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
+                              removeLabel: {{ 'cart.label.remove' | t: product: '[product]' | json }},
+                                update: {{ 'cart.label.update' | t | json }},
+                                  quantity: {{ 'cart.label.quantity' | t | json }},
+                                    discountedTotal: {{ 'cart.label.discounted_total' | t | json }},
+                                      regularTotal: {{ 'cart.label.regular_total' | t | json }},
+                                        priceColumn: {{ 'cart.label.price_column' | t | json }},
+                                          quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }},
+                                            cartError: {{ 'cart.general.cart_error' | t | json }},
+                                              removedItemMessage: {{ 'cart.general.removed_item_html' | t: quantity: '[quantity]', link: '[link]' | json }},
+                                                unitPrice: {{ 'products.product.unit_price_label' | t | json }},
+                                                  unitPriceSeparator: {{ 'general.accessibility.unit_price_separator' | t | json }},
+                                                    oneCartCount: {{ 'cart.popup.cart_count' | t: count: 1 | json }},
+                                                      otherCartCount: {{ 'cart.popup.cart_count' | t: count: '[count]' | json }},
+                                                        quantityLabel: {{ 'cart.popup.quantity_label' | t: quantity_count: '[count]' | json }}
+      },
+        moneyFormat: {{ shop.money_format | json }},
+          moneyFormatWithCurrency: {{ shop.money_with_currency_format | json }}
+      }
+
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {%- if request.page_type contains 'customers/' -%}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {% if page.handle == "video-consultation" %}
+
+    {% else %}
+    <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
+    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+    {% comment %}
+    {% if template contains "product" %}
+    <script src="{{ 'elevateZoom.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+
+    <script >
+      (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/l5Nm6ETzOjZbXfYRZRCuXi3vm0LKn0Lddx6ka0yp/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+    </script>
+    {% endcomment %}
+
+    {% capture cont_for_header %}
+    <!-- starapps_scripts_start -->
+    <!-- This code is automatically managed by StarApps Studio -->
+    <!-- Please contact support@starapps.studio for any help -->
+
+    {% include "starapps-language-meta" %}
+    {% render "starapps-product-json", product: product, starapps_app: "VIA", starapps_attribute: "sa-product-json" %}<script type="text/javascript" src="https://bcdn.starapps.studio/apps/vsk/enchanted-jewelry-dev/script-1608157934.js?shop={{shop.permanent_domain}}" async></script>
+    <!-- starapps_scripts_end -->
+    {{ content_for_header }}
+    {%- render 'bold-common' -%}
+    {% endcapture%}
+
+    {{ cont_for_header | replace:'type="text/javascript"', "" }}
+    {% if template contains 'product' %}
+    <style>
+      @media (max-width:767px){
+        .sticky__header{
+          position:relative !important;
+        }
+        .page-container {
+          padding-top: 0;
+        }
+        .page-container{
+          overflow: unset;
+        }
+      }
+    </style>
+    {% endif %}
+    {% include 'wiser' %}
+  </head>
+
+  <body class="template-{{ request.page_type | handle }}">
+    <div class="wrapper-overlay"></div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W4XQPHR"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    <div id="SearchDrawer" class="search-bar drawer drawer--top" role="dialog" aria-modal="true" aria-label="{{ 'general.search.placeholder' | t }}">
+      <div class="search-bar__table">
+        <div class="search-bar__table-cell search-bar__form-wrapper">
+          <form class="search search-bar__form" action="{{ routes.search_url }}" method="get" role="search">
+            <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+            <button class="search-bar__submit search__submit btn--link" type="submit">
+              {% include 'icon-search' %}
+              <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+            </button>
+          </form>
+        </div>
+        <div class="search-bar__table-cell text-right">
+          <button type="button" class="btn--link search-bar__close js-drawer-close">
+            {% include 'icon-close' %}
+            <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {%- if settings.enable_ajax -%}
+    {% include 'cart-popup' %}
+    {%- endif -%}
+
+    {% comment %}
+    {% section 'header' %}
+    {% endcomment %}
+
+    <div class="page-container" id="PageContainer">
+
+      <div class="header-top">
+        <a href="/pages/about-us">
+          The Official Online Store For Enchanted Disney Fine Jewelry,<br>
+          <small>Powered and fulfilled by Renaissance Global</small>
+        </a>
+      </div>
+
+      {% section 'custom-header' %}
+      <p class="mm-first-10-offer">Use code <b>FIRST10</b> for 10% OFF FIRST ORDER *on regular priced items.</p>
+
+      <main class="main-content js-focus-hidden template-{{ page.handle }}" id="MainContent" tabindex="-1">
+        {% comment %}
+        {% if template contains "index" %}
+        {% if settings.enable_corona_info %}
+        <div class="corona-wrapper">
+          <div class="coron-infor">
+            <p class="main-title">
+              {{ settings.title_corona }}
+            </p>
+            {{ settings.text_corona }}
+          </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endcomment %}
+
+        <style>
+          .banner__container{
+            margin-top:0 !important;
+          }
+        </style>
+        {% render 'breadcrumbs' %}
+        {{ content_for_layout }}
+        <!--         <div id="insta-feed"></div> -->
+      </main>
+
+      {% comment %}
+      {% section 'footer' %}
+      {% endcomment %}
+
+      {% if page.handle == "video-consultation" %}
+      {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+      <script>
+        jQuery(function($) {
+          $(".video-consultation .button,.consult-one-third").click(function(e){
+            e.preventDefault();
+            $("#the-vault").css({"visibility":"visible","opacity":"1"});
+            $(".popup-wrapper").show();
+          });  
+
+          $("#the-vault").click(function(e){
+            if($(e.target).closest(".popup").length<1){
+              $(this).css({"visibility":"hidden","opacity":"0"});
+            }
+          });
+
+          $("#the-vault .close").click(function(e){
+            $("#the-vault").css({"visibility":"hidden","opacity":"0"});
+          });
+          var setCurrentSKU = localStorage.getItem("currentSKU");
+          if(setCurrentSKU != null && setCurrentSKU != undefined){
+            $("#input_21").val(setCurrentSKU);
+            $("#id_17,#id_19").hide();
+          }
+          $(".header__right .page_menu a").on("click",function(){
+            localStorage.removeItem("currentSKU");
+          });
+          $(".mob__menu").on("click",function(){
+            $(".mobile__menu").addClass("show");
+            $(".dark_overlay").show();
+          });
+
+          $(".dark_overlay").on("click",function(){
+            $(".dark_overlay").hide();
+            $(".mobile__menu").removeClass("show");
+          });
+
+        });
+      </script>
+      {% else %}
+      {% if settings.promotion_popup %}
+      {% include 'promotion-popup' %}
+      {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+      {{ 'mm-popup.js' | asset_url | script_tag }}
+      {% endif %}
+      {% endif %}
+      {% section 'custom-footer' %}
+
+      <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
+        {{- 'sections.slideshow.navigation_instructions' | t -}}
+      </div>
+
+    </div>
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
+      <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
+    </ul>
+
+    {% if page.handle == "video-consultation" %}
+
+    {% else %}
+    {% include 'swymSnippet' %}
+    {% include 'swym-move-to-wishlist' %}
+    {% endif %}
+    {% comment %}
+    <!--  tawk app setup  -->
+    <!--Start of Tawk.to Script-->
+    <script>
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5e60bfd2c32b5c191739b2f0/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
+    {% endcomment %}
+    {% include 'search-autocomplete' %}  
+    {% include 'hulkapps-restock' %}
+    {% if template contains 'product' %}
+
+    {% else %}
+
+    {% endif %}
+    {% if template contains 'product' %}
+
+    {% else %}
+    <!-- Start of LiveChat (www.livechatinc.com) code -->
+    <script type="text/javascript">
+      window.__lc = window.__lc || {};
+      window.__lc.license = 8045841;
+      window.__lc.chat_between_groups = false;
+      (function() {
+        var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+        lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+      })();
+    </script>
+    <!-- End of LiveChat code -->
+    {% endif %}
+    {% render 'th-bundle-product' %}
+    {% if page.handle == "video-consultation" %}
+    {% include 'modal' %}
+    {% endif %}
+    {% include 'modal2' %}
+
+
+
+    <!-- CRITEO START -->
+    {% include 'criteo-tracking' %}
+    <!-- CRITEO END -->
+    <!--=========================================Header=========================================-->
+    <!-- Global Site Tag (gtag.js) - Google AdWords: 669000601 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-669000601"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-669000601', {'send_page_view': false});
+    </script>
+
+
+    <!--=========================================Footer=========================================-->
+    <!-- google dynamic remarketing tag for theme.liquid -->
+    {% if template contains 'product' %}
+    <script type="text/javascript">
+      var json_product = {{ product | json }};
+    </script>
+    <script>
+      var ecomm_prodid=[];
+      for(var i=0;i<json_product.variants.length;i++)
+        ecomm_prodid.push('shopify_US_{{product.id}}_'+json_product.variants[i].id);
+    </script>
+    <script type="text/javascript">
+      var google_tag_params = {
+        ecomm_prodid: ecomm_prodid,
+        ecomm_pagetype: 'product',
+        ecomm_totalvalue: parseFloat('{{ product.price | money_without_currency | remove: ","}}')
+                                     };
+    </script>
+    {% elsif template contains 'collection' %}
+    <script type="text/javascript">
+      var google_tag_params = {
+        ecomm_pagetype: 'category'
+      };
+    </script>
+    {% elsif template contains 'cart' %}
+    <script type="text/javascript">
+      var id = new Array();
+      {% for item in cart.items %}
+      id.push('shopify_US_{{item.product.id}}_{{item.variant.id}}');
+              {% endfor %}
+
+              var google_tag_params = {
+              ecomm_prodid: id,
+              ecomm_pagetype: 'cart',
+              ecomm_totalvalue: parseFloat('{{ cart.total_price | money_without_currency | remove: ","}}')
+              };
+    </script>
+    {% elsif template contains 'search' %}
+    <script type="text/javascript">
+      var google_tag_params = {
+        ecomm_pagetype: 'searchresults'
+      };
+    </script>
+    {% elsif template contains 'index' %}
+    <script type="text/javascript">
+      var google_tag_params = {
+        ecomm_pagetype: 'home'
+      };
+    </script>
+    {% else %}
+    <script type="text/javascript">
+      var google_tag_params = {
+        ecomm_pagetype: 'other'
+      };
+    </script>
+    {% endif %}
+    <script>
+      gtag('event', 'page_view', {'send_to': 'AW-669000601',
+                                  'ecomm_prodid':window.google_tag_params.ecomm_prodid,
+                                  'ecomm_pagetype': window.google_tag_params.ecomm_pagetype,
+                                  'ecomm_totalvalue':window.google_tag_params.ecomm_totalvalue
+                                 });
+    </script>
+    <style>     
+      .stamped-launcher-button {
+        width: 132px !important;
+      } 
+      .opened .stamped-launcher-button {
+        width: 40px !important;
+      } 
+      #stamped-rewards-init {
+        display: block !important;
+      }
+    </style>
+
+    <script async type="text/javascript" data-api-key="pubkey-Sy48eXTojM6A9fPwsPkf4Dq98ADG2C" id="stamped-script-widget" src="https://cdn-stamped-io.azureedge.net/files/widget.min.js"></script>
+
+    {% include 'stamped-rewards-init' %}
+  </body>
+</html>

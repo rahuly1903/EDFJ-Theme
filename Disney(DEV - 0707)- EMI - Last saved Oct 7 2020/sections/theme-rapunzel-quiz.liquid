@@ -1,0 +1,112 @@
+<section class="theme__quiz rapunzel" data-section-type="theme__content" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.bg-img %}
+  {% assign content-img = section.settings.content-img %}
+  {% assign heading = section.settings.heading %}
+  {% assign sub-heading = section.settings.sub-heading %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  {% assign ext-video-url = section.settings.ext-video-url %}
+  {% assign int-video-url = section.settings.int-video-url %}
+  
+  <div class="ed--wrapper">
+  	{% if content-img != nil %}
+    <img src="{{ content-img | img_url: 'master' }}" alt="Enchanted Disney" />
+    {% endif %}
+    <div class="them__quiz--content">
+      {% if heading != blank %}
+      <h2>{{ heading }}</h2>
+      {% endif %}
+      {% if sub-heading != blank %}
+      <h5>{{ sub-heading }}</h5>
+      {% endif %}
+      {% if button-label != blank %}
+      <a href="{% if button-url != blank %}{{ button-url }}{% endif %}" class="btn">
+        {{ button-label }}
+      </a>
+      {% endif %}
+    </div>
+    {% if ext-video-url != blank %}
+    <div class="fullwidth__video">
+      <iframe src="{{ ext-video-url }}" 
+              width="1135" 
+              height="534" 
+              frameborder="0" 
+              webkitallowfullscreen="" 
+              mozallowfullscreen="" 
+              allowfullscreen="">
+      </iframe>
+    </div>
+    {% endif %}
+    {% if int-video-url != blank %}
+    <video width="1135" height="634" controls>
+      <source src="{{ int-video-url }}" type="video/mp4">
+    </video>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  {% if section-bg != nil %}
+    .theme__quiz {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Theme Princess Quiz",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg-img",
+		"label": "Background"
+      },
+      {
+		"type": "image_picker",
+		"id": "content-img",
+		"label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "sub-heading",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "text",
+        "id": "button-label",
+        "label": "Button Text",
+        "default": "TAKE THE QUIZ"
+      },
+      {
+		"type": "url",
+		"id": "button-url",
+		"label": "Button URL"
+      },
+	  {
+		"type": "url",
+		"id": "ext-video-url",
+		"label": "External Video URL"
+      },
+	  {
+		"type": "url",
+		"id": "int-video-url",
+		"label": "Internal Video URL"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+

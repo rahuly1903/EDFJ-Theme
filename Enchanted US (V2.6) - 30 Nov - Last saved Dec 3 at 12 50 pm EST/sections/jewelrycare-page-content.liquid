@@ -1,0 +1,161 @@
+<section class="page__content" data-section-type="jewelrycare__page" data-section-id="{{ section.id }}">
+  {% assign content-img = section.settings.content-img %}
+  {% assign main-heading = section.settings.main-heading %}
+  {% assign top-content = section.settings.top-content %}
+  {% assign heading = section.settings.heading %}
+  {% assign sub-heading = section.settings.sub-heading %}
+  {% assign paragraph = section.settings.paragraph %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  
+  <div class="inner__wrapper">
+    <div class="content__full-width content_center">
+      {% if main-heading != blank %}
+      <h1>{{ main-heading }}</h1>
+      {% endif %}
+      {% if top-content != blank %}
+      <p>{{ top-content }}</p>
+      {% endif %}
+    </div>
+    <div class="flex_container direction_row">
+      <div class="rowone_equalcol">
+        {% if content-img != nil %}
+        <img class="lazyload" data-src="{{ content-img | img_url: 'master' }}" data-sizes="auto" alt="Enchanted Disney" />
+        {% endif %}
+      </div>
+      <div class="rowone_equalcol vertical_centered">
+        {% if heading != blank %}
+        <h2>{{ heading }}</h2>
+        {% endif %}
+        {% if sub-heading != blank %}
+        <h5>{{ sub-heading }}</h5>
+        {% endif %}
+        {% if paragraph != blank %}
+        <p>{{ paragraph }}</p>
+        {% endif %}
+        {% if button-label != blank %}
+        <a href="#contact-form-popup" class="js-content-popup btn">
+          {{ button-label }}
+        </a>
+        <div id="contact-form-popup" class="contact__popup mfp-hide">
+          <h4>CONTACT US</h4>
+          {%- assign formId = 'ContactForm' -%}
+          {% form 'contact', id: formId %}
+          {% include 'form-status', form: form, form_id: formId %}
+          <div class="flex_container direction_row">
+            <div class="rowone_equalcol">
+              <label for="{{ formId }}-firstname">First Name</label>
+              <input type="text" id="{{ formId }}-firstname" name="contact[firstname]" value="{% if form[firstname] %}{{ form[firstname] }}{% elsif customer %}{{ customer.firstname }}{% endif %}">
+            </div>
+            <div class="rowone_equalcol">
+              <label for="{{ formId }}-lastname">Last Name</label>
+              <input type="text" id="{{ formId }}-lastname" name="contact[lastname]" value="{% if form[lastname] %}{{ form[lastname] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+            </div>
+          </div>
+          
+          <div class="flex_container direction_row">
+            <div class="rowone_equalcol">
+              <label for="{{ formId }}-nature">Nature of Enquiry</label>
+              <select id="{{ formId }}-nature" name="contact[nature]">
+                <option value="Nature of Enquiry1">Nature of Enquiry1</option>
+                <option value="Nature of Enquiry2">Nature of Enquiry2</option>
+                <option value="Nature of Enquiry3">Nature of Enquiry3</option>
+                <option value="Nature of Enquiry4">Nature of Enquiry4</option>
+              </select>
+            </div>
+            <div class="rowone_equalcol">
+              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+              <input
+              type="email"
+              id="{{ formId }}-email"
+              name="contact[email]"
+              autocorrect="off"
+              autocapitalize="off"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              aria-required="true"
+              {%- if form.errors contains 'email' -%}
+              class="input--error"
+              aria-invalid="true"
+              aria-describedby="{{ formId }}-email-error"
+              {%- endif -%}
+              >
+              {%- if form.errors contains 'email' -%}
+              <span id="{{ formId}}-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+              </span>
+              {%- endif -%}
+            </div>
+          </div>
+          
+          <label for="{{ formId }}-subject">Subject</label>
+          <input type="text" id="{{ formId }}-v" name="contact[subject]" value="{% if form[subject] %}{{ form[subject] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          
+          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
+          <textarea rows="10" id="{{ formId }}-message" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          
+          <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+          
+          {% endform %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Content Section",
+  "settings": [
+  {
+    "type": "text",
+    "id": "main-heading",
+    "label": "Heading"
+  },
+  {
+    "type": "textarea",
+    "id": "top-content",
+    "label": "Paragraph"
+  },
+  {
+    "type": "image_picker",
+    "id": "content-img",
+    "label": "Image"
+  },
+  {
+    "type": "text",
+    "id": "heading",
+    "label": "Heading"
+  },
+  {
+    "type": "text",
+    "id": "sub-heading",
+    "label": "Sub Heading"
+  },
+  {
+    "type": "textarea",
+    "id": "paragraph",
+    "label": "Paragraph"
+  },
+  {
+    "type": "text",
+    "id": "button-label",
+    "label": "Button Text",
+    "default": "SHOP NOW"
+  },
+  {
+    "type": "url",
+    "id": "button-url",
+    "label": "Button URL"
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

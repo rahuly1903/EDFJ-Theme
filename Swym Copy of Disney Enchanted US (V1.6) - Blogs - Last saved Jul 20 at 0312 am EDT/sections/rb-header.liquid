@@ -1,0 +1,83 @@
+<section class="text-center">
+  {% if section.settings.sub_title_1 != blank %}
+  <span>{{ section.settings.sub_title_1 }}</span>
+  {% endif %}
+  {% if section.settings.title != blank %}
+  <h1>{{ section.settings.title }}</h1>
+  {% endif %}
+  {% if section.settings.sub_title_1 != blank %}
+  <span>{{ section.settings.sub_title_1 }}</span>
+  {% endif %}
+  {% if section.settings.text != blank %}
+  <div class="text">{{ section.settings.text }}</div>
+  {% endif %}
+  <div class="btns-group">
+    {% if section.settings.button_label_1 != blank and section.settings.button_link_1 != blank%}
+    <a href="{{ section.settings.button_link_1 }}" class="btn>{{ section.settings.button_label_1 }}"</a>
+    {% endif %}
+    {% if section.settings.button_label_2 != blank and section.settings.button_link_2 != blank%}
+    <a href="{{ section.settings.button_link_2 }}" class="btn>{{ section.settings.button_label_2 }}"</a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Rewards header",
+	"class": "rewards-header-section",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",			
+        "default": "Rewards"
+      },
+      {
+        "type": "text",
+        "id": "sub_title_1",
+        "label": "Sub title 1",			
+        "default": "Welcome to the"
+      },
+	  {
+        "type": "text",
+        "id": "sub_title_2",
+        "label": "Sub title 2",			
+        "default": "Boutique"
+      },
+	  {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",		
+		"default": "<p>Join us today and earn a sparkle every time you shop. Collect the sparkle points to unlock a whole new set of benefits.</p>"
+      },
+	  {
+        "type": "text",
+        "id": "button_label_1",
+        "label": "Button 1",		
+        "default": "Sign up"
+      },
+	  {
+        "type": "url",
+        "id": "button_link_1",
+        "label": "Button link 1"
+      },
+	  {
+        "type": "text",
+        "id": "button_label_2",
+        "label": "Button 2",			
+        "default": "Member sign in"
+      },
+	  {
+        "type": "url",
+        "id": "button_link_2",
+        "label": "Button link 2"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

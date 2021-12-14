@@ -1,0 +1,86 @@
+<section data-section-type="shopby__category" data-section-id="{{ section.id }}">
+  <div class="shopby__category">
+    <div class="ed--wrapper">
+    	{% assign title = section.settings.slider-title %}
+      	{% assign subtitle = section.settings.slider-subtitle %}
+      	{% assign section-bg = section.settings.section-bg %}
+        {% if title != blank %}
+        	<h2>{{ title }}</h2>
+        {% endif %}
+        {% if subtitle != blank %}
+        	<p>{{ subtitle }}</p>
+        {% endif %}
+      
+      	<!-- Category Slider Seen in Desktop -->
+        <div class="shopby__category--slider">
+          {% for block in section.blocks %}
+          {% assign collection = collections[block.settings.collection] %}
+          <div>
+            <div class="shopby__category--single">
+              <a href="{{ collection.url }}">
+                <img src="{{ collection.image | img_url:'master' }}" alt="Enchanted Disney" />
+                <span class="cat_title">{{ collection.title }}</span>
+                <span class="shop_all">Shop All</span>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      	<!-- Category Grids Seen in Mobile -->
+      	<div class="shopby__category--grid">
+          {% for block in section.blocks %}
+          {% assign collection = collections[block.settings.collection] %}
+          <div class="shopby__category--single">
+            <a href="{{ collection.url }}">
+              <img src="{{ collection.image | img_url:'master' }}" alt="Enchanted Disney" />
+              <span class="cat_title">{{ collection.title }}</span>
+              <span class="shop_all">Shop All</span>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</section>
+<style>
+  {% if section-bg != nil %}
+    .shopby__category {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+{% schema %}
+  {
+    "name": "Shop by Material",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "section-bg",
+        "label": "Background Image"
+      },
+      {
+        "type": "text",
+        "id": "slider-title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "slider-subtitle",
+        "label": "Subtitle"
+      }
+	],
+    "blocks": [
+      {
+        "type": "shop-collection",
+        "name": "Shop Collections",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Select Category"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

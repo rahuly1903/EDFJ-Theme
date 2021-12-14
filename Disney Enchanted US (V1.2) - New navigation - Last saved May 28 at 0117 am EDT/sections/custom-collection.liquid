@@ -1,0 +1,88 @@
+<section data-section-type="introducing__item" data-section-id="{{ section.id }}">
+  
+  {% assign collection-bg-desktop = section.settings.desk-bg-img %}
+  {% assign collection-bg-mob = section.settings.mob-bg-img %}
+  {% assign collection-heading = section.settings.heading %}
+  {% assign collection-paragraph = section.settings.desc-text %}
+  {% assign content-button = section.settings.content-button %}
+  {% assign content-button-url = section.settings.content-button-url %}
+  
+  <div class="custom__collection">
+    <div class="ed--wrapper">
+      <div class="custom__collection--inner">
+        {% if collection-heading != blank %}
+        <h2>{{ collection-heading }}</h2>
+        {% endif %}
+        {% if collection-paragraph != blank %}
+        <p>{{ collection-paragraph }}</p>
+        {% endif %}
+        {% if content-button != blank %}
+        <a href="{% if content-button-url != blank %}{{ content-button-url }}/{% endif %}" class="btn">
+          {{ content-button }}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  {% if collection-bg-desktop != nil %}
+    .custom__collection {   
+      background-image: url('{{ collection-bg-desktop | img_url: 'master' }}');   
+    }
+  {% endif %}
+  {% if collection-bg-mob != nil %}
+  @media (max-width: 750px) {
+    .custom__collection {
+      background-image: url('{{ collection-bg-mob | img_url: 'master' }}');
+    }
+  }
+  {% endif %}
+</style>
+{% schema %}
+  {
+    "name": "Custom Image with Text",
+    "settings": [
+		{
+			"type": "image_picker",
+            "id": "desk-bg-img",
+            "label": "Desktop Background"
+		},
+		{
+			"type": "image_picker",
+            "id": "mob-bg-img",
+            "label": "Mobile Background"
+		},
+		{
+			"type": "text",
+            "id": "heading",
+            "label": "Heading",
+			"default": "Title Text"
+		},
+        {
+            "type": "textarea",
+            "id": "desc-text",
+            "label": "Paragraph",
+			"default": "Title Text"
+        },
+        {
+            "type": "text",
+            "id": "content-button",
+            "label": "Button",
+            "default": "Explore"
+        },
+        {
+            "type": "url",
+            "id": "content-button-url",
+			"label": "Button Link"
+        }
+	],
+	"presets": [
+        {
+            "category": "Collection Image with Text Overlay",
+            "name": "Custom Image with Text",
+            "settings": {}
+        }
+    ]
+  }
+{% endschema %}

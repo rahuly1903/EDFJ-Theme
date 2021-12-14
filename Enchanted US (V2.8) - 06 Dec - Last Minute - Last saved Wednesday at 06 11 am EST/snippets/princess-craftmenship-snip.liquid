@@ -1,0 +1,38 @@
+<section class="princess-craftmenship-section">
+  <div class="craftmenship-text">
+    <div class="text section wow fadeIn" data-wow-duration="1.8s" data-wow-delay="0.5s">
+      {% if section.settings.section_title != blank %}
+      <div class="heading_title">
+        <h3>{{ section.settings.section_title }}</h3>
+      </div>
+      {% endif %}
+      {% if section.settings.text != blank %}
+      <div class="sub_heading">{{ section.settings.text }}</div>
+      {% endif %}
+    </div>
+    {% assign top-left-image = section.settings.top-left-image | img_url: 'original' %}
+    {% assign top-right-image = section.settings.top-right-image | img_url: 'original' %}
+    {% assign bottom-left-image = section.settings.bottom-left-image | img_url: 'original' %}
+    {% assign bottom-right-image = section.settings.bottom-right-image | img_url: 'original' %}
+    {% if section.settings.top-left-image != blank %}
+    <div class="top-left-image wow fadeIn" data-wow-duration="1.8s" data-wow-delay="0.5s">
+      <img class="lazyload" data-src="{{ top-left-image }}" data-sizes="auto">
+    </div>
+    {% endif %}
+    {% if section.settings.top-right-image != blank %}
+    <div class="top-right-image wow fadeIn" data-wow-duration="1.8s" data-wow-delay="0.5s">
+      <img class="lazyload" data-src="{{ top-right-image }}" data-sizes="auto">
+    </div>
+    {% endif %}
+    {% if section.settings.bottom-left-image != blank %}
+    <div class="bottom-left-image wow fadeIn" data-wow-duration="1.8s" data-wow-delay="0.5s">
+      <img class="lazyload" data-src="{{ bottom-left-image }}" data-sizes="auto">
+    </div>
+    {% endif %}
+    {% if section.settings.bottom-right-image != blank %}
+    <div class="bottom-right-image wow fadeIn" data-wow-duration="1.8s" data-wow-delay="0.5s">
+      <img class="lazyload " data-src="{{ bottom-right-image }}" data-sizes="auto">
+    </div>
+    {% endif %}
+  </div>
+</section>

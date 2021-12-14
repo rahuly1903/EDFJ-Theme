@@ -1,0 +1,26 @@
+{% include 'princess-video-section' %}
+
+{% schema %}
+{
+  "name": "Video",
+  "class": "pdp-video-section princess_vid_section",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "show_section",
+    "label": "Show section",
+    "default": true
+  },
+  {
+    "type": "image_picker",
+    "id": "video_banner_1",
+    "label": "Video banner 1"
+  },
+  {
+    "type": "image_picker",
+    "id": "video_banner_2",
+    "label": "Video banner 2"
+  }
+  ]
+}
+{% endschema %}

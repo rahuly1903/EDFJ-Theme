@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+      <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W4XQPHR');</script>
+  <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+    <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0267/0523/1943/files/Favicon_32x_32_32x32.png?v=1580212246" type="image/png">
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ 'mm-checkout-style.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'new-design-homepage.css' | asset_url | stylesheet_tag }}
+    <style>
+      #preview-bar-iframe{
+      	display:none;
+      }
+      .order-summary__section__content .product .product__description{padding-bottom:15px;}
+    </style>
+    {{ checkout_scripts }}
+    <script>
+      window.$ = Checkout.$;
+    </script>
+    <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+    
+    
+  </head>
+  
+  <body class="mm-checkout"> 
+    
+    <a href="https://www.enchantedfinejewelry.com/26705231943/orders/{{ order.customer_url | split:"/" | last }}/" style="display:none;">Conversion Page</a>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W4XQPHR" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner" style="padding:0;">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {% section 'custom-header' %}
+    <p class="mm-first-10-offer">Use code <b>FIRST10</b> for 10% OFF on first order *on regular priced items.</p>
+
+    {% comment %}
+    {% if page_title contains "Shipping" %}
+    <div class="full-page-overlay shipping__overlay">
+      <div class="full-page-overlay__wrap">
+        <div class="full-page-overlay__content">
+          {{ content_for_logo }}
+
+          <p class="full-page-overlay__text">
+            We're processing...
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endcomment %}
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+          <div class="ultimate-badges"></div>
+        </aside>
+      </div>
+    </div>
+
+    {%- render 'mm-checkout' -%}
+    {% section 'checkout-discount' %}
+    {% comment %}
+    {%- render 'skip-shipping' -%}
+    {% endcomment %}
+    {{ tracking_code }}
+    
+  </body>
+</html>

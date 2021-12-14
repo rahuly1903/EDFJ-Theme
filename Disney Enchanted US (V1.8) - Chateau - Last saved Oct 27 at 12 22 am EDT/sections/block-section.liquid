@@ -1,0 +1,99 @@
+<div class="two-txt-block-section">
+  <div class="txt-block-wrapper custom-page-width">
+    {% assign section-title = section.settings.section-title %}
+    {% assign section-desc = section.settings.section-desc %}
+    {% assign section-bg = section.settings.section-bg %}
+
+    {% if section-title != blank %}
+    <h2>{{ section-title }}</h2>
+    {% endif %}
+    {% if section-desc != blank %}
+    <p>{{ section-desc }}</p>
+    {% endif %}
+
+    <div class="page-width">
+      <div class="grid grid--uniform grid--view-items padding-adjust">
+        {% for block in section.blocks limit:2 %}
+        {% assign video-title = block.settings.video-title %}
+        {% assign text-content = block.settings.text-content %}
+        {% assign video-desc = block.settings.video-desc %}
+
+        <div class="grid__item small--one-whole medium-up--one-half">
+          <div class="text_content section--inneritem ">
+            {% if text-content != blank %}
+            <p class="txt_content">{{ video-title }}<br><span>{{ text-content }}</span></p>
+            {% endif %}
+            {% if video-desc != blank %}
+            <div class="custom_html">
+              {% if forloop.first %}
+              {% if customer %}
+              <a href="/account">My Account</a>
+              {% else %}
+              <a href="/account/register">Sign Up</a> <span>|</span> <a href="/account/login">Log In</a>
+              {% endif %}
+              {% else %}
+              {{ video-desc }}
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  {% if section-bg != nil %}
+  .txt-block-wrapper {
+    background-image: url('{{ section-bg | img_url: '1280x' }}');
+    margin-bottom: 35px;
+  }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "Text Block Section",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "section-bg",
+    "label": "Background Image"
+  },
+  {
+    "type": "text",
+    "id": "section-title",
+    "label": "Title"
+  },
+  {
+    "type": "text",
+    "id": "section-desc",
+    "label": "Sub Title"
+  }
+  ],
+  "max_blocks": 2,
+  "blocks": [
+  {
+    "type": "craftsmanship-video",
+    "name": "Craftsmanship Video",
+    "settings": [
+    {
+      "type": "text",
+      "id": "video-title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "text-content",
+      "label": "Text"
+    },
+    {
+      "type": "html",
+      "id": "video-desc",
+      "label": "HTML"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

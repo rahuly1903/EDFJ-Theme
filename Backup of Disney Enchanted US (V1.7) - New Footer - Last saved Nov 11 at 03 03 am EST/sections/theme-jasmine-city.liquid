@@ -1,0 +1,30 @@
+<section class="theme__city" data-section-type="theme__city" data-section-id="{{ section.id }}">
+  {% assign heading = section.settings.city-heading %}
+  {% assign city = section.settings.city-img %}
+  
+  {% if heading != blank %}
+  <h2>{{ section.settings.city-heading }}</h2>
+  {% endif %}
+  {% if city != nil %}
+  <img class="lazyload" data-src="{{ city | img_url: 'master' }}" data-sizes="auto" alt="Enchanted Disney" />
+  {% endif %}
+  
+</section>
+
+{% schema %}
+{
+  "name": "Princess City Section",
+  "settings": [
+  {
+    "type": "text",
+    "id": "city-heading",
+    "label": "Heading"
+  },
+  {
+    "type": "image_picker",
+    "id": "city-img",
+    "label": "image"
+  }
+  ]
+}
+{% endschema %}

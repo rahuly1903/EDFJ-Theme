@@ -1,0 +1,55 @@
+<div class="page-width">
+  <div class="grid grid--uniform column-wrapper">
+    {% for block in section.blocks %}
+    <div class="grid__item medium-up--one-whole ">
+      <div class="column-text" style="background:{{ block.settings.color }};">
+        <!-- Do not add forward slash in url below -->
+        <a href="{{ block.settings.link }}">
+          <h2 class="title">{{ block.settings.title }}</h2>
+          <p>{{ block.settings.button }}</p>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Text column",
+    "settings": [],
+	"blocks":[
+        {
+          "type": "banner",
+          "name": "Column text",
+          "settings": [
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title"
+            },
+			{
+              "type": "text",
+              "id": "button",
+              "label": "Button text"
+            },
+			{
+              "type": "url",
+              "id": "link",
+              "label": "Button link"
+            },
+			{
+              "type": "color",
+              "id": "color",
+              "label": "Background coloe"
+            }
+          ]
+        }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

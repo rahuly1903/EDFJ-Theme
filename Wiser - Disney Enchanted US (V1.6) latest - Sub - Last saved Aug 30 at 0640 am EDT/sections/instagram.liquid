@@ -1,0 +1,45 @@
+<div class="instagram-wrapper">
+  {% if section.settings.title != blank %}
+  <div class="craftsmanship__section">
+    <span class="insta-logo">
+      {% include 'icon-instagram' %}
+    </span>
+    <h2>
+      <a href="https://www.instagram.com/enchanteddisneyfinejewelry/" target="_blank">{{ section.settings.title }}</a>
+    </h2>
+    <p>{{ section.settings.subtitle }}</p>
+  </div>
+  {% endif %}
+  <div class="instagram-image">
+    {{ section.settings.code }}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Instagram",
+  "settings": [
+	
+    {
+      "type": "textarea",
+      "id": "title",
+	  "label":"Instagram title"
+    },
+	{
+      "type": "textarea",
+      "id": "subtitle",
+	  "label":"Instagram subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "code",
+	  "label":"Instagram Code"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

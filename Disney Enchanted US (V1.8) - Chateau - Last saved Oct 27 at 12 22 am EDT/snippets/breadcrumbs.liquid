@@ -1,0 +1,42 @@
+{% unless template == 'index' %}
+<nav class="breadcrumb-container">
+    <div class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+        <a href="/">Home</a>
+        {% if template contains "product" %}
+        
+        {% if collection %}
+        <span class="separator">&bull;</span> 
+        <a href="/collections/{{ collection.handle }}/">{{ collection.title | escape }}</a>
+        {% else %}
+        {% comment %}
+        <span class="separator">&bull;</span> 
+        {{ product.type | link_to_type }}
+        {% endcomment %}
+        {% endif %}
+        
+        <span class="separator">&bull;</span>
+        <span class="page-title">{{ product.title }}</span> 
+        
+        
+        {% elsif template contains "collection" %}
+        {% if collection.metafields.global.breadcrumb != blank %}
+        <span class="separator">&bull;</span> 
+        <a href="{{ collection.url }}/">{{ collection.metafields.global.breadcrumb }}</a>
+        {% else %}
+        <span class="separator">&bull;</span> 
+        <a href="{{ collection.url }}/">{{ collection.title }}</a>
+        {% endif %}
+        
+        {% elsif template == "article" %}
+        
+        <span class="separator">&bull;</span> 
+        {{ blog.title | link_to: blog.url }}
+        
+        {% elsif template contains "page" %}
+        <span class="separator">&bull;</span>
+        <a href="{{ page.url }}/">{{ page.title }}</a>
+        {% endif %}
+    </div>
+</nav>
+
+{% endunless %}

@@ -1,0 +1,77 @@
+<section class="theme__content elsa " data-section-type="theme__content" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.bg-img %}
+  
+  <div class="ed--wrapper">
+  {% for block in section.blocks %}
+  {% assign content-img = block.settings.content-img %}
+  {% assign heading = block.settings.small-heading %}
+  {% assign paragraph = block.settings.big-content %}
+  <div class="flex__container">
+    <div class="theme__content--left">
+      {% if content-img != nil %}
+      <img src="{{ content-img | img_url: 'master' }}" alt="Enchanted Disney" />
+      {% endif %}
+    </div>
+    <div class="theme__content--right">
+      {% if heading != blank %}
+      <h5>{{ heading }}</h5>
+      {% endif %}
+      {% if paragraph != blank %}
+      <p>{{ paragraph }}</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+</section>
+
+<style>
+  {% if section-bg != nil %}
+    .theme__content.elsa {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Princess Contents",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg-img",
+        "label": "Background"
+      }
+	],
+	"blocks": [
+      {
+        "type": "content",
+        "name": "Page Content",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "content-img",
+            "label": "Left Image"
+          },
+          {
+            "type": "textarea",
+            "id": "small-heading",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "big-content",
+            "label": "Paragraph"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

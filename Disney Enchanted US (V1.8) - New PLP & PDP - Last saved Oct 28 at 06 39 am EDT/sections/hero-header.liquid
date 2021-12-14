@@ -1,0 +1,69 @@
+<div class="main-banner">
+  {% assign main_image = section.settings.desktop | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+  {% assign Main_banner_mob = section.settings.mobile-img | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+  {% if section.settings.desktop != blank %}
+  <img class="grid-view-item__image lazyload first-image desktop-image"
+       alt="Gifting main banner"
+       data-src="{{ main_image }}"
+       data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+       data-sizes="auto"
+       data-image>
+  {% endif %}
+  {% if section.settings.mobile-img != blank %}
+  <img class="grid-view-item__image lazyload first-image mobile-image"
+       alt="Gifting main banner"
+       data-src="{{ Main_banner_mob }}"
+       data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+       data-sizes="auto"
+       data-image>
+  {% endif %}
+  {% if section.settings.title != blank or section.settings.subtitle != blank or section.settings.description != blank  %}
+  <div class="main-image-content">
+    {% if section.settings.title != blank %}<h2 class="h3">{{ section.settings.title }}</h2>{% endif %}
+    {% if section.settings.subtitle != blank %}<h5 class="featured__subheading">{{ section.settings.subtitle }}</h5>{% endif %}
+    {% if section.settings.description != blank %}
+    <p class="featured__description">
+      {{ section.settings.description }}
+    </p>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% schema %}
+{
+"name": "Main banner",
+"settings": [
+{
+"type": "image_picker",
+"id": "desktop",
+"label": "Desktop image"
+},
+{
+"type": "image_picker",
+"id": "mobile-img",
+"label": "Mobile image"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "text",
+"id": "subtitle",
+"label": "Subtitle"
+},
+{
+"type": "textarea",
+"id": "description",
+"label": "Description"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

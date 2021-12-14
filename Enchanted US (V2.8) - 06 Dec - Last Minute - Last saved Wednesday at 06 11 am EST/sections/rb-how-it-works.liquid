@@ -1,0 +1,95 @@
+<div class="page-width">
+  <section class="section-padding-top">
+    <div class="grid">
+      <div class="grid__item medium-up--one-half grid-content">
+        <div class="section-title small--hide">
+          {% if section.settings.sub_title != blank %}
+          <span class="sub-title">{{ section.settings.sub_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+          <h2 class="align-left">{{ section.settings.title }}</h2>
+          {% endif %}
+        </div>
+        <ul>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16.001" height="16" viewBox="0 0 16.001 16">
+              <g id="Group_130107" data-name="Group 130107" transform="translate(-159 -2202.863)">
+                <path id="Path_242313" data-name="Path 242313" d="M58.158,137.473a8.079,8.079,0,0,1,8.012-8.026l-.237.008a7.861,7.861,0,0,1-7.8-7.982h0a7.8,7.8,0,0,1-7.728,7.975l-.237.008a8.052,8.052,0,0,1,7.989,8.013Z" transform="translate(108.831 2081.391)" fill="#bc913f"/>
+                <text id="_1" data-name="1" transform="translate(165 2213)" fill="#fff" font-size="8" font-family="PlayfairDisplay-Regular, Playfair Display"><tspan x="0" y="0">1</tspan></text>
+              </g>
+            </svg>
+            <span>Sign up</span>
+            <p>Join us today & get bonus Sparkle <br>points.</p>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16.001" height="16" viewBox="0 0 16.001 16">
+              <g id="Group_130107" data-name="Group 130107" transform="translate(-159 -2202.863)">
+                <path id="Path_242313" data-name="Path 242313" d="M58.158,137.473a8.079,8.079,0,0,1,8.012-8.026l-.237.008a7.861,7.861,0,0,1-7.8-7.982h0a7.8,7.8,0,0,1-7.728,7.975l-.237.008a8.052,8.052,0,0,1,7.989,8.013Z" transform="translate(108.831 2081.391)" fill="#bc913f"/>
+                <text id="_1" data-name="1" transform="translate(165 2213)" fill="#fff" font-size="8" font-family="PlayfairDisplay-Regular, Playfair Display"><tspan x="0" y="0">1</tspan></text>
+              </g>
+            </svg>
+            <span>Earn</span>
+            <p>Redeem Sparkles against vouchers or pay using <br>Sparkles.</p>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16.001" height="16" viewBox="0 0 16.001 16">
+              <g id="Group_130107" data-name="Group 130107" transform="translate(-159 -2202.863)">
+                <path id="Path_242313" data-name="Path 242313" d="M58.158,137.473a8.079,8.079,0,0,1,8.012-8.026l-.237.008a7.861,7.861,0,0,1-7.8-7.982h0a7.8,7.8,0,0,1-7.728,7.975l-.237.008a8.052,8.052,0,0,1,7.989,8.013Z" transform="translate(108.831 2081.391)" fill="#bc913f"/>
+                <text id="_1" data-name="1" transform="translate(165 2213)" fill="#fff" font-size="8" font-family="PlayfairDisplay-Regular, Playfair Display"><tspan x="0" y="0">1</tspan></text>
+              </g>
+            </svg>
+            <span>Shop</span>
+            <p>Earn Sparkles every time you shop.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__item medium-up--one-half grid-image">
+        <div class="section-title medium-up--hide">
+          {% if section.settings.sub_title != blank %}
+          <span class="sub-title">{{ section.settings.sub_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+          <h2 class="align-left">{{ section.settings.title }}</h2>
+          {% endif %}
+        </div>
+        <div class="image_wrapper">
+          <img class="lazyload small--hide" data-src="{{ section.settings.banner_desk | img_url: 'master' }}" data-sizes="auto" alt="">
+          <img class="lazyload medium-up--hide" data-src="{{ section.settings.banner_mob | img_url: 'master' }}" data-sizes="auto" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "How it works",
+  "class": "rewards-how-it-works",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",			
+    "default": "Works"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Sub title",			
+    "default": "How it"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_desk",
+    "label": "Banner (Desktop)",			
+    "info": "Recommended size: 540px * 432px"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_mob",
+    "label": "Banner (Mobile)",			
+    "info": "Recommended size: 374px * 414px"
+  }
+  ]
+}
+{% endschema %}

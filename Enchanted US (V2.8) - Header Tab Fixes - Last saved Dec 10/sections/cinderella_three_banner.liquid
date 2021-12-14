@@ -1,0 +1,74 @@
+{% include 'princess_three_banner_snip' %}
+
+{% schema %}
+{
+  "name": "Three banner",
+  "class": "three-block_mobile-slider",
+  "max_blocks": 3,
+  "settings": [
+  {
+    "type": "text",
+    "id": "seasonal-heading",
+    "label": "Heading",
+    "default": "Jewelili seasonal deals"
+  },
+  {
+    "type": "text",
+    "id": "seasonal-subheading",
+    "label": "Sub Heading",
+    "default": "Select styles at a great value"
+  },
+  {
+    "type": "checkbox",
+    "id": "show_shop_btn",
+    "label": "Show shop now button",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "mobile_slider",
+    "label": "Show slider for mobile",
+    "default": false
+  }
+  ],
+  "blocks": [
+  {
+    "type": "text_block",
+    "name": "Image",
+    "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_image",
+      "label": "Show image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hover_img",
+      "label": "Hover Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Block title"
+    },
+    {
+      "type": "text",
+      "id": "tackin_id",
+      "label": "Tracking ID"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Banner link"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

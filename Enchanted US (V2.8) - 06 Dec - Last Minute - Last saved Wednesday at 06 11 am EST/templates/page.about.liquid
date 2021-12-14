@@ -1,0 +1,33 @@
+<section class="page__content" data-section-type="shopinfo__page" data-section-id="{{ section.id }}">
+  <div class="inner__wrapper">
+    <div class="content__full-width">
+      <h1 class="content_center" style="text-align:center;">{{ page.title }}</h1>
+    </div>
+    <p>
+      Welcome to EnchantedFineJewelry.com, manufactured and fulfilled by Renaissance Global, an official licensee of Disney Consumer Products, Inc.
+    </p>
+    <p>
+      Enchanted Disney Fine Jewelry is a collection of diamond, gold and gemstone jewelry inspired by the romance of Disney fairy tales. The collection celebrates Happily Ever After with jewelry inspired by Disney Princesses and Villains, Frozen and Tinker Bell. It celebrates a woman’s beauty, elegance, independence, and style, and also, most importantly love. Whether someone is getting ready to propose to a soul mate, buying a gift for a daughter, or treating herself, Enchanted Disney Fine Jewelry celebrates every moment meaningfully. Enchanted Disney Fine Jewelry allows every woman to beautifully express her inner Princess.
+    </p>
+    <p>
+      Every Enchanted piece meets the exacting standards of Disney, with the lasting quality and craftsmanship to become an heirloom handed down from one generation to the next. We are proud to bring the enchantment of Disney storytelling to the world of fine jewelry for the millions of Disney fans, making their Jewelry dreams come true.
+    </p>
+    <p>
+      Renaissance Jewelry is part of Renaissance Global, a highly differentiated luxury lifestyle products company that designs, manufactures and sells fine jewelry to global retailers.
+    </p>
+    <p>
+      The company designs and manufactures for speciality jewelry retailers like Fred Meyer, Helzberg Diamonds, Joyalukkas, Malabar, Signet Jewelers and department store chains like JCPenney, Macy’s and Walmart. It’s also a trusted supplier to catalogue e-commerce and television retailers like Amazon, Argos and Jewelry Television. The company has maintained its relationship with more than 50 customers across the USA, UK and the Middle East. Renaissance Global employs more than 150 designers with expertise in global fashion trends across the USA, UK, Hong Kong and Dubai. With its investment in the latest technologies and human talent, it has the ability to craft over 1,000 unique designs per month.
+    </p>
+    {% for block in section.blocks %}
+    {% assign content-heading = block.settings.content-heading %}
+    {% assign content-text = block.settings.content-text %}
+
+    {% if content-heading != blank %}
+    <h4>{{ content-heading }}</h4>
+    {% endif %}
+    {% if content-text != blank %}
+    {{ content-text }}
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

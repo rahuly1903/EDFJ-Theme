@@ -1,0 +1,145 @@
+<!-- home-the-chateau.liquid -->
+{% if section.settings.show_section %}
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="section-wrapper">
+      <div class="sparkle-element left small--hide">
+        <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/sparkle-element.svg?v=1635318258" alt="" />
+      </div>
+      {% assign banner_desk = section.settings.image_desk | img_url: 'master' %}
+      <img class="lazyload small--hide bg-image" 
+      src="{{ banner_desk }}"
+      data-src="{{ banner_desk }}" 
+      data-sizes="auto" 
+      alt="" />
+      {% assign banner_mob = section.settings.image_mob | img_url: 'master' %}
+      <img class="lazyload medium-up--hide bg-image" 
+      src="{{ banner_mob }}"
+      data-src="{{ banner_mob }}" 
+      data-sizes="auto" 
+      alt="" />
+      <div class="banner-content text-center">
+        {% if section.settings.sub_title != blank %}
+        <span class="sub-title">{{ section.settings.sub_title }}</span>
+        {% endif %}
+        {% if section.settings.logo != blank %}
+        <div class="the-chateau-logo">{{ section.settings.logo }}</div>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        <div class="text">{{ section.settings.text }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+        <a {% if section.settings.button_link != blank %}href="{{ section.settings.button_link }}"{% endif %} class="btn-border{% if section.settings.button_color != 'blue' %} btn-{{ section.settings.button_color }}{% endif %}{% if section.settings.button_hover_color != 'gold' %} btn-hover-{{ section.settings.button_hover_color }}{% endif %}">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          {{ section.settings.button_label }}
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </a>
+        {% endif %}
+      </div>
+      <div class="sparkle-element right small--hide">
+        <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/sparkle-element-1.svg?v=1635316494" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "The Chateau",
+  "class": "the-chateau-section",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "show_section",
+    "label": "Show section",
+    "default": true
+  },
+  {
+    "type": "image_picker",
+    "id": "image_desk",
+    "label": "Image (Desktop)",
+    "info": "Recommended size: 1280px * 558px"
+  },
+  {
+    "type": "image_picker",
+    "id": "image_mob",
+    "label": "Image (Mobile)"
+  },
+  {
+    "type": "textarea",
+    "id": "logo",
+    "label": "Logo"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Sub Title",
+    "default": "Sub Title"
+  },
+  {
+    "type": "richtext",
+    "id": "text",
+    "label": "Text",
+    "default": "<p>Text goes here.</p>"
+  },
+  {
+    "type": "text",
+    "id": "button_label",
+    "label": "Button label",
+    "default": "Shop all"
+  },
+  {
+    "type": "url",
+    "id": "button_link",
+    "label": "Button link"
+  },
+  {
+    "type": "select",
+    "id": "button_color",
+    "label": "Button color",
+    "default": "blue",
+    "options": [
+    {
+      "value": "blue",
+      "label": "Blue"
+    },
+    {
+      "value": "gold",
+      "label": "Gold"
+    },
+    {
+      "value": "white",
+      "label": "White"
+    }
+    ]
+  },
+  {
+    "type": "select",
+    "id": "button_hover_color",
+    "label": "Button hover color",
+    "default": "gold",
+    "options": [
+    {
+      "value": "gold",
+      "label": "Gold"
+    },
+    {
+      "value": "blue",
+      "label": "Blue"
+    },
+    {
+      "value": "white",
+      "label": "White"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "The Chateau",
+    "category": "Image"
+  }
+  ]
+}
+{% endschema %}

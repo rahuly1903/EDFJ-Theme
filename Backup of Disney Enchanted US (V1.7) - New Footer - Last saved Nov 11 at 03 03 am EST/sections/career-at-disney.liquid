@@ -1,0 +1,66 @@
+<section data-section-type="career__slider" data-section-id="{{ section.id }}">
+  <div class="career__slider">
+    <div class="ed--wrapper">
+      {% assign title = section.settings.slider-title %}
+      {% assign subtitle = section.settings.slider-subtitle %}
+      {% assign section-bg = section.settings.section-bg %}
+      {% if title != blank %}
+      <h2>{{ title }}</h2>
+      {% endif %}
+      {% if subtitle != blank %}
+      <h5>{{ subtitle }}</h5>
+      {% endif %}
+      
+      <div class="career__slider--inner">
+        {% for block in section.blocks %}
+        {% assign career-img = block.settings.career %}
+        {% assign career-title = block.settings.career-title %}
+        <div>
+          <div class="career__slide">
+            <a href="#">
+              <span class="career_img"><img class="lazyload" data-src="{{ career-img | img_url:'master' }}" data-sizes="auto" alt="Enchanted Disney" /></span>
+              <span class="career_title">{{ career-title }}</span>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Career Slider",
+  "settings": [
+  {
+    "type": "text",
+    "id": "slider-title",
+    "label": "Title"
+  },
+  {
+    "type": "text",
+    "id": "slider-subtitle",
+    "label": "Subtitle"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "career-slides",
+    "name": "Career Slides",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "career",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "career-title",
+      "label": "Title"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

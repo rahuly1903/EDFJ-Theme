@@ -1,0 +1,51 @@
+{% if customer %}
+<div class="mm-product-price slider">
+  {% assign hasManualDiscount = false %}
+  {% for tag in product.tags %}
+    {% if tag contains '20%' %}
+		{% assign priceAfterDiscount = product.price | times:0.2 %}
+  		{% assign sellingPrice = product.price | minus: priceAfterDiscount %}
+  		{% assign hasManualDiscount = true %}
+  		{% break %}
+    {% endif %}
+    {% if tag contains '25%' %}
+		{% assign priceAfterDiscount = product.price | times:0.25 %}
+  		{% assign sellingPrice = product.price | minus: priceAfterDiscount %}
+  		{% assign hasManualDiscount = true %}
+  		{% break %}
+    {% endif %}
+    {% if tag contains '30%' %}
+		{% assign priceAfterDiscount = product.price | times:0.3 %}
+  		{% assign sellingPrice = product.price | minus: priceAfterDiscount %}
+  		{% assign hasManualDiscount = true %}
+  		{% break %}
+    {% endif %}
+    {% if tag contains '50%' %}
+		{% assign priceAfterDiscount = product.price | times:0.16666667 %}
+  		{% assign sellingPrice = product.price | minus: priceAfterDiscount %}
+  		{% assign hasManualDiscount = true %}
+  		{% break %}
+    {% endif %}
+  {% endfor %}
+  {% if hasManualDiscount %}
+  <div class="mm-price">{{ sellingPrice | money }}</div>
+  {% if product.compare_at_price > product.price %}
+  <div class="mm-original-price">{{ product.compare_at_price | money }}</div>
+  {% else %}
+  <div class="mm-original-price">{{ product.price | money }}</div>
+  {% endif %}
+  {% else %}
+  <div class="mm-price">{{ product.price | money }}</div>
+  {% if product.compare_at_price > product.price %}
+  <div class="mm-original-price">{{ product.compare_at_price | money }}</div>
+  {% endif %}
+  {% endif %}
+</div>
+{% else %}
+<div class="mm-product-price slider">
+  <div class="mm-price">{{ product.price | money }}</div>
+  {% if product.compare_at_price > product.price %}
+  <div class="mm-original-price">{{ product.compare_at_price | money }}</div>
+  {% endif %}
+</div>
+{% endif %}

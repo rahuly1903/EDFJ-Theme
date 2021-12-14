@@ -1,0 +1,108 @@
+<section id="two-banner-section" class="small--page-width" data-section-type="craftsmanship__section" data-section-id="{{ section.id }}">
+  <div class="craftsmanship__section">      
+    <div class="craftsmanship__section--inner">
+      {% for block in section.blocks limit: 2 %}
+      {%- assign first_title = block.settings.title -%}
+      {% assign video-placeholder = block.settings.video-placeholder | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      {% assign mobile_banner = block.settings.mobile_banner | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      {% assign video-title = block.settings.video-title %}
+      {% assign video-desc = block.settings.video-desc %}
+      {% assign learn-button = block.settings.learn-button %}
+      {% assign video-button-url = block.settings.video-button-url %}
+      
+      <div class="inner_twobanners innerpage__banner left_aligned">
+        {% if block.settings.video-placeholder != blank %}
+        <div class="absolute-image-wrapper small--hide" style="padding-top:{{ 1 | divided_by: block.settings.video-placeholder.aspect_ratio | times: 100}}%;">
+          <img
+          class="lazyload" 
+          data-src="{{ video-placeholder }}" 
+          data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-sizes="auto" />
+        </div>
+        {% endif %}
+        {% if block.settings.mobile_banner != blank %}
+        <div class="absolute-image-wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.mobile_banner.aspect_ratio | times: 100}}%;">
+          <img
+          class="lazyload" 
+          data-src="{{ mobile_banner }}" 
+          data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-sizes="auto" />
+        </div>
+        {% endif %}
+        <div class="mothers-information small--text-center">
+          {% if  first_title!= blank %}
+          <p class="title">{{ first_title }}</p>
+          {% endif %}
+          {% if video-title != blank %}
+          <h3 class="main_title">{{ video-title }}</h3>
+          {% endif %}
+          {% if video-desc != blank %}
+          <p class="text">{{ video-desc }}</p>
+          {% endif %}
+          {% if learn-button != blank %}
+          <a {% if video-button-url != blank %}href="{{ video-button-url }}"{% endif %} >
+            {{ learn-button }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 12 13"><defs><style>.a{fill:#fff;opacity:0;}.b{fill:#1d1b1d;stroke:#1d1b1d;stroke-width:0.2px;}</style></defs><g transform="translate(-204 -1102)"><rect class="a" width="12" height="13" transform="translate(204 1102)"/><g transform="translate(224.493 1029.152) rotate(-180)"><path class="b" d="M14.346-73.848a5.647,5.647,0,0,0,5.605-5.605,5.648,5.648,0,0,0-5.611-5.605,5.642,5.642,0,0,0-5.6,5.605A5.65,5.65,0,0,0,14.346-73.848Zm0-.934A4.649,4.649,0,0,1,9.68-79.453a4.644,4.644,0,0,1,4.66-4.671,4.661,4.661,0,0,1,4.677,4.671A4.65,4.65,0,0,1,14.346-74.782Zm-2.825-4.677a.452.452,0,0,0,.154.324l1.857,1.863a.4.4,0,0,0,.286.115.4.4,0,0,0,.4-.4.406.406,0,0,0-.121-.3l-.687-.676-.665-.561,1.165.044h2.863a.4.4,0,0,0,.412-.412.4.4,0,0,0-.412-.412H13.906l-1.16.044.659-.555.687-.681a.405.405,0,0,0,.121-.291.387.387,0,0,0-.4-.4.394.394,0,0,0-.286.11l-1.857,1.863A.428.428,0,0,0,11.521-79.459Z" transform="translate(0 0)"/></g></g></svg>
+          </a>
+          {% endif %}
+        </div>
+        {% if block.settings.video-button-url != blank %}
+        <a class="banner-link" href="{{ video-button-url }}/"></a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Craftsmanship Section",
+  "class": "index-section",
+  "blocks": [
+  {
+    "type": "craftsmanship-video",
+    "name": "Two Image",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "video-placeholder",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "First title",
+      "default": "gifts for"
+    },
+    {
+      "type": "text",
+      "id": "video-title",
+      "label": "Video Title"
+    },
+    {
+      "type": "text",
+      "id": "video-desc",
+      "label": "Video Description"
+    },
+    {
+      "type": "text",
+      "id": "learn-button",
+      "label": "Video Button Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "video-button-url",
+      "label": "Video Button URL"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

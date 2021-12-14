@@ -1,0 +1,162 @@
+<section id="section-{{ section.id }}" class="section-spacing" data-section-type="video__section" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.section-bg %}
+  {% assign popup-img = section.settings.popup-img %}
+  {% assign popup-heading = section.settings.popup-heading %}
+  {% assign popup-subheading = section.settings.popup-subheading %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  {% capture text_layout %}
+  {% if section.settings.text != blank %}
+  <div class="text">{{ section.settings.text }}</div>
+  {% endif %}
+  {% if section.settings.button_label and section.settings.button_link != blank %}
+  <a href="{{ section.settings.button_link }}" class="">{% include 'btn-know-more' %}</a>
+  {% endif %}
+  {% endcapture %}
+  <div class="page-width page-width-pd-0">
+    <div class="content top text-center">
+      {% include 'section-header' %}
+      {% if section.settings.text_alignment == 'top' %}
+      {{ text_layout }}
+      {% endif %}
+    </div>
+    {% if section.settings.video_link != blank %}
+    <div class="video__section">
+      <div class="video__wrapper">
+        <div class="fullwidth__video">
+          <iframe src="{{ section.settings.video_link }}" 
+                  width="100%" 
+                  height="568" 
+                  frameborder="0" 
+                  webkitallowfullscreen="" 
+                  mozallowfullscreen="" 
+                  allowfullscreen="">
+          </iframe>
+          <div class="taketo__quiz">
+            <span class="replay">Replay</span>
+            <span class="close_quiz">×</span>
+            {% if popup-img != nil %}
+            <span class="quiz_contant-img"><img class="lazyload" data-src="{{ popup-img | img_url: 'master' }}" data-sizes="auto"></span>
+            {% endif %}
+            {% if popup-heading != blank %}
+            <h2>{{ popup-heading }}</h2>
+            {% endif %}
+            {% if popup-subheading != blank %}
+            <h5>{{ popup-subheading }}</h5>
+            {% endif %}
+            {% if button-label != blank %}
+            <a href="{{ button-url }}" class="btn">{{ button-label }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if section.settings.text_alignment == 'bottom' %}
+    <div class="content bottom text-center">
+      {{ text_layout }}
+    </div>
+    {% endif %}
+  </div>
+</section>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+  var iframe = document.querySelector('.fullwidth__video iframe');
+  var player = new Vimeo.Player(iframe);
+  
+  player.on('ended', function() {
+    $('.taketo__quiz').addClass('visible');
+    
+    $('.close_quiz').on('click', function() {
+      $('.taketo__quiz').removeClass('visible');
+      player.loadVideo();
+    });
+    
+    $('.replay').on('click', function() {
+      $('.taketo__quiz').removeClass('visible');
+      player.play();
+    });
+  });
+</script>
+<style>
+  {% if section-bg != nil %}
+  .video__section {
+    background-image: url('{{ section-bg | img_url: 'master' }}');
+  }
+  {% endif %}
+  {% if section.settings.max_width != blank %}
+  @media screen and (min-width: 750px) {
+    .video-section #section-{{ section.id }} .content .text {max-width: {{ section.settings.max_width }}px;}
+  }
+  {% endif %}
+</style>
+{% schema %}
+  {
+    "name": "Home Video Section",
+	"class": "video-section",
+    "settings": [
+	  {
+		"type": "url",
+		"id": "video_link",
+		"label": "Video link"
+	  },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+		"default": "Title"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+		"default": "Subtitle"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing, elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+		"default": "Know more"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "default": "top",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+	  },
+      {
+        "type": "text",
+        "id": "max_width",
+        "label": "Text max width (px)",
+		"default": "540"
+      }
+    ],
+    "presets": [
+      {
+        "category": "Home Video Section",
+        "name": "Video Section"
+      }
+    ]
+  }
+{% endschema %}

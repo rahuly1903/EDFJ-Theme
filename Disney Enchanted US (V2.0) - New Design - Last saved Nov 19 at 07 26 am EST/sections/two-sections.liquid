@@ -1,0 +1,140 @@
+{% if section.settings.show_section %}
+<section class="section-wrapper">
+  <div class="page-width">
+    <div class="grid">
+      {% for block in section.blocks %}
+      <div class="grid__item medium-up--one-half">
+        {% if block.settings.button_link != blank %}
+        <a {% if block.settings.tracking_id != blank %}id="{{ block.settings.tracking_id }}"{% endif %} href="{{ block.settings.button_link }}" class="column-wrapper">
+          {% endif %}
+          {% assign banner_image_desk = block.settings.image_desk | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+          <div class="image-wrapper absolute-image-wrapper small--hide" style="padding-top:{{ 1 | divided_by: block.settings.image_desk.aspect_ratio | times: 100 }}%;">
+            <img class="lazyload" 
+            data-src="{{ banner_image_desk }}" 
+            data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+            data-aspectratio="{{ block.settings.image_desk.aspect_ratio }}" 
+            data-sizes="auto"
+            alt="" />
+          </div>
+          {% assign banner_image_mob = block.settings.image_mob | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+          <div class="image-wrapper absolute-image-wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.image_mob.aspect_ratio | times: 100 }}%;">
+            <img class="lazyload" 
+            data-src="{{ banner_image_mob }}" 
+            data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+            data-aspectratio="{{ block.settings.image_mob.aspect_ratio }}" 
+            data-sizes="auto"
+            alt="" />
+          </div>
+          <div class="content">
+            {% if block.settings.column_title != blank %}
+            <h3>{{ block.settings.column_title }}</h3>
+            {% endif %}
+            {% if block.settings.column_text != blank %}
+            <p>{{ block.settings.column_text }}</p>
+            {% endif %}
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <span href="{{ block.settings.button_link }}" class="btn-border btn-white">
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+              {{ block.settings.button_label }}
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            </span>
+            {% endif %}
+          </div>
+          {% assign product_img = block.settings.product_image | img_url: 'master' %}
+          <div class="image-wrapper product-image">
+            <img class="lazyload" 
+            src="{{ product_img }}"
+            data-src="{{ product_img }}" 
+            data-sizes="auto" 
+            alt="" />
+          </div>
+          {% if block.settings.button_link != blank %}
+        </a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Two columns",
+  "class": "two-columns-section",
+  "max_blocks": 2,
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "show_section",
+    "label": "Show section",
+    "default": true
+  }
+  ],
+  "blocks": [
+  {
+    "type": "column",
+    "name": "Column",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_desk",
+      "label": "Image (Desktop)",
+      "info": "Recommended size: 575px * 558px"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mob",
+      "label": "Image (Mobile)",
+      "info": "Recommended size: 394px * 558px"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "column_title",
+      "label": "Column title",
+      "default": "Column title"
+    },
+    {
+      "type": "text",
+      "id": "column_text",
+      "label": "Column text",
+      "default": "Column text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Discover"
+    },
+    {
+      "type": "text",
+      "id": "tracking_id",
+      "label": "Tracking ID"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "Two columns",
+    "category": "Image"
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

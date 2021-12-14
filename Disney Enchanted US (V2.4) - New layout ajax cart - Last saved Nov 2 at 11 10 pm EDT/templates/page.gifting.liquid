@@ -1,0 +1,18 @@
+{% include 'gifting-css' %}
+<div class="gift-page-container">
+  
+  {% section 'hero-header' %}
+  {% comment %}
+  {% section 'gift-title' %}
+  {% endcomment %}
+  {% section 'three-block-banner' %}
+  
+  {% section 'full-width-banner' %}
+  
+  {% section 'two-block-banner' %}
+  
+  {% section 'gift-links' %}
+  {% comment %}
+  {{ page.content | split:"<!-- footer seo -->" | last }}
+  {% endcomment %}
+</div>

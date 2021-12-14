@@ -1,0 +1,16 @@
+
+<div class="mm-product-price slider">
+  
+  {% if product.compare_at_price > product.price %}
+  <div class="mm-original-price">{{ product.compare_at_price | money }}</div>
+  {% endif %}
+  <div class="mm-price">{{ product.price | money }}</div>
+  {% if product.compare_at_price > product.price %}
+  <span class="price-item--discount">
+    {% capture discount %}
+    ({{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | money_without_currency | times: 100 | remove: '.0'}}% Off)
+    {% endcapture %}
+    {{ discount }}
+  </span>
+  {% endif %}
+</div>

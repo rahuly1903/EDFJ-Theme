@@ -1,0 +1,74 @@
+{% if section.settings.enable_section %}
+<section class="sparkles-elements-wrapper">
+  <div class="sparkle-element left">
+    <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/sparkle-element-left.svg?v=1631614083" alt="" />
+  </div>
+  <div class="page-width">
+    <div class="banner-content text-center">
+      {% assign image = section.settings.image | img_url: 'master' %}
+      <div class="image-wrapper">
+        <img class="lazyload"
+             src="{{ image }}"
+             data-src="{{ image }}"
+             data-sizes="auto"
+             alt="" />
+      </div>
+      <div class="the-chateau-logo">
+        {% include 'the-chateau-logo' %}
+      </div>
+      {% if section.settings.text != blank %}
+      <div class="text">{{ section.settings.text }}</div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="sparkle-element right">
+    <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/sparkle-element-right.svg?v=1631614568" alt="" />
+  </div>
+</section>
+{% endif %}
+
+<style>
+  @media screen and (min-width: 750px) {
+    {% if section.settings.max-width != blank %}
+    .tc-main-banner .text {max-width: {{ section.settings.max-width }}px;}
+    {% endif %}
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Main banner",
+	"class": "tc-main-banner",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "Recommended size 601x184 (px)"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing, elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim</p>"
+      },
+      {
+        "type": "text",
+        "id": "max-width",
+        "label": "Content max width (px)"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

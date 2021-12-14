@@ -1,0 +1,74 @@
+<section class="innerpage__banner" data-section-type="inspirations__page--banner" data-section-id="{{ section.id }}">
+  {% assign page-bg = section.settings.page-bg %}
+  {% assign banner = section.settings.page-banner %}
+  {% assign heading = section.settings.heading %}
+  {% assign sub-heading = section.settings.sub-heading %}
+  {% assign paragraph = section.settings.paragraph %}
+  
+  {% if banner != nil %}
+  <div class="banner_container">
+    <img src="{{ banner | img_url: 'master' }}" alt="Enchanted Disney" />
+    <div class="banner_text">
+      {% if heading != blank %}
+      <h2>{{ heading }}</h2>
+      {% endif %}
+      {% if sub-heading != blank %}
+      <h5>{{ sub-heading }}</h5>
+      {% endif %}
+      {% if paragraph != blank %}
+      <p>{{ paragraph }}</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<style>
+  {% if page-bg != nil %}
+  .main-content {
+      background-image: url('{{ page-bg | img_url: 'master' }}');
+      background-position: center 24em;
+      background-repeat: no-repeat;
+      background-size: contain;
+      }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Banner Section",
+    "settings": [
+      {
+      "type": "image_picker",
+      "id": "page-bg",
+      "label": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "page-banner",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub-heading",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "paragraph",
+        "label": "Paragraph"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

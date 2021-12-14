@@ -1,0 +1,91 @@
+{% if section.settings.enable_payment_button %}
+{% if current_variant.available %}
+{{ form | payment_button }}
+{% endif %}
+{% endif %}
+
+{% for tag in product.tags %}
+{% if tag contains 'Chateau Collection' %}
+{% assign product_chateau = tag | split:" " | first | handleize | prepend: "template_" %}
+{% endif %}
+{% endfor %}
+
+<div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden{% if section.settings.enable_payment_button %} product-form__error-message-wrapper--has-payment-button{% endif %}" data-error-message-wrapper role="alert">
+  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+  {% include 'icon-error' %}
+  <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
+</div>
+
+<div class="shopify-payment-button sticky small--hide" {% unless current_variant.available %}style="display:none;"{% endunless %}>
+  <button type="button" id="Buy-Now" class="shopify-payment-button__button shopify-payment-button__button--unbranded btn-border btn-gold {% if product_chateau == 'template_chateau' %}btn-hover-white{% else %}btn-hover-blue{% endif %}" data-testid="Checkout-button">
+    <div class="btn-sparkle">{% include 'icon-sparkle' %}</div>
+    <span class="checkout-text">Buy now</span>
+    <span class="hide" data-loader>
+      {% include 'icon-spinner' %}
+    </span>
+    <div class="btn-sparkle">{% include 'icon-sparkle' %}</div>
+  </button>
+</div>
+
+<div class="product_button">
+  <div class="product_button-cart">
+    <button id="Add-to-bag" class="btn-border btn-gold {% if product_chateau == 'template_chateau' %}btn-hover-white{% else %}btn-hover-blue{% endif %} add-to-cart-button" {% unless current_variant.available %}style="display:none;"{% endunless %} type="submit" name="add"                      
+            aria-label="{{ 'products.product.add_to_cart' | t }}"
+            {% if current_variant.available %}data-add-to-cart{% endif %}>
+      <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+      <span data-add-to-cart-text>
+        {% if product_chateau == 'template_chateau' %}
+        Order yours
+        {% else %}
+        {{ 'products.product.add_to_cart' | t }}
+        {% endif %}
+      </span>
+      <span class="hide" data-loader>
+        {% include 'icon-spinner' %}
+      </span>
+      <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+    </button>
+    <!--     <div id='mhaRnProduct'></div> -->
+    <button id="BIS_trigger" type="button" class="btn BIS_trigger">
+      <img class="lazyload" src="https://cdn.shopify.com/s/files/1/0267/0523/1943/t/70/assets/Bag-blue.svg?v=16242431330005339556" data-sizes="auto"><span>Join waiting list</span>
+    </button>
+    {% if collection_vault %}
+    <button class="btn vault-sold-out" {% unless current_variant.available %}style="display:block;"{% endunless %} type="button">
+      <img class="lazyload" data-src="{{ 'Bag-blue.svg' | asset_url }}" data-sizes="auto" />
+      <span>
+        Sold out
+      </span>
+    </button>
+    {% endif %}
+  </div>
+</div>
+
+{% comment %}<!-- Css to hide "Join waitlist button on vault product" -->{% endcomment %}
+{% if collection_vault %}
+<style>
+  #mhaRnProduct{
+    display:none !important;
+  }
+  .vault-sold-out{
+    display:none;
+  }
+  #BIS_trigger{
+    display:none !important;
+  }
+</style>
+{% endif %}
+<style>
+  #mhaRnProduct{
+    display:none !important;
+  }
+  #BIS_trigger{
+    display:none;
+  }
+  #BIS_trigger{
+    padding: 8px 20px;
+    font-size: 15px;
+    border: 1px solid rgb(236, 238, 240);
+    background: rgb(236, 238, 240);
+    color: rgb(48, 92, 140);
+  }
+</style>

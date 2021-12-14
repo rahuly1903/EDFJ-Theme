@@ -1,0 +1,114 @@
+<!-- sections/home-video.liquid -->
+<section data-section-type="video__section" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.section-bg %}
+  {% assign popup-img = section.settings.popup-img %}
+  {% assign popup-heading = section.settings.popup-heading %}
+  {% assign popup-subheading = section.settings.popup-subheading %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  <div class="video__section">
+    <div class="ed--wrapper {% if section.settings.show-full-width %}{% else %}page-width{% endif %}">
+      <div class="fullwidth__video">
+        <iframe src="https://player.vimeo.com/video/171024349?controls=1&amp;autoplay=0&amp;loop=0&amp;color=ff9933&amp;title=0&amp;byline=0&amp;portrait=0" 
+                width="1135" 
+                height="534" 
+                frameborder="0" 
+                webkitallowfullscreen="" 
+                mozallowfullscreen="" 
+                allowfullscreen="">
+        </iframe>
+        <div class="taketo__quiz">
+          <span class="replay">Replay</span>
+          <span class="close_quiz">×</span>
+          {% if popup-img != nil %}
+          <span class="quiz_contant-img"><img class="lazyload" data-src="{{ popup-img | img_url: 'master' }}" data-sizes="auto"></span>
+          {% endif %}
+          {% if popup-heading != blank %}
+          <h2>{{ popup-heading }}</h2>
+          {% endif %}
+          {% if popup-subheading != blank %}
+          <h5>{{ popup-subheading }}</h5>
+          {% endif %}
+          {% if button-label != blank %}
+          <a href="{{ button-url }}" class="btn">{{ button-label }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+  var iframe = document.querySelector('.fullwidth__video iframe');
+  var player = new Vimeo.Player(iframe);
+
+  player.on('ended', function() {
+    $('.taketo__quiz').addClass('visible');
+
+    $('.close_quiz').on('click', function() {
+      $('.taketo__quiz').removeClass('visible');
+      player.loadVideo();
+    });
+
+    $('.replay').on('click', function() {
+      $('.taketo__quiz').removeClass('visible');
+      player.play();
+    });
+  });
+</script>
+<style>
+  {% if section-bg != nil %}
+  .video__section {
+    background-image: url('{{ section-bg | img_url: 'master' }}');
+      }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "Home Video Section",
+  "settings": [
+    {
+       "type": "checkbox",
+       "id": "show-full-width",
+       "label": "Show full width video"
+    },
+    {
+      "type": "image_picker",
+      "id": "section-bg",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "popup-img",
+      "label": "Popup Image"
+    },
+    {
+      "type": "text",
+      "id": "popup-heading",
+      "label": "Popup Heading"
+    },
+    {
+      "type": "text",
+      "id": "popup-subheading",
+      "label": "Popup Sub-heading"
+    },
+    {
+      "type": "text",
+      "id": "button-label",
+      "label": "Popup Button"
+    },
+    {
+      "type": "url",
+      "id": "button-url",
+      "label": "Popup Button URL"
+    }
+  ],
+  "presets": [
+  {
+    "category": "Home Video Section",
+    "name": "Video Section",
+    "settings": {}
+  }
+  ]
+}
+{% endschema %}

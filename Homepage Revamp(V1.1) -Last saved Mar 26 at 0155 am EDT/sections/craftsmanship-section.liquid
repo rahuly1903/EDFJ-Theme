@@ -1,0 +1,139 @@
+<section data-section-type="craftsmanship__section" data-section-id="{{ section.id }}">
+  <div class="craftsmanship__section">
+    <div class="ed--wrapper">
+    
+      {% assign section-title = section.settings.section-title %}
+      {% assign section-subtitle = section.settings.section-subtitle %}
+      {% assign section-desc = section.settings.section-desc %}
+      {% assign section-bg = section.settings.section-bg %}
+      
+      {% if section-title != blank %}
+      	<h2>{{ section-title }}</h2>
+      {% endif %}
+      {% if section-subtitle != blank %}
+      	<h6>{{ section-subtitle }}</h6>
+      {% endif %}
+      {% if section-desc != blank %}
+      	<p>{{ section-desc }}</p>
+      {% endif %}
+      
+      <div class="craftsmanship__section--inner">
+        {% for block in section.blocks limit:2 %}
+        
+        {% assign video-placeholder = block.settings.video-placeholder %}
+        {% assign video-trigger-btn = block.settings.video-trigger-btn %}
+        {% assign video-title = block.settings.video-title %}
+        {% assign video-desc = block.settings.video-desc %}
+        {% assign learn-button = block.settings.learn-button %}
+        {% assign video-button-url = block.settings.video-button-url %}
+        
+        <div class="craftsmanship__section--inneritem">
+          {% if video-placeholder != nil %}
+          <div class="video_placeholder">
+            <img src="{{ video-placeholder | img_url: 'master' }}" alt="Enchanted Disney" />
+            <a href="{{ video-trigger-btn }}"></a>
+          </div>
+          {% endif %}
+          <div class="video_content">
+            {% if video-title != blank %}
+            <h3>{{ video-title }}</h3>
+            {% endif %}
+            {% if video-desc != blank %}
+            <p>{{ video-desc }}</p>
+            {% endif %}
+            {% if learn-button != blank %}
+                <a href="{% if video-button-url != blank %}{{ video-button-url }}{% endif %}" class="btn">
+                  {{ learn-button }}
+                </a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  {% if section-bg != nil %}
+    .craftsmanship__section {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+{% schema %}
+  {
+    "name": "Craftsmanship Section",
+	"class": "index-section",
+    "settings": [
+		{
+			"type": "image_picker",
+			"id": "section-bg",
+			"label": "Background Image"
+		},
+		{
+          "type": "text",
+          "id": "section-title",
+          "label": "Title",
+          "default": "Exquisite Craftsmanship"
+		},
+        {
+          "type": "text",
+          "id": "section-subtitle",
+          "label": "Subtitle",
+          "default": "Where passion to touch perfection never fades"
+        },
+		{
+          "type": "text",
+          "id": "section-desc",
+          "label": "Paragraph",
+          "default": "Years of skilled training & precision to details, makes our craftsmanship excel in every aspect."
+        }
+	],
+	"blocks": [
+		{
+			"type": "craftsmanship-video",
+			"name": "Craftsmanship Video",
+			"settings": [
+				{
+                  "type": "image_picker",
+                  "id": "video-placeholder",
+                  "label": "Video Placeholder Image"
+				},
+				{
+					"type": "url",
+                    "id": "video-trigger-btn",
+                    "label": "Video Link"
+				},
+				{
+					"type": "text",
+					"id": "video-title",
+					"label": "Video Title"
+				},
+				{
+					"type": "textarea",
+					"id": "video-desc",
+					"label": "Video Description"
+				},
+				{
+                    "type": "text",
+                    "id": "learn-button",
+                    "label": "Video Button Text",
+                    "default": "LEARN MORE"
+                },
+                {
+                    "type": "url",
+                    "id": "video-button-url",
+                    "label": "Video Button URL"
+                }
+			]
+		}
+	],
+	"presets": [
+        {
+            "category": "Craftsmanship Section",
+            "name": "Craftsmanship Section",
+            "settings": {}
+        }
+    ]
+  }
+{% endschema %}

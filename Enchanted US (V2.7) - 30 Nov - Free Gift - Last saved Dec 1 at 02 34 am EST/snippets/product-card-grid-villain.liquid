@@ -1,0 +1,81 @@
+{% comment %}
+Renders a product card using "Grid" style
+Accepts:
+- max_height: {Number} Maximum height of the product's image (required)
+- product: {Object} Product Liquid object (required)
+- show_vendor: {Boolean} Show the product's vendor depending on the section setting (optional)
+
+Usage:
+{% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+<div class="grid-view-item mm-product-card {% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
+  
+  {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  
+  {%- assign img_url_2 = product.images[1] | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  
+  {%- assign img_url_last = product.images.last | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  
+  
+  {% include "image-alt-pattern" %}
+  
+  <div class="mm-product-image {% if product.images.size > 1 and product.type contains "Ring" %} has-hover-img {% endif %}">
+    <a href="{{ product.url }}" class="mm-product-link">
+      {% for tag in product.tags %}
+      {% if tag contains 'Vault-Jan' %}
+      <div class="mm-badges">
+        <div class="sale">Valut</div>
+      </div>
+      {% break %}
+      {% endif %}
+      {% endfor %}
+      <img id="{{ img_id }}"
+      src="{{ product.featured_image | img_url:"300x" }}"
+      class="grid-view-item__image lazyload first-image"
+      alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}"
+      data-src="{{ img_url }}"
+      data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+      data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+      data-sizes="auto"
+      data-image>
+      {% if product.images.size > 1 and product.type contains "Ring"  %}
+      <span class="images-two {{ product.type }}">
+        <img id="{{ img_id }}"
+        class="grid-view-item__image lazyload"
+        alt="{{ brand }}-{{ princess }}{{ gemstone }}{{ product_name | replace: '-', '_' }}{{ material }}{%- if cttwLength.size > 1 -%}_{{ cttw2 }}CTTW{%- endif -%}"
+        data-src="{{ img_url_2 }}"
+        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+        data-aspectratio="{{ product.images[1].aspect_ratio }}"
+        data-sizes="auto"
+        data-image>
+      </span>
+      {% endif %}
+    </a>
+  </div>
+  <div class="mm-product-info">
+    {% include 'product-slider-price', variant: product.selected_or_first_available_variant, product: product, show_vendor: show_vendor %}
+    {% if page.handle != 'mid-annual-diamond-jewelry-sale' %}
+    <a href="{{ product.url }}" class="mm-product-title">{{ product.title }}</a>
+    <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" style="display: inline-block;">
+      {{ product.metafields.stamped.badge }}
+    </span>
+    {% else %}
+    <a href="{{ product.url }}" class="mm-product-title">{{ product.title | split:"Enchanted Disney Fine Jewelry" | last }}</a>
+    {% endif %}
+  </div>
+  <div class="mm-product-button">
+    <form method="post" action="/cart/add">
+      <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+      <input type="hidden" id="quantity" name="quantity" value="1">
+      {% if product.available %}
+      <button type="submit" class="btn mm-ajax-add"> Add to cart</button>
+      {% else %}
+      <button type="submit" class="btn mm-ajax-add" disabled> Out of stock</button>
+      {% endif %}
+    </form>
+  </div>
+  
+</div>

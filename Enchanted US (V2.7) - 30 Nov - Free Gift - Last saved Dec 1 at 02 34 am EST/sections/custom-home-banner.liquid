@@ -1,0 +1,483 @@
+<!-- custom-home-banner.liquid -->
+<section data-section-type="banner__slideshow" data-section-id="{{ section.id }}">
+  <div class="banner__container">
+    <div class="banner">
+      <div class="banner__slider">
+        {% for block in section.blocks %}
+        {% if block.type == 'home-banner' %}
+
+        {% assign banner = block.settings.banner-img %}
+        {% assign banner_mob = block.settings.banner-img-mob %}
+        {% assign content-first-img = block.settings.content-first-img %}
+        {% assign princess-name = block.settings.princess-name %}
+        {% assign content-paragraph = block.settings.content-paragraph %}
+        {% assign content-button = block.settings.content-button %}
+        {% assign content-button-url = block.settings.content-button-url %}
+        {% assign inspired-by = block.settings.inspired-by %}
+        {% assign princess-emoticon2 = block.settings.content-emoticon %}
+        {% assign trackingID = block.settings.banner-link-id %}
+
+        <div id="banner-slide-{{ forloop.index }}" class="banner__slider--item lazyload" >
+          <div class="banner__slider--content" id="slide-{{ forloop.index }}">
+            {% if content-first-img != nil %}
+            <img class="content__image lazyload" width="{{ content-first-img.width }}" height="{{ content-first-img.height }}" data-src="{{ content-first-img | img_url: '350x' }}" alt="Slider Content"
+                 data-sizes="auto"
+                 data-image />
+            {% endif %}
+            {% if princess-name != blank %}
+            <h1 class="{{ princess-name | handleize }}">{{ princess-name }}</h1>
+            {% endif %}
+            {% if content-paragraph != blank %}
+            <p>{{ content-paragraph }}</p>
+            {% endif %}
+            {% if content-button != blank %}
+            <a {% if trackingID != blank %}id="{{ trackingID }}"{% endif %} href="{% if content-button-url != blank %}{{ content-button-url }}{% endif %}"
+               class="btn">
+              {{ content-button }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+      </div>      
+    </div>
+    <div class="thumbnail">
+      <div class="thumbnail__slider">
+        {% for block in section.blocks %}      
+        {% if block.type == 'banner-thumb' %}
+        {% assign thumb = block.settings.banner-thumb | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        {% assign emoticon = block.settings.thumb-emoticon  %}
+        <div class="thumbnail__slider--item">
+          <img class="thumb__pic lazyload" alt="thumbnail image" data-src="{{ thumb }}"
+               data-widths="[90, 110]"
+               data-sizes="auto"
+               data-image />
+          {% if emoticon != blank %}
+          <img class="emoticon lazyload" width="36" height="36" alt="emoticon" data-src="{{ emoticon | img_url: '36x36' }}" 
+               data-widths="[36, 50]"
+               data-sizes="auto"
+               data-image />
+          {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  {% for block in section.blocks %}
+  {% if block.type == 'home-banner' %}
+
+  {% if block.settings.banner-img != blank %}
+  #banner-slide-{{ forloop.index }}{
+    background-image: url("{{ block.settings.banner-img | img_url: 'master' }}");
+      }
+  {% endif %}
+
+  {% assign inspired-by = block.settings.inspired-by %}
+  {% assign princess-emoticon2 = block.settings.content-emoticon %}
+
+  {% if inspired-by != blank %}
+  #slide-{{ forloop.index }} h1:before {
+    content: '{{ inspired-by }}';
+  }
+  {% endif %}
+
+  {% if princess-emoticon2 != nil %}
+  #slide-{{ forloop.index }} h1:after {
+    background-image: url("{{ princess-emoticon2 | img_url: 'master' }}");
+      }
+  {% endif %}
+
+  {% endif %}
+  {% endfor %}
+  #slide-1 h1:before {
+    right: -16px;
+  }
+  #slide-2 h1:before {
+    right: -0.5em;
+    top: 1em;
+  }
+  #slide-3 h1:before {
+    right: -23px;
+    top: -0.5em;
+  }
+  #slide-4 h1:before {
+    top: 10px;
+    right: -1em;
+  }
+  #slide-5 h1:before {
+    right: -0.8em;
+    top: 12px;
+  }
+  #slide-6 h1:before {
+    right: -26%;
+    top: -0.3em;
+  }
+  #slide-7 h1:before {
+    right: -1.3em;
+    top: -0.5em;
+  }
+  #slide-8 h1:before {
+    right: -23px;
+    top: -4px;
+  }
+  #slide-9 h1:before {
+    right: -20px;
+    top: -24px;
+  }
+  #slide-10 h1:before {
+    right: -15px;
+    top: -10px;
+  }
+  #slide-11 h1:before {
+    right: -10px;
+    top: 8px;
+  }
+  #slide-12 h1:before {
+    right: -24px;
+    top: -2px;
+  }
+  #slide-13 h1:before {
+    right: -20px;
+    top: -6px;
+  }
+  #slide-14 h1:before {
+    right: -15px;
+    top: -10px;
+  }
+  #slide-15 h1:before {
+    right: -16px;
+    top: -12px;
+  }
+  #slide-18 h1:before {
+    left: 0.1em;
+    top: -1.5em;
+    width: 100%;
+    font-size: 36%;
+    letter-spacing: 2.64px;
+    color: rgba(237, 204, 126, 0.9);
+    text-shadow: 0px 3px 7px rgb(0, 0, 0);
+  }
+
+  #slide-1 h1:after {
+    width: 14%;
+    right: -20%;
+  }
+  #slide-2 h1:after {
+    width: 10%;
+    right: -14%;
+    top: 4px;
+  }
+  #slide-3 h1:after {
+    width: 30%;
+    right: -40%;
+  }
+  #slide-4 h1:after {
+    width: 30%;
+    right: -40%;
+  }
+  #slide-5 h1:after {
+    width: 30%;
+    right: -40%;
+  }
+  #slide-6 h1:after {
+    width: 26%;
+    right: -50%;
+    top: -12%;
+  }
+  #slide-7 h1:after {
+    width: 32%;
+    right: -48%;
+  }
+  #slide-8 h1:after {
+    width: 30%;
+    right: -48%;
+  }
+  #slide-9 h1:after {
+    width: 14%;
+    right: -25%;
+    top: -8%;
+  }
+  #slide-10 h1:after {
+    width: 30%;
+    right: -40%;
+    top: -4%;
+  }
+  #slide-11 h1:after {
+    width: 24%;
+    right: -32%;
+    top: -8%;
+  }
+  #slide-12 h1:after {
+    width: 24%;
+    right: -34%;
+    top: -4%;
+  }
+  #slide-13 h1:after {
+    width: 26%;
+    right: -37%;
+    top: -6%;
+  }
+  #slide-14 h1:after {
+    width: 32%;
+    right: -44%;
+  }
+  #slide-15 h1:after {
+    width: 30%;
+    right: -43%;
+    top: -2%;
+  }
+
+  #slide-17 .btn{
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14px;
+    letter-spacing: 1.4px;
+    color: #000000;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin-left: 90px;
+  }
+  #slide-18 .the-collectors-edition{
+    font-family: "NewYork-Regular";
+    font-size: 2.4em;
+    letter-spacing: 7.32px;
+    color: rgba(237, 204, 126, 0.9);
+    text-shadow: 0px 3px 7px rgb(0, 0, 0);
+    text-transform: uppercase;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  #slide-18 .btn{
+    background-color: transparent;
+    border: 1px solid #ECC77A;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 1.6px;
+    color: #ECC77A;
+    text-transform: uppercase;
+  }
+  @media(min-width:768px){
+    #slide-17{
+      bottom: 284px;
+    }
+    #slide-18{
+      width: 60%;
+      bottom: 310px;
+      left: 30%;
+      text-align: center;
+    }
+  }
+
+  @media (min-width:768px) and (max-width:1024px){
+    #banner-slide-18{
+      background-position: right 0px;
+    }
+    #slide-18{
+      bottom: 240px;
+      left: 24%;
+    }
+    #slide-18 .the-collectors-edition {
+      font-size: 1.8em;
+      letter-spacing: 4.32px;
+    }
+    #slide-18 h1:before {
+      left: 5em;
+      top: -2.5em;
+      font-size: 44%;
+      text-shadow: 1px 3px 4px rgb(0, 0, 0);
+      width: 73%;
+    }
+  }
+  @media (max-width: 750px) {
+    {% for block in section.blocks %}
+    {% if block.type == 'home-banner' and block.settings.banner-img-mob != blank %}
+    #banner-slide-{{ forloop.index }}{
+      background-image: url("{{ block.settings.banner-img-mob | img_url: 'master' }}");
+        background-position: 0 -120px;
+        background-size: cover;
+        }
+    {% endif %}
+    {% endfor %}
+
+    #slide-1 h1 {
+      -webkit-transform: translateX(-5%);
+      -ms-transform: translateX(-5%);
+      transform: translateX(-5%);
+    }
+    #slide-2 h1 {
+      -webkit-transform: translateX(-15%);
+      -ms-transform: translateX(-15%);
+      transform: translateX(-15%);
+    }
+    #slide-3 h1 {
+      -webkit-transform: translateX(-20%);
+      -ms-transform: translateX(-20%);
+      transform: translateX(-20%);
+    }
+    #slide-4 h1 {
+      -webkit-transform: translateX(-15%);
+      -ms-transform: translateX(-15%);
+      transform: translateX(-15%);
+    }
+    #slide-5 h1 {
+      -webkit-transform: translateX(-15%);
+      -ms-transform: translateX(-15%);
+      transform: translateX(-15%);
+    }
+    #slide-6 h1 {
+      -webkit-transform: translateX(-25%);
+      -ms-transform: translateX(-25%);
+      transform: translateX(-25%);
+    }
+    #slide-7 h1 {
+      -webkit-transform: translateX(-25%);
+      -ms-transform: translateX(-25%);
+      transform: translateX(-25%);
+    }
+    #slide-8 h1 {
+      -webkit-transform: translateX(-10%);
+      -ms-transform: translateX(-10%);
+      transform: translateX(-10%);
+    }
+    #slide-9 h1 {
+      -webkit-transform: translateX(-10%);
+      -ms-transform: translateX(-10%);
+      transform: translateX(-10%);
+    }
+
+    #slide-17 img{
+      position: relative;
+      top: -128px;
+      left: -100px;
+      width: 180px;
+    }
+    #slide-17 .btn{
+      margin-left: 0;
+      margin-bottom: 30px;
+    }
+    #banner-slide-18{
+      background-position: 98% -85px;
+      background-size: 220%;
+    }
+    #slide-18 .the-collectors-edition {
+      font-size: 1.8em;
+      letter-spacing: 4.32px;
+    }
+    #slide-18 h1:before {
+      left: 0em;
+      top: -2.5em;
+      font-size: 44%;
+      text-shadow: 1px 3px 4px rgb(0, 0, 0);
+    }
+    #slide-18 .btn {
+      font-size: 14px;
+    }
+    #slide-18 h1 {
+      -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+  }
+</style>
+
+{% schema %}
+{
+"name": "Home Banner",
+"blocks": [
+{
+"type": "home-banner",
+"name": "Slider Image (Main)",
+"settings": [
+{
+"type": "image_picker",
+"id": "banner-img",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id": "banner-img-mob",
+"label": "Mobile Image"
+},
+{
+"type": "header",
+"content": "Slider Content"
+},
+{
+"type": "image_picker",
+"id": "content-first-img",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "inspired-by",
+"label": "Inspired By Text",
+"default": "Inspired By"
+},
+{
+"type": "text",
+"id": "princess-name",
+"label": "Princess Name"
+},
+{
+"type": "image_picker",
+"id": "content-emoticon",
+"label": "Princess Icon Image"
+},
+{
+"type": "textarea",
+"id": "content-paragraph",
+"label": "Paragraph",
+"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+},
+{
+"type": "text",
+"id": "banner-link-id",
+"label": "G Tracking ID"
+},
+{
+"type": "text",
+"id": "content-button",
+"label": "Button",
+"default": "Explore"
+},
+{
+"type": "url",
+"id": "content-button-url",
+"label": "Button Link"
+}
+]
+},
+{
+"type": "banner-thumb",
+"name": "Slider Image (Thumbnail)",
+"settings": [
+{
+"type": "image_picker",
+"id": "banner-thumb",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id": "thumb-emoticon",
+"label": "Emoticon image"
+}
+]
+}
+],
+"presets": [
+{
+"category": "Banner Slider",
+"name": "Home Banner",
+"settings": {}
+}
+]
+}
+{% endschema %}

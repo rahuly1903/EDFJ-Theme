@@ -1,0 +1,186 @@
+<section data-section-id="{{ section.id }}" data-section-type="slider-section">
+  <div id="slider-{{ section.id }}" class="main-slider">
+    {% for block in section.blocks %}
+    {%- assign max_height = 720 -%}
+    {% if block.settings.color != blank %}
+    {% assign text_color = block.settings.color %}
+    {% endif %}
+    
+    {% if block.settings.enable_banner %}
+    <a id="slide-{{block.id}}" href="{{ block.settings.button_url }}/" class="banner_slide" >
+      <div class="banner-slide">
+        {% unless block.settings.banner_large == nil %}
+        {%- assign img_url = block.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}" class="custom__image lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ block.settings.banner_large.aspect_ratio }}" data-sizes="auto" alt="{{ block.settings.banner_large.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_large.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_large.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        
+        {% unless block.settings.banner_small == nil %}
+        {%- assign img_url = block.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}" class="custom__image lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ block.settings.banner_small.aspect_ratio }}" data-sizes="auto" alt="{{ block.settings.banner_small.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_small.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_small.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        
+        {% if block.settings.title != blank or block.settings.subtitle != blank or block.settings.button_label != blank  %}
+        <div class="page-width slider-text{% if block.settings.horizontal_alignment == 'left' %} content_left-aligned{% endif %}{% if block.settings.horizontal_alignment == 'right' %} content_right-aligned{% endif %}{% if block.settings.horizontal_alignment == 'center' %} content_center-aligned{% endif %} small--text-center">
+          <div class="slider-text-container{% if block.settings.text_align == 'center' %} text-center{% endif %}{% if block.settings.text_align == 'right' %} text-right{% endif %}">
+            {% unless block.settings.subtitle == blank %}
+            <span class="subtitle">{{ block.settings.subtitle }}</span>
+            {% endunless %}
+            {% unless block.settings.title == blank %}
+            <h1>{{ block.settings.title }}</h1>
+            {% endunless %}
+            {% unless block.settings.text == blank %}
+            <div class="text">{{ block.settings.text }}</div>
+            {% endunless %}
+            {% unless block.settings.button_label == blank and block.settings.button_url == blank %}
+            <span class="btn-border btn-border-white">
+              {% include 'btn-border' %}
+              <span>{{ block.settings.button_label }}</span>
+            </span>
+            {% endunless %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </a>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% for block in section.blocks %}
+<style>
+  {% if text_color != blank %}
+  .main-slider #slide-{{block.id}} .slider-text h1, 
+  .main-slider #slide-{{block.id}} .slider-text .subtitle, 
+  .main-slider #slide-{{block.id}} .slider-text p {
+    color: {{ text_color }};
+  }
+  .main-slider #slide-{{block.id}} .slider-text .btn {
+    color: {{ text_color }};
+    border-color: {{ text_color }};
+  }
+  {% endif %}
+</style>
+{% endfor %}
+{% schema %}
+  {
+    "name": "Main slider",
+    "class": "main-slider-section",
+    "blocks": [
+      {
+        "type": "banner",
+        "name": "Banner",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_banner",
+            "label": "Enable Banner"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_large",
+            "label": "Banner Image (Desktop)",
+            "info": "Recommended size 1280x524 (px)"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_small",
+            "label": "Banner Image (Mobile)",
+            "info": "Recommended size 414x800 (px)"
+          },
+          {
+            "type": "select",
+            "id": "horizontal_alignment",
+            "label": "Content Alignment (Horizontal)",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "select",
+            "id": "text_align",
+            "label": "Text Align",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Color"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Subtitle"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Text goes here.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Main slider",
+        "category": "Advanced layout"
+      }
+    ]
+  }
+{% endschema %}

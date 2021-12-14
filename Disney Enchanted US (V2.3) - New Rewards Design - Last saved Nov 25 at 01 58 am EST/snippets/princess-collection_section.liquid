@@ -1,0 +1,77 @@
+<div class="page-width wow fadeInUp">
+  {% if section.settings.title != blank %}
+  <div class="section-header text-center">
+    <h2>{{ section.settings.title | escape }}</h2>
+    {% if section.settings.category_title != blank %}
+    <a class="btn-border btn-gold" href="{{ section.settings.category_url }}">
+      <span class="btn-sparkle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" class="icon-sparkle" viewBox="0 0 14 14"><defs><style>.icon-sparkle-a{fill:#BC913F;}</style></defs><path class="icon-sparkle-a" d="M353.073,355.509a6.979,6.979,0,0,1-7-7,6.978,6.978,0,0,1-7,7,6.978,6.978,0,0,1,7,7A6.979,6.979,0,0,1,353.073,355.509Z" transform="translate(-339.073 -348.509)"></path></svg></span>
+      {{ section.settings.category_title }}
+      <span class="btn-sparkle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" class="icon-sparkle" viewBox="0 0 14 14"><defs><style>.icon-sparkle-a{fill:#BC913F;}</style></defs><path class="icon-sparkle-a" d="M353.073,355.509a6.979,6.979,0,0,1-7-7,6.978,6.978,0,0,1-7,7,6.978,6.978,0,0,1,7,7A6.979,6.979,0,0,1,353.073,355.509Z" transform="translate(-339.073 -348.509)"></path></svg></span>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+  
+  {% case section.settings.grid %}
+  {% when 2 %}
+  {%- assign grid_item_width = 'medium-up--one-half' -%}
+  {% when 3 %}
+  {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+  {% when 4 %}
+  {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+  {% when 5 %}
+  {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+  {% endcase %}
+  
+  <div class="collection-grid">
+    <ul class="grid grid--uniform">
+      {% for block in section.blocks limit: section.blocks.size %}
+      <li class="grid__item {{ grid_item_width }}" {{ block.shopify_attributes }}>
+        {%- assign collection = collections[block.settings.collection] -%}
+        {% if collection.image %}
+        
+        {%- assign collection_image = collection.image -%}
+        {% elsif collection.products.first and collection.products.first.images != empty %}
+        
+        {%- assign collection_image_custom = block.settings.collection_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        {%- assign collection_image = collection.products.first.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        {% else %}
+        {% assign collection_image = blank %}
+        {% endif %}        
+        <div class="collection__item">
+          <a href="{% if collection.products == empty %}#{% else %}{{ collection.url }}{% endif %}" class="collection_item_link">
+            {% if block.settings.collection_image != blank %}
+            <div class="custom__item-inner--image" style="padding-top:{{ 1 | divided_by: block.settings.collection_image.aspect_ratio | times: 100}}%;">
+              <img class="lazyload custom__image" data-src="{{ collection_image_custom }}" data-widths="[180,250,300, 360]"
+              data-aspectratio="{{ block.settings.collection_image.aspect_ratio }}" 
+              data-sizes="auto" alt="{{ collection.title }}">
+            </div>
+            {% else %}
+            {% unless collection_image == blank %}
+            <div class="custom__item-inner--image" style="padding-top:{{ 1 | divided_by: collection.products.first.featured_image.aspect_ratio | times: 100}}%;">
+              <img class="lazyload custom__image" data-src="{{ collection_image }}" data-widths="[180,250,300, 360]"
+              data-aspectratio="{{ collection.products.first.featured_image.aspect_ratio }}" 
+              data-sizes="auto" alt="{{ collection.title }}">
+            </div>
+            {% endunless %}  
+            {% endif %}        
+            <div class="collection-item_title">
+              <div class="h3">
+                {% if block.settings.collection__title != blank %}
+                {{ block.settings.collection__title }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="5.576" height="10.94" viewBox="0 0 5.576 10.94">
+                  <path id="Right_arrow" data-name="Right arrow" d="M.342,10.94A.342.342,0,0,1,.1,10.357L4.826,5.631a.229.229,0,0,0,0-.323L.1.584A.342.342,0,0,1,.584.1L5.309,4.826a.911.911,0,0,1,0,1.289L.584,10.84a.341.341,0,0,1-.242.1" fill="#12204a"/>
+                </svg>                
+                {% else %}
+                {{ collection.title }}
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        </div>
+        
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

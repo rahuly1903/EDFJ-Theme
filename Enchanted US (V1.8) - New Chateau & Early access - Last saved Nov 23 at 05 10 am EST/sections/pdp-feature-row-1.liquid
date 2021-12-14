@@ -1,0 +1,122 @@
+{% if section.settings.show_section %}
+<!-- pdp-feature-row-1.liquid -->
+<div class="page-width">
+  <div class="section-wrapper">
+    <div class="grid">
+      <div class="grid__item medium-up--one-half grid__item-content">
+        <div class="content small--text-center">
+          {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+          <div class="text">{{ section.settings.text }}</div>
+          {% endif %}
+          {% if section.settings.button_label and section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="btn-border{% if section.settings.button_color != 'blue' %} btn-{{ section.settings.button_color }}{% endif %}{% if section.settings.button_hover_color != 'gold' %} btn-hover-{{ section.settings.button_hover_color }}{% endif %}">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            {{ section.settings.button_label }}
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item medium-up--one-half grid__item-image">
+        {% assign image = section.settings.image | img_url: 'master' %}
+        <video width="100%" playsinline="" autoplay muted loop poster="{{ image }}">
+          <source src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Ariel.mp4?v=1636370270" type="video/mp4">
+          Your browser does not support the video tag.
+        </video> 
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Feature row 1",
+	"class": "pdp-feature-row-1",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "show_section",
+        "label": "Show section",
+        "default": true
+      },
+	  {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+	  {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Text goes here.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Shop collection"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "button_color",
+        "label": "Button color",
+		"default": "blue",
+		"options": [
+          {
+            "value": "blue",
+            "label": "Blue"
+          },
+		  {
+            "value": "gold",
+            "label": "Gold"
+          },
+		  {
+            "value": "white",
+            "label": "White"
+          }
+		]
+      },
+      {
+        "type": "select",
+        "id": "button_hover_color",
+        "label": "Button hover color",
+		"default": "gold",
+		"options": [
+          {
+            "value": "gold",
+            "label": "Gold"
+          },
+		  {
+            "value": "blue",
+            "label": "Blue"
+          },
+		  {
+            "value": "white",
+            "label": "White"
+          }
+		]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,19 @@
+{% layout none %}
+{% assign productsJson = '' %}
+{% paginate collection.products by 100 %}
+  {% for product in collection.products %}
+	{% assign productTags = product.tags %}
+	{% if productTags contains 'Vault-Jan' and product.available %}
+		{% assign productJson = product | json %}
+		{% assign productsJson = productsJson | append:productJson | append:"," %}
+	{% else %}
+		{% assign productJson = product | json %}
+		{% assign productsJson = productsJson | append:productJson | append:"," %}
+	{% endif %}
+  {% endfor %}
+{% endpaginate %}
+{% assign sliceJsonLength = productsJson.size %}
+{% assign sliceJsonLengthMinusOne = productsJson.size | minus: 1 %}
+[
+  {{ productsJson | slice: 0,sliceJsonLengthMinusOne }}
+]

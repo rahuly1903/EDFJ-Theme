@@ -1,0 +1,75 @@
+<section class="small--page-width three-banners-section" data-section-type="craftsmanship__section" data-section-id="{{ section.id }}">
+  <div class="craftsmanship__section">      
+    <div class="craftsmanship__section--inner">
+      {% for block in section.blocks limit: 3 %}
+      {%- assign first_title = block.settings.title -%}
+      {% assign video-placeholder = block.settings.video-placeholder | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      {% assign video-title = block.settings.video-title %}
+      {% assign video-button-url = block.settings.video-button-url %}
+      
+      <div class="inner_threebanners innerpage__banner right_aligned">
+        {% if video-placeholder != nil %}
+        <div class="multi_banner_image">
+          <img
+          class="lazyload" 
+          data-src="{{ video-placeholder }}" 
+          data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-sizes="auto" />
+        </div>
+        {% endif %}
+        <div class="mothers-information">
+          {% if  first_title!= blank %}
+          <p class="title">{{ first_title }}</p>
+          {% endif %}
+          {% if video-title != blank %}
+          <h3 class="price">{{ video-title }}</h3>
+          {% endif %}
+        </div>
+        {% if block.settings.video-button-url != blank %}
+        <a class="banner-link" href="{{ video-button-url }}"></a>
+        {% endif %}   
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Three Banners",
+  "blocks": [
+  {
+    "type": "craftsmanship-video",
+    "name": "Two Image",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "video-placeholder",
+      "label": "Video Placeholder Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "First title",
+      "default": "gifts for"
+    },
+    {
+      "type": "text",
+      "id": "video-title",
+      "label": "Video Title"
+    },
+    {
+      "type": "text",
+      "id": "video-desc",
+      "label": "Video Description"
+    },
+    {
+      "type": "url",
+      "id": "video-button-url",
+      "label": "Video Button URL"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,145 @@
+<section class="innerpage__banner">
+  <div class="ed--wrapper">
+    <div class="my__account">
+      <div class="my__account--left">
+        <div class="my__account--inner">
+          <div class="form-message form-message--success hide" id="ResetSuccess" tabindex="-1">
+            {{ 'customer.recover_password.success' | t }}
+          </div>
+          
+          <div id="CustomerLoginForm" class="form-vertical">
+            
+            <h2 id="LoginHeading">{{ 'customer.login.title' | t }}</h2>
+            
+            {% form 'customer_login', novalidate: 'novalidate' %}
+            
+            <input type="hidden" name="checkout_url" id="redirect_url" value="/collections/black-friday-early-access"/>  
+            <!--             <input type="hidden" name="customer[tags]" value="HASAC"> -->
+            <input type="hidden" id="customer_tags" name="customer[tags]" value="existing"/>
+            {%- if form.errors -%}
+            <div class="form-message form-message--error">
+              <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+              {{ form.errors | default_errors }}
+            </div>
+            {%- endif -%}
+            
+            {% comment %}<label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>{% endcomment %}
+            <input
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            {%- if form.errors contains 'form' -%}
+            class="input--error"
+            aria-invalid="true"
+            {%- endif -%}
+            placeholder="{{ 'customer.login.email' | t }}"
+            >
+            
+            {% if form.password_needed %}
+            {% comment %}<label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>{% endcomment %}
+            <input
+            type="password"
+            value=""
+            name="customer[password]"
+            id="CustomerPassword"
+            {%- if form.errors contains 'form' -%}
+            class="input--error"
+            aria-invalid="true"
+            {%- endif -%}
+            placeholder="{{ 'customer.login.password' | t }}"
+            >
+            {% endif %}
+            
+            {% if form.password_needed %}
+            <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+            {% endif %}
+            
+            <button type="submit" class="btn-border" value="{{ 'customer.login.sign_in' | t }}">
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+              {{ 'customer.login.sign_in' | t }}
+              <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            </button>
+            
+            {% endform %}
+          </div>
+          
+          <div id="RecoverPasswordForm" class="hide">
+            
+            <div class="text-center">
+              <h2 id="RecoverHeading">{{ 'customer.recover_password.title' | t }}</h2>
+              <p>{{ 'customer.recover_password.subtext' | t }}</p>
+            </div>
+            
+            <div class="form-vertical">
+              {% form 'recover_customer_password' %}
+              
+              {% comment %}
+              Add a hidden span to indicate the form was submitted succesfully.
+              {% endcomment %}
+              {% if form.posted_successfully? %}
+              <span class="hide reset-password-success"></span>
+              {% endif %}
+              
+              {% comment %}<label for="RecoverEmail">{{ 'customer.recover_password.email' | t }}</label>{% endcomment %}
+              <input
+              type="email"
+              value=""
+              name="email"
+              id="RecoverEmail"
+              class="input-full{% if form.errors %} input--error{% endif %}"
+              autocorrect="off"
+              autocapitalize="off"
+              {% if form.errors %}
+              aria-invalid="true"
+              aria-describedby="RecoverEmail-email-error"
+              {%- endif -%}
+              placeholder="{{ 'customer.recover_password.email' | t }}"
+              >
+              {%- if form.errors -%}
+              <span id="RecoverEmail-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.messages['form'] }}</span>
+              </span>
+              {%- endif -%}
+              
+              <div class="text-center">
+                <p>
+                  <button type="submit" class="btn-border" value="{{ 'customer.recover_password.submit' | t }}">
+                    <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+                    {{ 'customer.recover_password.submit' | t }}
+                    <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+                  </button>
+                </p>
+                
+                <a href="#LoginHeading" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</a>
+              </div>
+              {% endform %}
+            </div>
+            
+          </div>
+          
+          {% comment %}
+          If accounts are set as optional, the following will be shown as an option
+          during checkout, not on the default /login page.
+          {% endcomment %}
+
+        </div>
+      </div>
+      <div class="my__account--right">
+        <div class="my__account--inner">
+          <h2>Create an Account</h2>
+          <p>With an Enchanted Disney Fine Jewelry account, you can save time during checkout, access your shopping from any device and earn exclusive rewards every time you shop.</p>
+          <a href="/account/register/" class="btn-border" id="customer_register_link">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            {{ 'layout.customer.create_account' | t }}
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

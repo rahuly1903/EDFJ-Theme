@@ -1,0 +1,48 @@
+<div class="instagram-wrapper">
+  {% if section.settings.title != blank %}
+  <div class="page-width section-spacing">
+    <div class="instagram__section">
+      <div class="instagram-header">
+        <h2 class="title">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+      <div class="social-link-wrapper">
+        {% include 'instagram-social-link' %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="instagram-image">
+    {{ section.settings.code }}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Instagram",
+  "settings": [
+	
+    {
+      "type": "textarea",
+      "id": "title",
+	  "label":"Instagram title"
+    },
+	{
+      "type": "textarea",
+      "id": "subtitle",
+	  "label":"Instagram subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "code",
+	  "label":"Instagram Code"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

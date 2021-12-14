@@ -1,0 +1,48 @@
+<div class="bundle-offers mm-collection product-bundle-count-{{ forloop.index0 }}" id="bundle-current-{{ forloop.index0 }}">
+  <div class="product-container sparkling-deal">
+    <div class="product-wrapper row">
+      {%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      {%- assign img_url_2 = product.images[1] | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h4>{{ product.title }}</h4>
+        <div class="mm-product-card">
+          <div class="mm-product-image has-hover-img">
+            <a href="{{ product.url }}" class="mm-product-link">
+              <div class="mm-badges"></div>
+              <img id="{{ img_id }}"
+                   class=" lazyload first-image"
+                   src="{{ product.featured_image | img_url:"600x" }}">
+              <span class="images-two">
+                <img id="{{ img_id }}"
+                     class="lazyload" src="{{ product.images[1] | img_url:"600x" }}">
+              </span>
+            </a>
+            <p class="limited-offer"><i>Limited Time Offer</i></p>
+          </div>
+          <div class="mm-product-info">
+            <h6 class="mm-product-vendor">{{ product.vendor }}</h6>
+            <div class="mm-product-price">
+              {% if product.compare_at_price > product.price %}
+              <div class="mm-sale-price">{{ product.price | money }}</div>
+              <div class="mm-original-price">{{ product.compare_at_price | money }}</div>
+              {% else %}
+              <div class="mm-price">{{ product.price | money }}</div>
+              {% endif %}
+            </div>
+
+            <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" style="display: inline-block;">{{ stamped_template }}</span>
+            <button type="button"
+                    class="shopify-payment-button__button shopify-payment-button__button--unbranded btn" 
+                    onclick='location.href="/cart/{{ product.selected_or_first_available_variant.id }}:1"'
+                    data-testid="Checkout-button">
+              <span class="checkout-text">Buy now</span>
+              <span class="hide" data-loader>
+                {% include 'icon-spinner' %}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

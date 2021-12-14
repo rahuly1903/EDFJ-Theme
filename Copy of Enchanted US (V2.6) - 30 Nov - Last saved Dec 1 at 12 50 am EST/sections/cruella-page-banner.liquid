@@ -1,0 +1,55 @@
+{% include 'princess-slider-banner-snip' %}
+
+{% if background_color != '' %}
+<style>
+  .inspiration_slider_banner .inspiration_princess{
+    background-color: {{ background_color }};
+  }
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Content Section",
+  "class": "princess_main_bannner_slider",
+  "blocks":[
+  {
+    "type": "banner-content",
+    "name": "Banner Content",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "content-img",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob_content-img",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background_color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub-heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "nav_image",
+      "label": "Nav Image"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

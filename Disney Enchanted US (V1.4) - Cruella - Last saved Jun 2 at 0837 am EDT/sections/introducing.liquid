@@ -1,0 +1,158 @@
+<section data-section-type="introducing__item" data-section-id="{{ section.id }}">
+  <div class="introducing">
+    <div class="ed--wrapper">
+      {% assign section-bg = section.settings.section-bg %}
+      {% assign heading = section.settings.content-intro2 %}
+      {% assign post-heading = section.settings.content-intro3 %}
+      {% assign content-button2 = section.settings.content-button2 %}
+      {% assign content-button-url2 = section.settings.content-button-url2 %}
+      
+      {% if heading != blank %}
+      <h2>{{ heading }}</h2>
+      {% endif %}
+      {% if post-heading != blank %}
+      <h5>{{ post-heading }}</h5>
+      {% endif %}
+      
+      <div class="introducing__collection">
+        <div class="introducing__collection-title">
+          <p class="subtitle">
+            {{ section.settings.description }}
+          </p>
+          <a href="{{ section.settings.des_link }}/" class="btn btn-reverse">
+            {{ section.settings.des_button }}
+          </a>
+        </div>
+        <div class="introducing__slider">
+          {% for block in section.blocks limit:3 %}
+          {% assign collection-img = block.settings.collection-img %}
+          {% assign short-desc = block.settings.short-desc %}
+          {% assign content-button = block.settings.content-button %}
+          {% assign collection-url = block.settings.collection-url %}
+          
+          {% assign productHandle = collection-url | split:"/products/" | last %}
+          {% assign productNew = all_products[productHandle] %}
+          
+          <div>
+            {% comment %}<h3>Inside the Vault</h3>{% endcomment %}
+            <div class="introducing__collection--item">
+              <a href="{% if collection-url != blank %}{{ collection-url }}/{% endif %}">
+                {% if collection-img != nil %}
+                <img class="lazyload" data-src="{{ collection-img | img_url: 'master' }}" alt="Enchanted Disney" data-sizes="auto" />
+                {% endif %}
+                {% include 'product-slider-price', variant: productNew.selected_or_first_available_variant, product: productNew, show_vendor: show_vendor %}
+                {% if short-desc != blank %}
+                <p>{{ short-desc }}</p>
+                {% endif %}
+                {% if content-button != blank %}
+                <span>{{ content-button }}</span>
+                {% endif %}
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+      {% if content-button2 != blank %}
+      <a href="{% if content-button-url2 != blank %}{{ content-button-url2 }}/{% endif %}" class="btn">
+        {{ content-button2 }}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<style>
+  {% if section-bg != nil %}
+  .introducing {
+    background-image: url('{{ section-bg | img_url: 'master' }}');
+  }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "Introducing Item",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "section-bg",
+    "label": "Background Image"
+  },
+  {
+    "type": "text",
+    "id": "content-intro2",
+    "label": "Heading",
+    "default": "Collection Name"
+  },
+  {
+    "type": "text",
+    "id": "content-intro3",
+    "label": "Sub Heading",
+    "default": "Limited Time Only!"
+  },
+  {
+    "type": "textarea",
+    "id": "description",
+    "label": "Description",
+    "default": "Discover exquisite fine jewelry pieces inside the Enchanted Vault that are never to be seen again once the styles go out of stock. Get them while you can and forever treasure the pieces in your own jewelry vault."
+  },
+  {
+    "type": "text",
+    "id": "des_button",
+    "label": "Description button title"
+  },
+  {
+    "type": "url",
+    "id": "des_link",
+    "label": "Description button link"
+  },
+  {
+    "type": "text",
+    "id": "content-button2",
+    "label": "Button"
+  },
+  {
+    "type": "url",
+    "id": "content-button-url2",
+    "label": "Button Link"
+  }
+  
+  ],
+  "blocks": [
+  {
+    "type": "introducing-collections",
+    "name": "Items",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "collection-img",
+      "label": "Image"
+    },
+    {
+      "type": "textarea",
+      "id": "short-desc",
+      "label": "Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "content-button",
+      "label": "Link",
+      "default": "Shop this style"
+    },
+    {
+      "type": "url",
+      "id": "collection-url",
+      "label": "Collection Link"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "category": "Introducing Item",
+    "name": "Introducing Item",
+    "settings": {}
+  }
+  ]
+}
+{% endschema %}

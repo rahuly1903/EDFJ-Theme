@@ -1,0 +1,54 @@
+<section class="inspiration_slider_banner" data-section-type="inspirations__page" data-section-id="{{ section.id }}">  
+  <div class="inspiration_princess">
+    <div class="princess_slider">
+      {% for block in section.blocks %}
+      {% assign content-img = block.settings.content-img | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      {% assign mob_content-img = block.settings.mob_content-img | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      {% assign background_color = block.settings.background_color %}
+      {% assign heading = block.settings.heading %}
+      {% assign sub-heading = block.settings.sub-heading %}
+      <div class="grid">
+        <div class="grid__item medium-up--five-twelfths">
+          <div class="text_container">
+            {% if heading != blank %}
+            <h1 class="banner_title">{{ heading }}</h1>
+            {% endif %}
+            {% if sub-heading != blank %}
+            <p class="banner_subheading">{{ sub-heading }}</p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="grid__item medium-up--seven-twelfths">
+          {% if content-img != nil %}
+          <div class="custom__item-inner--image small--hide" style="padding-top:{{ 1 | divided_by: block.settings.content-img.aspect_ratio | times: 100}}%;">
+            <img class="custom__image lazyload" data-src="{{ content-img }}" data-sizes="auto" alt="Princess banner {{ block.id }}" />
+          </div>
+          {% endif %}
+          {% if mob_content-img != nil %}
+          <div class="custom__item-inner--image medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.mob_content-img.aspect_ratio | times: 100}}%;">
+            <img class="custom__image lazyload" data-src="{{ mob_content-img }}" data-sizes="auto" alt="Princess banner {{ block.id }}" />
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="slider_nxt_btn small--hide">
+      <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/flip_element.png?v=1636361160">
+    </div>
+    <div class="inner_slider">
+      <div class="princess_slider_nav">
+        {% for block in section.blocks %}
+        {% assign nav_image = block.settings.nav_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        {% if block.settings.nav_image != blank %}
+        <div class="nav-slider custom__item-inner--image">
+          <div class="nav_img_wrapper" style="padding-top:{{ 1 | divided_by: block.settings.nav_image.aspect_ratio | times: 100}}%;">
+            <img class="lazyload custom__image" data-src="{{ nav_image }}" data-sizes="auto">
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

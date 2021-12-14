@@ -1,0 +1,70 @@
+<!-- Category Grids Seen in Mobile -->
+{% if section.settings.image != blank %}
+<div class="shopby__category--grid">
+  <div class="shopby__category--single">
+    <a href="{{ section.settings.link }}/">
+      {% capture img_id %}FeatureRowImage-desktop-val{% endcapture %}
+      {% capture wrapper_id %}FeatureRowImageWrapper-desktop-val{% endcapture %}
+      {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      {% include 'image-style', image: section.settings.image, height: 2048, wrapper_id: wrapper_id, img_id: img_id %}
+      <div id="{{ wrapper_id }}" class="small--hide">
+        <img id="{{ img_id }}"
+        class="feature-row__image lazyload"
+        src="{{ section.settings.image | img_url: '200x200' }}"
+        data-src="{{ img_url }}"
+        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+        data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+        data-sizes="auto"
+        alt="">
+      </div>
+      
+      
+      {% capture img_id %}FeatureRowImage-mobile-val{% endcapture %}
+      {% capture wrapper_id %}FeatureRowImageWrapper-mobile-val{% endcapture %}
+      {%- assign img_url = section.settings.mob_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      {% include 'image-style', image: section.settings.mob_image, height: 2048, wrapper_id: wrapper_id, img_id: img_id %}
+      <div id="{{ wrapper_id }}" class=" medium-up--hide">
+        <img id="{{ img_id }}"
+        class="feature-row__image lazyload"
+        src="{{ section.settings.mob_image | img_url: '200x200' }}"
+        data-src="{{ img_url }}"
+        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+        data-aspectratio="{{ section.settings.mob_image.aspect_ratio }}"
+        data-sizes="auto"
+        alt="">
+      </div>
+      <noscript>
+        {{ section.settings.mob_image | img_url: '600x600', scale: 2 | img_tag: section.settings.image.alt, 'feature-row__image' }}
+      </noscript>
+    </a>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Black banner",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "mob_image",
+    "label": "Mobile Image"
+  },
+  {
+    "type": "url",
+    "id": "link",
+    "label": "Image link"
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

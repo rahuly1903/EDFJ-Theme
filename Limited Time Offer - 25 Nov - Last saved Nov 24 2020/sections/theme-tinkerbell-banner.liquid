@@ -1,0 +1,108 @@
+<section class="theme__banner" data-section-type="theme__banner" data-section-id="{{ section.id }}">
+  {% assign banner = section.settings.theme-banner %}
+  {% assign princess-name = section.settings.princess-name %}
+  {% assign princess-icon = section.settings.emoticon %}
+  {% assign collection-text = section.settings.collection-text %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  
+  {% if banner != nil %}
+  <img src="{{ banner | img_url: 'master' }}" alt="Enchanted Disney" />
+  
+  <div class="theme__banner--content">
+    <div class="banner__content--inner">
+      <h1>{{ princess-name }}</h1>
+      <p>{{ collection-text }}</p>
+      {% if button-label != blank %}
+      <a href="{% if button-url != blank %}{{ button-url }}{% endif %}" class="btn">
+        {{ button-label }}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<style>
+  .breadcrumb {
+    padding: 0 4%;
+  	position: absolute;
+    max-width: none;
+    width: 100%;
+    z-index: 9;
+    top: 9.5em;
+  }
+  .breadcrumb a,
+  .breadcrumb span {
+    color: #FFFFFF;
+  }
+  {% if princess-icon != nil %}
+  .theme__banner--content h1:after {
+    width: 95px;
+    height: 51px;
+    right: -6%;
+    top: 0px;
+    background-image: url("{{ princess-icon | img_url: 'master' }}");
+    }
+  {% endif %}
+  @media (max-width: 768px) {
+    .breadcrumb {
+      top: 7.5em;
+    }
+    .theme__banner {
+      background-position: 85% center;
+      background-image: url('{{ banner | img_url: 'master' }}');
+    }
+    .theme__banner--content h1:after {
+      width: 22%;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Theme Page Banner",
+	"settings": [
+      {
+        "type": "image_picker",
+        "id": "theme-banner",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "princess-name",
+		"label": "Princess"
+      },
+      {
+        "type": "image_picker",
+        "id": "emoticon",
+        "label": "Princess Icon"
+      },
+      {
+        "type": "text",
+        "id": "collection-text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "button-label",
+        "label": "Link",
+        "default": "Discover"
+      },
+      {
+        "type": "url",
+        "id": "button-url",
+        "label": "Button Link"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+

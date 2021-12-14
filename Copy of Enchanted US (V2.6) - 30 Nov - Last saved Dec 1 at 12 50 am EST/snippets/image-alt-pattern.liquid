@@ -1,0 +1,24 @@
+{% assign brand = "enchanted_disney" %}
+{% assign princess = product.vendor | handle %}
+{% assign gemstone = '' %}
+{% assign material = '' %}
+{% assign productTitle = product.title | handle %}
+{% assign product_name_lenght = productTitle | split:princess %}
+
+{%- if product_name_lenght.size >= 2 -%}
+{% assign product_name = productTitle | split:princess | last %}
+{%- else -%}
+{% assign product_name = productTitle | downcase | split:"disney" | last %}
+{%- endif -%}
+
+{% assign cttwLength = product.title | downcase | split:"cttw" %}
+{% assign cttw = product.title | downcase | split:"cttw" | first %}
+{% assign cttw2 = cttw | split:" " | last %}
+{% for tag in product.tags %}
+  {% if tag contains 'spec--Stone Type:' %}
+  {% assign gemstone = tag | split:"spec--Stone Type:" | last | handle | replace: '-', '_' | prepend: '-' %}
+  {% endif %}
+  {% if tag contains 'spec--Metal Type:' %}
+  {% assign material = tag | split:"spec--Metal Type:" | last | handle | replace: '-', '_' | prepend: '-' %}
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,66 @@
+{% if section.settings.show_section %}
+<section class="section-spacing">
+  <div class="page-width">
+    <ul class="icons-wrapper">
+      {% for block in section.blocks %}
+      <li>
+        {% if block.settings.icon_1 != blank %}
+        {{ block.settings.icon_1 }}
+        {% endif %}
+        {% if block.settings.text != blank %}
+        <span>{{ block.settings.text }}</span>
+        {% endif %}
+        {% if block.settings.icon_2 != blank %}
+        {{ block.settings.icon_2 }}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Icons",
+	"class": "tc-icons",
+    "settings": [
+	  {
+		"type": "checkbox",
+		"id": "show_section",
+		"label": "Show section",
+		"default": true
+	  }
+	],
+	"blocks": [
+      {
+        "type": "block",
+        "name": "Block",
+		"settings": [
+          {
+            "type": "textarea",
+            "id": "icon_1",
+            "label": "Icon 1"
+          },
+		  {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+			"default": "Text"
+          },
+		  {
+            "type": "textarea",
+            "id": "icon_2",
+            "label": "Icon 2"
+          }
+		]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

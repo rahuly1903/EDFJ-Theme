@@ -1,0 +1,26 @@
+<section class="villan_banner" data-section-id="{{ section.id }}">
+  {% assign banner = section.settings.theme-banner %}
+  
+  {% if banner != nil %}
+  <a class="banner_explore">
+    <img class="lazyload" data-src="{{ banner | img_url: 'master' }}" alt="Enchanted Disney" data-sizes="auto" />
+    <div class="explore_sketch">
+      Explore
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 28 28"><defs><style>.a{fill:#fff;opacity:0;}.c{stroke:#ffffff; fill:transparent;}</style></defs><g transform="translate(-395 -1235)"><rect class="a" width="28" height="28" transform="translate(395 1235)"/><g class="b" transform="translate(396.512 1237)"><path class="c" d="M21.24-60.059a12.585,12.585,0,0,0,12.5-12.5,12.6,12.6,0,0,0-12.512-12.5A12.59,12.59,0,0,0,8.74-72.559,12.593,12.593,0,0,0,21.24-60.059ZM28.4-72.571a1.144,1.144,0,0,1-.38.833l-4.694,4.681a1.1,1.1,0,0,1-.735.294,1.01,1.01,0,0,1-1.029-1.017,1.053,1.053,0,0,1,.319-.748l1.728-1.691,1.667-1.409-2.953.11H15.137A1,1,0,0,1,14.1-72.571a1.007,1.007,0,0,1,1.042-1.054h7.181l2.953.123-1.667-1.4-1.728-1.716a1.075,1.075,0,0,1-.319-.735,1.01,1.01,0,0,1,1.029-1.017,1.038,1.038,0,0,1,.735.282l4.694,4.694A1.087,1.087,0,0,1,28.4-72.571Z" transform="translate(-8.74 85.059)"/></g></g></svg>
+    </div>
+  </a>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "First Villain Banner",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "theme-banner",
+    "label": "Image"
+  }
+  ]
+}
+{% endschema %}

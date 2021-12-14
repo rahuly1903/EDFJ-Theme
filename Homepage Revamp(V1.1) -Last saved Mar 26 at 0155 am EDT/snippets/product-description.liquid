@@ -1,0 +1,237 @@
+{% assign main_description = product.description | split: '<!--split-->' %}
+<div class="product_description--accordion">
+  {% if main_description != blank %}
+  <div class="accordion-header">Description</div>
+  <div class="accordion-content">
+    {% for description in main_description %}
+    {% if forloop.index == 1 %}  
+    {{ description }}
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% assign specTag = product.tags | join: '' %}    
+  {% if specTag contains 'spec--' or product.metafields.global['Metafield Enable'] != blank %}
+  <div class="accordion-header">Specifications</div>
+  <div class="accordion-content">            
+    <table class="">
+      <tbody>
+        {% assign showSpecificationFromMetafield = product.metafields.global['Metafield Enable'] %}
+        {% if showSpecificationFromMetafield != 0 and showSpecificationFromMetafield != blank %}
+        
+        {% assign metalType = product.metafields.global['Metal Type'] %}
+        {% if metalType != blank %}
+        <tr>
+          <td class="">Metal Type</td>
+          <td class="">{{ metalType }}</td>
+        </tr>
+        {% endif %}
+        
+        
+        {% assign centerStoneType = product.metafields.global['Center Stone Type'] %}
+        {% if centerStoneType != blank %}
+        <tr>
+          <td class="">Center Stone Type</td>
+          <td class="">{{ centerStoneType }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign centerStone = product.metafields.global['Center Stone Shape'] %}
+        {% if centerStone != blank %}
+        <tr>
+          <td class="">Center Stone Shape</td>
+          <td class="">{{ centerStone }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign centerStoneWeight = product.metafields.global['Center Stone Weight'] %}
+        {% if centerStoneWeight != blank %}
+        <tr>
+          <td class="">Center Stone Weight</td>
+          <td class="">{{ centerStoneWeight }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign DiamondType = product.metafields.global['Diamond Type'] %}
+        {% if DiamondType != blank %}
+        <tr>
+          <td class="">Diamond Type</td>
+          <td class="">{{ DiamondType }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign DiamondShape = product.metafields.global['Diamond Shape'] %}
+        {% if DiamondShape != blank %}
+        <tr>
+          <td class="">Diamond Shape</td>
+          <td class="">{{ DiamondShape }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign DiamondClarity = product.metafields.global['Diamond Clarity'] %}
+        {% if DiamondClarity != blank %}
+        <tr>
+          <td class="">Diamond Clarity</td>
+          <td class="">{{ DiamondClarity }}</td>
+        </tr>
+        {% endif %}
+        {% assign DiamondColor = product.metafields.global['Diamond color'] %}
+        {% if DiamondColor != blank %}
+        <tr>
+          <td class="">Diamond Color</td>
+          <td class="">{{ DiamondColor }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign DiamondWeight = product.metafields.global['Diamond Weight'] %}
+        {% if DiamondWeight != blank %}
+        <tr>
+          <td class="">Diamond Weight</td>
+          <td class="">{{ DiamondWeight }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign TotalDiamondWeight = product.metafields.global['Total Diamond Weight'] %}
+        {% if TotalDiamondWeight != blank %}
+        <tr>
+          <td class="">Total Diamond Weight</td>
+          <td class="">{{ TotalDiamondWeight }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign DiamondTreatmentMethod = product.metafields.global['Diamond Treatment Method'] %}
+        {% if DiamondTreatmentMethod != blank %}
+        <tr>
+          <td class="">Diamond Treatment Method</td>
+          <td class="">{{ DiamondTreatmentMethod }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign DiamondCreationMethod = product.metafields.global['Diamond Creation Method'] %}
+        {% if DiamondCreationMethod != blank %}
+        <tr>
+          <td class="">Diamond Creation Method</td>
+          <td class="">{{ DiamondCreationMethod }}</td>
+        </tr>
+        {% endif %}
+        
+        
+        
+        {% assign GemstoneType = product.metafields.global['Gemstone Type'] %}
+        {% if GemstoneType != blank %}
+        <tr>
+          <td class="">Gemstone Type</td>
+          <td class="">{{ GemstoneType }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign GemstoneShape = product.metafields.global['Gemstone Shape'] %}
+        {% if GemstoneShape != blank %}
+        <tr>
+          <td class="">Gemstone Shape</td>
+          <td class="">{{ GemstoneShape }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign GemstoneWeight = product.metafields.global['Gemstone Weight'] %}
+        {% if GemstoneWeight != blank %}
+        <tr>
+          <td class="">Gemstone Weight</td>
+          <td class="">{{ GemstoneWeight }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign SettingType = product.metafields.global['Setting'] %}
+        {% if SettingType != blank %}
+        <tr>
+          <td class="">Setting</td>
+          <td class="">{{ SettingType }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign ChainType = product.metafields.global['Chain Type'] %}
+        {% if ChainType != blank %}
+        <tr>
+          <td class="">Chain Type</td>
+          <td class="">{{ ChainType }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign Clasptype = product.metafields.global['Clasp type'] %}
+        {% if Clasptype != blank %}
+        <tr>
+          <td class="">Clasp type</td>
+          <td class="">{{ Clasptype }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign BackFinding = product.metafields.global['Back Finding'] %}
+        {% if BackFinding != blank %}
+        <tr>
+          <td class="">Back Finding</td>
+          <td class="">{{ BackFinding }}</td>
+        </tr>
+        {% endif %}
+        
+        {% assign Dimension = product.metafields.global['Product.Dimension'] %}
+        {% if Dimension != blank %}
+        <tr>
+          <td class="">Dimension*</td>
+          <td class="">{{ Dimension }}</td>
+        </tr>
+        {% endif %}
+        
+        {% else %}
+        
+        {% for tag in product.tags %}
+        {% if tag contains 'spec--' %}
+        {% assign tagName = tag | split:'--' | last %}
+        {% assign tagFirst = tagName | split:':' | first %}
+        {% assign tagLast = tagName | split:':' | last %}
+        {% if tagLast != blank %}
+        <tr>
+          <td class="">{{ tagFirst | replace: '_',' ' }}</td>
+          <td class="">{{ tagLast | replace: '-', ' ' | replace:'_',' ' }}</td>
+        </tr>
+        {% endif %}
+        {% endif %}
+        {% endfor %}   
+        
+        {% endif %}
+        
+      </tbody>
+    </table>
+    {% if Dimension != blank %}
+    <ul class="specification-note" style="font-size: 12px;line-height: 16px !important;display: inline-block;margin-top: 12px;">
+      <li>The product dimensions supplied are intended to give an approximate indication of the size of the product. Actual size may vary slightly.</li>
+      <li>Dimensions shown are of ring size 7 for Women and ring size 10 for Men</li>
+    </ul>
+    {% endif %}
+  </div>
+  {% endif %}
+  
+  {% comment %}
+  <div class="accordion-header">Reviews</div>
+  <div class="accordion-content">
+    <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+  </div>
+  {% endcomment %}
+  
+  <div class="accordion-header">Shipping & Returns</div>
+  <div class="accordion-content">
+    <h5>FAST SHIPPING & DELIVERY</h5>
+    <p>Enchanted customers get fast & reliable shipping on all orders. Free Express Shipping for all orders.</p>
+    <h5>FREE RETURNS</h5>
+    <p>All orders which have been purchased on Enchantedfinejewelry.com, may be returned for free to the Enchanted Online Shop Distribution center using our pre-paid label and return form. <a href="/pages/shipping-returns" target="_blank">Learn more about our return policy here</a>.</p>
+  </div>
+  <div class="accordion-header">Warranty</div>
+  <div class="accordion-content">
+    <p>Enchanted Disney Fine Jewelry provides a 1-year warranty on all your fine jewelry purchased from EnchantedFineJewelry.com. The warranty covers manufacturers defects in material or workmanship but it does not cover neglect or abuse.</p>
+    <h5>WARRANTY EXCEPTIONS & EXCLUSIONS</h5>
+    <p class="no-margin">The Enchanted Disney Fine Jewelry warranty does NOT cover the following items:</p>
+    <ol>
+      <li>Any damage to your jewelry purchase due to negligence or abuse. (For Example: If a stone is lost due to bent, damaged, or worn out prongs, Enchanted Disney Fine Jewelry. is not responsible for the replacement of the stone or the re-tipping of the prongs. If the jewelry was neglected and abused and the warranty becomes void.)</li>
+      <li>If another jeweler performs any repair or resizing work on an item purchased from EnchantedFineJewelry.com we will not be held responsible for any loss or defect and the warranty becomes null and void.</li>
+    </ol>
+  </div>
+</div>

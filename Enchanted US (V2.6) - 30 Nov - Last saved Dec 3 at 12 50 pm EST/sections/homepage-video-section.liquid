@@ -1,0 +1,109 @@
+<!-- sections/homepage-video-section.liquid -->
+<section data-section-type="video__section" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.section_bg %}
+  {% assign mobile-section-bg = section.settings.mobile_section_bg %}
+  {% assign popup-img = section.settings.popup-img %}
+  {% assign popup-heading = section.settings.popup-heading %}
+  {% assign popup-subheading = section.settings.popup-subheading %}
+  {% assign button-label = section.settings.button-label %}
+  {% assign button-url = section.settings.button-url %}
+  <div class="homepage-video__section">
+    <div class="homepage-video__wrapper {% if section.settings.show-full-width %}{% else %}ed--wrapper page-width{% endif %}">
+      {% comment %}
+      {% assign image_desk = section.settings.section_bg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="absolute-image-wrapper small--hide" style="padding-top:{{ 1 | divided_by: section.settings.section_bg.aspect_ratio | times: 100 }}%;">
+        <img class="lazyload" 
+             data-src="{{ image_desk }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-aspectratio="{{ block.settings.section_bg.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="" />
+      </div>
+      {% assign image_mob = section.settings.mobile_section_bg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="image-wrapper absolute-image-wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: section.settings.mobile_section_bg.aspect_ratio | times: 100 }}%;">
+        <img class="lazyload" 
+             data-src="{{ image_mob }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-aspectratio="{{ section.settings.mobile_section_bg.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="" />
+      </div>
+      {% endcomment %}
+      <div class="video-section">
+        <div class="small--hide absolute-video-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.section_bg.aspect_ratio | times: 100 }}%;">
+          <video width="100%" height="100%" playsinline="" preload="metadata" muted="" loop="" id="myVideo_desktop" poster="{{ section.settings.section_bg | img_url:"1280x" }}">
+            <source src="{{ section.settings.desktop_video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="medium-up--hide absolute-video-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.mobile_section_bg.aspect_ratio | times: 100 }}%;">
+          <video width="100%" height="100%" playsinline="" autoplay="" muted="" loop="loop" id="myVideo2" poster="{{ section.settings.mobile_section_bg | img_url:"600x" }}">
+            <source src="{{ section.settings.mobile_video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--   Video will come here   -->
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Video Section",
+  "settings": [
+    {
+       "type": "checkbox",
+       "id": "show-full-width",
+       "label": "Show full width video"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg",
+      "label": "Desktop video banner"
+    },
+	{
+      "type": "textarea",
+      "id": "desktop_video_url",
+      "label": "Desktop video url"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_section_bg",
+      "label": "Mobile video banner"
+    },
+	{
+      "type": "textarea",
+      "id": "mobile_video_url",
+      "label": "Mobile video url"
+    },
+    {
+      "type": "text",
+      "id": "popup-heading",
+      "label": "Popup Heading"
+    },
+    {
+      "type": "text",
+      "id": "popup-subheading",
+      "label": "Popup Sub-heading"
+    },
+    {
+      "type": "text",
+      "id": "button-label",
+      "label": "Popup Button"
+    },
+    {
+      "type": "url",
+      "id": "button-url",
+      "label": "Popup Button URL"
+    }
+  ],
+  "presets": [
+  {
+    "category": "Home Video Section",
+    "name": "Video Section",
+    "settings": {}
+  }
+  ]
+}
+{% endschema %}

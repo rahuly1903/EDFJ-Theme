@@ -1,0 +1,132 @@
+<div class="three-block-banner">
+    {% assign her_gift = section.settings.image1 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    {% assign gift_100 = section.settings.image2 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    {% assign birthday_gift = section.settings.image3 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    <div class="single-block-image image-container">
+      <a class="link-wrapper" href="{{ section.settings.link1 }}">
+        <img class="grid-view-item__image lazyload first-image"
+             alt="Gifting main banner"
+             data-src="{{ her_gift }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-sizes="auto"
+             data-image>
+        <div class="content-wrapper">
+          <span class="title">
+            {{ section.settings.title1 }}
+          </span>
+          <span class="subtitle">
+            {{ section.settings.subtitle1 }}
+            {% include 'right-icon' %}
+          </span>
+        </div>
+      </a>
+    </div>
+    <div class="two-block-image image-container">
+      <a class="link-wrapper first-img" href="{{ section.settings.link2 }}">
+        <img class="grid-view-item__image lazyload first-image"
+             alt="Gifting main banner"
+             data-src="{{ gift_100 }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-sizes="auto"
+             data-image>
+        <div class="content-wrapper">
+          <span class="title">
+            {{ section.settings.title2 }}
+          </span>
+          <span class="subtitle">
+            {{ section.settings.subtitle2 }} {% include 'right-icon' %}
+          </span>
+        </div>
+      </a>
+      <a class="link-wrapper second-img" href="{{ section.settings.link3 }}">
+        <img class="grid-view-item__image lazyload first-image"
+             alt="Gifting main banner"
+             data-src="{{ birthday_gift }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-sizes="auto"
+             data-image>
+        <div class="content-wrapper">
+          <span class="title">
+            {{ section.settings.title3 }}
+          </span>
+          <span class="subtitle">
+            {{ section.settings.subtitle3 }} {% include 'right-icon' %}
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+{% schema %}
+  {
+    "name": "Three block banner",
+    "settings": [
+		{
+          "type": "image_picker",
+          "id": "image1",
+          "label": "Image 1"
+        },
+        {
+          "type": "text",
+          "id": "title1",
+          "label": "Title 1"
+        },
+        {
+          "type": "text",
+          "id": "subtitle1",
+          "label": "Subtitle 1"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "Banner Link 1"
+        },
+		{
+          "type": "image_picker",
+          "id": "image2",
+          "label": "Image 2"
+        },
+        {
+          "type": "text",
+          "id": "title2",
+          "label": "Title 2"
+        },
+        {
+          "type": "text",
+          "id": "subtitle2",
+          "label": "Subtitle 2"
+        },
+        {
+          "type": "url",
+          "id": "link2",
+          "label": "Banner Link 2"
+        },
+		{
+          "type": "image_picker",
+          "id": "image3",
+          "label": "Image 3"
+        },
+        {
+          "type": "text",
+          "id": "title3",
+          "label": "Title 3"
+        },
+        {
+          "type": "text",
+          "id": "subtitle3",
+          "label": "Subtitle 3"
+        },
+        {
+          "type": "url",
+          "id": "link3",
+          "label": "Banner Link 3"
+        }
+		
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,585 @@
+<style>
+  .breadcrumb-container{
+    display:none;
+  }
+  
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  .animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+  
+  .animated.hinge {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+  }
+  
+  .animated.bounceIn,
+  .animated.bounceOut {
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s;
+  }
+  
+  .animated.flipOutX,
+  .animated.flipOutY {
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s;
+  }
+  
+  @-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+  @-webkit-keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+    
+    to {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+    
+    to {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  .fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+  }
+  /* Main Banner css start */
+  .inspiration_slider_banner .princess_slider > .grid:nth-child(n+2){
+    display: none;
+  }
+  .inspiration_slider_banner .princess_slider .grid {
+    display: flex;
+    align-items: center;
+  }
+  .inspiration_slider_banner .banner_title{
+    font-size: 58px;
+    color: var(--heading-color);
+    line-height: 65px;
+    letter-spacing: 0px;
+    text-transform: none;
+  }
+  .template-page .inspiration_slider_banner .banner_subheading{
+    font-family: var(--font-body-family);
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0;
+    color: var(--nav-level-one-hover-color);
+  }
+  .template-page .villans_page .inspiration_slider_banner .banner_subheading{
+    color: var(--button-white-color);
+  }
+  .inspiration_slider_banner .inspiration_princess{
+    position: relative;
+    padding-bottom:30px;
+  }
+  .inspiration_slider_banner .inspiration_princess .slider_nxt_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .inspiration_slider_banner .slider_nxt_btn img{
+    display: block;
+  }
+  .inspiration_slider_banner .inner_slider {
+    position: absolute;
+    bottom: 46px;
+    left: 10.4%;
+    width: 260px;
+  }
+  .inspiration_slider_banner .slick-initialized .nav-slider{
+    margin-right: 10px;
+  }
+  .inspiration_slider_banner .princess_slider_nav > .nav-slider:nth-child(n+2){
+    display: none;
+  }
+  .inspiration_slider_banner .inspiration_princess .slick-next{
+    font-family: var(--font-heading-family);
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0;
+    color: var(--nav-level-one-hover-color);.inspiration_slider_banner .inner_slider
+    margin-bottom: 10px;
+    right: auto;
+    left: 10.3%;
+    bottom: 80px;
+    top: auto;
+    width: auto;
+  }
+  .villans_page .inspiration_slider_banner .inspiration_princess .slick-next{
+    color: var(--heading-color);
+  }
+  .villans_page .inspiration_slider_banner .inspiration_princess .slick-next svg path{
+    fill:var(--heading-color);
+  }
+  .inspiration_slider_banner .inspiration_princess .slick-next svg{
+    margin-left: 6px;
+  }
+  .inspiration_slider_banner .inspiration_princess .slick-next:before{
+    display: none;
+  }
+  .slider_nxt_btn{
+    display:none;
+  }
+  /* Main Banner css end */
+  /* Three banners css start */
+  .three-block_mobile-slider {
+    background-color: var(--three-banner-slider-bg-color);
+    padding: 80px 0;
+  }
+  .villans_page .three-block_mobile-slider{
+    background-color: var(--black-color);
+  }
+  .three-block_mobile-slider .second_hover_image{
+    visibility: hidden;
+    opacity: 0;
+  }
+  .three-block_mobile-slider .custom__item-inner--image:hover .main__image{
+    opacity:0;
+    visibility: hidden;
+  }
+  .three-block_mobile-slider .custom__item-inner--image:hover .second_hover_image{
+    visibility: visible;
+    opacity: 1;
+  }
+  /* Three banners css end */
+  /* princess collection categories start */
+  .princess-collection-categories .section-header{
+    margin-bottom: 30px;
+  }
+  .princess-collection-categories .grid {
+    display: flex;
+    justify-content: center;
+  }
+  .princess-collection-categories .grid .grid__item{
+    max-width:300px;
+  }
+  .princess-collection-categories h2{
+    font-size: 32px;
+    line-height: 65px;
+    letter-spacing: 0px;
+    color: var(--heading-color);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .princess-collection-categories .h3{
+    font-size: 18px;
+    line-height: 16px;
+    letter-spacing: 0px;
+    color: var(--nav-level-one-hover-color);
+    text-transform: capitalize;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .princess-collection-categories .collection-item_title svg{
+    margin-left: 4px;
+  }
+  /* princess collection categories end */
+  
+  /* Princess Craftmenship section css start  */
+  .craftmenship-text{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 30% 0;
+    margin-bottom:50px;
+  }
+  .villans_page .craftmenship-text{
+    background-color: #000000;
+  }
+  .craftmenship-text img{display: block; margin: 0 auto;}
+  .craftmenship-text .top-left-image {
+    position: absolute;
+    top: 10%;
+    left: 0;
+  }
+  .craftmenship-text .top-right-image {
+    position: absolute;
+    top: 7%;
+    right: 0;
+  }
+  .craftmenship-text .bottom-left-image {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+  }
+  .craftmenship-text .bottom-right-image {
+    position: absolute;
+    bottom: 6%;
+    right: 0;
+  }
+  .princess-craftmenship-section .text.section {
+    /*     position: absolute; */
+    text-align: center;
+    max-width: 466px;
+    z-index: 1;
+  }
+  .princess-craftmenship-section .text.section .heading_title{
+    font-size: 32px;
+    line-height: 65px;
+    color: var(--heading-color);
+  }
+  .princess-craftmenship-section .text.section .sub_heading{
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 20px;
+    color: var(--nav-level-one-hover-color);
+  }
+  .villans_page .princess-craftmenship-section .text.section .sub_heading{
+    color: var(--button-white-color);
+  }
+  /* Princess Craftmenship section css end */
+  /* video section start */
+  .princess_vid_section .section-wrapper{
+    background: #eff0f3;
+  }
+  .princess_page.pdp-feature-row-1 .section-wrapper {
+    background: linear-gradient(to bottom, #eff0f3 30%, #e5e6e9 56%);
+    padding-bottom: 60px;
+    padding-top: 40px;
+  }
+  /* video section end */
+  /* extraordinary moment section css start */
+  .extraordinary-moment .section_header h3{
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: 0px;
+    color: var(--heading-color);
+    margin-bottom: 60px;
+  }
+  .extraordinary-moment .grid__item{
+    position: relative;
+  }
+  .extraordinary-moment p{
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: var(--black-color);
+  }
+  .extraordinary-moment p.color__blu{
+    color: var(--nav-level-one-hover-color);
+  }
+  .extraordinary-moment .custom__item-inner--image{
+    margin-bottom:10px;
+  }
+  .extraordinary-moment .product.details {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 9%;
+    text-align: center;
+    width: 50%;
+  }
+  .extraordinary-moment .product.details h5{
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--nav-level-one-hover-color);
+    letter-spacing: 0px;
+    margin-bottom:6px;
+  }
+  .extraordinary-moment .product.details p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: var(--black-color);
+  }
+  /* extraordinary moment section css end */
+  /* Chateu section css start */
+  .the-chateau-section .banner-content h2{
+    color: #BC913F;
+    font-size: 68px;
+    font-weight: 300;
+    line-height: 80px;
+    letter-spacing: 13.6px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .the-chateau-section .banner-content .sub-title{
+    font-size: 16px;
+    letter-spacing: 4px;
+  }
+  /* Chateu section css end */
+  .princess_engagement_txt .jewelry-info-section .btn-show-info{
+    color: #bc913f;
+    border-image: linear-gradient(to bottom,#BC913F,rgba(0,0,0,0),#BC913F) 1 1;
+  }
+  .princess_engagement_txt .jewelry-info-section svg .icon-sparkle-a{
+    fill: var(--text-dark-gold-color);
+  }
+  @media(min-width:768px){
+    /* Main Banner css start */
+    .inspiration_slider_banner .text_container {
+      text-align: right;
+      padding-left: 22%;
+    }
+    /* Main Banner css end */
+    /* Three banners css start */
+    .three-block_mobile-slider .header-title-wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .three-block_mobile-slider .header--sub-heading {
+      font-size: 48px;
+      line-height: 65px;
+      letter-spacing: 0;
+      color: var(--heading-color);
+      width: 46%;
+      margin: 0 auto;
+    }
+    .three-block_mobile-slider .header--main-heading {
+      line-height: 20px;
+      letter-spacing: 0;
+      color: var(--nav-level-one-hover-color);
+      width: 53%;
+      margin-bottom: 0;
+    }
+    .villans_page .three-block_mobile-slider .header--main-heading{
+      color: var(--button-white-color);
+    }
+    /* Three banners css end */
+    /* extraordinary moment section css start */
+    .extraordinary-moment .third_grid{
+      margin-top: -16%;
+    }
+    /* extraordinary moment section css end */
+  }
+  @media(min-width:768px) and (max-width:1024px){
+    /* Princess Craftmenship section css start */
+    .princess-craftmenship-section .text.section {
+      text-align: center;
+      width: 50%;
+    }
+    .princess-craftmenship-section .text.section .heading_title {
+      font-size: 19px;
+    }
+    .princess-craftmenship-section .text.section .sub_heading {
+      font-size: 12px;
+      line-height: 16px;
+    }
+    /* Princess Craftmenship section css end */
+  }
+  @media(max-width:767px){
+    /* Main Banner css start */
+    .inspiration_slider_banner .princess_slider .grid {
+      flex-direction: column-reverse;
+    }
+    .inspiration_slider_banner .text_container {
+      text-align: center;
+      padding: 0 20px;
+    }
+    .inspiration_slider_banner  .banner_title {
+      font-size: 38px;
+      line-height: 46px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .inspiration_slider_banner .inspiration_princess .slick-next{
+      bottom: -62px;
+    }
+    .inspiration_slider_banner .inner_slider {
+      position: static;
+      margin: 54px 0 40px 38px;
+    }
+    /* Main Banner css end */
+    /* Three banners css start */
+    .three-block_mobile-slider .header--sub-heading {
+      font-size: 38px;
+      line-height: 42px;
+      letter-spacing: 0;
+      color: var(--heading-color);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .three-block_mobile-slider .header--main-heading {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0;
+      color: var(--nav-level-one-hover-color);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .villans_page .three-block_mobile-slider .header--main-heading{
+      color: var(--button-white-color);
+    }
+    .three-block_mobile-slider .grid__item:nth-child(n+2){
+      display: none;
+    }
+    .three-block_mobile-slider .slick-dots{
+      padding-left: 22px;
+    }
+    .three-block_mobile-slider .slick-dots li {
+      height: 3px;
+      width: calc(100% / 3);
+      margin: 0;
+    }
+    .three-block_mobile-slider .slick-dots li button {
+      background: #cccccc;
+      height: 4px;
+      width: 100%;
+      padding: 0;
+    }
+    .three-block_mobile-slider .slick-dots li.slick-active button{
+      background: var(--heading-color);
+    }
+    .three-block_mobile-slider .display-flex .slick-list{
+      padding-right: 70px;
+    }
+    /* Three banners css end */
+    /* princess collection categories start */
+    .princess-collection-categories h2{
+      font-size: 28px;
+      line-height: 52px;
+      margin-bottom: 14px;
+    }
+    .princess-collection-categories .section-header {
+      margin-bottom: 40px;
+    }
+    .princess-collection-categories .section-header svg{  
+      width: 100%;
+    }
+    /*     .princess-collection-categories .custom__item-inner--image{
+      width:50%;
+      padding-top: 50% !important;
+    } */
+    .princess-collection-categories .grid__item:nth-child(even) .collection_item_link {
+      flex-direction: row-reverse;
+    }
+    .princess-collection-categories .grid {
+      flex-wrap: wrap;
+    }
+    /* princess collection categories end */
+    /* Princess Craftmenship section css start */
+    .princess-craftmenship-section .text.section{
+      width: 100%;
+    }
+    .craftmenship-text .top-left-image {
+      top: 8%;
+      left: 0;
+      width: 37%;
+    }
+    .princess-craftmenship-section .text.section .heading_title {
+      font-size: 26px;
+    }
+    .craftmenship-text{
+      padding: 66% 0 70%;
+    }
+    .craftmenship-text .top-right-image {
+      top: 3%;
+      right: 0;
+      width: 56%;
+    }
+    .craftmenship-text .bottom-left-image {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 44%;
+    }
+    .craftmenship-text .bottom-right-image {
+      bottom: 13%;
+      right: 0;
+      width: 49%;
+    }
+    /* Princess Craftmenship section css end */
+    /* Bestseller Section start */
+    .product-grid-slider .grid__item {
+      padding: 0 20px;
+    }
+    .product-grid-slider .grid {
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-bottom: -35px;
+    }
+    /* Bestseller Section end */
+    /* Engagement Rings section css start */
+    .pdp-feature-row-1 .grid__item-content {
+      order: 1;
+      margin-top: 0px;
+      margin-bottom: 50px;
+    }
+    /* Engagement Rings section css end */
+    /* extraordinary moment section css start */
+    .extraordinary-moment .section_header h3 {
+      font-size: 38px;
+      line-height: 46px;
+      letter-spacing: 0px;
+      color: var(--heading-color);
+      margin-bottom: 30px;
+    }
+    .extraordinary-moment .grid__item{
+      text-align: center;
+    }
+    .extraordinary-moment p{
+      margin-bottom: 20px;
+    }
+    .extraordinary-moment p.color__blu{
+      color: var(--black-color);
+    }
+    .extraordinary-moment .product.details {
+      position: absolute;
+      left: 52.5%;
+      transform: translateX(-50%);
+      bottom: 4%;
+      text-align: center;
+      width: 90%;
+    }
+    /* extraordinary moment section css end */
+    /* chateau section start */
+    .the-chateau-section .banner-content h2{
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 59px;
+    }
+    .the-chateau-section .banner-content .sub-title{
+      line-height: 18px;
+      margin-bottom: 30px;
+    }
+    /* chateau section end */
+  }
+</style>

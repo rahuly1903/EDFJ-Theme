@@ -1,0 +1,87 @@
+{% if section.settings.enable_section %}
+<section class="section-spacing sparkles-elements-wrapper">
+  <div class="sparkle-element left">
+    <img src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/sparkle-element-left.svg?v=1631614083" alt="" />
+  </div>
+  <div class="page-width">
+    <div class="grid grid--no-gutters grid-uniform">
+      <div class="grid__item grid__item-content">
+        <div class="content text-center">
+          {% if section.settings.custom_html != blank %}
+          <div class="custom-html">
+            {{ section.settings.custom_html }}
+          </div>
+          {% endif %}
+          {% if section.settings.button_text and section.settings.button_url != blank %}
+          <a href="{{ section.settings.button_url }}" class="btn-border large small--hide">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            {{ section.settings.button_text }}
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item grid__item-image small--text-center">
+        {% assign banner = section.settings.image | img_url: 'master' %}
+        <div class="image-wrapper">
+          <img class="lazyload"
+               src="{{ banner }}"
+               data-src="{{ banner }}"
+               data-sizes="auto"
+               alt="" />
+        </div>
+        {% if section.settings.button_text and section.settings.button_url != blank %}
+        <a href="{{ section.settings.button_url }}" class="btn-border large medium-up--hide">
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          {{ section.settings.button_text }}
+          <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Chateau collection",
+	"class": "pdp-chateau-collection",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+        "default": true
+      },
+	  {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+	  {
+        "type": "textarea",
+        "id": "custom_html",
+        "label": "Custom HTML",
+        "default": "Custom HTML"
+      },
+      {
+        "id": "button_text",
+        "type": "text",
+        "label": "Button text",
+		"default": "Explore the collection"
+      },
+      {
+        "id": "button_url",
+        "type": "url",
+        "label": "Button url"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

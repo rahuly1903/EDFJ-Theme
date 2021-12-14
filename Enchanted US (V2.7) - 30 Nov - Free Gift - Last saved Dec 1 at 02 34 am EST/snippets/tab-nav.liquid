@@ -1,0 +1,4 @@
+<li class="{% if loop_index == 1 %}current{% endif %}" data-tab="tab-{{ section.id }}-{{ loop_index }}">
+  {% render 'icon-sparkles' %}
+  {% if pp_title != blank%}{{ pp_title }}{% else %}{{ bannerTitle }}{% endif %}
+</li>

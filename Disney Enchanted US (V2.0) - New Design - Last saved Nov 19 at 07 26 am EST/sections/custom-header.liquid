@@ -1,0 +1,427 @@
+{% assign menu = linklists[section.settings.main_linklist] %}
+{% assign mobile-menu = linklists[section.settings.mob_linklist] %}
+{% assign header-right-menu = linklists[section.settings.header-right_linklist] %}
+<section class="sticky__header" data-section-type="sticky__header" data-section-id="{{ section.id }}">  
+  <header class="header__container">
+    <div class="header-bg-wrapper">
+      <div class="logo-short-wrapper page-width">
+        <div class="header__left">
+          <button type="button" class="mob__menu medium-up--hide">
+            {% include 'icon-hamburger' %}
+          </button>
+          <a id="search-top-menu" href="#" class="search mm-search--open">
+            {% include 'icon-search' %}
+            <span class="small--hide">Search</span>
+          </a>
+        </div>
+        {% if section.settings.logo %}
+        {% assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        <a href="{{ routes.root_url }}" id="logo">
+          <div class="header_logo">
+            {% include 'Enchanted_logo' %}
+          </div>
+        </a>
+        {% else %}
+        <a href="{{ routes.root_url }}">{{ shop.name }}</a>
+        {% endif %}
+
+        <aside class="header__right">
+          <ul class="shopify_menu">
+            {% if customer %}
+            <li class="small--hide">
+              <a id="Sign-up-Top-Menu" href="/account">
+                {% include 'icon-login' %}<span>Hi {{ customer.first_name }}</span>
+              </a>
+            </li>
+            {% else %}
+            <li class="small--hide">
+              <a id="Sign-up-Top-Menu" href="/account">
+                {% include 'icon-login' %}<span>Sign In / Sign Up</span>
+              </a>
+            </li>
+            {% endif %}
+            <li>          
+              <a id="Wishlist-Top-menu" href="#swym-wishlist" class="swym-wishlist wishlist-icon">
+                {% include 'icon-heart' %}
+              </a>          
+            </li>
+            <li class="cart">
+              <a id="Bag-Top-Menu" href="/cart">
+                {% include 'icon-cart' %}
+                <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="logo-divider-border small--hide"></div>
+
+      <nav class="nav__bar visible-from-1200">
+        <button type="button" class="mob__menu"><img class="lazyload" width="34" height="34" data-src="{{ 'Hamburger_Menu.svg' | asset_url }}" alt="Hamburger Icon" data-sizes="auto" data-image /></button>
+
+        <ul class="desktop__menu">
+          {% for link in menu.links %}
+          {% assign dataMenu = link.title | handleize  %}
+
+          <li class="{% if link.current %}active{% endif %} {{ dataMenu }}--link">
+            <a id="top-{{ dataMenu }}" href="{{ link.url }}" data-menu="{{ dataMenu }}">
+              {% render 'active-nav-icon' %}
+              {{ link.title }}
+            </a>
+
+            {% for block in section.blocks %}
+            {% assign megaMenu = block.settings.megamenu-title | handleize  %}
+            {% assign megaMenu_one = linklists[block.settings.megamenu-one] %}
+            {% assign megaMenu_two = linklists[block.settings.megamenu-two] %}
+            {% assign megaMenu_three = linklists[block.settings.megamenu-three] %}
+            {% assign megaMenu_four = linklists[block.settings.megamenu-four] %}
+            {% assign megaMenu_five = linklists[block.settings.megamenu-five] %}
+            {% assign megaMenu_six = linklists[block.settings.megamenu-six] %}
+
+            {% if dataMenu == megaMenu %}
+
+            <div class="desktop__megamenu" data-megamenu="{{ megaMenu }}">
+              {% if megaMenu_one != blank %}
+              <div class="desktop__megamenu--inner {{ megaMenu_one.title | handle }}">
+                <h4>{{ megaMenu_one.title | split:"-" | last }}</h4>
+                <ul>
+                  {% for link in megaMenu_one.links %}
+                  <li><a id="sub-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              {% if megaMenu_two != blank %}
+              <div class="desktop__megamenu--inner {{ megaMenu_two.title | handle }}">
+                {% assign megaMenuTwoTitle = megaMenu_two.title | handle %}
+                {% if megaMenuTwoTitle == "disney-villains" %}
+                <h4><a href="/pages/disney-villain-diamond-jewelry-collection">{{ megaMenu_two.title | split:"-" | last }}</a></h4>
+                {% else %}
+                <h4>{{ megaMenu_two.title | split:"-" | last }}</h4>
+                {% endif %}
+                <ul>
+                  {% for link in megaMenu_two.links %}
+                  <li><a id="sub-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              {% if megaMenu_three != blank %}
+              <div class="desktop__megamenu--inner {{ megaMenu_three.title | handle }}">
+                <h4>{{ megaMenu_three.title | split:"-" | last }}</h4>
+                <ul>
+                  {% for link in megaMenu_three.links %}
+                  <li><a id="sub-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              {% if megaMenu_four != blank %}
+              <div class="desktop__megamenu--inner {{ megaMenu_four.title | handle }}">
+                <h4>{{ megaMenu_four.title | split:"-" | last }}</h4>
+                <ul>
+                  {% for link in megaMenu_four.links %}
+                  <li><a id="sub-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              {% if megaMenu_five != blank %}
+              <div class="desktop__megamenu--inner {{ megaMenu_five.title | handle }}">
+                <h4>{{ megaMenu_five.title | split:"-" | last }}</h4>
+                <ul>
+                  {% for link in megaMenu_five.links %}
+                  <li><a id="sub-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              {% if megaMenu_six != blank %}
+              <div class="desktop__megamenu--inner {{ megaMenu_six.title | handle }}">
+                <h4>{{ megaMenu_six.title | split:"-" | last }}</h4>
+                <ul>
+                  {% for link in megaMenu_six.links %}
+                  <li><a id="sub-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              <div class="inner_main_link">
+                {% if link.title  == 'Inspirations' %}
+                <a id="top-shopall" href="/collections/all" class="inner_link_btn">Shop All</a>
+                {% else %}
+                <a id="top-shopall-{{ link.title | handleize }}" href="{{ link.url }}" class="inner_link_btn">Shop All {{ link.title }}</a>
+                {% endif %}
+              </div>
+            </div>
+
+            {% endif %}
+
+            {% endfor %}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="mm-search-dropdown">
+      {% include 'search-form' %}
+    </div>
+  </header>
+</section>
+
+<div class="mobile__menu">
+  {% if customer %}
+  {% assign firstName = customer.first_name %}
+  {% assign lastName = customer.last_name %}
+  <a href="javascript:void(0);" class="profile" id="loged-in">
+    <span class="profile_pic"><img class="lazyload" width="" height="" data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Default_Profile_Icon.png?v=1580212246" alt="Profile Image" data-sizes="auto" data-image/></span>
+    <span class="profile_text">{{ firstName }} {{ lastName }} ></span>
+  </a>
+  <div class="mob_search">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+      <div aria-live="polite" class="form-message form-message--error search-result-error-message hide" data-search-error-message>
+        <ul id="error-search-form">
+          <li>{{ 'general.search.empty_search_message' | t }}</li>
+        </ul>
+      </div>
+      
+      <div class="input-group">
+        <input type="search"
+        id="SearchInput"
+        class="input-group__field search__input"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}"
+        aria-label="{{ 'general.search.placeholder' | t }}"
+        >
+        <span class="input-group__btn">
+          <button id="SearchResultSubmit" class="btn search__submit" type="submit">{{ 'general.search.submit' | t }}</button>
+        </span>
+      </div>
+    </form>
+  </div>
+  {% else %}
+  <div class="profile">
+    <span class="profile_pic"><img class="lazyload" width="22" height="22" data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Default_Profile_Icon.png?v=1580212246" alt="Profile Image" data-sizes="auto" data-image /></span>
+    <span class="profile_text"><a href="/account/login">Sign In</a> / <a href="/account/register">Sign Up</a></span>
+  </div>
+  <div class="mob_search">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+      <div aria-live="polite" class="form-message form-message--error search-result-error-message hide" data-search-error-message>
+        <ul id="error-search-form">
+          <li>{{ 'general.search.empty_search_message' | t }}</li>
+        </ul>
+      </div>
+      
+      <div class="input-group">
+        <input type="search"
+        id="SearchInput"
+        class="input-group__field search__input"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}"
+        aria-label="{{ 'general.search.placeholder' | t }}"
+        >
+        <span class="input-group__btn">
+          <button id="SearchResultSubmit" class="search__submit" type="submit">{{ 'general.search.submit' | t }}</button>
+        </span>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+  <ul>
+    {% for link in mobile-menu.links %}
+    {% assign dataMenu = link.title | handleize  %}
+    
+    <li {% if link.current %}class="active"{% endif %}>
+      <a id="top-mob-{{ link.title | handleize }}" href="{{ link.url }}" data-menu="{{ dataMenu }}">{{ link.title }}</a>
+    </li>
+    {% for block in section.blocks %}
+    {% assign dataSubmenu = block.settings.mobmenu-title | handleize  %}
+    {% assign megaMenu_one = linklists[block.settings.megamenu-one] %}
+    {% assign megaMenu_two = linklists[block.settings.megamenu-two] %}
+    {% assign megaMenu_three = linklists[block.settings.megamenu-three] %}
+    {% assign megaMenu_four = linklists[block.settings.megamenu-four] %}
+    {% assign megaMenu_five = linklists[block.settings.megamenu-five] %}
+    {% assign megaMenu_six = linklists[block.settings.megamenu-six] %}
+    {% if dataMenu == dataSubmenu %}
+    <li class="mobile__submenu" data-megamenu="{{ dataSubmenu }}">
+      <div class="subsubmenu-wrapper">
+        <h4 class="has-subsubmenu"><span class="toggle-icon"></span><span>{{ megaMenu_one.title | split:"-" | last  }}</span></h4>
+        <ul>
+          {% for link in megaMenu_one.links %}
+          <li><a id="sub-mob-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="subsubmenu-wrapper">
+        {% assign megaMenuTwoTitle = megaMenu_two.title | handle %}
+        {% if megaMenuTwoTitle == "disney-villains" %}
+        <h4 class="has-subsubmenu"><span class="toggle-icon"></span><a href="/pages/disney-villain-diamond-jewelry-collection/">{{ megaMenu_two.title | split:"-" | last }}</a></h4>
+        {% else %}
+        <h4 class="has-subsubmenu"><span class="toggle-icon"></span><span>{{ megaMenu_two.title | split:"-" | last }}</span></h4>
+        {% endif %}
+        <ul>
+          {% for link in megaMenu_two.links %}
+          <li><a id="sub-mob-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% if megaMenu_three.title != blank and megaMenu_three.title != "" %}
+      <div class="subsubmenu-wrapper">
+        <h4 class="has-subsubmenu"><span class="toggle-icon"></span>{{ megaMenu_three.title | split:"-" | last  }}</h4>
+        <ul>
+          {% for link in megaMenu_three.links %}
+          <li><a id="sub-mob-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if megaMenu_four.title != blank and megaMenu_four.title != "" %}
+      <div class="subsubmenu-wrapper">
+        <h4 class="has-subsubmenu"><span class="toggle-icon"></span>{{ megaMenu_four.title | split:"-" | last  }}</h4>
+        <ul>
+          {% for link in megaMenu_four.links %}
+          <li><a id="sub-mob-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if megaMenu_five.title != blank and megaMenu_five.title != "" %}
+      <div class="subsubmenu-wrapper">
+        <h4 class="has-subsubmenu"><span class="toggle-icon"></span>{{ megaMenu_five.title | split:"-" | last  }}</h4>
+        <ul>
+          {% for link in megaMenu_five.links %}
+          <li><a id="sub-mob-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if megaMenu_six.title != blank and megaMenu_six.title != "" %}
+      <div class="subsubmenu-wrapper">
+        <h4 class="has-subsubmenu"><span class="toggle-icon"></span>{{ megaMenu_six.title | split:"-" | last  }}</h4>
+        <ul>
+          {% for link in megaMenu_six.links %}
+          <li><a id="sub-mob-{{ dataMenu }}-{{ link.title | handleize }}" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if link.title  == 'Inspirations' %}
+      <a id="top-mob-shopall" href="/collections/all" class="inner_link_btn">Shop All</a>
+      {% else %}
+      <a id="top-mob-shopall-{{ link.title | handleize }}" href="{{ link.url }}" class="inner_link_btn">Shop All {{ link.title }}</a>
+      {% endif %}
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+  </ul>
+</div>
+<div class="account__menu">
+  <span class="back-to-mainmenu">&lt; GO BACK</span>
+  <a href="javascript:void(0);" class="profile" id="loged-in">
+    <span class="profile_pic">{{ firstName | slice: 0 | upcase }}</span>
+    <span class="profile_text">{{ firstName }} {{ lastName }}</span>
+  </a>
+  <ul>
+    <li><a href="/account">MY PROFILE</a></li>
+    <li><a href="/apps/swymWishlist/wishlist/index.php">MY WISHLIST</a></li>
+    <li><a href="/account/addresses">MY SAVED ADDRESSES</a></li>
+    <li><a href="/account">MY ORDERS</a></li>
+  </ul>
+  <div class="account_logout">
+    {{ 'layout.customer.log_out' | t | customer_logout_link }}
+  </div>
+</div>
+
+<div class="dark_overlay"></div>
+
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+  {
+    "type": "header",
+    "content": "Logo Settings"
+  },
+  {
+    "type": "image_picker",
+    "id": "logo",
+    "label": "Logo Image"
+  },
+  {
+    "type": "header",
+    "content": "Menu Settings"
+  },
+  {
+    "type": "link_list",
+    "id": "main_linklist",
+    "label": "Desktop Menu",
+    "default": "main-menu"
+  },
+  {
+    "type": "link_list",
+    "id": "mob_linklist",
+    "label": "Mobile Menu",
+    "default": "main-menu"
+  },
+  {
+    "type": "link_list",
+    "id": "header-right_linklist",
+    "label": "Menu"
+  }    
+  ],
+  "blocks": [
+  {
+    "type": "header",
+    "name": "Mega Menu Settings",
+    "settings": [
+    {
+      "type": "text",
+      "id": "megamenu-title",
+      "label": "Mega Menu Title"
+    },
+    {
+      "type": "text",
+      "id": "mobmenu-title",
+      "label": "Mobile Menu Title"
+    },
+    {
+      "type": "link_list",
+      "id": "megamenu-one",
+      "label": "Select Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "megamenu-two",
+      "label": "Select Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "megamenu-three",
+      "label": "Select Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "megamenu-four",
+      "label": "Select Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "megamenu-five",
+      "label": "Select Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "megamenu-six",
+      "label": "Select Menu"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,291 @@
+<section data-section-type="banner__slideshow" data-section-id="{{ section.id }}">
+  <div class="banner__container">
+    <div class="banner">
+      <div class="banner__slider">
+      {% for block in section.blocks %}
+        {% if block.type == 'home-banner' %}
+        
+      	{% assign banner = block.settings.banner-img %}
+        {% assign content-first-img = block.settings.content-first-img %}
+        {% assign princess-name = block.settings.princess-name %}
+        {% assign content-paragraph = block.settings.content-paragraph %}
+        {% assign content-button = block.settings.content-button %}
+        {% assign content-button-url = block.settings.content-button-url %}
+        {% assign inspired-by = block.settings.inspired-by %}
+        {% assign princess-emoticon2 = block.settings.content-emoticon %}
+        
+        <div style="background-image: url('{{ banner | img_url: 'master' }}');" 
+             class="banner__slider--item">
+          <div class="banner__slider--content" id="slide-{{ forloop.index }}">
+            {% if content-first-img != nil %}
+            <img src="{{ content-first-img | img_url: '350x' }}" alt="Slider Content" />
+            {% endif %}
+            {% if princess-name != blank %}
+            <h1>{{ princess-name }}</h1>
+            {% endif %}
+            {% if content-paragraph != blank %}
+            <p>{{ content-paragraph }}</p>
+            {% endif %}
+            {% if content-button != blank %}
+            <a href="{% if content-button-url != blank %}{{ content-button-url }}{% endif %}"
+               class="btn">
+              {{ content-button }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        
+        {% endif %}
+      {% endfor %}
+      </div>      
+    </div>
+    <div class="thumbnail">
+      <div class="thumbnail__slider">
+        {% for block in section.blocks %}      
+          {% if block.type == 'banner-thumb' %}
+            {% assign thumb = block.settings.banner-thumb %}
+        	{% assign emoticon = block.settings.thumb-emoticon %}
+            <div class="thumbnail__slider--item">
+              <img src="{{ "Inactive_Frame_-_Blue.svg" | assets_url: 'master' }}" data-src="{{ thumb | img_url: 'master' }}" alt="Slider Thumbnail" class="thumb__pic lazyload" />
+              <img src="//cdn.shopify.com/s/files/1/0267/0523/1943/files/Cinderella_Element_36x36.png?v=1574759516" data-src="{{ emoticon | img_url: '36x36' }}" alt="Slider Thumbnail" class="emoticon lazyload" />
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  {% for block in section.blocks %}
+  {% if block.type == 'home-banner' %}
+  
+  {% assign inspired-by = block.settings.inspired-by %}
+  {% assign princess-emoticon2 = block.settings.content-emoticon %}
+  
+  {% if inspired-by != blank %}
+  #slide-{{ forloop.index }} h1:before {
+    content: '{{ inspired-by }}';
+  }
+  {% endif %}
+  
+  {% if princess-emoticon2 != nil %}
+  #slide-{{ forloop.index }} h1:after {
+    background-image: url("{{ princess-emoticon2 | img_url: 'master' }}");
+  }
+  {% endif %}
+  
+  {% endif %}
+  {% endfor %}
+  #slide-6 h1:after {
+    width: 30%;
+    background-position: center top;
+    right: -40%;
+  }
+  #slide-2 h1:after {
+    width: 10%;
+    right: -12%;
+  }
+  #slide-3 h1:after {
+    width: 36%;
+    right: -40%;
+  }
+  #slide-4 h1:after {
+    width: 32%;
+    right: -40%;
+  }
+  #slide-5 h1:after {
+    width: 40%;
+    right: -40%;
+  }
+  #slide-1 h1:after {
+    width: 20%;
+    right: -25%;
+  }
+  #slide-7 h1:after {
+    width: 34%;
+    right: -46%;
+  }
+  #slide-8 h1:after {
+    width: 34%;
+    right: -46%;
+  }
+  #slide-9 h1:after {
+    width: 12%;
+    right: -18%;
+  }
+  #slide-10 h1:after {
+    width: 40%;
+    right: -45%;
+  }
+  #slide-6 h1:before {
+    top: 0;
+    right: -1.5em;
+  }
+  #slide-2 h1:before {
+    right: 0;
+    top: 1em;
+  }
+  #slide-3 h1:before {
+    right: -20px;
+  }
+  #slide-4 h1:before {
+    right: -1em;
+    top: 1em;
+  }
+  #slide-5 h1:before {
+    right: 0;
+    top: 1em;
+  }
+  #slide-1 h1:before {
+    right: 0;
+    top: .5em;
+  }
+  #slide-7 h1:before {
+    right: -3.5em;
+    top: 0;
+  }
+  #slide-8 h1:before {
+    right: -33%;
+    top: .5em;
+  }
+  #slide-9 h1:before {
+    right: 8.5em;
+    top: .5em;
+  }
+  #slide-10 h1:before {
+    right: -26px;
+    top: 0;
+  }
+  @media (max-width: 750px) {
+    #slide-1 h1 {
+      -webkit-transform: translateX(-20%);
+      -ms-transform: translateX(-20%);
+      transform: translateX(-20%);
+    }
+    #slide-2 h1 {
+      -webkit-transform: translateX(-5%);
+      -ms-transform: translateX(-5%);
+      transform: translateX(-5%);
+    }
+    #slide-3 h1 {
+      -webkit-transform: translateX(-15%);
+      -ms-transform: translateX(-15%);
+      transform: translateX(-15%);
+    }
+    #slide-4 h1 {
+      -webkit-transform: translateX(-20%);
+      -ms-transform: translateX(-20%);
+      transform: translateX(-20%);
+    }
+    #slide-5 h1 {
+      -webkit-transform: translateX(-15%);
+      -ms-transform: translateX(-15%);
+      transform: translateX(-15%);
+    }
+    #slide-6 h1 {
+      -webkit-transform: translateX(-15%);
+      -ms-transform: translateX(-15%);
+      transform: translateX(-15%);
+    }
+    #slide-7 h1 {
+      -webkit-transform: translateX(-25%);
+      -ms-transform: translateX(-25%);
+      transform: translateX(-25%);
+    }
+    #slide-8 h1 {
+      -webkit-transform: translateX(-25%);
+      -ms-transform: translateX(-25%);
+      transform: translateX(-25%);
+    }
+    #slide-9 h1 {
+      -webkit-transform: translateX(-10%);
+      -ms-transform: translateX(-10%);
+      transform: translateX(-10%);
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Home Banner",
+	"blocks": [
+      {
+        "type": "home-banner",
+        "name": "Slider Image (Main)",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "banner-img",
+            "label": "Image"
+          },
+		  {
+			"type": "header",
+			"content": "Slider Content"
+		  },
+		  {
+            "type": "image_picker",
+            "id": "content-first-img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "inspired-by",
+            "label": "Inspired By Text",
+            "default": "Inspired By"
+          },
+          {
+            "type": "text",
+            "id": "princess-name",
+            "label": "Princess Name"
+          },
+		  {
+            "type": "image_picker",
+            "id": "content-emoticon",
+            "label": "Princess Icon Image"
+          },
+		  {
+            "type": "textarea",
+            "id": "content-paragraph",
+            "label": "Paragraph",
+			"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          },
+		  {
+            "type": "text",
+            "id": "content-button",
+            "label": "Button",
+			"default": "Explore"
+          },
+		  {
+            "type": "url",
+            "id": "content-button-url",
+            "label": "Button Link"
+          }
+        ]
+      },
+      {
+        "type": "banner-thumb",
+        "name": "Slider Image (Thumbnail)",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "banner-thumb",
+            "label": "Image"
+          },
+		  {
+            "type": "image_picker",
+            "id": "thumb-emoticon",
+            "label": "Emoticon image"
+          }
+        ]
+      }
+	],
+	"presets": [
+      {
+        "category": "Banner Slider",
+        "name": "Home Banner",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}

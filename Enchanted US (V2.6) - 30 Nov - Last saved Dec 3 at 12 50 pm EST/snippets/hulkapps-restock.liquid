@@ -1,0 +1,142 @@
+<script type="text/javascript">
+  if (typeof window.restock_config != "object") {
+    window.restock_config = {}
+  }
+
+  {% assign masterapp_page_type = '' %}
+  window.restock = {
+    shop_slug: "{{shop.permanent_domain | remove: '.myshopify.com' }}",
+    store_id: "{{shop.permanent_domain}}",
+    money_format: "{{shop.money_format | replace: '"', "'"}}",
+    customer: null,
+    cart: null,
+  }
+
+  {% if customer %}
+  window.restock.customer = {
+    id: {{customer.id}},
+    email: "{{customer.email}}",
+    tags: {{customer.tags | json}},
+    first_name: "{{customer.first_name}}",
+    last_name: "{{customer.last_name}}",
+  };
+  {% endif %}
+
+  {% if template contains 'collection' %}
+  {% unless collection.id == blank %}
+  {% assign masterapp_page_type = 'collection' %}
+  window.restock.collection = {
+    id: {{collection.id}}
+  }
+    {% endunless %}
+    {% endif %}
+
+    {% if template contains 'product' %}
+    {% unless product.id == blank %}
+    {% assign masterapp_page_type = 'product' %}
+    window.restock.product = {
+    id: {{product.id}},
+    price: {{product.price}},
+    tags: {{product.tags | json}},
+    sku: {{product.variants.sku | json}},
+    variants: {{product.variants | json}}
+  };
+  window.restock.product_collections = []
+  {% for c in product.collections %}
+  window.restock.product_collections.push({{c.id}})
+  {% endfor %}
+  {% endunless %}
+  {% endif %}
+
+  {% if template contains 'cart' %}
+  {% assign masterapp_page_type = 'cart' %}
+  {% endif %}
+
+  {% if cart %}
+  window.restock.cart = {{cart | json}}
+    delete window.restock.cart.note
+  window.restock.cart_collections = {}
+  {% for item in cart.items %}
+  window.restock.cart_collections["v{{item.variant_id}}"] = []
+                                  {% for c in item.product.collections %}
+                                  window.restock.cart_collections["v{{item.variant_id}}"].push({{c.id}})
+                                  {% endfor %}
+                                  {% endfor %}
+                                  if (typeof window.restock.cart.items == "object") {
+                                  for (var i=0; i<window.restock.cart.items.length; i++) {
+                                  ["sku", "grams", "vendor", "url", "image", "handle", "requires_shipping", "product_type", "product_description"].map(function(a) {
+    delete window.restock.cart.items[i][a]
+  })
+  }
+  }
+  {% endif %}
+  window.restock.page_type = "{{masterapp_page_type}}"
+  window.restock.partner_url = "https://restock-master.hulkapps.com";
+</script>
+<link rel="stylesheet" type="text/css" href="https://restock-master.hulkapps.com/assets/restock-master.css">
+<style>
+  .product_button #mhaRnProduct .email-when-available.custom {
+    position: relative;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    margin-top: 0 !important;
+    font-weight: 400;
+  }
+  #mhaRnProduct{
+    position:relative;
+    z-index:0;
+    font-weight: 400;
+  }
+  #RnsignUpFormModal .hulkapp_popup-dropdown,#RnsignUpFormModal .product-price{display:none !important;}
+  .hulkapp_popupBox .hulkapp_mainHead,.hulkapp_popupBox .hulkapp_mainContent{border-bottom: 0px solid #e5e5e5 !important;padding-bottom: 0;}
+  .zoomContainer{
+    z-index:1;
+  }
+  .hulkapp_popupBox{
+    border-radius: 8px;
+  }
+  .hulkapp_popupBox form {
+    margin: auto;
+    padding: 30px 40px !important;
+  }
+  #RnsignUpFormModal h4,.hulkapp_popup-input label{
+    color: rgba(0, 0, 0, 1) !important;
+    text-align: left !important;
+    font-family: "NewYork-Regular" !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    color: #11214A !important;
+  }
+  .hulkapp_mainHead .hulkapp_popup-heading {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #305C8C !important;
+    text-align: center !important;
+    display: block;
+    width: 100%;
+    font-weight: 600;
+  }
+  .hulkapp_popupBox .hulkapp_popup-footer {
+    text-align: center !important;
+    padding-top: 0;
+  }
+  .hulkapp_mainContent .hulkapp_popup-input input {
+    border: 2px solid #ebf3f9 !important;
+  }
+  .hulkapp_popup-footer button.btn{
+    text-align: left !important;
+    font-family: "NewYork-Regular" !important;
+    font-size: 0.875em !important;
+    line-height: 18px !important;
+    color: #11214A !important;
+    text-transform: uppercase !important;
+    font-size: 14px !important;
+    padding: 10px !important;
+    text-align: center !important;
+    text-transform:uppercase !important;
+  }
+</style>

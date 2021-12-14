@@ -1,0 +1,43 @@
+<div class="mid-annual-banner-setion">
+   {% if section.settings.desktop_banner_image %}
+  <div class="img_data desktop_img">
+    <img src="{{ section.settings.desktop_banner_image | img_url: 'master' }}" class="">
+  </div>
+  {% endif %}
+    {% if section.settings.mobile_banner_image %}
+    <div class="img_data mobile_img">
+    <img src="{{ section.settings.mobile_banner_image | img_url: 'master' }}" class="">
+  </div>
+  {% endif %}
+</div>
+
+
+{% schema %}
+{
+"name": "Mid Annual Banner",
+"settings": [
+{
+"type": "checkbox",
+"id": "display_mid_annual_banner",
+"label": "Enable",
+"default": true
+},
+{
+"type": "image_picker",
+"id": "desktop_banner_image",
+"label": "Mobile Banner Image"
+},
+{
+"type": "image_picker",
+"id": "mobile_banner_image",
+"label": "Mobile Banner Image"
+}
+],
+"presets": [
+{
+"name": "Mid Annual Banner",
+"category": "Advanced layout"
+}
+]
+}
+{% endschema %}

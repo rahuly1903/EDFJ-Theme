@@ -1,0 +1,39 @@
+<!-- /snippets/social-sharing.liquid -->
+<ul class="social-sharing">
+  <li>
+    <a target="_blank" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><defs><style>.article-social-sharing .fb-a{fill:#363333;}.article-social-sharing .fb-b{fill:none;}</style></defs><g transform="translate(8 4)"><path class="article-social-sharing fb-a" d="M3428.477,1704.145h-2.955V1697h-1.476v-2.463h1.476v-1.477c0-2.008.834-3.2,3.2-3.2h1.971v2.462h-1.231c-.922,0-.984.344-.984.986l0,1.231h2.232l-.261,2.463h-1.971Z" transform="translate(-3424.046 -1689.862)"/></g><rect class="article-social-sharing fb-b" width="22" height="22"/></svg>
+    </a>
+  </li>
+  {% comment %}
+  <li>
+    <a target="_blank" href="//twitter.com/share?text={{ product.title }}&amp;url={{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-twitter">
+      {% include 'icon-twitter' %}
+    </a>
+  </li>
+  {% endcomment %}
+  <li>
+    <a target="_blank" rel="noopener" 
+       href="https://wa.me/?text={{ product.title }} {{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-pinterest">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><defs><style>.article-social-sharing .pin-a{fill:#363333;opacity:0;}.article-social-sharing .pin-b{fill:#363333;}</style></defs><g transform="translate(0.368)"><rect class="article-social-sharing pin-a" width="24" height="24" transform="translate(-0.368)"></rect><g transform="translate(4.159 1.515)"><path class="article-social-sharing pin-b" d="M6.694,13.463c-.549,2.8-1.221,5.489-3.209,6.893-.614-4.236.9-7.417,1.605-10.794C3.89,7.6,5.234,3.646,7.764,4.62c3.113,1.2-2.7,7.3,1.2,8.063,4.071.8,5.733-6.87,3.209-9.363C8.529-.28,1.557,3.237,2.414,8.392c.209,1.26,1.547,1.641.535,3.381C.615,11.269-.082,9.478.008,7.09.152,3.183,3.618.448,7.095.068c4.4-.478,8.524,1.569,9.094,5.592.641,4.54-1.984,9.456-6.687,9.1-1.274-.1-1.809-.709-2.808-1.3Z"></path></g></g></svg>
+    </a>
+  </li>
+  {% comment %}
+  <li>
+    <a target="_blank" href="mailto:?Subject=Enchanted Disney Fine Jewelry&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{ shop.url | append: share_permalink }}{{ product.url }}" class="btn btn--small btn--share share-facebook">
+      {% include 'icon-mail' %}
+    </a>
+  </li>
+  {% endcomment %}
+</ul>
+
+<!-- AddToAny BEGIN -->
+<!-- <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+<a class="a2a_button_whatsapp"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_email"></a>
+</div>
+<script async src="https://static.addtoany.com/menu/page.js"></script> -->
+<!-- AddToAny END -->

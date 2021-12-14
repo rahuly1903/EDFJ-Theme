@@ -1,0 +1,91 @@
+<div class="page-width">
+  <div class="three-heading-wrapper">
+    {% if section.settings.title != blank %}
+    <h2>{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.button != blank %}
+    <a href="{{ section.settings.link }}">
+      {{ section.settings.button }}
+    </a>
+    {% endif %}
+  </div>
+  <div class="grid grid--uniform grid--slider">
+    {% for block in section.blocks %}
+    <div class="grid__item medium-up--one-third">
+      <!-- Do not add forward slash in url below -->
+      <a href="{{ block.settings.link }}">
+        {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
+        {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
+        {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        {% include 'image-style', image: block.settings.image, height: 545, wrapper_id: wrapper_id, img_id: img_id %}
+        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+          <div style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100}}%;">
+            <img id="{{ img_id }}"
+            class="feature-row__image lazyload"
+            data-src="{{ img_url }}"
+            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+            data-sizes="auto"
+            alt="">
+          </div>
+        </div>
+        <noscript>
+          {{ section.settings.image | img_url: '600x600', scale: 2 | img_tag: section.settings.image.alt, 'feature-row__image' }}
+        </noscript>
+        <h3>{{ block.settings.title }}</h3>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Section name",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "heading"
+  },
+  {
+    "type": "text",
+    "id": "button",
+    "label": "Button text"
+  },
+  {
+    "type": "url",
+    "id": "link",
+    "label": "Button link"
+  }
+  ],
+  "blocks":[
+  {
+    "type": "grid-banner",
+    "name": "Grid banner",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Image link"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

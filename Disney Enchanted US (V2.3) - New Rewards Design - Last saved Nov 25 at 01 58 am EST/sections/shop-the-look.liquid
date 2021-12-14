@@ -1,0 +1,228 @@
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="grid grid--no-gutters shop-the-look">
+      <div class="grid__item one-whole grid-content">
+        <div class="info small--text-center">
+          {% if section.settings.sub_title != blank %}
+          <span class="sub_title">{{ section.settings.sub_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+          <h2 class="title">{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+          {{ section.settings.text }}
+          {% endif %}
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a {% if section.settings.tracking_stl != blank %}id="{{ section.settings.tracking_stl }}"{% endif %} href="{{ section.settings.button_link }}" class="btn-border btn-white small--hide">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            {{ section.settings.button_label }}
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+          {% endif %}
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a {% if section.settings.tracking_stl != blank %}id="{{ section.settings.tracking_stl }}"{% endif %} href="{{ section.settings.button_link }}" class="btn-border{% if section.settings.button_color != 'blue' %} btn-{{ section.settings.button_color }}{% endif %}{% if section.settings.button_hover_color != 'gold' %} btn-hover-{{ section.settings.button_hover_color }}{% endif %} medium-up--hide">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            {{ section.settings.button_label }}
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item one-whole grid-image">
+        {% assign banner_desk = section.settings.banner_desk | img_url: 'master' %}
+        <div class="image-wrapper small--hide look-banner">
+          <img class="lazyload" 
+          src="{{ banner_desk }}"
+          data-src="{{ banner_desk }}" 
+          data-sizes="auto" 
+          alt="" />
+        </div>
+        {% assign banner_mob = section.settings.banner_mob | img_url: 'master' %}
+        <div class="image-wrapper medium-up--hide look-banner">
+          <img class="lazyload" 
+          src="{{ banner_mob }}"
+          data-src="{{ banner_mob }}" 
+          data-sizes="auto" 
+          alt="" />
+        </div>
+      </div>
+      <a {% if section.settings.tracking_stl != blank %}id="{{ section.settings.tracking_stl }}"{% endif %} href="javascript:void(0);" class="shop-all-products" data-shop-look-drawer="look__{{ section.settings.sub_title | handle }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="21.788" height="22" viewBox="0 0 21.788 22"><g id="jewelry_shop_now_icon" data-name="jewelry shop now icon" transform="translate(-795 -2878)"><path id="Path_242308" data-name="Path 242308" d="M656,1041a1,1,0,0,1,1,1v1a3,3,0,0,0,6,0v-1a1,1,0,0,1,2,0v1a5,5,0,0,1-10,0v-1A1,1,0,0,1,656,1041Zm-3.293-7.121a3,3,0,0,1,2.121-.879h10.344a3,3,0,0,1,2.121.879l2.722,2.722a3.005,3.005,0,0,1,.856,2.494l-1.66,13.277a3,3,0,0,1-2.977,2.628H653.766a3,3,0,0,1-2.977-2.628l-1.66-13.277a3,3,0,0,1,.855-2.494Zm16.16,5.121H651.133l1.64,13.124a1,1,0,0,0,.993.876h12.468a1,1,0,0,0,.993-.876Zm-14.039-4a1,1,0,0,0-.707.293L652.414,1037h15.172l-1.707-1.707a1,1,0,0,0-.707-.293Z" transform="translate(145.894 1845)" fill="#12204a"/></g></svg>
+        Shop the look
+      </a>
+      <div class="shop-the-look__settings">
+        <div class="grid__item medium-up--one-half grid-products" id="look__{{ section.settings.sub_title | handle }}">
+          <a href="javascript:void(0);" class="close-grid-products">
+            {% include 'icon-close' %}
+          </a>
+          {% if section.settings.products_title != blank %}
+          <h3>{{ section.settings.products_title }}</h3>
+          {% endif %}
+          {%- assign max_height = 198 -%}
+          {%- assign product1 = all_products[section.settings.featured_product1] -%}
+          {%- assign product2 = all_products[section.settings.featured_product2] -%}
+          {%- assign product3 = all_products[section.settings.featured_product3] -%}
+          {%- assign product4 = all_products[section.settings.featured_product4] -%}
+          
+          <div class="grid grid--no-gutters grid--uniform look-products-wrapper">
+            {% if product1 != blank %}
+            <div class="grid__item small--one-half medium-up--one-half grid__item--product1">
+              {% include 'product-card-grid', max_height: max_height, product: product1, show_vendor: section.settings.show_vendor %}
+            </div>
+            {% endif %}
+            {% if product2 != blank %}
+            <div class="grid__item small--one-half medium-up--one-half grid__item--product2">
+              {% include 'product-card-grid', max_height: max_height, product: product2, show_vendor: section.settings.show_vendor %}
+            </div>
+            {% endif %}
+            {% if product3 != blank %}
+            <div class="grid__item small--one-half medium-up--one-half grid__item--product3">
+              {% include 'product-card-grid', max_height: max_height, product: product3, show_vendor: section.settings.show_vendor %}
+            </div>
+            {% endif %}
+            {% if product4 != blank %}
+            <div class="grid__item small--one-half medium-up--one-half grid__item--product4">
+              {% include 'product-card-grid', max_height: max_height, product: product4, show_vendor: section.settings.show_vendor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>
+
+{% schema %}
+{
+  "name": "Shop the look",
+  "class": "shop-the-look-section",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "banner_desk",
+    "label": "Banner (Desktop)"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_mob",
+    "label": "Banner (Mobile)"
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",
+    "default": "Title"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Sub title",
+    "default": "Sub title"
+  },
+  {
+    "type": "richtext",
+    "id": "text",
+    "label": "Text",
+    "default": "<p>Text goes here.</p>"
+  },
+  {
+    "type": "text",
+    "id": "button_label",
+    "label": "Button label",
+    "default": "Shop all looks"
+  },
+  {
+    "type": "text",
+    "id": "tracking_stl",
+    "label": "Tracking Link ID"
+  },
+  {
+    "type": "url",
+    "id": "button_link",
+    "label": "Button link"
+  },
+  {
+    "type": "select",
+    "id": "button_color",
+    "label": "Button color",
+    "default": "blue",
+    "options": [
+    {
+      "value": "blue",
+      "label": "Blue"
+    },
+    {
+      "value": "gold",
+      "label": "Gold"
+    },
+    {
+      "value": "white",
+      "label": "White"
+    }
+    ]
+  },
+  {
+    "type": "select",
+    "id": "button_hover_color",
+    "label": "Button hover color",
+    "default": "gold",
+    "options": [
+    {
+      "value": "gold",
+      "label": "Gold"
+    },
+    {
+      "value": "blue",
+      "label": "Blue"
+    },
+    {
+      "value": "white",
+      "label": "White"
+    }
+    ]
+  },
+  {
+    "type": "header",
+    "content": "Products"
+  },
+  {
+    "type": "text",
+    "id": "products_title",
+    "label": "Products Title",
+    "default": "Shop the <i>Look</i>"
+  },
+  {
+    "type": "product",
+    "id": "featured_product1",
+    "label": "Product 1"
+  },
+  {
+    "type": "product",
+    "id": "featured_product2",
+    "label": "Product 2"
+  },
+  {
+    "type": "product",
+    "id": "featured_product3",
+    "label": "Product 3"
+  },
+  {
+    "type": "product",
+    "id": "featured_product4",
+    "label": "Product 4"
+  },
+  {
+    "type": "checkbox",
+    "id": "show_vendor",
+    "label": "Show product vendors",
+    "default": false
+  }
+  ],
+  "presets": [
+  {
+    "name": "Shop the look",
+    "category": "Advanced layout"
+  }
+  ]
+}
+{% endschema %}

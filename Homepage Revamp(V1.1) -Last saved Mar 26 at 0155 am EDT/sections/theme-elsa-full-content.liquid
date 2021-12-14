@@ -1,0 +1,61 @@
+<section class="theme__content elsa full-elsa-content" data-section-type="theme__content" data-section-id="{{ section.id }}">
+  {% assign section-bg = section.settings.bg-img %}
+  
+  <div class="ed--wrapper">
+  {% assign heading = section.settings.small-heading %}
+  {% assign paragraph = section.settings.big-content %}
+  <div class="full__container">
+      <div class="full__container--content">
+        {% if heading != blank %}
+        	<h5>{{ heading }}</h5>
+        {% endif %}
+        {% if paragraph != blank %}
+        	<p>{{ paragraph }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  {% if section-bg != nil %}
+    .theme__content.elsa.full-elsa-content {
+      background-image: url('{{ section-bg | img_url: 'master' }}');
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+      {
+      "name": "Princess Full Contents",
+      "settings": [
+          {
+          "type": "image_picker",
+          "id": "bg-img",
+          "label": "Background"
+          },
+          {
+          "type": "textarea",
+          "id": "small-heading",
+          "label": "Heading"
+          },
+          {
+          "type": "textarea",
+          "id": "big-content",
+          "label": "Paragraph"
+          }
+      	]
+      }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+
+
+
+

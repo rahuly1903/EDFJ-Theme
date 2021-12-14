@@ -1,0 +1,172 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+<section class="product-custom__section"
+data-section-id="{{ section.id }}"
+data-section-type="product-content"
+>
+<div class="ed--wrapper page-width">
+  <div class="custom_content">
+    {% for block in section.blocks limit:3 %}     
+    {% assign content-img = block.settings.content-icon %}
+    {% assign content-title = block.settings.title %}
+    {% assign content-context = block.settings.content %}
+    {% assign content-button = block.settings.button-label %}
+    {% assign popup-content = block.settings.popup-content %}
+    {% assign page-link = block.settings.page-link %}
+    <div class="custom_content-inner">
+      {% if content-img != nil %}
+      <span class="content_icon">
+        <img class="lazyload" data-src="{{ content-img | img_url: 'master' }}" data-sizes="auto" alt="Enchanted Disney" />
+      </span>
+      {% endif %}
+      {% if content-title != blank %}
+      <h5>{{ content-title }}</h5>
+      {% endif %}
+      {% if content-context != blank %}
+      <p>{{ content-context }}</p>
+      {% endif %}
+      {% if content-button != blank %}
+      {% if content-button == "Drop a hint" %}
+      <span id="tid-{{ content-button | handleize }}" class="drophint-link"></span>
+      {% else %}
+      <a id="tid-{{ content-button | handleize }}" {% if popup-content != blank %}href="#{{ content-button | handleize }}" class="js-content-popup" {% else %} href="{{ page-link }}/"{% endif %}>{{ content-button }}</a>
+      {% endif %}
+      {% endif %}
+    </div>
+    
+    <div id="{{ content-button | handleize }}" class="product-page-content mfp-hide">
+      <div class="product-page-content-wrapper">
+        {% if content-button != 'Drop a hint' %}
+        {{ pages[popup-content].content }}
+        {% else content-button == 'Drop a hint' %}
+        <h3>{{ pages[popup-content].title }}</h3>
+        <div class="hint__item">
+          <div class="hint__item--left">
+            <img class="lazyload" data-src="{{ product | img_url: 'medium' }}" data-sizes="auto" alt="{{ product.title }}" />
+          </div>
+          <div class="hint__item--right">
+            <h5>Style # <span class="variant-sku">{{ current_variant.sku }}</span></h5>
+            <h2>{{ product.title }}</h2>
+          </div>
+        </div>
+        {%- assign formId = 'ContactForm' -%}
+        {% form 'contact', id: formId %}
+        {% include 'form-status', form: form, form_id: formId %}
+        <div class="hint_form">
+          <textarea name="contact[Message]">Hey, I am excited for this product. Thought I'll just drop a hint & let you know.</textarea>
+          <div class="formgroup">
+            <label for="{{ formId }}-whom-to">
+              Who do you want to drop the hint to?
+              <input type="text" id="{{ formId }}-whom-to" name="contact[Who do you want to drop the hint to?]" />
+            </label>
+            <label for="{{ formId }}-their-email">
+              Their email address
+              <input
+              type="email"
+              id="{{ formId }}-their-email"
+              name="contact[Recipient email]"
+              autocorrect="off"
+              autocapitalize="off"
+              value=""
+              aria-required="true"
+              {%- if form.errors contains 'email' -%}
+              class="input--error"
+              aria-invalid="true"
+              aria-describedby="{{ formId }}-email-error"
+              {%- endif -%}
+              >
+              {%- if form.errors contains 'email' -%}
+              <span id="{{ formId}}-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+              </span>
+              {%- endif -%}
+            </label>
+            <label for="{{ formId }}-your-name">
+              Your Name
+              <input type="text" id="{{ formId }}-your-name" name="contact[Your Name]" />
+            </label>
+            <label for="{{ formId }}-your-email">
+              Your Email
+              <input
+              type="email"
+              id="{{ formId }}-your-email"
+              name="contact[email]"
+              autocorrect="off"
+              autocapitalize="off"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              aria-required="true"
+              {%- if form.errors contains 'email' -%}
+              class="input--error"
+              aria-invalid="true"
+              aria-describedby="{{ formId }}-email-error"
+              {%- endif -%}
+              >
+              {%- if form.errors contains 'email' -%}
+              <span id="{{ formId}}-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+              </span>
+              {%- endif -%}
+            </label>
+            <label for="{{ formId }}-your-name">
+              <input type="hidden" id="{{ formId }}-visit-item" name="contact[Visit Item]" value="{{ shop.url }}/{{ product.url }}" />
+            </label>
+          </div>
+          <input type="submit" value="SEND" class="btn" />
+        </div>
+        {% endform %}
+        {% endif %}
+        
+      </div>
+    </div>
+    
+    {% endfor %}
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Content",
+  "blocks": [
+  {
+    "type": "product-content",
+    "name": "Product Custom Content",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "content-icon",
+      "label": "Image"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "button-label",
+      "label": "Button Label"
+    },
+    {
+      "type": "page",
+      "id": "popup-content",
+      "label": "Popup Content"
+    },
+    {
+      "type": "url",
+      "id": "page-link",
+      "label": "Page URL"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

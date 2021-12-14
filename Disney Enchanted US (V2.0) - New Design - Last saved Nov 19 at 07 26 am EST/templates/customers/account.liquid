@@ -1,0 +1,178 @@
+{% include 'rewards-boutique-css' %}
+<div class="account-page-rewards">
+  <div class="page-width">
+    <div class="early_access-banner">
+    <a href="/collections/black-friday-early-access-sale">
+    <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0267/0523/1943/files/Rewards_page_and_Account_page_Size_1240_X_290.jpg?v=1636973786">
+    </a>
+  </div>
+    <div class="account-header-title text-center">
+      <h1>{{ 'customer.account.title' | t }}</h1>
+      <a href="/account/logout" id="customer_logout_link" class="btn-border btn--small">
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+        Log out
+        <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="page-width">
+  <div class="grid myaccount">
+    <div class="grid__item myaccount__order-history">
+      <h2>{{ 'customer.orders.title' | t }}</h2>
+      
+      {% paginate customer.orders by 20 %}
+      {% if customer.orders.size != 0 %}
+      
+      <table class="responsive-table">
+        <thead>
+          <tr>
+            <th scope="col">{{ 'customer.orders.order_number' | t }}</th>
+            <th scope="col">{{ 'customer.orders.date' | t }}</th>
+            <th scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+            <th scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+            <th scope="col">{{ 'customer.orders.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in customer.orders %}
+          <tr>
+            <th data-label="{{ 'customer.orders.order_number' | t }}" scope="row">
+              <a href="{{ order.customer_url }}" class="btn btn--secondary btn--small" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+            </th>
+            <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | time_tag: format: 'date' }}</td>
+            <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+            <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+            <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+            <td class="medium-up--hide text-center">
+              <a href="{{ order.customer_url }}" class="btn btn--secondary btn--small" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">View order details</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+      {% else %}
+      
+      <p>{{ 'customer.orders.none' | t }}</p>
+      
+      {% endif %}
+      {%- if paginate.pages > 1 -%}
+      {% include 'pagination', paginate: paginate %}
+      {%- endif -%}
+      {% endpaginate %}
+    </div>
+    <div class="grid__item myaccount__account-details">
+      <div class="account__address-details">
+        <h2>{{ 'customer.account.details' | t }}</h2>
+
+        {{ customer.default_address | format_address }}
+
+        <p>
+          <a href="{{ routes.account_addresses_url }}/" class="btn-border btn--small">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+        </p>
+      </div>
+      <div class="account__address-rewards">
+        <h2>Rewards summary</h2>
+        <p onload="StampedRewardsSummary.showRewradPoints();" class="rewards-points" data-target-id="label-balance-points">
+          Reward Balance : <span></span>
+        </p>
+        <div class="btns-group">
+          <a href="javascript:void(0);" onclick="StampedRewardsSummary.viewRedeem();" class="btn-border">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            Redeem Now
+			<span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+          <a href="javascript:void(0);" onclick="StampedRewardsSummary.viewHistory();" class="btn-border">
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+            Unused Rewards
+            <span class="btn-sparkle">{% include 'icon-sparkle' %}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function init() {
+    setTimeout(function(){
+      var dataPoint = StampedFn.getDataRewards();
+      console.log(dataPoint.points.points_current_with_name.toLocaleString());
+      $('[data-target-id="label-balance-points"] span').text(dataPoint.points.points_current_with_name.toLocaleString());
+    },2000);
+  }
+
+  window.onload = init;
+
+
+</script>
+<script>
+  var StampedRewardsSummary = (function (window, document) {
+
+    function viewRedeem() {
+      console.log(StampedFn.getDataRewards());
+      StampedFn.toggleRewardsModal(true);
+      StampedFn.loadLauncherView('view-spendings', this);
+    }
+
+    function viewHistory() {
+      StampedFn.toggleRewardsModal(true);
+      StampedFn.loadLauncherView('view-your-rewards', this)
+    }
+
+    return {
+      viewRedeem: viewRedeem,
+      viewHistory: viewHistory
+    }
+
+  }(window, document));
+</script>
+
+<style>
+  .breadcrumb-container{display:none;}
+  .account-header-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 50px;
+  }
+  .account-header-title h1{
+    margin-bottom:0;
+  }
+  .account-page-rewards .page-rewards-boutique{
+    padding-top: 30px;
+  }
+  .account__address-rewards {
+    margin-top: 50px;
+    margin-bottom:30px;
+  }
+  .rewards-points{
+    color:#11214a; 
+  }
+  .rewards-points span{
+    font-size:18px;
+    color: #DE7C44;
+  }
+  .btns-group {margin-bottom: -10px;}
+  .btns-group .btn-border {margin-bottom: 10px;}
+  .btns-group .btn-border:not(:last-child) {margin-right: 10px;}
+  .btns-group .btn--small {
+    padding: 8px 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 200px;
+  }
+  .btns-group .btn--small svg{
+  	margin-left:10px;
+  }
+  @media screen and (max-width: 749px){
+    .account-page-rewards .page-rewards-boutique{
+      padding: 30px 0 50px;
+    }
+  }
+</style>

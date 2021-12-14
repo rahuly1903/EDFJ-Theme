@@ -1,0 +1,49 @@
+{% layout none %}
+{%- assign collectionHandle = collection.handle -%}
+{%- assign isChateauCollection = false -%}
+{%- if collectionHandle contains 'chateau' -%}
+{%- assign isChateauCollection = true -%}
+{%- endif -%}
+
+{%- if isChateauCollection -%}
+  {%- capture allProductJson -%}
+    {%- paginate collection.products by 100 -%}
+      {%- for product in collection.products -%}
+      {{ product | json }},
+      {%- endfor -%}
+    {%- endpaginate -%}
+  {%- endcapture -%}
+{%- else -%}
+  {%- capture allProductJson -%}
+    {%- paginate collection.products by 100 -%}
+      {%- for product in collection.products -%}
+        {%- assign skip_product = false -%}
+        {%- assign chateau_product = false -%}
+        {%- assign free_product = false -%}
+          {%- for tag in product.tags -%}
+            {%- assign productTag =  tag | handle -%}
+            {%- if productTag == 'vault-jan' -%}
+              {%- assign skip_product = true -%}
+            {%- endif -%}
+            {%- if productTag == 'hiding' -%}
+              {%- assign free_product = true -%}
+            {%- endif -%}
+            {%- if productTag == 'chateau-collection' -%}
+              {%- assign chateau_product = true -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if skip_product and product.available == false -%}
+          {%- elsif chateau_product -%}
+          {%- elsif free_product -%}
+          {%- else -%}
+            {{ product | json }},
+          {%- endif -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+  {%- endcapture -%}
+{% endif %}
+
+{%- assign newProductJson =  allProductJson | strip -%}
+{%- assign JosnLength = allProductJson | size -%}
+{%- assign JosnLengthDecrement = JosnLength | minus: 1 -%}
+[{{ newProductJson | slice: 0 , JosnLengthDecrement }}]

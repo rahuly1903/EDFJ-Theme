@@ -1,0 +1,76 @@
+<div class="page__content">
+  <div class="inner__wrapper">
+    <div class="content__full-width content_center">
+      <h1>{{ page.title }}</h1>
+      <p>To make an enquiry please use our contact form below.</p>
+    </div>
+    <div class="flex_container direction_row form_container">
+      <div class="contact__left flex_container vertical_centered">
+        {% section 'contact-info' %}
+      </div>
+      <div class="contact__right">
+        {%- assign formId = 'ContactForm' -%}
+        {% form 'contact', id: formId %}
+        {% include 'form-status', form: form, form_id: formId %}
+        <input type="hidden" name="contact[Website]" value="Enchanted US">
+        <div class="flex_container direction_row">
+          <div class="rowone_equalcol">
+            <label for="{{ formId }}-firstname">First Name</label>
+            <input type="text" id="{{ formId }}-firstname" name="contact[first name]" value="{% if form[firstname] %}{{ form[firstname] }}{% elsif customer %}{{ customer.firstname }}{% endif %}">
+          </div>
+          <div class="rowone_equalcol">
+            <label for="{{ formId }}-lastname">Last Name</label>
+            <input type="text" id="{{ formId }}-lastname" name="contact[last name]" value="{% if form[lastname] %}{{ form[lastname] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+          </div>
+        </div>
+        
+        <div class="flex_container direction_row">
+          <div class="rowone_equalcol">
+            <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+            <input
+                   type="email"
+                   id="{{ formId }}-email"
+                   name="contact[email]"
+                   autocorrect="off"
+                   autocapitalize="off"
+                   value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                   aria-required="true"
+                   {%- if form.errors contains 'email' -%}
+                   class="input--error"
+                   aria-invalid="true"
+                   aria-describedby="{{ formId }}-email-error"
+                   {%- endif -%}
+                   >
+            {%- if form.errors contains 'email' -%}
+            <span id="{{ formId}}-email-error" class="input-error-message">
+              <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+              {% include 'icon-error' %}
+              <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+            </span>
+            {%- endif -%}
+          </div>
+          <div class="rowone_equalcol">
+            <label for="{{ formId }}-nature">Nature of Inquiry</label>
+            <select id="{{ formId }}-nature" name="contact[nature]">
+              <option value="" disabled selected>Nature of Inquiry</option>
+              <option value="Sales">Sales</option>
+              <option value="Complaints">Complaints</option>
+              <option value="Suggestions">Suggestions</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        
+        <label for="{{ formId }}-subject">Subject</label>
+        <input type="text" id="{{ formId }}-v" name="contact[subject]" value="{% if form[subject] %}{{ form[subject] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+
+        <label for="{{ formId }}-message">Details of your Inquiry</label>
+        <textarea rows="10" id="{{ formId }}-message" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+        <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
